@@ -47,7 +47,7 @@ function initAddLB(){
 	$("#add_but").linkbutton({
 		iconCls:"icon-add",
 		onClick:function(){
-			location.href=busPath+"busStop/add";
+			location.href=ddglPath+"zhcx/add";
 		}
 	});
 }

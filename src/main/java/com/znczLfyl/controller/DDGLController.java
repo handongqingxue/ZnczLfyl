@@ -24,6 +24,14 @@ public class DDGLController {
 	@Autowired
 	private DingDanService dingDanService;
 	public static final String MODULE_NAME="ddgl";
+	
+	@RequestMapping(value="/zhcx/add")
+	public String goDdglZhcxAdd(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		
+		return MODULE_NAME+"/zhcx/add";
+	}
 
 	/**
 	 * 跳转到订单管理-综合查询-列表页面
