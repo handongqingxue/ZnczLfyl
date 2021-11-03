@@ -57,6 +57,15 @@ public class YongHu {
 	public void setJsid(Integer jsid) {
 		this.jsid = jsid;
 	}
+	//https://blog.csdn.net/qq_43416276/article/details/102981480
+	public YongHu() {
+		super();
+	}
+	
+	public YongHu(String yhm,String mm) {
+		this.yhm=yhm;
+		this.mm=mm;
+	}
 	private String yhm;
 	private String mm;
 	private String nc;

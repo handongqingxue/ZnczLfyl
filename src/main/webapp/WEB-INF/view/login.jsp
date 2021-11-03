@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>智能称重平台登录</title>
-<%@include file="js.jsp"%>
+<%@include file="inc/js.jsp"%>
 <style>
 .beg-login-box {
 	width: 450px;
@@ -50,14 +50,14 @@ body {
 			<form class="layui-form" method="post">
 				<div class="layui-form-item">
 					<label class="beg-login-icon"> <i class="layui-icon">&#xe612;</i>
-					</label> <input type="text" name="userName" placeholder="请输入登录名"
-						class="layui-input" lay-verify="required|userName"
+					</label> <input type="text" name="yhm" placeholder="请输入登录名"
+						class="layui-input" lay-verify="required|yhm"
 						autocomplete="off" value="">
 				</div>
 				<div class="layui-form-item">
 					<label class="beg-login-icon"> <i class="layui-icon">&#xe642;</i>
-					</label> <input type="password" name="password" placeholder="请输入密码"
-						class="layui-input" lay-verify="required|password_"
+					</label> <input type="password" name="mm" placeholder="请输入密码"
+						class="layui-input" lay-verify="required|mm_"
 						autocomplete="off" value="">
 				</div>
 				<div class="layui-form-item">
@@ -97,6 +97,7 @@ body {
 </body>
 <script type="text/javascript" src="<%=basePath %>resource/js/MD5.js"></script>
 <script type="text/javascript">
+	var path='<%=basePath %>';
     //更换验证码
     var baseUrl="${pageContext.request.contextPath}";
     $(".replace_code").bind("click",function () {
@@ -110,11 +111,11 @@ body {
         //监听提交按钮
         form.on('submit(login)', function (data) {
             $(data.elem).attr('class', 'layui-btn layui-btn-disabled');
-            var url=baseUrl + "/background/login"
+            var url=baseUrl + "/main/login"
             var params = {
-                    userName: data.field.userName,
-                    password: MD5(data.field.password).toUpperCase(),
-                    //password: data.field.password,
+                    yhm: data.field.yhm,
+                    mm: MD5(data.field.mm).toUpperCase(),
+                    //mm: data.field.mm,
                     rememberMe : data.field.rememberMe,
                     loginVCode:data.field.loginVCode
             };
@@ -123,7 +124,7 @@ body {
             	console.log(json)
             	if(json.status==0){
             		layer.msg(json.msg, {icon: 6});
-            		window.location.href=json.url;
+            		window.location.href=path+json.url;
             	}else if(json.status==1){
             		layer.alert(json.msg,{icon:5})
             	}
@@ -134,7 +135,7 @@ body {
 
         //自定义验证规则
         form.verify({
-            userName: function (value) {
+            yhm: function (value) {
                 if (!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)) {
                     return '用户名不能有特殊字符';
                 }
