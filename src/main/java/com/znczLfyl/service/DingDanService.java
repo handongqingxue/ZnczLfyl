@@ -10,4 +10,6 @@ public interface DingDanService {
 
 	List<DingDan> queryZHCXList(String ddh, int page, int rows, String sort, String order);
 
+	int add(DingDan dd);
+
 }

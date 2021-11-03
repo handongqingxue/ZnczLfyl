@@ -9,9 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.znczLfyl.service.*;
+
+import net.sf.json.JSONObject;
+
 import com.znczLfyl.entity.*;
 import com.znczLfyl.controller.DDGLController;
 
@@ -63,6 +68,29 @@ public class DDGLController {
 			e.printStackTrace();
 		}
 		
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/newDingDanZongHeChaXun")
+	@ResponseBody
+	public Map<String, Object> newDingDanZongHeChaXun(DingDan dd,
+			HttpServletRequest request) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		try {
+			int count=dingDanService.add(dd);
+			if(count>0) {
+				jsonMap.put("message", "ok");
+				jsonMap.put("info", "创建订单成功！");
+			}
+			else {
+				jsonMap.put("message", "no");
+				jsonMap.put("info", "创建订单失败！");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return jsonMap;
 	}
 }

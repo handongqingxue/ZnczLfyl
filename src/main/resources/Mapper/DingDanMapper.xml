@@ -6,15 +6,72 @@
 	<select id="queryZHCXForInt" resultType="java.lang.Integer">
 		select count(*) from ding_dan where 1=1
 		<if test="ddh!=''&amp;ddh!=null">
-			and dd.ddh like CONCAT('%',#{ddh},'%')
+			and ddh like CONCAT('%',#{ddh},'%')
 		</if>
 	</select>
 	<select id="queryZHCXList" resultType="com.znczLfyl.entity.DingDan">
 		select * from ding_dan where 1=1
 		<if test="ddh!=''&amp;ddh!=null">
-			and dd.ddh like CONCAT('%',#{ddh},'%')
+			and ddh like CONCAT('%',#{ddh},'%')
 		</if>
 		order by bjsj desc
 		limit #{rowNum},#{rows}
-	</select>
+	</select><insert id="add" parameterType="com.znczLfyl.entity.DingDan">
+		insert into ding_dan
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="ddh!=null">
+				ddh,
+			</if>
+			<if test="sjsfzh!=null">
+				sjsfzh,
+			</if>
+			<if test="sjxm!=null">
+				sjxm,
+			</if>
+			<if test="cph!=null">
+				cph,
+			</if>
+			<if test="lxlx!=null">
+				lxlx,
+			</if>
+			<if test="yzxzl!=null">
+				yzxzl,
+			</if>
+			<if test="sjzl!=null">
+				sjzl,
+			</if>
+			<if test="zlceb!=null">
+				zlceb,
+			</if>
+				bjsj
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="ddh!=null">
+				#{ddh},
+			</if>
+			<if test="sjsfzh!=null">
+				#{sjsfzh},
+			</if>
+			<if test="sjxm!=null">
+				#{sjxm},
+			</if>
+			<if test="cph!=null">
+				#{cph},
+			</if>
+			<if test="lxlx!=null">
+				#{lxlx},
+			</if>
+			<if test="yzxzl!=null">
+				#{yzxzl},
+			</if>
+			<if test="sjzl!=null">
+				#{sjzl},
+			</if>
+			<if test="zlceb!=null">
+				#{zlceb},
+			</if>
+				now()
+		</trim>
+	</insert>
 </mapper>

@@ -26,4 +26,10 @@ public class DingDanServiceImpl implements DingDanService {
 		// TODO Auto-generated method stub
 		return dingDanDao.queryZHCXList(ddh, (page-1)*rows, rows, sort, order);
 	}
+
+	@Override
+	public int add(DingDan dd) {
+		// TODO Auto-generated method stub
+		return dingDanDao.add(dd);
+	}
 }
