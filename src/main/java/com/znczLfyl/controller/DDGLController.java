@@ -25,12 +25,12 @@ public class DDGLController {
 	private DingDanService dingDanService;
 	public static final String MODULE_NAME="ddgl";
 	
-	@RequestMapping(value="/zhcx/add")
-	public String goDdglZhcxAdd(HttpServletRequest request) {
+	@RequestMapping(value="/zhcx/new")
+	public String goDdglZhcxNew(HttpServletRequest request) {
 		
 		//publicService.selectNav(request);
 		
-		return MODULE_NAME+"/zhcx/add";
+		return MODULE_NAME+"/zhcx/new";
 	}
 
 	/**

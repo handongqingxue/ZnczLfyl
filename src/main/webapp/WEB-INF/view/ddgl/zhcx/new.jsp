@@ -51,9 +51,9 @@ function initDialogPosition(){
 function initNewDialog(){
 	dialogTop+=20;
 	$("#new_div").dialog({
-		title:"站点信息",
+		title:"基本信息",
 		width:setFitWidthInParent("body","new_div"),
-		height:730,
+		height:580,
 		top:dialogTop,
 		left:dialogLeft,
 		buttons:[
@@ -122,23 +122,23 @@ function setFitWidthInParent(parent,self){
 <div class="layui-layout layui-layout-admin">
 	<%@include file="../../inc/side.jsp"%>
 	<div class="center_con_div" id="center_con_div">
-		<div class="page_location_div">添加订单</div>
+		<div class="page_location_div">综合查询-添加订单</div>
 		
 		<div id="new_div">
 			<form id="form1" name="form1" method="post" action="" enctype="multipart/form-data">
 			<table>
 			  <tr>
 				<td class="td1" align="right">
-					站点名
+					订单号
 				</td>
 				<td class="td2">
-					<input type="text" class="name_inp" id="name" name="name" placeholder="请输入站点名" onfocus="focusName()" onblur="checkName()"/>
+					<input type="text" class="name_inp" id="name" name="name" placeholder="请输入订单号" onfocus="focusName()" onblur="checkName()" style="width: 180px;height:30px;"/>
 				</td>
 				<td class="td1" align="right">
-					排序
+					司机身份证号
 				</td>
 				<td class="td2">
-					<input type="number" class="sort_inp" id="sort" name="sort" placeholder="请输入排序"/>
+					<input type="text" class="sort_inp" id="sort" name="sort" placeholder="请输入排序"/>
 				</td>
 			  </tr>
 			  <tr>
