@@ -1,0 +1,29 @@
+package com.znczLfyl.service.serviceImpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.znczLfyl.dao.*;
+import com.znczLfyl.entity.*;
+import com.znczLfyl.service.*;
+
+@Service
+public class DingDanServiceImpl implements DingDanService {
+
+	@Autowired
+	private DingDanMapper dingDanDao;
+
+	@Override
+	public int queryZHCXForInt(String ddh) {
+		// TODO Auto-generated method stub
+		return dingDanDao.queryZHCXForInt(ddh);
+	}
+
+	@Override
+	public List<DingDan> queryZHCXList(String ddh, int page, int rows, String sort, String order) {
+		// TODO Auto-generated method stub
+		return dingDanDao.queryZHCXList(ddh, (page-1)*rows, rows, sort, order);
+	}
+}

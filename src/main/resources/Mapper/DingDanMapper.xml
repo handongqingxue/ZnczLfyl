@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znczLfyl.dao.DingDanMapper">
+	<select id="queryZHCXForInt" resultType="java.lang.Integer">
+		select count(*) from ding_dan where 1=1
+		<if test="ddh!=''&amp;ddh!=null">
+			and dd.ddh like CONCAT('%',#{ddh},'%')
+		</if>
+	</select>
+	<select id="queryZHCXList" resultType="com.znczLfyl.entity.DingDan">
+		select * from ding_dan where 1=1
+		<if test="ddh!=''&amp;ddh!=null">
+			and dd.ddh like CONCAT('%',#{ddh},'%')
+		</if>
+		order by bjsj desc
+		limit #{rowNum},#{rows}
+	</select>
+</mapper>

@@ -12,10 +12,10 @@
 .tab1_div .toolbar{
 	height:32px;
 }
-.tab1_div .toolbar .name_span{
+.tab1_div .toolbar .ddh_span{
 	margin-left: 13px;
 }
-.tab1_div .toolbar .name_inp{
+.tab1_div .toolbar .ddh_inp{
 	width: 120px;height: 25px;
 }
 .tab1_div .toolbar .search_but{
@@ -25,7 +25,8 @@
 <title>Insert title here</title>
 <%@include file="../../inc/js.jsp"%>
 <script type="text/javascript">
-var busPath='<%=basePath%>'+"background/bus/";
+var path='<%=basePath %>';
+var ddglPath=path+'ddgl/';
 $(function(){
 	initSearchLB();
 	initAddLB();
@@ -36,8 +37,8 @@ function initSearchLB(){
 	$("#search_but").linkbutton({
 		iconCls:"icon-search",
 		onClick:function(){
-			var name=$("#toolbar #name").val();
-			tab1.datagrid("load",{name:name});
+			var ddh=$("#toolbar #ddh").val();
+			tab1.datagrid("load",{ddh:ddh});
 		}
 	});
 }
@@ -53,20 +54,33 @@ function initAddLB(){
 
 function initTab1(){
 	tab1=$("#tab1").datagrid({
-		title:"站点查询",
-		url:busPath+"selectBusStopList",
+		title:"综合查询",
+		url:ddglPath+"queryZHCXList",
 		toolbar:"#toolbar",
 		width:setFitWidthInParent("body"),
 		pagination:true,
 		pageSize:10,
 		columns:[[
-			{field:"name",title:"名称",width:150},
-			{field:"x",title:"x轴坐标",width:100},
-			{field:"y",title:"y轴坐标",width:100},
-			{field:"busNoNames",title:"站点车辆",width:200},
-            {field:"createTime",title:"创建时间",width:150},
-            {field:"modifyTime",title:"修改时间",width:150},
-            {field:"sort",title:"排序",width:80},
+			{field:"ddh",title:"订单号",width:150},
+			{field:"sjsfzh",title:"司机身份证号",width:200},
+			{field:"sjxm",title:"司机姓名",width:100},
+			{field:"cph",title:"车牌号",width:150},
+            {field:"lxlx",title:"流向类型",width:100,formatter:function(value,row){
+            	var str;
+            	switch (value) {
+				case 1:
+					str="送运";
+					break;
+				case 2:
+					str="取运";
+					break;
+				}
+            	return str;
+            }},
+            {field:"yzxzl",title:"预装卸重量",width:100},
+            {field:"sjzl",title:"实际重量",width:100},
+            {field:"zlceb",title:"重量差额比",width:100},
+            {field:"bjsj",title:"编辑时间",width:150},
             {field:"id",title:"操作",width:110,formatter:function(value,row){
             	var str="<a href=\"edit?id="+value+"\">编辑</a>&nbsp;&nbsp;"
             		+"<a href=\"detail?id="+value+"\">详情</a>";
@@ -75,8 +89,8 @@ function initTab1(){
 	    ]],
         onLoadSuccess:function(data){
 			if(data.total==0){
-				$(this).datagrid("appendRow",{name:"<div style=\"text-align:center;\">暂无信息<div>"});
-				$(this).datagrid("mergeCells",{index:0,field:"name",colspan:8});
+				$(this).datagrid("appendRow",{ddh:"<div style=\"text-align:center;\">暂无信息<div>"});
+				$(this).datagrid("mergeCells",{index:0,field:"ddh",colspan:10});
 				data.total=0;
 			}
 			
@@ -100,8 +114,8 @@ function setFitWidthInParent(o){
 	<%@include file="../../inc/side.jsp"%>
 	<div class="tab1_div" id="tab1_div">
 		<div class="toolbar" id="toolbar">
-			<span class="name_span">站点名称：</span>
-			<input type="text" class="name_inp" id="name" placeholder="请输入站点名称"/>
+			<span class="ddh_span">订单号：</span>
+			<input type="text" class="ddh_inp" id="ddh" placeholder="请输入订单号"/>
 			<a class="search_but" id="search_but">查询</a>
 			<a id="add_but">添加</a>
 		</div>
