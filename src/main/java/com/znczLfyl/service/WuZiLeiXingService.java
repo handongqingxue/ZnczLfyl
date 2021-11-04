@@ -16,4 +16,6 @@ public interface WuZiLeiXingService {
 
 	WuZiLeiXing selectById(String id);
 
+	List<WuZiLeiXing> queryCBBList();
+
 }

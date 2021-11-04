@@ -18,4 +18,6 @@ public interface WuZiLeiXingMapper {
 
 	WuZiLeiXing selectById(@Param("id") String id);
 
+	List<WuZiLeiXing> queryCBBList();
+
 }

@@ -20,6 +20,8 @@ public class WZGLController {
 
 	@Autowired
 	private WuZiLeiXingService wuZiLeiXingService;
+	@Autowired
+	private WuZiService wuZiService;
 	public static final String MODULE_NAME="wzgl";
 	
 	@RequestMapping(value="/wzlx/new")
@@ -28,14 +30,6 @@ public class WZGLController {
 		//publicService.selectNav(request);
 		
 		return MODULE_NAME+"/wzlx/new";
-	}
-	
-	@RequestMapping(value="/wzlx/list")
-	public String goWzglWzlxList(HttpServletRequest request) {
-		
-		//publicService.selectNav(request);
-		
-		return MODULE_NAME+"/wzlx/list";
 	}
 
 	@RequestMapping(value="/wzlx/edit")
@@ -48,6 +42,14 @@ public class WZGLController {
 		
 		return MODULE_NAME+"/wzlx/edit";
 	}
+	
+	@RequestMapping(value="/wzlx/list")
+	public String goWzglWzlxList(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		
+		return MODULE_NAME+"/wzlx/list";
+	}
 
 	@RequestMapping(value="/wzlx/detail")
 	public String goWzlxDetail(HttpServletRequest request) {
@@ -58,6 +60,22 @@ public class WZGLController {
 		request.setAttribute("wzlx", wzlx);
 		
 		return MODULE_NAME+"/wzlx/detail";
+	}
+	
+	@RequestMapping(value="/wzcx/new")
+	public String goWzglWzcxNew(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		
+		return MODULE_NAME+"/wzcx/new";
+	}
+	
+	@RequestMapping(value="/wzcx/list")
+	public String goWzglWzcxList(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		
+		return MODULE_NAME+"/wzcx/list";
 	}
 	
 	@RequestMapping(value="/queryWZLXList")
@@ -113,6 +131,34 @@ public class WZGLController {
 			jsonMap.put("message", "no");
 			jsonMap.put("info", "编辑物资类型失败！");
 		}
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/queryWuZiList")
+	@ResponseBody
+	public Map<String, Object> queryWuZiList(String mc,String wzlxmc,int page,int rows,String sort,String order) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		int count = wuZiService.queryWuZiForInt(mc,wzlxmc);
+		List<WuZi> wzList=wuZiService.queryWuZiList(mc, wzlxmc, page, rows, sort, order);
+		
+		jsonMap.put("total", count);
+		jsonMap.put("rows", wzList);
+		
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/queryWuZiLeiXingCBBList")
+	@ResponseBody
+	public Map<String, Object> queryWuZiLeiXingCBBList() {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		List<WuZiLeiXing> wzlxList=wuZiLeiXingService.queryCBBList();
+		
+		jsonMap.put("rows", wzlxList);
+		
 		return jsonMap;
 	}
 }

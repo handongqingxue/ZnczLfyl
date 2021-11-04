@@ -51,4 +51,7 @@
 	<select id="selectById" resultType="com.znczLfyl.entity.WuZiLeiXing">
 		select * from wu_zi_lei_xing where id=#{id}
 	</select>
+	<select id="queryCBBList" resultType="com.znczLfyl.entity.WuZiLeiXing">
+		select id,mc from wu_zi_lei_xing order by px
+	</select>
 </mapper>

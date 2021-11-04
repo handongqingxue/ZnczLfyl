@@ -134,7 +134,7 @@
 					<div class="line_div"></div>
 					<li class="layui-nav-item">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
-						<a href="<%=basePath%>background/scenicPlace/scenicPlace/list">
+						<a href="<%=basePath%>wzgl/wzcx/list">
 							&nbsp;&nbsp;&nbsp;物资查询
 						</a>
 					</li>

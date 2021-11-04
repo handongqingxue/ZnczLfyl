@@ -44,4 +44,10 @@ public class WuZiLeiXingServiceImpl implements WuZiLeiXingService {
 		// TODO Auto-generated method stub
 		return wuZiLeiXingDao.selectById(id);
 	}
+
+	@Override
+	public List<WuZiLeiXing> queryCBBList() {
+		// TODO Auto-generated method stub
+		return wuZiLeiXingDao.queryCBBList();
+	}
 }
