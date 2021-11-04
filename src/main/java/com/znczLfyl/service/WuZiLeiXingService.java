@@ -6,10 +6,14 @@ import com.znczLfyl.entity.*;
 
 public interface WuZiLeiXingService {
 
+	int add(WuZiLeiXing wzlx);
+
+	int edit(WuZiLeiXing wzlx);
+
 	int queryForInt(String mc);
 
 	List<WuZiLeiXing> queryList(String mc, int page, int rows, String sort, String order);
 
-	int add(WuZiLeiXing wzlx);
+	WuZiLeiXing selectById(String id);
 
 }

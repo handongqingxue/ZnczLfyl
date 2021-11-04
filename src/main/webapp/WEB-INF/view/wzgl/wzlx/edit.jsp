@@ -28,79 +28,80 @@ var path='<%=basePath %>';
 var wzglPath=path+'wzgl/';
 var dialogTop=10;
 var dialogLeft=20;
-var ndNum=0;
+var edNum=0;
 $(function(){
-	initNewDialog();//0
+	initEditDialog();//0
 
 	initDialogPosition();//将不同窗体移动到主要内容区域
 });
 
 function initDialogPosition(){
 	//基本属性组
-	var ndpw=$("body").find(".panel.window").eq(ndNum);
-	var ndws=$("body").find(".window-shadow").eq(ndNum);
+	var edpw=$("body").find(".panel.window").eq(edNum);
+	var edws=$("body").find(".window-shadow").eq(edNum);
 
 	var ccDiv=$("#center_con_div");
-	ccDiv.append(ndpw);
-	ccDiv.append(ndws);
+	ccDiv.append(edpw);
+	ccDiv.append(edws);
 	ccDiv.css("width",setFitWidthInParent("body","center_con_div")+"px");
 }
 
-function initNewDialog(){
+function initEditDialog(){
 	dialogTop+=20;
-	$("#new_div").dialog({
+	$("#edit_div").dialog({
 		title:"物资类型信息",
-		width:setFitWidthInParent("body","new_div"),
-		height:231,
+		width:setFitWidthInParent("body","edit_div"),
+		height:290,
 		top:dialogTop,
 		left:dialogLeft,
 		buttons:[
            {text:"保存",id:"ok_but",iconCls:"icon-ok",handler:function(){
-        	   checkNew();
+        	   checkEdit();
            }}
         ]
 	});
 
-	$("#new_div table").css("width",(setFitWidthInParent("body","new_div_table"))+"px");
-	$("#new_div table").css("magin","-100px");
-	$("#new_div table td").css("padding-left","50px");
-	$("#new_div table td").css("padding-right","20px");
-	$("#new_div table td").css("font-size","15px");
-	$("#new_div table .td1").css("width","15%");
-	$("#new_div table .td2").css("width","30%");
-	$("#new_div table tr").css("border-bottom","#CAD9EA solid 1px");
-	$("#new_div table tr").eq(0).css("height","45px");
-	$("#new_div table tr").eq(1).css("height","90px");
+	$("#edit_div table").css("width",(setFitWidthInParent("body","edit_div_table"))+"px");
+	$("#edit_div table").css("magin","-100px");
+	$("#edit_div table td").css("padding-left","50px");
+	$("#edit_div table td").css("padding-right","20px");
+	$("#edit_div table td").css("font-size","15px");
+	$("#edit_div table .td1").css("width","15%");
+	$("#edit_div table .td2").css("width","30%");
+	$("#edit_div table tr").css("border-bottom","#CAD9EA solid 1px");
+	$("#edit_div table tr").each(function(i){
+		$(this).css("height",(i==2?90:45)+"px");
+	});
 
-	$(".panel.window").eq(ndNum).css("margin-top","20px");
-	$(".panel.window .panel-title").eq(ndNum).css("color","#000");
-	$(".panel.window .panel-title").eq(ndNum).css("font-size","15px");
-	$(".panel.window .panel-title").eq(ndNum).css("padding-left","10px");
+	$(".panel.window").eq(edNum).css("margin-top","20px");
+	$(".panel.window .panel-title").eq(edNum).css("color","#000");
+	$(".panel.window .panel-title").eq(edNum).css("font-size","15px");
+	$(".panel.window .panel-title").eq(edNum).css("padding-left","10px");
 	
 	$(".panel-header, .panel-body").css("border-color","#ddd");
 	
 	//以下的是表格下面的面板
-	$(".window-shadow").eq(ndNum).css("margin-top","20px");
-	$(".window,.window .window-body").eq(ndNum).css("border-color","#ddd");
+	$(".window-shadow").eq(edNum).css("margin-top","20px");
+	$(".window,.window .window-body").eq(edNum).css("border-color","#ddd");
 
-	$("#new_div #ok_but").css("left","45%");
-	$("#new_div #ok_but").css("position","absolute");
+	$("#edit_div #ok_but").css("left","45%");
+	$("#edit_div #ok_but").css("position","absolute");
 	
 	$(".dialog-button").css("background-color","#fff");
 	$(".dialog-button .l-btn-text").css("font-size","20px");
 }
 
-function checkNew(){
+function checkEdit(){
 	if(checkMC()){
-		newWuZiLeiXing();
+		editWuZiLeiXing();
 	}
 }
 
-function newWuZiLeiXing(){
+function editWuZiLeiXing(){
 	var formData = new FormData($("#form1")[0]);
 	$.ajax({
 		type:"post",
-		url:wzglPath+"newWuZiLeiXing",
+		url:wzglPath+"editWuZiLeiXing",
 		dataType: "json",
 		data:formData,
 		cache: false,
@@ -144,10 +145,10 @@ function setFitWidthInParent(parent,self){
 	case "center_con_div":
 		space=205;
 		break;
-	case "new_div":
+	case "edit_div":
 		space=340;
 		break;
-	case "new_div_table":
+	case "edit_div_table":
 	case "panel_window":
 		space=355;
 		break;
@@ -161,23 +162,38 @@ function setFitWidthInParent(parent,self){
 <div class="layui-layout layui-layout-admin">
 	<%@include file="../../inc/side.jsp"%>
 	<div class="center_con_div" id="center_con_div">
-		<div class="page_location_div">物资类型-添加</div>
+		<div class="page_location_div">物资类型-编辑</div>
 		
-		<div id="new_div">
+		<div id="edit_div">
 			<form id="form1" name="form1" method="post" action="" enctype="multipart/form-data">
+			<input type="hidden" id="id" name="id" value="${requestScope.wzlx.id }"/>
 			<table>
 			  <tr>
 				<td class="td1" align="right">
 					类名
 				</td>
 				<td class="td2">
-					<input type="text" class="mc_inp" id="mc" name="mc" placeholder="请输入类名" onfocus="focusMC()" onblur="checkMC()"/>
+					<input type="text" class="mc_inp" id="mc" name="mc" value="${requestScope.wzlx.mc }" placeholder="请输入类名" onfocus="focusMC()" onblur="checkMC()"/>
 				</td>
 				<td class="td1" align="right">
 					排序
 				</td>
 				<td class="td2">
-					<input type="number" class="px_inp" id="px" name="px"/>
+					<input type="number" class="px_inp" id="px" name="px" value="${requestScope.wzlx.px }"/>
+				</td>
+			  </tr>
+			  <tr>
+				<td class="td1" align="right">
+					创建时间
+				</td>
+				<td class="td2">
+					${requestScope.wzlx.cjsj }
+				</td>
+				<td class="td1" align="right">
+					编辑时间
+				</td>
+				<td class="td2">
+					${requestScope.wzlx.bjsj }
 				</td>
 			  </tr>
 			  <tr>
@@ -185,7 +201,7 @@ function setFitWidthInParent(parent,self){
 					备注
 				</td>
 				<td class="td2">
-					<textarea id="bz" name="bz" rows="3" cols="30" placeholder="请输入备注"></textarea>
+					<textarea id="bz" name="bz" rows="3" cols="30" placeholder="请输入备注">${requestScope.wzlx.bz }</textarea>
 				</td>
 				<td class="td1" align="right">
 				</td>

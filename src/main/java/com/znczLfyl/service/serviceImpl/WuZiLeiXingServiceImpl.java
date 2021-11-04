@@ -16,6 +16,18 @@ public class WuZiLeiXingServiceImpl implements WuZiLeiXingService {
 	private WuZiLeiXingMapper wuZiLeiXingDao;
 
 	@Override
+	public int add(WuZiLeiXing wzlx) {
+		// TODO Auto-generated method stub
+		return wuZiLeiXingDao.add(wzlx);
+	}
+
+	@Override
+	public int edit(WuZiLeiXing wzlx) {
+		// TODO Auto-generated method stub
+		return wuZiLeiXingDao.edit(wzlx);
+	}
+
+	@Override
 	public int queryForInt(String mc) {
 		// TODO Auto-generated method stub
 		return wuZiLeiXingDao.queryForInt(mc);
@@ -28,8 +40,8 @@ public class WuZiLeiXingServiceImpl implements WuZiLeiXingService {
 	}
 
 	@Override
-	public int add(WuZiLeiXing wzlx) {
+	public WuZiLeiXing selectById(String id) {
 		// TODO Auto-generated method stub
-		return wuZiLeiXingDao.add(wzlx);
+		return wuZiLeiXingDao.selectById(id);
 	}
 }

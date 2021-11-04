@@ -8,10 +8,14 @@ import com.znczLfyl.entity.*;
 
 public interface WuZiLeiXingMapper {
 
+	int add(WuZiLeiXing wzlx);
+
+	int edit(WuZiLeiXing wzlx);
+
 	int queryForInt(@Param("mc") String mc);
 
 	List<WuZiLeiXing> queryList(@Param("mc") String mc, @Param("rowNum") int rowNum, @Param("rows") int rows, String sort, String order);
 
-	int add(WuZiLeiXing wzlx);
+	WuZiLeiXing selectById(@Param("id") String id);
 
 }
