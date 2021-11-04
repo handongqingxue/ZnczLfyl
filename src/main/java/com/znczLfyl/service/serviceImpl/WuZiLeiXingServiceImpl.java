@@ -26,4 +26,10 @@ public class WuZiLeiXingServiceImpl implements WuZiLeiXingService {
 		// TODO Auto-generated method stub
 		return wuZiLeiXingDao.queryList(mc, (page-1)*rows, rows, sort, order);
 	}
+
+	@Override
+	public int add(WuZiLeiXing wzlx) {
+		// TODO Auto-generated method stub
+		return wuZiLeiXingDao.add(wzlx);
+	}
 }

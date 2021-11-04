@@ -22,6 +22,14 @@ public class WZGLController {
 	private WuZiLeiXingService wuZiLeiXingService;
 	public static final String MODULE_NAME="wzgl";
 	
+	@RequestMapping(value="/wzlx/new")
+	public String goWzglWzlxNew(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		
+		return MODULE_NAME+"/wzlx/new";
+	}
+	
 	@RequestMapping(value="/wzlx/list")
 	public String goWzglWzlxList(HttpServletRequest request) {
 		
@@ -47,6 +55,24 @@ public class WZGLController {
 			e.printStackTrace();
 		}
 		
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/newWuZiLeiXing")
+	@ResponseBody
+	public Map<String, Object> newWuZiLeiXing(WuZiLeiXing wzlx) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		int count=wuZiLeiXingService.add(wzlx);
+		if(count>0) {
+			jsonMap.put("message", "ok");
+			jsonMap.put("info", "创建物资类型成功！");
+		}
+		else {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "创建物资类型失败！");
+		}
 		return jsonMap;
 	}
 }

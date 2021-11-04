@@ -10,4 +10,6 @@ public interface WuZiLeiXingService {
 
 	List<WuZiLeiXing> queryList(String mc, int page, int rows, String sort, String order);
 
+	int add(WuZiLeiXing wzlx);
+
 }
