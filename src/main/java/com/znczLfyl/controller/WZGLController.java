@@ -48,6 +48,17 @@ public class WZGLController {
 		
 		return MODULE_NAME+"/wzlx/edit";
 	}
+
+	@RequestMapping(value="/wzlx/detail")
+	public String goWzlxDetail(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		String id = request.getParameter("id");
+		WuZiLeiXing wzlx=wuZiLeiXingService.selectById(id);
+		request.setAttribute("wzlx", wzlx);
+		
+		return MODULE_NAME+"/wzlx/detail";
+	}
 	
 	@RequestMapping(value="/queryWZLXList")
 	@ResponseBody
