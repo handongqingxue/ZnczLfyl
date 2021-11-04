@@ -16,7 +16,8 @@
 		</if>
 		order by bjsj desc
 		limit #{rowNum},#{rows}
-	</select><insert id="add" parameterType="com.znczLfyl.entity.DingDan">
+	</select>
+	<insert id="add" parameterType="com.znczLfyl.entity.DingDan">
 		insert into ding_dan
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="ddh!=null">
