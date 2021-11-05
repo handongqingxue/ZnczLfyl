@@ -13,9 +13,9 @@ public interface WuZiService {
 
 	public int edit(WuZi wz);
 
-	public int queryWuZiForInt(String mc, String wzlxmc);
+	public int queryForInt(String mc, String wzlxmc);
 
-	public List<WuZi> queryWuZiList(String mc, String wzlxmc, int page, int rows, String sort, String order);
+	public List<WuZi> queryList(String mc, String wzlxmc, int page, int rows, String sort, String order);
 
 	public WuZi selectById(String id);
 }

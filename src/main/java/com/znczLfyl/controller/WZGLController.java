@@ -88,6 +88,17 @@ public class WZGLController {
 		
 		return MODULE_NAME+"/wzcx/list";
 	}
+
+	@RequestMapping(value="/wzcx/detail")
+	public String goWzglWzcxDetail(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		String id = request.getParameter("id");
+		WuZi wz=wuZiService.selectById(id);
+		request.setAttribute("wz", wz);
+		
+		return MODULE_NAME+"/wzcx/detail";
+	}
 	
 	@RequestMapping(value="/queryWZLXList")
 	@ResponseBody
@@ -187,8 +198,8 @@ public class WZGLController {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
-		int count = wuZiService.queryWuZiForInt(mc,wzlxmc);
-		List<WuZi> wzList=wuZiService.queryWuZiList(mc, wzlxmc, page, rows, sort, order);
+		int count = wuZiService.queryForInt(mc,wzlxmc);
+		List<WuZi> wzList=wuZiService.queryList(mc, wzlxmc, page, rows, sort, order);
 		
 		jsonMap.put("total", count);
 		jsonMap.put("rows", wzList);

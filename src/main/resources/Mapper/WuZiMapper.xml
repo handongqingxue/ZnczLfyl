@@ -34,7 +34,7 @@
 	<update id="edit" parameterType="com.znczLfyl.entity.WuZi">
 		update wu_zi set mc=#{mc},bjsj=now(),wzlxId=#{wzlxId} where id=#{id}
 	</update>
-	<select id="queryWuZiForInt" resultType="java.lang.Integer">
+	<select id="queryForInt" resultType="java.lang.Integer">
 		select count(*) from wu_zi_lei_xing wzlx,wu_zi wz where wzlx.id=wz.wzlxId
 		<if test="mc!=''&amp;mc!=null">
 			and wz.mc like CONCAT('%',#{mc},'%')
@@ -43,7 +43,7 @@
 			and wzlx.mc like CONCAT('%',#{wzlxmc},'%')
 		</if> 
 	</select>
-	<select id="queryWuZiList" resultType="com.znczLfyl.entity.WuZi">
+	<select id="queryList" resultType="com.znczLfyl.entity.WuZi">
 		select wz.id,wz.mc,wzlx.mc wzlxmc,wz.bjsj from wu_zi_lei_xing wzlx,wu_zi wz where wzlx.id=wz.wzlxId
 		<if test="mc!=''&amp;mc!=null">
 			and wz.mc like CONCAT('%',#{mc},'%')

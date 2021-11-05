@@ -38,15 +38,15 @@ public class WuZiServiceImpl implements WuZiService {
 	}
 
 	@Override
-	public int queryWuZiForInt(String mc, String wzlxmc) {
+	public int queryForInt(String mc, String wzlxmc) {
 		// TODO Auto-generated method stub
-		return wuZiDao.queryWuZiForInt(mc,wzlxmc);
+		return wuZiDao.queryForInt(mc,wzlxmc);
 	}
 
 	@Override
-	public List<WuZi> queryWuZiList(String mc, String wzlxmc, int page, int rows, String sort, String order) {
+	public List<WuZi> queryList(String mc, String wzlxmc, int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
-		return wuZiDao.queryWuZiList(mc, wzlxmc, (page-1)*rows, rows, sort, order);
+		return wuZiDao.queryList(mc, wzlxmc, (page-1)*rows, rows, sort, order);
 	}
 
 	@Override

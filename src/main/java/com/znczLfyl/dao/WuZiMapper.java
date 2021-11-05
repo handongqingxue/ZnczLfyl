@@ -15,9 +15,9 @@ public interface WuZiMapper {
 
 	public int edit(WuZi wz);
 
-	public int queryWuZiForInt(@Param("mc") String mc, @Param("wzlxmc") String wzlxmc);
+	public int queryForInt(@Param("mc") String mc, @Param("wzlxmc") String wzlxmc);
 
-	public List<WuZi> queryWuZiList(@Param("mc") String mc, @Param("wzlxmc") String wzlxmc, int i, int rows, String sort, String order);
+	public List<WuZi> queryList(@Param("mc") String mc, @Param("wzlxmc") String wzlxmc, int i, int rows, String sort, String order);
 
 	public WuZi selectById(String id);
 }
