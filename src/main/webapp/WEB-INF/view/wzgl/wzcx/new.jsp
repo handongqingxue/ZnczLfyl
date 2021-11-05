@@ -18,7 +18,7 @@
 	margin-left: 20px;
 	font-size: 18px;
 }
-.mc_inp,.px_inp{
+.mc_inp{
 	width: 150px;
 	height:30px;
 }
@@ -111,15 +111,20 @@ function initWZLXCBB(){
 
 function checkNew(){
 	if(checkMC()){
-		newWuZiLeiXing();
+		if(checkWZLXId()){
+			newWuZi();
+		}
 	}
 }
 
-function newWuZiLeiXing(){
+function newWuZi(){
+	var wzlxId=wzlxCBB.combobox("getValue");
+	$("#new_div #wzlxId").val(wzlxId);
+	
 	var formData = new FormData($("#form1")[0]);
 	$.ajax({
 		type:"post",
-		url:wzglPath+"newWuZiLeiXing",
+		url:wzglPath+"newWuZi",
 		dataType: "json",
 		data:formData,
 		cache: false,
@@ -152,6 +157,17 @@ function checkMC(){
 		$("#mc").css("color","#E15748");
     	$("#mc").val("名称不能为空");
     	return false;
+	}
+	else
+		return true;
+}
+
+//验证物资类型
+function checkWZLXId(){
+	var wzlxId=wzlxCBB.combobox("getValue");
+	if(wzlxId==null||wzlxId==""){
+	  	alert("请选择物资类型");
+	  	return false;
 	}
 	else
 		return true;

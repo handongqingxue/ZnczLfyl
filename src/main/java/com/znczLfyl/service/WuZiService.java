@@ -7,7 +7,7 @@ import com.znczLfyl.entity.*;
 public interface WuZiService {
 
 
-	public int newWuZi(WuZi wz);
+	public int add(WuZi wz);
 
 	public int deleteWuZi(String ids);
 

@@ -12,14 +12,11 @@
 .tab1_div .toolbar{
 	height:32px;
 }
-.tab1_div .toolbar .mc_span{
+.tab1_div .toolbar .mc_span,.tab1_div .toolbar .wzlxmc_span,.tab1_div .toolbar .search_but{
 	margin-left: 13px;
 }
-.tab1_div .toolbar .mc_inp{
+.tab1_div .toolbar .mc_inp,.tab1_div .toolbar .wzlxmc_inp{
 	width: 120px;height: 25px;
-}
-.tab1_div .toolbar .search_but{
-	margin-left: 13px;
 }
 </style>
 <title>Insert title here</title>
@@ -37,8 +34,9 @@ function initSearchLB(){
 	$("#search_but").linkbutton({
 		iconCls:"icon-search",
 		onClick:function(){
-			var mc=$("#toolbar #mc").val();
-			tab1.datagrid("load",{mc:mc});
+			var mc=$("#toolbar #mc_inp").val();
+			var wzlxmc=$("#toolbar #wzlxmc_inp").val();
+			tab1.datagrid("load",{mc:mc,wzlxmc:wzlxmc});
 		}
 	});
 }
@@ -96,11 +94,11 @@ function setFitWidthInParent(o){
 	<%@include file="../../inc/side.jsp"%>
 	<div class="tab1_div" id="tab1_div">
 		<div class="toolbar" id="toolbar">
-			<span style="margin-left: 13px;">名称：</span>
-			<input type="text" id="mc_inp" placeholder="请输入名称" style="width: 120px;height: 25px;"/>
-			<span style="margin-left: 13px;">物资类型：</span>
-			<input type="text" id="wzlxmc_inp" placeholder="请输入物资类型" style="width: 120px;height: 25px;"/>
-			<a id="search_but" style="margin-left: 13px;">查询</a>
+			<span class="mc_span">名称：</span>
+			<input type="text" class="mc_inp" id="mc_inp" placeholder="请输入名称"/>
+			<span class="wzlxmc_span">物资类型：</span>
+			<input type="text" class="wzlxmc_inp" id="wzlxmc_inp" placeholder="请输入物资类型"/>
+			<a class="search_but" id="search_but">查询</a>
 			<a id="add_but">添加</a>
 		</div>
 		<table id="tab1">

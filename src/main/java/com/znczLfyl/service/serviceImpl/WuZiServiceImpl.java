@@ -17,9 +17,9 @@ public class WuZiServiceImpl implements WuZiService {
 	private WuZiMapper wuZiDao;
 	
 	@Override
-	public int newWuZi(WuZi wz) {
+	public int add(WuZi wz) {
 		// TODO Auto-generated method stub
-		return wuZiDao.newWuZi(wz);
+		return wuZiDao.add(wz);
 	}
 
 	@Override

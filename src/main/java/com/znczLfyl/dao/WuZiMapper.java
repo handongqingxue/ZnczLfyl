@@ -9,7 +9,7 @@ import com.znczLfyl.entity.*;
 public interface WuZiMapper {
 
 
-	public int newWuZi(WuZi wz);
+	public int add(WuZi wz);
 
 	public int deleteWuZi(List<String> idList);
 
