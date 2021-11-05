@@ -13,11 +13,11 @@ public interface WuZiMapper {
 
 	public int deleteWuZi(List<String> idList);
 
-	public int editWuZi(WuZi wz);
+	public int edit(WuZi wz);
 
 	public int queryWuZiForInt(@Param("mc") String mc, @Param("wzlxmc") String wzlxmc);
 
 	public List<WuZi> queryWuZiList(@Param("mc") String mc, @Param("wzlxmc") String wzlxmc, int i, int rows, String sort, String order);
 
-	public WuZi selectWuZiById(String id);
+	public WuZi selectById(String id);
 }

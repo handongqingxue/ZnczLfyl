@@ -69,6 +69,17 @@ public class WZGLController {
 		
 		return MODULE_NAME+"/wzcx/new";
 	}
+
+	@RequestMapping(value="/wzcx/edit")
+	public String goWzglWzcxEdit(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		String id = request.getParameter("id");
+		WuZi wz=wuZiService.selectById(id);
+		request.setAttribute("wz", wz);
+		
+		return MODULE_NAME+"/wzcx/edit";
+	}
 	
 	@RequestMapping(value="/wzcx/list")
 	public String goWzglWzcxList(HttpServletRequest request) {
@@ -148,6 +159,24 @@ public class WZGLController {
 		else {
 			jsonMap.put("message", "no");
 			jsonMap.put("info", "创建物资失败！");
+		}
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/editWuZi")
+	@ResponseBody
+	public Map<String, Object> editWuZi(WuZi wz) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		int count=wuZiService.edit(wz);
+		if(count>0) {
+			jsonMap.put("message", "ok");
+			jsonMap.put("info", "编辑物资成功！");
+		}
+		else {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "编辑物资失败！");
 		}
 		return jsonMap;
 	}

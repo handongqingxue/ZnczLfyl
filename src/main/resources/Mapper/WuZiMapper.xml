@@ -31,7 +31,7 @@
 		#{id}
 		</foreach>
 	</delete>
-	<update id="editWuZi" parameterType="com.znczLfyl.entity.WuZi">
+	<update id="edit" parameterType="com.znczLfyl.entity.WuZi">
 		update wu_zi set mc=#{mc},bjsj=now(),wzlxId=#{wzlxId} where id=#{id}
 	</update>
 	<select id="queryWuZiForInt" resultType="java.lang.Integer">
@@ -53,7 +53,7 @@
 		</if> 
 		limit ${param3},${param4}
 	</select>
-	<select id="selectWuZiById" resultType="com.znczLfyl.entity.WuZi">
-		select wz.id,wz.mc,wzlx.mc wzlxmc,wz.bjsj from wu_zi wz,wu_zi_lei_xing wzlx where wz.wzlxId=wzlx.id and wz.id=#{0}
+	<select id="selectById" resultType="com.znczLfyl.entity.WuZi">
+		select wz.id,wz.mc,wzlx.id wzlxId,wzlx.mc wzlxmc,wz.bjsj from wu_zi wz,wu_zi_lei_xing wzlx where wz.wzlxId=wzlx.id and wz.id=#{0}
 	</select>
 </mapper>

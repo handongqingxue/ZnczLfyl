@@ -11,11 +11,11 @@ public interface WuZiService {
 
 	public int deleteWuZi(String ids);
 
-	public int editWuZi(WuZi wz);
+	public int edit(WuZi wz);
 
 	public int queryWuZiForInt(String mc, String wzlxmc);
 
 	public List<WuZi> queryWuZiList(String mc, String wzlxmc, int page, int rows, String sort, String order);
 
-	public WuZi selectWuZiById(String id);
+	public WuZi selectById(String id);
 }

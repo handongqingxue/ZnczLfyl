@@ -32,9 +32,9 @@ public class WuZiServiceImpl implements WuZiService {
 	}
 
 	@Override
-	public int editWuZi(WuZi wz) {
+	public int edit(WuZi wz) {
 		// TODO Auto-generated method stub
-		return wuZiDao.editWuZi(wz);
+		return wuZiDao.edit(wz);
 	}
 
 	@Override
@@ -50,8 +50,8 @@ public class WuZiServiceImpl implements WuZiService {
 	}
 
 	@Override
-	public WuZi selectWuZiById(String id) {
+	public WuZi selectById(String id) {
 		// TODO Auto-generated method stub
-		return wuZiDao.selectWuZiById(id);
+		return wuZiDao.selectById(id);
 	}
 }
