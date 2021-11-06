@@ -37,6 +37,17 @@ public class DDGLController {
 		
 		return MODULE_NAME+"/zhcx/new";
 	}
+	
+	@RequestMapping(value="/zhcx/edit")
+	public String goDdglZhcxEdit(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		String id = request.getParameter("id");
+		DingDan dd=dingDanService.selectById(id);
+		request.setAttribute("dd", dd);
+		
+		return MODULE_NAME+"/zhcx/edit";
+	}
 
 	/**
 	 * 跳转到订单管理-综合查询-列表页面
@@ -86,6 +97,29 @@ public class DDGLController {
 			else {
 				jsonMap.put("message", "no");
 				jsonMap.put("info", "创建订单失败！");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/editDingDanZongHeChaXun")
+	@ResponseBody
+	public Map<String, Object> editDingDanZongHeChaXun(DingDan dd,
+			HttpServletRequest request) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		try {
+			int count=dingDanService.edit(dd);
+			if(count>0) {
+				jsonMap.put("message", "ok");
+				jsonMap.put("info", "编辑订单成功！");
+			}
+			else {
+				jsonMap.put("message", "no");
+				jsonMap.put("info", "编辑订单失败！");
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

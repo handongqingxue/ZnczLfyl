@@ -12,6 +12,10 @@ public interface DingDanMapper {
 
 	List<DingDan> queryZHCXList(@Param("ddh") String ddh, @Param("rowNum") int rowNum, @Param("rows") int rows, String sort, String order);
 
+	DingDan selectById(@Param("id") String id);
+
 	int add(DingDan dd);
+
+	int edit(DingDan dd);
 
 }

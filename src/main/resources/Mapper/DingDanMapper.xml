@@ -17,6 +17,9 @@
 		order by bjsj desc
 		limit #{rowNum},#{rows}
 	</select>
+	<select id="selectById" resultType="com.znczLfyl.entity.DingDan">
+		select * from ding_dan where id=#{id}
+	</select>
 	<insert id="add" parameterType="com.znczLfyl.entity.DingDan">
 		insert into ding_dan
 		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -87,4 +90,41 @@
 				now()
 		</trim>
 	</insert>
+	<update id="edit" parameterType="com.znczLfyl.entity.DingDan">
+		update ding_dan set 
+		<trim suffixOverrides=",">
+			<if test="ddh!=null">
+				ddh=#{ddh},
+			</if>
+			<if test="sjsfzh!=null">
+				sjsfzh=#{sjsfzh},
+			</if>
+			<if test="sjxm!=null">
+				sjxm=#{sjxm},
+			</if>
+			<if test="cph!=null">
+				cph=#{cph},
+			</if>
+			<if test="lxlx!=null">
+				lxlx=#{lxlx},
+			</if>
+			<if test="yzxzl!=null">
+				yzxzl=#{yzxzl},
+			</if>
+			<if test="sjzl!=null">
+				sjzl=#{sjzl},
+			</if>
+			<if test="zlceb!=null">
+				zlceb=#{zlceb},
+			</if>
+			<if test="wzlxId!=null">
+				wzlxId=#{wzlxId},
+			</if>
+			<if test="wzId!=null">
+				wzId=#{wzId},
+			</if>
+				bjsj=now()
+		</trim>
+		where id=#{id}
+	</update>
 </mapper>

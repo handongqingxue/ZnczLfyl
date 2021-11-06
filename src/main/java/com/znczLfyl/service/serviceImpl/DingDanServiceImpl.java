@@ -28,8 +28,20 @@ public class DingDanServiceImpl implements DingDanService {
 	}
 
 	@Override
+	public DingDan selectById(String id) {
+		// TODO Auto-generated method stub
+		return dingDanDao.selectById(id);
+	}
+
+	@Override
 	public int add(DingDan dd) {
 		// TODO Auto-generated method stub
 		return dingDanDao.add(dd);
+	}
+
+	@Override
+	public int edit(DingDan dd) {
+		// TODO Auto-generated method stub
+		return dingDanDao.edit(dd);
 	}
 }
