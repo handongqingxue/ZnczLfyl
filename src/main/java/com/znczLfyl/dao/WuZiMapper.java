@@ -11,7 +11,7 @@ public interface WuZiMapper {
 
 	public int add(WuZi wz);
 
-	public int deleteWuZi(List<String> idList);
+	public int deleteByIds(List<String> idList);
 
 	public int edit(WuZi wz);
 

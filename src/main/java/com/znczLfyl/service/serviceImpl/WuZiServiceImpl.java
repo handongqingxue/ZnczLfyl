@@ -23,11 +23,11 @@ public class WuZiServiceImpl implements WuZiService {
 	}
 
 	@Override
-	public int deleteWuZi(String ids) {
+	public int deleteByIds(String ids) {
 		// TODO Auto-generated method stub
 		int count=0;
 		List<String> idList = Arrays.asList(ids.split(","));
-		count=wuZiDao.deleteWuZi(idList);
+		count=wuZiDao.deleteByIds(idList);
 		return count;
 	}
 

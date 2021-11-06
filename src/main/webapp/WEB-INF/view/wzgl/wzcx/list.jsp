@@ -27,6 +27,7 @@ var wzglPath=path+'wzgl/';
 $(function(){
 	initSearchLB();
 	initAddLB();
+	initRemoveLB();
 	initTab1();
 });
 
@@ -46,6 +47,15 @@ function initAddLB(){
 		iconCls:"icon-add",
 		onClick:function(){
 			location.href=wzglPath+"wzcx/new";
+		}
+	});
+}
+
+function initRemoveLB(){
+	$("#remove_but").linkbutton({
+		iconCls:"icon-remove",
+		onClick:function(){
+			deleteByIds();
 		}
 	});
 }
@@ -83,6 +93,38 @@ function initTab1(){
 	});
 }
 
+function deleteByIds() {
+	var rows=tab1.datagrid("getSelections");
+	if (rows.length == 0) {
+		$.messager.alert("提示","请选择要删除的信息！","warning");
+		return false;
+	}
+	
+	$.messager.confirm("提示","确定要删除吗？",function(r){
+		if(r){
+			var ids = "";
+			for (var i = 0; i < rows.length; i++) {
+				ids += "," + rows[i].id;
+			}
+			ids=ids.substring(1);
+			
+			$.post(wzglPath + "deleteWuZi",
+				{ids:ids},
+				function(result){
+					if(result.status==1){
+						alert(result.msg);
+						location.href = location.href;
+					}
+					else{
+						alert(result.msg);
+					}
+				}
+			,"json");
+			
+		}
+	});
+}
+
 function setFitWidthInParent(o){
 	var width=$(o).css("width");
 	return width.substring(0,width.length-2)-250;
@@ -100,6 +142,7 @@ function setFitWidthInParent(o){
 			<input type="text" class="wzlxmc_inp" id="wzlxmc_inp" placeholder="请输入物资类型"/>
 			<a class="search_but" id="search_but">查询</a>
 			<a id="add_but">添加</a>
+			<a id="remove_but">删除</a>
 		</div>
 		<table id="tab1">
 		</table>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.znczLfyl.entity.*;
 import com.znczLfyl.service.*;
+import com.znczLfyl.util.*;
 
 @Controller
 @RequestMapping("/"+WZGLController.MODULE_NAME)
@@ -172,6 +173,26 @@ public class WZGLController {
 			jsonMap.put("info", "创建物资失败！");
 		}
 		return jsonMap;
+	}
+
+	@RequestMapping(value="/deleteWuZi",produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String deleteWuZi(String ids) {
+		//TODO 针对分类的动态进行实时调整更新
+		int count=wuZiService.deleteByIds(ids);
+		PlanResult plan=new PlanResult();
+		String json;
+		if(count==0) {
+			plan.setStatus(0);
+			plan.setMsg("删除物资失败");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		else {
+			plan.setStatus(1);
+			plan.setMsg("删除物资成功");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		return json;
 	}
 
 	@RequestMapping(value="/editWuZi")

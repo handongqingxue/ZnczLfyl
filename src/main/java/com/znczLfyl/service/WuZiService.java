@@ -9,7 +9,7 @@ public interface WuZiService {
 
 	public int add(WuZi wz);
 
-	public int deleteWuZi(String ids);
+	public int deleteByIds(String ids);
 
 	public int edit(WuZi wz);
 
