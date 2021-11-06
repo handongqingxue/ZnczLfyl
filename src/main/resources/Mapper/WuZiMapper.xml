@@ -56,4 +56,7 @@
 	<select id="selectById" resultType="com.znczLfyl.entity.WuZi">
 		select wz.id,wz.mc,wzlx.id wzlxId,wzlx.mc wzlxmc,wz.bjsj from wu_zi wz,wu_zi_lei_xing wzlx where wz.wzlxId=wzlx.id and wz.id=#{0}
 	</select>
+	<select id="queryCBBList" resultType="com.znczLfyl.entity.WuZi">
+		select id,mc from wu_zi where wzlxId=#{wzlxId}
+	</select>
 </mapper>

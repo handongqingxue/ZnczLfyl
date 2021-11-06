@@ -20,4 +20,6 @@ public interface WuZiMapper {
 	public List<WuZi> queryList(@Param("mc") String mc, @Param("wzlxmc") String wzlxmc, int i, int rows, String sort, String order);
 
 	public WuZi selectById(String id);
+
+	public List<WuZi> queryCBBList(@Param("wzlxId") String wzlxId);
 }

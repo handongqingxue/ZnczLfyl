@@ -30,6 +30,7 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var ddglPath=path+'ddgl/';
+var wzglPath=path+'wzgl/';
 var dialogTop=10;
 var dialogLeft=20;
 var ndNum=0;
@@ -55,7 +56,7 @@ function initNewDialog(){
 	$("#new_div").dialog({
 		title:"订单信息",
 		width:setFitWidthInParent("body","new_div"),
-		height:300,
+		height:330,
 		top:dialogTop,
 		left:dialogLeft,
 		buttons:[
@@ -95,6 +96,8 @@ function initNewDialog(){
 	$(".dialog-button .l-btn-text").css("font-size","20px");
 	
 	initLXLXCBB();
+	initWZLXCBB();
+	initWZCBB();
 }
 
 function initLXLXCBB(){
@@ -110,13 +113,69 @@ function initLXLXCBB(){
 	});
 }
 
+function initWZLXCBB(){
+	var data=[];
+	data.push({"value":"","text":"请选择物资类型"});
+	$.post(wzglPath+"queryWuZiLeiXingCBBList",
+		function(result){
+			var rows=result.rows;
+			for(var i=0;i<rows.length;i++){
+				data.push({"value":rows[i].id,"text":rows[i].mc});
+			}
+			wzlxCBB=$("#new_div #wzlx_cbb").combobox({
+				valueField:"value",
+				textField:"text",
+				data:data,
+				onSelect:function(){
+					loadWZCBBData();
+				}
+			});
+		}
+	,"json");
+}
+
+function initWZCBB(){
+	var data=[];
+	data.push({"value":"","text":"请选择物资名称"});
+	wzCBB=$("#new_div #wz_cbb").combobox({
+		valueField:"value",
+		textField:"text",
+		data:data
+	});
+}
+
+function loadWZCBBData(){
+	var data=[];
+	data.push({"value":"","text":"请选择物资名称"});
+	var wzlxId=wzlxCBB.combobox("getValue");
+	$.post(wzglPath+"queryWuZiCBBList",
+		{wzlxId:wzlxId},
+		function(result){
+			var rows=result.rows;
+			for(var i=0;i<rows.length;i++){
+				data.push({"value":rows[i].id,"text":rows[i].mc});
+			}
+			wzCBB.combobox("loadData",data);
+		}
+	,"json");
+}
+
 function checkNew(){
 	if(checkYZXZL()){
-		newDingDanZongHeChaXun();
+		if(checkWZLXId()){
+			if(checkWZId()){
+				newDingDanZongHeChaXun();
+			}
+		}
 	}
 }
 
 function newDingDanZongHeChaXun(){
+	var wzlxId=wzlxCBB.combobox("getValue");
+	$("#new_div #wzlxId").val(wzlxId);
+	var wzId=wzCBB.combobox("getValue");
+	$("#new_div #wzId").val(wzId);
+	
 	var formData = new FormData($("#form1")[0]);
 	$.ajax({
 		type:"post",
@@ -149,6 +208,28 @@ function checkYZXZL(){
 		return true;
 }
 
+//验证物资类型
+function checkWZLXId(){
+	var wzlxId=wzlxCBB.combobox("getValue");
+	if(wzlxId==null||wzlxId==""){
+	  	alert("请选择物资类型");
+	  	return false;
+	}
+	else
+		return true;
+}
+
+//验证物资
+function checkWZId(){
+	var wzId=wzCBB.combobox("getValue");
+	if(wzId==null||wzId==""){
+	  	alert("请选择物资");
+	  	return false;
+	}
+	else
+		return true;
+}
+
 function setFitWidthInParent(parent,self){
 	var space=0;
 	switch (self) {
@@ -156,28 +237,15 @@ function setFitWidthInParent(parent,self){
 		space=205;
 		break;
 	case "new_div":
-	case "wlxx_div":
 		space=340;
-		break;
-	case "add_bs_sd_map_dialog_div":
-		space=170;
 		break;
 	case "new_div_table":
 	case "panel_window":
-	case "wlxx_tab":
 		space=355;
 		break;
 	}
 	var width=$(parent).css("width");
 	return width.substring(0,width.length-2)-space;
-}
-
-function initWindowMarginLeft(){
-	var editDivWidth=$("#wlxx_div").css("width");
-	editDivWidth=editDivWidth.substring(0,editDivWidth.length-2);
-	var pwWidth=$(".panel.window").css("width");
-	pwWidth=pwWidth.substring(0,pwWidth.length-2);
-	return ((editDivWidth-pwWidth)/2)+"px";
 }
 </script>
 </head>
@@ -245,6 +313,22 @@ function initWindowMarginLeft(){
 				</td>
 				<td class="td2">
 					<input type="number" class="zlceb_inp" id="zlceb" name="zlceb" placeholder="无需输入" disabled="disabled"/>
+				</td>
+			  </tr>
+			  <tr>
+				<td class="td1" align="right">
+					物资类型
+				</td>
+				<td class="td2">
+					<input id="wzlx_cbb"/>
+					<input type="hidden" id="wzlxId" name="wzlxId"/>
+				</td>
+				<td class="td1" align="right">
+					物资名称
+				</td>
+				<td class="td2">
+					<input id="wz_cbb"/>
+					<input type="hidden" id="wzId" name="wzId"/>
 				</td>
 			  </tr>
 			</table>

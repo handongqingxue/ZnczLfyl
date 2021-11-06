@@ -240,4 +240,17 @@ public class WZGLController {
 		
 		return jsonMap;
 	}
+	
+	@RequestMapping(value="/queryWuZiCBBList")
+	@ResponseBody
+	public Map<String, Object> queryWuZiCBBList(String wzlxId) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		List<WuZi> wzList=wuZiService.queryCBBList(wzlxId);
+		
+		jsonMap.put("rows", wzList);
+		
+		return jsonMap;
+	}
 }

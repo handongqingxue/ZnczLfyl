@@ -37,5 +37,4 @@ public class WuZi {
 	private String bjsj;
 	private Integer wzlxId;
 	private String wzlxmc;
-
 }

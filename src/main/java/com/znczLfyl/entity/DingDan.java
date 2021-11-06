@@ -57,6 +57,18 @@ public class DingDan {
 	public void setZlceb(Float zlceb) {
 		this.zlceb = zlceb;
 	}
+	public Integer getWzlxId() {
+		return wzlxId;
+	}
+	public void setWzlxId(Integer wzlxId) {
+		this.wzlxId = wzlxId;
+	}
+	public Integer getWzId() {
+		return wzId;
+	}
+	public void setWzId(Integer wzId) {
+		this.wzId = wzId;
+	}
 	public String getBjsj() {
 		return bjsj;
 	}
@@ -71,5 +83,7 @@ public class DingDan {
 	private Float yzxzl;//预装卸重量
 	private Float sjzl;//实际重量
 	private Float zlceb;//重量差额比
+	private Integer wzlxId;
+	private Integer wzId;
 	private String bjsj;//编辑时间
 }

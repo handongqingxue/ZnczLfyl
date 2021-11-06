@@ -18,4 +18,6 @@ public interface WuZiService {
 	public List<WuZi> queryList(String mc, String wzlxmc, int page, int rows, String sort, String order);
 
 	public WuZi selectById(String id);
+
+	public List<WuZi> queryCBBList(String wzlxId);
 }

@@ -44,6 +44,12 @@
 			<if test="zlceb!=null">
 				zlceb,
 			</if>
+			<if test="wzlxId!=null">
+				wzlxId,
+			</if>
+			<if test="wzId!=null">
+				wzId,
+			</if>
 				bjsj
 		</trim>
 		values
@@ -71,6 +77,12 @@
 			</if>
 			<if test="zlceb!=null">
 				#{zlceb},
+			</if>
+			<if test="wzlxId!=null">
+				#{wzlxId},
+			</if>
+			<if test="wzId!=null">
+				#{wzId},
 			</if>
 				now()
 		</trim>
