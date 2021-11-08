@@ -148,6 +148,13 @@
 					<div class="line_div"></div>
 					<li class="layui-nav-item">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
+						<a href="<%=basePath%>dwgl/yss/list">
+							&nbsp;&nbsp;&nbsp;运输商
+						</a>
+					</li>
+					<div class="line_div"></div>
+					<li class="layui-nav-item">
+						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>background/road/road/list">
 							&nbsp;&nbsp;&nbsp;发货单位
 						</a>
@@ -156,7 +163,7 @@
 					<li class="layui-nav-item">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>background/road/roadStage/list">
-							&nbsp;&nbsp;&nbsp;收货单位
+							&nbsp;&nbsp;&nbsp;收货部门
 						</a>
 					</li>
 				</div>
