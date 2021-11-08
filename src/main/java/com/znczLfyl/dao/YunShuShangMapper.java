@@ -8,7 +8,7 @@ import com.znczLfyl.entity.*;
 
 public interface YunShuShangMapper {
 
-	public int newYunShuShang(YunShuShang yss);
+	public int add(YunShuShang yss);
 
 	public int deleteYuShuShang(List<String> idList);
 
@@ -18,5 +18,5 @@ public interface YunShuShangMapper {
 
 	public List<YunShuShang> queryList(@Param("mc") String mc, int i, int rows, String sort, String order);
 
-	public YunShuShang selectYunShuShangById(String id);
+	public YunShuShang selectById(String id);
 }

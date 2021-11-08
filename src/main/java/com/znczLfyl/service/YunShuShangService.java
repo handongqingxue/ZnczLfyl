@@ -6,7 +6,7 @@ import com.znczLfyl.entity.*;
 
 public interface YunShuShangService {
 
-	public int newYunShuShang(YunShuShang yss);
+	public int add(YunShuShang yss);
 
 	public int deleteYuShuShang(String ids);
 
@@ -16,5 +16,5 @@ public interface YunShuShangService {
 
 	public List<YunShuShang> queryList(String mc, int page, int rows, String sort, String order);
 
-	public YunShuShang selectYunShuShangById(String id);
+	public YunShuShang selectById(String id);
 }

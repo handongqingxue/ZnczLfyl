@@ -17,9 +17,9 @@ public class YunShuShangServiceImpl implements YunShuShangService {
 	private YunShuShangMapper yunShuShangDao;
 	
 	@Override
-	public int newYunShuShang(YunShuShang yss) {
+	public int add(YunShuShang yss) {
 		// TODO Auto-generated method stub
-		return yunShuShangDao.newYunShuShang(yss);
+		return yunShuShangDao.add(yss);
 	}
 
 	@Override
@@ -50,8 +50,8 @@ public class YunShuShangServiceImpl implements YunShuShangService {
 	}
 
 	@Override
-	public YunShuShang selectYunShuShangById(String id) {
+	public YunShuShang selectById(String id) {
 		// TODO Auto-generated method stub
-		return yunShuShangDao.selectYunShuShangById(id);
+		return yunShuShangDao.selectById(id);
 	}
 }

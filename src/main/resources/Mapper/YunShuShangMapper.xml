@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.znczLfyl.dao.YunShuShangMapper">
-	<insert id="newYunShuShang" parameterType="com.znczLfyl.entity.YunShuShang">
+	<insert id="add" parameterType="com.znczLfyl.entity.YunShuShang">
 		insert into yun_shu_shang
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="mc!=null">
@@ -47,7 +47,7 @@
 			and mc like CONCAT('%',#{mc},'%')
 		</if> 
 	</select>
-	<select id="selectYunShuShangById" resultType="com.znczLfyl.entity.YunShuShang">
+	<select id="selectById" resultType="com.znczLfyl.entity.YunShuShang">
 		select * from yun_shu_shang where id=#{0}
 	</select>
 </mapper>
