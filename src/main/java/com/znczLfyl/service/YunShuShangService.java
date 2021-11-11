@@ -10,7 +10,7 @@ public interface YunShuShangService {
 
 	public int deleteYuShuShang(String ids);
 
-	public int editYunShuShang(YunShuShang yss);
+	public int edit(YunShuShang yss);
 
 	public int queryForInt(String mc);
 

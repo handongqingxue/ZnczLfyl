@@ -12,7 +12,7 @@ public interface YunShuShangMapper {
 
 	public int deleteYuShuShang(List<String> idList);
 
-	public int editYunShuShang(YunShuShang yss);
+	public int edit(YunShuShang yss);
 
 	public int queryForInt(@Param("mc") String mc);
 

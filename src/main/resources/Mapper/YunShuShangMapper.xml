@@ -25,7 +25,7 @@
 		#{id}
 		</foreach>
 	</delete>
-	<update id="editYunShuShang" parameterType="com.znczLfyl.entity.YunShuShang">
+	<update id="edit" parameterType="com.znczLfyl.entity.YunShuShang">
 		update yun_shu_shang set 
 		<trim suffixOverrides=",">
 			<if test="mc!=null">

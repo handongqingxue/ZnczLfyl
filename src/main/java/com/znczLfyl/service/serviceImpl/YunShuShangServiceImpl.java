@@ -32,9 +32,9 @@ public class YunShuShangServiceImpl implements YunShuShangService {
 	}
 
 	@Override
-	public int editYunShuShang(YunShuShang yss) {
+	public int edit(YunShuShang yss) {
 		// TODO Auto-generated method stub
-		return yunShuShangDao.editYunShuShang(yss);
+		return yunShuShangDao.edit(yss);
 	}
 
 	@Override

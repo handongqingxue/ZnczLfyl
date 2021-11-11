@@ -17,6 +17,10 @@
 	margin-left: 20px;
 	font-size: 18px;
 }
+.mc_inp{
+	width: 150px;
+	height:30px;
+}
 </style>
 <script type="text/javascript">
 var path='<%=basePath %>';
@@ -161,7 +165,7 @@ function setFitWidthInParent(parent,self){
 					名称
 				</td>
 				<td class="td2">
-					<input type="text" id="mc" name="mc" placeholder="请输入名称" style="width: 150px;height:30px;" onfocus="focusMC()" onblur="checkMC()"/>
+					<input type="text" class="mc_inp" id="mc" name="mc" placeholder="请输入名称" onfocus="focusMC()" onblur="checkMC()"/>
 				</td>
 				<td class="td1" align="right">
 				</td>

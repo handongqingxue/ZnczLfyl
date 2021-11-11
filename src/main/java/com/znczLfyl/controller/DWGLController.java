@@ -72,6 +72,24 @@ public class DWGLController {
 		return jsonMap;
 	}
 
+	@RequestMapping(value="/editYunShuShang")
+	@ResponseBody
+	public Map<String, Object> editYunShuShang(YunShuShang yss) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		int count=yunShuShangService.edit(yss);
+		if(count>0) {
+			jsonMap.put("message", "ok");
+			jsonMap.put("info", "编辑运输商成功！");
+		}
+		else {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "编辑运输商失败！");
+		}
+		return jsonMap;
+	}
+
 	@RequestMapping(value="/queryYunShuShangList")
 	@ResponseBody
 	public Map<String, Object> queryYunShuShangList(String mc,int page,int rows,String sort,String order) {
