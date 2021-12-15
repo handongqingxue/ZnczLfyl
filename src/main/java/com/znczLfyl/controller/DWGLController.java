@@ -20,6 +20,8 @@ public class DWGLController {
 
 	@Autowired
 	private YunShuShangService yunShuShangService;
+	@Autowired
+	private FaHuoDanWeiService faHuoDanWeiService;
 	public static final String MODULE_NAME="dwgl";
 
 	@RequestMapping(value="/yss/new")
@@ -52,6 +54,30 @@ public class DWGLController {
 		//publicService.selectNav(request);
 		
 		return MODULE_NAME+"/yss/list";
+	}
+
+	@RequestMapping(value="/yss/detail")
+	public String goYssDetail(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		String id = request.getParameter("id");
+		YunShuShang yss=yunShuShangService.selectById(id);
+		request.setAttribute("yss", yss);
+		
+		return MODULE_NAME+"/yss/detail";
+	}
+	
+	/**
+	 * 跳转到单位管理-发货单位-列表页面
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/fhdw/list")
+	public String goFhdwList(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		
+		return MODULE_NAME+"/fhdw/list";
 	}
 
 	@RequestMapping(value="/newYunShuShang")
@@ -98,6 +124,21 @@ public class DWGLController {
 		
 		int count = yunShuShangService.queryForInt(mc);
 		List<YunShuShang> yssList=yunShuShangService.queryList(mc, page, rows, sort, order);
+		
+		jsonMap.put("total", count);
+		jsonMap.put("rows", yssList);
+		
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/queryFaHuoDanWeiList")
+	@ResponseBody
+	public Map<String, Object> queryFaHuoDanWeiList(String mc,int page,int rows,String sort,String order) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		int count = faHuoDanWeiService.queryForInt(mc);
+		List<FaHuoDanWei> yssList=faHuoDanWeiService.queryList(mc, page, rows, sort, order);
 		
 		jsonMap.put("total", count);
 		jsonMap.put("rows", yssList);

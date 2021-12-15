@@ -63,7 +63,7 @@ function initRemoveLB(){
 
 function initTab1(){
 	tab1=$("#tab1").datagrid({
-		title:"运输商-列表",
+		title:"发货单位-列表",
 		url:dwglPath+"queryYunShuShangList",
 		toolbar:"#toolbar",
 		width:setFitWidthInParent("body"),

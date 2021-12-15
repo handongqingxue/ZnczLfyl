@@ -155,17 +155,18 @@ function setFitWidthInParent(parent,self){
 <div class="layui-layout layui-layout-admin">
 	<%@include file="../../inc/side.jsp"%>
 	<div class="center_con_div" id="center_con_div">
-		<div class="page_location_div">运输商-创建</div>
+		<div class="page_location_div">运输商-编辑</div>
 		
 		<div id="edit_div">
-		<form id="form1" name="form1" method="post" enctype="multipart/form-data">
+			<form id="form1" name="form1" method="post" enctype="multipart/form-data">
+			<input type="hidden" id="id" name="id" value="${requestScope.yss.id }"/>
 			<table>
 			  <tr>
 				<td class="td1" align="right">
 					名称
 				</td>
 				<td class="td2">
-					<input type="text" class="mc_inp" id="mc" name="mc" placeholder="请输入名称" onfocus="focusMC()" onblur="checkMC()"/>
+					<input type="text" class="mc_inp" id="mc" name="mc" value="${requestScope.yss.mc }" placeholder="请输入名称" onfocus="focusMC()" onblur="checkMC()"/>
 				</td>
 				<td class="td1" align="right">
 				</td>
@@ -173,7 +174,7 @@ function setFitWidthInParent(parent,self){
 				</td>
 			  </tr>
 			</table>
-		</form>
+			</form>
 		</div>
 		<%@include file="../../inc/foot.jsp"%>
 	</div>
