@@ -12,4 +12,6 @@ public interface FaHuoDanWeiService {
 
 	public List<FaHuoDanWei> queryList(String mc, int page, int rows, String sort, String order);
 
+	public FaHuoDanWei selectById(String id);
+
 }

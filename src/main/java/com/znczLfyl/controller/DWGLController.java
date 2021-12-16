@@ -79,6 +79,22 @@ public class DWGLController {
 		
 		return MODULE_NAME+"/fhdw/new";
 	}
+
+	/**
+	 * 跳转到单位管理-发货单位-编辑页面
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/fhdw/edit")
+	public String goFhdwEdit(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		String id = request.getParameter("id");
+		FaHuoDanWei fhdw=faHuoDanWeiService.selectById(id);
+		request.setAttribute("fhdw", fhdw);
+		
+		return MODULE_NAME+"/fhdw/edit";
+	}
 	
 	/**
 	 * 跳转到单位管理-发货单位-列表页面

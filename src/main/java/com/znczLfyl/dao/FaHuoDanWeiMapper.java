@@ -14,4 +14,6 @@ public interface FaHuoDanWeiMapper {
 
 	public List<FaHuoDanWei> queryList(@Param("mc") String mc, int i, int rows, String sort, String order);
 
+	public FaHuoDanWei selectById(String id);
+
 }

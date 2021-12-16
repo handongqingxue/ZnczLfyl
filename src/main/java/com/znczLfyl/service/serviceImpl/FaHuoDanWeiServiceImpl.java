@@ -32,4 +32,10 @@ public class FaHuoDanWeiServiceImpl implements FaHuoDanWeiService {
 		// TODO Auto-generated method stub
 		return faHuoDanWeiDao.queryList(mc, (page-1)*rows, rows, sort, order);
 	}
+
+	@Override
+	public FaHuoDanWei selectById(String id) {
+		// TODO Auto-generated method stub
+		return faHuoDanWeiDao.selectById(id);
+	}
 }
