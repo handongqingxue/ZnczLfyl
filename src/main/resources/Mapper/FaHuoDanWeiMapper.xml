@@ -31,4 +31,7 @@
 			and mc like CONCAT('%',#{mc},'%')
 		</if> 
 	</select>
+	<select id="selectById" resultType="com.znczLfyl.entity.FaHuoDanWei">
+		select * from fa_huo_dan_wei where id=#{0}
+	</select>
 </mapper>
