@@ -3,14 +3,30 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.znczLfyl.dao.FaHuoDanWeiMapper">
+	<insert id="add" parameterType="com.znczLfyl.entity.FaHuoDanWei">
+		insert into fa_huo_dan_wei
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="mc!=null">
+				mc,
+			</if>
+				bjsj
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="mc!=null">
+				#{mc},
+			</if>
+				now()
+		</trim>
+	</insert>
 	<select id="queryForInt" resultType="java.lang.Integer">
-		select count(*) from yun_shu_shang where 1=1
+		select count(*) from fa_huo_dan_wei where 1=1
 		<if test="mc!=''&amp;mc!=null">
 			and mc like CONCAT('%',#{mc},'%')
 		</if> 
 	</select>
 	<select id="queryList" resultType="com.znczLfyl.entity.FaHuoDanWei">
-		select * from yun_shu_shang where 1=1
+		select * from fa_huo_dan_wei where 1=1
 		<if test="mc!=''&amp;mc!=null">
 			and mc like CONCAT('%',#{mc},'%')
 		</if> 

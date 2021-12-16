@@ -6,6 +6,8 @@ import com.znczLfyl.entity.*;
 
 public interface FaHuoDanWeiService {
 
+	public int add(FaHuoDanWei faHuoDanWei);
+
 	public int queryForInt(String mc);
 
 	public List<FaHuoDanWei> queryList(String mc, int page, int rows, String sort, String order);

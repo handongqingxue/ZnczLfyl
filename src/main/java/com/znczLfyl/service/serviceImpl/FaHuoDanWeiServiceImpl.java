@@ -14,6 +14,12 @@ public class FaHuoDanWeiServiceImpl implements FaHuoDanWeiService {
 
 	@Autowired
 	private FaHuoDanWeiMapper faHuoDanWeiDao;
+	
+	@Override
+	public int add(FaHuoDanWei fhdw) {
+		// TODO Auto-generated method stub
+		return faHuoDanWeiDao.add(fhdw);
+	}
 
 	@Override
 	public int queryForInt(String mc) {

@@ -66,6 +66,19 @@ public class DWGLController {
 		
 		return MODULE_NAME+"/yss/detail";
 	}
+
+	/**
+	 * 跳转到单位管理-发货单位-添加页面
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/fhdw/new")
+	public String goFhdwNew(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		
+		return MODULE_NAME+"/fhdw/new";
+	}
 	
 	/**
 	 * 跳转到单位管理-发货单位-列表页面
@@ -128,6 +141,24 @@ public class DWGLController {
 		jsonMap.put("total", count);
 		jsonMap.put("rows", yssList);
 		
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/newFaHuoDanWei")
+	@ResponseBody
+	public Map<String, Object> newFaHuoDanWei(FaHuoDanWei fhdw) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		int count=faHuoDanWeiService.add(fhdw);
+		if(count>0) {
+			jsonMap.put("message", "ok");
+			jsonMap.put("info", "创建发货单位成功！");
+		}
+		else {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "创建发货单位失败！");
+		}
 		return jsonMap;
 	}
 

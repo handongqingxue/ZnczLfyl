@@ -47,7 +47,7 @@ function initAddLB(){
 	$("#add_but").linkbutton({
 		iconCls:"icon-add",
 		onClick:function(){
-			location.href=dwglPath+"yss/new";
+			location.href=dwglPath+"fhdw/new";
 		}
 	});
 }
@@ -64,7 +64,7 @@ function initRemoveLB(){
 function initTab1(){
 	tab1=$("#tab1").datagrid({
 		title:"发货单位-列表",
-		url:dwglPath+"queryYunShuShangList",
+		url:dwglPath+"queryFaHuoDanWeiList",
 		toolbar:"#toolbar",
 		width:setFitWidthInParent("body"),
 		pagination:true,
