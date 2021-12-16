@@ -47,7 +47,7 @@ function initDialogPosition(){
 function initEditDialog(){
 	dialogTop+=20;
 	$("#edit_div").dialog({
-		title:"运输商信息",
+		title:"发货单位信息",
 		width:setFitWidthInParent("body","edit_div_table"),
 		height:200,
 		top:dialogTop,
@@ -88,15 +88,15 @@ function initEditDialog(){
 
 function checkEdit(){
 	if(checkMC()){
-		editYunShuShang();
+		editFaHuoDanWei();
 	}
 }
 
-function editYunShuShang(){
+function editFaHuoDanWei(){
 	var formData = new FormData($("#form1")[0]);
 	$.ajax({
 		type:"post",
-		url:dwglPath+"editYunShuShang",
+		url:dwglPath+"editFaHuoDanWei",
 		dataType: "json",
 		data:formData,
 		cache: false,
@@ -155,18 +155,18 @@ function setFitWidthInParent(parent,self){
 <div class="layui-layout layui-layout-admin">
 	<%@include file="../../inc/side.jsp"%>
 	<div class="center_con_div" id="center_con_div">
-		<div class="page_location_div">运输商-编辑</div>
+		<div class="page_location_div">发货单位-编辑</div>
 		
 		<div id="edit_div">
 			<form id="form1" name="form1" method="post" enctype="multipart/form-data">
-			<input type="hidden" id="id" name="id" value="${requestScope.yss.id }"/>
+			<input type="hidden" id="id" name="id" value="${requestScope.fhdw.id }"/>
 			<table>
 			  <tr>
 				<td class="td1" align="right">
 					名称
 				</td>
 				<td class="td2">
-					<input type="text" class="mc_inp" id="mc" name="mc" value="${requestScope.yss.mc }" placeholder="请输入名称" onfocus="focusMC()" onblur="checkMC()"/>
+					<input type="text" class="mc_inp" id="mc" name="mc" value="${requestScope.fhdw.mc }" placeholder="请输入名称" onfocus="focusMC()" onblur="checkMC()"/>
 				</td>
 				<td class="td1" align="right">
 				</td>

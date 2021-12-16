@@ -178,6 +178,24 @@ public class DWGLController {
 		return jsonMap;
 	}
 
+	@RequestMapping(value="/editFaHuoDanWei")
+	@ResponseBody
+	public Map<String, Object> editFaHuoDanWei(FaHuoDanWei fhdw) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		int count=faHuoDanWeiService.edit(fhdw);
+		if(count>0) {
+			jsonMap.put("message", "ok");
+			jsonMap.put("info", "编辑发货单位成功！");
+		}
+		else {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "编辑发货单位失败！");
+		}
+		return jsonMap;
+	}
+
 	@RequestMapping(value="/queryFaHuoDanWeiList")
 	@ResponseBody
 	public Map<String, Object> queryFaHuoDanWeiList(String mc,int page,int rows,String sort,String order) {

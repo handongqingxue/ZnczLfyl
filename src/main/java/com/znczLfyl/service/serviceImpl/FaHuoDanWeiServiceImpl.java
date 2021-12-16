@@ -22,6 +22,12 @@ public class FaHuoDanWeiServiceImpl implements FaHuoDanWeiService {
 	}
 
 	@Override
+	public int edit(FaHuoDanWei fhdw) {
+		// TODO Auto-generated method stub
+		return faHuoDanWeiDao.edit(fhdw);
+	}
+
+	@Override
 	public int queryForInt(String mc) {
 		// TODO Auto-generated method stub
 		return faHuoDanWeiDao.queryForInt(mc);
