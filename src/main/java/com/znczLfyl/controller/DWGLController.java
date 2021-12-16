@@ -22,6 +22,8 @@ public class DWGLController {
 	private YunShuShangService yunShuShangService;
 	@Autowired
 	private FaHuoDanWeiService faHuoDanWeiService;
+	@Autowired
+	private ShouHuoBuMenService shouHuoBuMenService;
 	public static final String MODULE_NAME="dwgl";
 
 	@RequestMapping(value="/yss/new")
@@ -107,6 +109,48 @@ public class DWGLController {
 		//publicService.selectNav(request);
 		
 		return MODULE_NAME+"/fhdw/list";
+	}
+
+	/**
+	 * 跳转到单位管理-发货单位-详情页面
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/fhdw/detail")
+	public String goFhdwDetail(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		String id = request.getParameter("id");
+		FaHuoDanWei fhdw=faHuoDanWeiService.selectById(id);
+		request.setAttribute("fhdw", fhdw);
+		
+		return MODULE_NAME+"/fhdw/detail";
+	}
+
+	/**
+	 * 跳转到单位管理-收货部门-添加页面
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/shbm/new")
+	public String goShbmNew(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		
+		return MODULE_NAME+"/shbm/new";
+	}
+	
+	/**
+	 * 跳转到单位管理-收货部门-列表页面
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/shbm/list")
+	public String goShbmList(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		
+		return MODULE_NAME+"/shbm/list";
 	}
 
 	@RequestMapping(value="/newYunShuShang")
@@ -203,10 +247,43 @@ public class DWGLController {
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
 		int count = faHuoDanWeiService.queryForInt(mc);
-		List<FaHuoDanWei> yssList=faHuoDanWeiService.queryList(mc, page, rows, sort, order);
+		List<FaHuoDanWei> fhdwList=faHuoDanWeiService.queryList(mc, page, rows, sort, order);
 		
 		jsonMap.put("total", count);
-		jsonMap.put("rows", yssList);
+		jsonMap.put("rows", fhdwList);
+		
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/newShouHuoBuMen")
+	@ResponseBody
+	public Map<String, Object> newShouHuoBuMen(ShouHuoBuMen shbm) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		int count=shouHuoBuMenService.add(shbm);
+		if(count>0) {
+			jsonMap.put("message", "ok");
+			jsonMap.put("info", "创建收货部门成功！");
+		}
+		else {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "创建收货部门失败！");
+		}
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/queryShouHuoBuMenList")
+	@ResponseBody
+	public Map<String, Object> queryShouHuoBuMenList(String mc,int page,int rows,String sort,String order) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		int count = shouHuoBuMenService.queryForInt(mc);
+		List<ShouHuoBuMen> shbmList=shouHuoBuMenService.queryList(mc, page, rows, sort, order);
+		
+		jsonMap.put("total", count);
+		jsonMap.put("rows", shbmList);
 		
 		return jsonMap;
 	}

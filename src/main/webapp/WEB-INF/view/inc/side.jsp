@@ -162,7 +162,7 @@
 					<div class="line_div"></div>
 					<li class="layui-nav-item">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
-						<a href="<%=basePath%>background/road/roadStage/list">
+						<a href="<%=basePath%>dwgl/shbm/list">
 							&nbsp;&nbsp;&nbsp;收货部门
 						</a>
 					</li>
