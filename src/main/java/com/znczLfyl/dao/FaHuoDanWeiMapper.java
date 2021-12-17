@@ -10,6 +10,8 @@ public interface FaHuoDanWeiMapper {
 
 	public int add(FaHuoDanWei fhdw);
 
+	public int deleteByIds(List<String> idList);
+
 	public int edit(FaHuoDanWei fhdw);
 
 	public int queryForInt(@Param("mc") String mc);

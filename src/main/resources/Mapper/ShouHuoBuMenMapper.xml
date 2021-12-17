@@ -19,6 +19,12 @@
 				now()
 		</trim>
 	</insert>
+	<delete id="deleteByIds">
+		delete from shou_huo_bu_men where 1=1
+		<foreach collection="list" item="id" open=" and cast(id as char) in (" separator="," close=")">
+		#{id}
+		</foreach>
+	</delete>
 	<update id="edit" parameterType="com.znczLfyl.entity.ShouHuoBuMen">
 		update shou_huo_bu_men set 
 		<trim suffixOverrides=",">

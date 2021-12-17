@@ -8,7 +8,7 @@ public interface YunShuShangService {
 
 	public int add(YunShuShang yss);
 
-	public int deleteYuShuShang(String ids);
+	public int deleteByIds(String ids);
 
 	public int edit(YunShuShang yss);
 

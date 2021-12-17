@@ -23,11 +23,11 @@ public class YunShuShangServiceImpl implements YunShuShangService {
 	}
 
 	@Override
-	public int deleteYuShuShang(String ids) {
+	public int deleteByIds(String ids) {
 		// TODO Auto-generated method stub
 		int count=0;
 		List<String> idList = Arrays.asList(ids.split(","));
-		count = yunShuShangDao.deleteYuShuShang(idList);
+		count=yunShuShangDao.deleteByIds(idList);
 		return count;
 	}
 

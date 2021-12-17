@@ -1,5 +1,6 @@
 package com.znczLfyl.service.serviceImpl;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,15 @@ public class FaHuoDanWeiServiceImpl implements FaHuoDanWeiService {
 	public int add(FaHuoDanWei fhdw) {
 		// TODO Auto-generated method stub
 		return faHuoDanWeiDao.add(fhdw);
+	}
+
+	@Override
+	public int deleteByIds(String ids) {
+		// TODO Auto-generated method stub
+		int count=0;
+		List<String> idList = Arrays.asList(ids.split(","));
+		count=faHuoDanWeiDao.deleteByIds(idList);
+		return count;
 	}
 
 	@Override

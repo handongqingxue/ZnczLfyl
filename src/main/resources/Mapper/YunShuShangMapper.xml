@@ -19,9 +19,9 @@
 				now()
 		</trim>
 	</insert>
-	<delete id="deleteYuShuShang">
+	<delete id="deleteByIds">
 		delete from yun_shu_shang where 1=1
-		<foreach collection="list" item="id" open=" and cast(id as char) in(" separator="," close=")">
+		<foreach collection="list" item="id" open=" and cast(id as char) in (" separator="," close=")">
 		#{id}
 		</foreach>
 	</delete>

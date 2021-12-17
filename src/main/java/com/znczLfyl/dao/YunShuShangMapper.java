@@ -10,7 +10,7 @@ public interface YunShuShangMapper {
 
 	public int add(YunShuShang yss);
 
-	public int deleteYuShuShang(List<String> idList);
+	public int deleteByIds(List<String> idList);
 
 	public int edit(YunShuShang yss);
 

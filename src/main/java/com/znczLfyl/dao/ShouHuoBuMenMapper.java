@@ -10,6 +10,8 @@ public interface ShouHuoBuMenMapper {
 
 	public int add(ShouHuoBuMen shbm);
 
+	public int deleteByIds(List<String> idList);
+
 	public int edit(ShouHuoBuMen shbm);
 
 	public int queryForInt(@Param("mc") String mc);

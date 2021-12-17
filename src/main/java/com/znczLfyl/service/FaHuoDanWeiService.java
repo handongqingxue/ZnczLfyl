@@ -8,6 +8,8 @@ public interface FaHuoDanWeiService {
 
 	public int add(FaHuoDanWei faHuoDanWei);
 
+	public int deleteByIds(String ids);
+
 	public int edit(FaHuoDanWei faHuoDanWei);
 
 	public int queryForInt(String mc);

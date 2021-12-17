@@ -8,6 +8,8 @@ public interface ShouHuoBuMenService {
 
 	public int add(ShouHuoBuMen shbm);
 
+	public int deleteByIds(String ids);
+
 	public int edit(ShouHuoBuMen shbm);
 
 	public int queryForInt(String mc);

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.znczLfyl.service.*;
+import com.znczLfyl.util.JsonUtil;
+import com.znczLfyl.util.PlanResult;
 import com.znczLfyl.entity.*;
 
 @Controller
@@ -169,6 +171,22 @@ public class DWGLController {
 		return MODULE_NAME+"/shbm/list";
 	}
 
+	/**
+	 * 跳转到单位管理-收货部门-详情页面
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/shbm/detail")
+	public String goShbmDetail(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		String id = request.getParameter("id");
+		ShouHuoBuMen shbm=shouHuoBuMenService.selectById(id);
+		request.setAttribute("shbm", shbm);
+		
+		return MODULE_NAME+"/shbm/detail";
+	}
+
 	@RequestMapping(value="/newYunShuShang")
 	@ResponseBody
 	public Map<String, Object> newYunShuShang(YunShuShang yss) {
@@ -185,6 +203,26 @@ public class DWGLController {
 			jsonMap.put("info", "创建运输商失败！");
 		}
 		return jsonMap;
+	}
+
+	@RequestMapping(value="/deleteYunShuShang",produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String deleteYunShuShang(String ids) {
+		//TODO 针对分类的动态进行实时调整更新
+		int count=yunShuShangService.deleteByIds(ids);
+		PlanResult plan=new PlanResult();
+		String json;
+		if(count==0) {
+			plan.setStatus(0);
+			plan.setMsg("删除运输商失败");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		else {
+			plan.setStatus(1);
+			plan.setMsg("删除运输商成功");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		return json;
 	}
 
 	@RequestMapping(value="/editYunShuShang")
@@ -238,6 +276,26 @@ public class DWGLController {
 		return jsonMap;
 	}
 
+	@RequestMapping(value="/deleteFaHuoDanWei",produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String deleteFaHuoDanWei(String ids) {
+		//TODO 针对分类的动态进行实时调整更新
+		int count=faHuoDanWeiService.deleteByIds(ids);
+		PlanResult plan=new PlanResult();
+		String json;
+		if(count==0) {
+			plan.setStatus(0);
+			plan.setMsg("删除发货单位失败");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		else {
+			plan.setStatus(1);
+			plan.setMsg("删除发货单位成功");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		return json;
+	}
+
 	@RequestMapping(value="/editFaHuoDanWei")
 	@ResponseBody
 	public Map<String, Object> editFaHuoDanWei(FaHuoDanWei fhdw) {
@@ -287,6 +345,26 @@ public class DWGLController {
 			jsonMap.put("info", "创建收货部门失败！");
 		}
 		return jsonMap;
+	}
+
+	@RequestMapping(value="/deleteShouHuoBuMen",produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String deleteShouHuoBuMen(String ids) {
+		//TODO 针对分类的动态进行实时调整更新
+		int count=shouHuoBuMenService.deleteByIds(ids);
+		PlanResult plan=new PlanResult();
+		String json;
+		if(count==0) {
+			plan.setStatus(0);
+			plan.setMsg("删除收货部门失败");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		else {
+			plan.setStatus(1);
+			plan.setMsg("删除收货部门成功");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		return json;
 	}
 
 	@RequestMapping(value="/editShouHuoBuMen")
