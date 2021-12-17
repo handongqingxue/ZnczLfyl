@@ -139,6 +139,22 @@ public class DWGLController {
 		
 		return MODULE_NAME+"/shbm/new";
 	}
+
+	/**
+	 * 跳转到单位管理-发货单位-编辑页面
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/shbm/edit")
+	public String goShbmEdit(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		String id = request.getParameter("id");
+		ShouHuoBuMen shbm=shouHuoBuMenService.selectById(id);
+		request.setAttribute("shbm", shbm);
+		
+		return MODULE_NAME+"/shbm/edit";
+	}
 	
 	/**
 	 * 跳转到单位管理-收货部门-列表页面
@@ -269,6 +285,24 @@ public class DWGLController {
 		else {
 			jsonMap.put("message", "no");
 			jsonMap.put("info", "创建收货部门失败！");
+		}
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/editShouHuoBuMen")
+	@ResponseBody
+	public Map<String, Object> editShouHuoBuMen(ShouHuoBuMen shbm) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		int count=shouHuoBuMenService.edit(shbm);
+		if(count>0) {
+			jsonMap.put("message", "ok");
+			jsonMap.put("info", "编辑收货部门成功！");
+		}
+		else {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "编辑收货部门失败！");
 		}
 		return jsonMap;
 	}

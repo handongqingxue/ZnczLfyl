@@ -22,6 +22,12 @@ public class ShouHuoBuMenServiceImpl implements ShouHuoBuMenService {
 	}
 
 	@Override
+	public int edit(ShouHuoBuMen shbm) {
+		// TODO Auto-generated method stub
+		return shouHuoBuMenDao.edit(shbm);
+	}
+
+	@Override
 	public int queryForInt(String mc) {
 		// TODO Auto-generated method stub
 		return shouHuoBuMenDao.queryForInt(mc);
@@ -31,5 +37,11 @@ public class ShouHuoBuMenServiceImpl implements ShouHuoBuMenService {
 	public List<ShouHuoBuMen> queryList(String mc, int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
 		return shouHuoBuMenDao.queryList(mc, (page-1)*rows, rows, sort, order);
+	}
+
+	@Override
+	public ShouHuoBuMen selectById(String id) {
+		// TODO Auto-generated method stub
+		return shouHuoBuMenDao.selectById(id);
 	}
 }
