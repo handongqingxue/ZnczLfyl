@@ -43,6 +43,24 @@ public class GBGLController {
 		return MODULE_NAME+"/zhcx/list";
 	}
 
+	@RequestMapping(value="/newGuoBang")
+	@ResponseBody
+	public Map<String, Object> newGuoBang(GuoBang gb) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		int count=guoBangService.add(gb);
+		if(count>0) {
+			jsonMap.put("message", "ok");
+			jsonMap.put("info", "创建过磅信息成功！");
+		}
+		else {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "创建过磅信息失败！");
+		}
+		return jsonMap;
+	}
+
 	@RequestMapping(value="/queryZHCXList")
 	@ResponseBody
 	public Map<String, Object> queryZHCXList(String ddh,int page,int rows,String sort,String order) {

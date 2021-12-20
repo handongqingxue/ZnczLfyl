@@ -18,19 +18,18 @@
 	margin-left: 20px;
 	font-size: 18px;
 }
-.ddh_inp,.sjsfzh_inp,.cph_inp{
+.ddId_inp{
 	width: 180px;
 	height:30px;
 }
-.sjxm_inp,.yzxzl_inp,.sjzl_inp,.zlceb_inp{
+.gbzl_inp{
 	width: 150px;
 	height:30px;
 }
 </style>
 <script type="text/javascript">
 var path='<%=basePath %>';
-var ddglPath=path+'ddgl/';
-var wzglPath=path+'wzgl/';
+var gbglPath=path+'gbgl/';
 var dialogTop=10;
 var dialogLeft=20;
 var ndNum=0;
@@ -56,7 +55,7 @@ function initNewDialog(){
 	$("#new_div").dialog({
 		title:"过磅信息",
 		width:setFitWidthInParent("body","new_div"),
-		height:330,
+		height:200,
 		top:dialogTop,
 		left:dialogLeft,
 		buttons:[
@@ -95,91 +94,64 @@ function initNewDialog(){
 	$(".dialog-button").css("background-color","#fff");
 	$(".dialog-button .l-btn-text").css("font-size","20px");
 	
-	initLXLXCBB();
-	initWZLXCBB();
-	initWZCBB();
+	initGBZTCBB();
+	initGBLXCBB();
 }
 
-function initLXLXCBB(){
-	lxlxCBB=$("#lxlx_cbb").combobox({
+function initGBZTCBB(){
+	var data=[];
+	data.push({"value":"","text":"请选择过磅状态"});
+	data.push({"value":"1","text":"正常"});
+	data.push({"value":"2","text":"异常"});
+	
+	gbztCBB=$("#gbzt_cbb").combobox({
 		valueField:"value",
 		textField:"text",
-		data:[
-			{"value":"","text":"请选择流向类型"},{"value":"1","text":"送运"},{"value":"2","text":"取运"}
-		],
+		data:data,
 		onSelect:function(){
-			$("#lxlx").val($(this).combobox("getValue"));
+			$("#gbzt").val($(this).combobox("getValue"));
 		}
 	});
 }
 
-function initWZLXCBB(){
+function initGBLXCBB(){
 	var data=[];
-	data.push({"value":"","text":"请选择物资类型"});
-	$.post(wzglPath+"queryWuZiLeiXingCBBList",
-		function(result){
-			var rows=result.rows;
-			for(var i=0;i<rows.length;i++){
-				data.push({"value":rows[i].id,"text":rows[i].mc});
-			}
-			wzlxCBB=$("#new_div #wzlx_cbb").combobox({
-				valueField:"value",
-				textField:"text",
-				data:data,
-				onSelect:function(){
-					loadWZCBBData();
-				}
-			});
-		}
-	,"json");
-}
-
-function initWZCBB(){
-	var data=[];
-	data.push({"value":"","text":"请选择物资名称"});
-	wzCBB=$("#new_div #wz_cbb").combobox({
+	data.push({"value":"","text":"请选择过磅类型"});
+	data.push({"value":"1","text":"载重过磅"});
+	data.push({"value":"2","text":"皮重过磅"});
+	data.push({"value":"3","text":"入厂过磅"});
+	data.push({"value":"4","text":"出厂过磅"});
+	
+	gblxCBB=$("#gblx_cbb").combobox({
 		valueField:"value",
 		textField:"text",
-		data:data
-	});
-}
-
-function loadWZCBBData(){
-	var data=[];
-	data.push({"value":"","text":"请选择物资名称"});
-	var wzlxId=wzlxCBB.combobox("getValue");
-	$.post(wzglPath+"queryWuZiCBBList",
-		{wzlxId:wzlxId},
-		function(result){
-			var rows=result.rows;
-			for(var i=0;i<rows.length;i++){
-				data.push({"value":rows[i].id,"text":rows[i].mc});
-			}
-			wzCBB.combobox("loadData",data);
+		data:data,
+		onSelect:function(){
+			$("#gblx").val($(this).combobox("getValue"));
 		}
-	,"json");
+	});
 }
 
 function checkNew(){
-	if(checkYZXZL()){
-		if(checkWZLXId()){
-			if(checkWZId()){
-				newDingDanZongHeChaXun();
+	if(checkGBZL()){
+		if(checkGBZTId()){
+			if(checkGBLX()){
+				newGuoBangZongHeChaXun();
 			}
 		}
 	}
 }
 
-function newDingDanZongHeChaXun(){
-	var wzlxId=wzlxCBB.combobox("getValue");
-	$("#new_div #wzlxId").val(wzlxId);
-	var wzId=wzCBB.combobox("getValue");
-	$("#new_div #wzId").val(wzId);
+function newGuoBangZongHeChaXun(){
+	var gbztId=gbztCBB.combobox("getValue");
+	$("#new_div #gbztId").val(gbztId);
+	var gblxId=gblxCBB.combobox("getValue");
+	$("#new_div #gblxId").val(gblxId);
 	
 	var formData = new FormData($("#form1")[0]);
 	$.ajax({
 		type:"post",
-		url:ddglPath+"newDingDanZongHeChaXun",
+		url:gbglPath+"newGuoBang",
 		dataType: "json",
 		data:formData,
 		cache: false,
@@ -197,33 +169,33 @@ function newDingDanZongHeChaXun(){
 	});
 }
 
-//验证预装卸重量
-function checkYZXZL(){
-	var yzxzl = $("#new_div #yzxzl").val();
-	if(yzxzl==null||yzxzl==""){
-	  	alert("请输入预装卸重量");
+//验证过磅重量
+function checkGBZL(){
+	var gbzl = $("#new_div #gbzl").val();
+	if(gbzl==null||gbzl==""){
+	  	alert("请输入过磅重量");
 	  	return false;
 	}
 	else
 		return true;
 }
 
-//验证物资类型
-function checkWZLXId(){
-	var wzlxId=wzlxCBB.combobox("getValue");
-	if(wzlxId==null||wzlxId==""){
-	  	alert("请选择物资类型");
+//验证过磅状态
+function checkGBZTId(){
+	var gbztId=gbztCBB.combobox("getValue");
+	if(gbztId==null||gbztId==""){
+	  	alert("请选择过磅状态");
 	  	return false;
 	}
 	else
 		return true;
 }
 
-//验证物资
-function checkWZId(){
-	var wzId=wzCBB.combobox("getValue");
-	if(wzId==null||wzId==""){
-	  	alert("请选择物资");
+//验证过磅类型
+function checkGBLX(){
+	var gblxId=gblxCBB.combobox("getValue");
+	if(gblxId==null||gblxId==""){
+	  	alert("请选择过磅类型");
 	  	return false;
 	}
 	else
@@ -260,75 +232,32 @@ function setFitWidthInParent(parent,self){
 			<table>
 			  <tr>
 				<td class="td1" align="right">
-					订单号
+					订单id
 				</td>
 				<td class="td2">
-					<input type="text" class="ddh_inp" id="ddh" name="ddh" placeholder="请输入订单号" onfocus="focusName()" onblur="checkName()"/>
+					<input type="text" class="ddId_inp" id="ddId" name="ddId" placeholder="请输入订单id"/>
 				</td>
 				<td class="td1" align="right">
-					司机身份证号
+					过磅重量
 				</td>
 				<td class="td2">
-					<input type="text" class="sjsfzh_inp" id="sjsfzh" name="sjsfzh" placeholder="请输入司机身份证号" style=""/>
+					<input type="number" class="gbzl_inp" id="gbzl" name="gbzl" placeholder="请输入过磅重量"/>
 				</td>
 			  </tr>
 			  <tr>
 				<td class="td1" align="right">
-					司机姓名
+					过磅状态
 				</td>
 				<td class="td2">
-					<input type="text" class="sjxm_inp" id="sjxm" name="sjxm" placeholder="请输入司机姓名" />
+					<input id="gbzt_cbb"/>
+					<input type="hidden" id="gbzt" name="gbzt"/>
 				</td>
 				<td class="td1" align="right">
-					车牌号
+					过磅类型
 				</td>
 				<td class="td2">
-					<input type="text" class="cph_inp" id="cph" name="cph" placeholder="请输入车牌号" />
-				</td>
-			  </tr>
-			  <tr>
-				<td class="td1" align="right">
-					流向类型
-				</td>
-				<td class="td2">
-					<input id="lxlx_cbb"/>
-					<input type="hidden" id="lxlx" name="lxlx"/>
-				</td>
-				<td class="td1" align="right">
-					预装卸重量
-				</td>
-				<td class="td2">
-					<input type="number" class="yzxzl_inp" id="yzxzl" name="yzxzl" placeholder="请输入预装卸重量"/>
-				</td>
-			  </tr>
-			  <tr>
-				<td class="td1" align="right">
-					实际重量
-				</td>
-				<td class="td2">
-					<input type="number" class="sjzl_inp" id="sjzl" name="sjzl" placeholder="请输入实际重量"/>
-				</td>
-				<td class="td1" align="right">
-					重量差额比
-				</td>
-				<td class="td2">
-					<input type="number" class="zlceb_inp" id="zlceb" name="zlceb" placeholder="无需输入" disabled="disabled"/>
-				</td>
-			  </tr>
-			  <tr>
-				<td class="td1" align="right">
-					物资类型
-				</td>
-				<td class="td2">
-					<input id="wzlx_cbb"/>
-					<input type="hidden" id="wzlxId" name="wzlxId"/>
-				</td>
-				<td class="td1" align="right">
-					物资名称
-				</td>
-				<td class="td2">
-					<input id="wz_cbb"/>
-					<input type="hidden" id="wzId" name="wzId"/>
+					<input id="gblx_cbb"/>
+					<input type="hidden" id="gblx" name="gblx"/>
 				</td>
 			  </tr>
 			</table>

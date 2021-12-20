@@ -3,13 +3,47 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.znczLfyl.dao.GuoBangMapper">
+	<insert id="add" parameterType="com.znczLfyl.entity.GuoBang">
+		insert into guo_bang
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="gbzl!=null">
+				gbzl,
+			</if>
+			<if test="gbzt!=null">
+				gbzt,
+			</if>
+				gbsj,
+			<if test="gblx!=null">
+				gblx,
+			</if>
+			<if test="ddId!=null">
+				ddId,
+			</if>
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="gbzl!=null">
+				#{gbzl},
+			</if>
+			<if test="gbzt!=null">
+				#{gbzt},
+			</if>
+				now(),
+			<if test="gblx!=null">
+				#{gblx},
+			</if>
+			<if test="ddId!=null">
+				#{ddId},
+			</if>
+		</trim>
+	</insert>
 	<select id="queryZHCXForInt" resultType="java.lang.Integer">
 		select count(*) from guo_bang gb,ding_dan dd where gb.ddId=dd.id
 		<if test="ddh!=''&amp;ddh!=null">
 			and dd.ddh like CONCAT('%',#{ddh},'%')
 		</if>
 	</select>
-	<select id="queryZHCXList" resultType="com.znczLfyl.entity.DingDan">
+	<select id="queryZHCXList" resultType="com.znczLfyl.entity.GuoBang">
 		select * from guo_bang gb,ding_dan dd where gb.ddId=dd.id
 		<if test="ddh!=''&amp;ddh!=null">
 			and dd.ddh like CONCAT('%',#{ddh},'%')

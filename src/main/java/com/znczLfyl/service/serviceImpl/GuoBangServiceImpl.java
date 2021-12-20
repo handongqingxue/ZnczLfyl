@@ -16,6 +16,12 @@ public class GuoBangServiceImpl implements GuoBangService {
 	private GuoBangMapper guoBangDao;
 
 	@Override
+	public int add(GuoBang gb) {
+		// TODO Auto-generated method stub
+		return guoBangDao.add(gb);
+	}
+
+	@Override
 	public int queryZHCXForInt(String ddh) {
 		// TODO Auto-generated method stub
 		return guoBangDao.queryZHCXForInt(ddh);
