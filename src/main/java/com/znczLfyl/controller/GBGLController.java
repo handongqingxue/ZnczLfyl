@@ -29,6 +29,22 @@ public class GBGLController {
 		
 		return MODULE_NAME+"/zhcx/new";
 	}
+
+	/**
+	 * 跳转到过磅管理-综合查询-编辑页面
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/zhcx/edit")
+	public String goZhcxEdit(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		String id = request.getParameter("id");
+		GuoBang gb=guoBangService.selectById(id);
+		request.setAttribute("gb", gb);
+		
+		return MODULE_NAME+"/zhcx/edit";
+	}
 	
 	/**
 	 * 跳转到过磅管理-综合查询-列表页面
@@ -57,6 +73,24 @@ public class GBGLController {
 		else {
 			jsonMap.put("message", "no");
 			jsonMap.put("info", "创建过磅信息失败！");
+		}
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/editGuoBang")
+	@ResponseBody
+	public Map<String, Object> editGuoBang(GuoBang gb) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		int count=guoBangService.edit(gb);
+		if(count>0) {
+			jsonMap.put("message", "ok");
+			jsonMap.put("info", "编辑过磅信息成功！");
+		}
+		else {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "编辑过磅信息失败！");
 		}
 		return jsonMap;
 	}

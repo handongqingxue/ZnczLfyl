@@ -37,6 +37,21 @@
 			</if>
 		</trim>
 	</insert>
+	<update id="edit" parameterType="com.znczLfyl.entity.GuoBang">
+		update guo_bang set 
+		<trim suffixOverrides=",">
+			<if test="gbzl!=null">
+				gbzl=#{gbzl},
+			</if>
+			<if test="gbzt!=null">
+				gbzt=#{gbzt},
+			</if>
+			<if test="gblx!=null">
+				gblx=#{gblx},
+			</if>
+		</trim>
+		where id=#{id}
+	</update>
 	<select id="queryZHCXForInt" resultType="java.lang.Integer">
 		select count(*) from guo_bang gb,ding_dan dd where gb.ddId=dd.id
 		<if test="ddh!=''&amp;ddh!=null">
@@ -50,5 +65,8 @@
 		</if>
 		order by gb.gbsj desc
 		limit #{rowNum},#{rows}
+	</select>
+	<select id="selectById" resultType="com.znczLfyl.entity.GuoBang">
+		select gb.*,dd.ddh from guo_bang gb,ding_dan dd where gb.ddId=dd.id and gb.id=#{id}
 	</select>
 </mapper>

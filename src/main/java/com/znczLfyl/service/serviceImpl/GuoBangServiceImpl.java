@@ -22,6 +22,12 @@ public class GuoBangServiceImpl implements GuoBangService {
 	}
 
 	@Override
+	public int edit(GuoBang gb) {
+		// TODO Auto-generated method stub
+		return guoBangDao.edit(gb);
+	}
+
+	@Override
 	public int queryZHCXForInt(String ddh) {
 		// TODO Auto-generated method stub
 		return guoBangDao.queryZHCXForInt(ddh);
@@ -31,5 +37,11 @@ public class GuoBangServiceImpl implements GuoBangService {
 	public List<GuoBang> queryZHCXList(String ddh, int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
 		return guoBangDao.queryZHCXList(ddh, (page-1)*rows, rows, sort, order);
+	}
+
+	@Override
+	public GuoBang selectById(String id) {
+		// TODO Auto-generated method stub
+		return guoBangDao.selectById(id);
 	}
 }
