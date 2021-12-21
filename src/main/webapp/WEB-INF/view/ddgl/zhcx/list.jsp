@@ -28,17 +28,38 @@
 var path='<%=basePath %>';
 var ddglPath=path+'ddgl/';
 $(function(){
+	initDDZTCBB();
 	initSearchLB();
 	initAddLB();
 	initTab1();
 });
+
+function initDDZTCBB(){
+	var data=[];
+	data.push({"value":"","text":"请选择"});
+	$.post(ddglPath+"queryDingDanZhuangTaiCBBList",
+		function(result){
+			var rows=result.rows;
+			for(var i=0;i<rows.length;i++){
+				data.push({"value":rows[i].id,"text":rows[i].mc});
+			}
+			ddztCBB=$("#ddzt_cbb").combobox({
+				valueField:"value",
+				textField:"text",
+				//multiple:true,
+				data:data
+			});
+		}
+	,"json");
+}
 
 function initSearchLB(){
 	$("#search_but").linkbutton({
 		iconCls:"icon-search",
 		onClick:function(){
 			var ddh=$("#toolbar #ddh").val();
-			tab1.datagrid("load",{ddh:ddh});
+			var ddztId=ddztCBB.combobox("getValue");
+			tab1.datagrid("load",{ddh:ddh,ddztId:ddztId});
 		}
 	});
 }
@@ -62,6 +83,7 @@ function initTab1(){
 		pageSize:10,
 		columns:[[
 			{field:"ddh",title:"订单号",width:150},
+			{field:"ddztMc",title:"订单状态",width:150},
 			{field:"sjsfzh",title:"司机身份证号",width:200},
 			{field:"sjxm",title:"司机姓名",width:100},
 			{field:"cph",title:"车牌号",width:150},
@@ -90,7 +112,7 @@ function initTab1(){
         onLoadSuccess:function(data){
 			if(data.total==0){
 				$(this).datagrid("appendRow",{ddh:"<div style=\"text-align:center;\">暂无信息<div>"});
-				$(this).datagrid("mergeCells",{index:0,field:"ddh",colspan:10});
+				$(this).datagrid("mergeCells",{index:0,field:"ddh",colspan:11});
 				data.total=0;
 			}
 			
@@ -115,6 +137,8 @@ function setFitWidthInParent(o){
 		<div class="toolbar" id="toolbar">
 			<span class="ddh_span">订单号：</span>
 			<input type="text" class="ddh_inp" id="ddh" placeholder="请输入订单号"/>
+			<span style="margin-left: 13px;">订单状态：</span>
+			<input id="ddzt_cbb"/>
 			<a class="search_but" id="search_but">查询</a>
 			<a id="add_but">添加</a>
 		</div>

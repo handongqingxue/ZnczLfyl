@@ -15,6 +15,18 @@ public class DingDan {
 	public void setDdh(String ddh) {
 		this.ddh = ddh;
 	}
+	public Integer getDdztId() {
+		return ddztId;
+	}
+	public void setDdztId(Integer ddztId) {
+		this.ddztId = ddztId;
+	}
+	public String getDdztMc() {
+		return ddztMc;
+	}
+	public void setDdztMc(String ddztMc) {
+		this.ddztMc = ddztMc;
+	}
 	public String getSjsfzh() {
 		return sjsfzh;
 	}
@@ -88,6 +100,8 @@ public class DingDan {
 		this.bjsj = bjsj;
 	}
 	private String ddh;//¶©µ¥ºÅ
+	private Integer ddztId;
+	private String ddztMc;
 	private String sjsfzh;
 	private String sjxm;
 	private String cph;

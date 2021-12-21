@@ -99,6 +99,13 @@
 					<div class="line_div"></div>
 					<li class="layui-nav-item">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
+						<a href="<%=basePath%>ddgl/ddzt/list">
+							&nbsp;&nbsp;&nbsp;订单状态
+						</a>
+					</li>
+					<div class="line_div"></div>
+					<li class="layui-nav-item">
+						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>ddgl/zhcx/list">
 							&nbsp;&nbsp;&nbsp;综合查询
 						</a>

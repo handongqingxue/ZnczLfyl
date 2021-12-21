@@ -16,15 +16,15 @@ public class DingDanServiceImpl implements DingDanService {
 	private DingDanMapper dingDanDao;
 
 	@Override
-	public int queryZHCXForInt(String ddh) {
+	public int queryZHCXForInt(String ddh, Integer ddztId) {
 		// TODO Auto-generated method stub
-		return dingDanDao.queryZHCXForInt(ddh);
+		return dingDanDao.queryZHCXForInt(ddh,ddztId);
 	}
 
 	@Override
-	public List<DingDan> queryZHCXList(String ddh, int page, int rows, String sort, String order) {
+	public List<DingDan> queryZHCXList(String ddh, Integer ddztId, int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
-		return dingDanDao.queryZHCXList(ddh, (page-1)*rows, rows, sort, order);
+		return dingDanDao.queryZHCXList(ddh, ddztId, (page-1)*rows, rows, sort, order);
 	}
 
 	@Override

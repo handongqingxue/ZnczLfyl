@@ -21,7 +21,7 @@ import com.znczLfyl.entity.*;
 import com.znczLfyl.controller.DDGLController;
 
 /**
- * 订单状态：待审核-排队中-一检上磅-待一检审核-待入库-待二检审核-已完成
+ * 订单状态：待审核-排队中-一检上磅-待一检审核-待入库-二检上磅-待二检审核-已完成
  * */
 @Controller
 @RequestMapping("/"+DDGLController.MODULE_NAME)
@@ -31,7 +31,22 @@ public class DDGLController {
 	//private PublicService publicService;
 	@Autowired
 	private DingDanService dingDanService;
+	@Autowired
+	private DingDanZhuangTaiService dingDanZhuangTaiService;
 	public static final String MODULE_NAME="ddgl";
+
+	/**
+	 * 跳转到订单管理-订单状态-列表页面
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/ddzt/list")
+	public String goDdztList(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		
+		return MODULE_NAME+"/ddzt/list";
+	}
 	
 	@RequestMapping(value="/zhcx/new")
 	public String goDdglZhcxNew(HttpServletRequest request) {
@@ -78,13 +93,13 @@ public class DDGLController {
 	
 	@RequestMapping(value="/queryZHCXList")
 	@ResponseBody
-	public Map<String, Object> queryZHCXList(String ddh,int page,int rows,String sort,String order) {
+	public Map<String, Object> queryZHCXList(String ddh,Integer ddztId,int page,int rows,String sort,String order) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
 		try {
-			int count = dingDanService.queryZHCXForInt(ddh);
-			List<DingDan> zhglList=dingDanService.queryZHCXList(ddh, page, rows, sort, order);
+			int count = dingDanService.queryZHCXForInt(ddh,ddztId);
+			List<DingDan> zhglList=dingDanService.queryZHCXList(ddh, ddztId, page, rows, sort, order);
 			
 			jsonMap.put("total", count);
 			jsonMap.put("rows", zhglList);
@@ -139,6 +154,19 @@ public class DDGLController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/queryDingDanZhuangTaiCBBList")
+	@ResponseBody
+	public Map<String, Object> queryDingDanZhuangTaiCBBList() {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		List<DingDanZhuangTai> ddztList=dingDanZhuangTaiService.queryCBBList();
+		
+		jsonMap.put("rows", ddztList);
+		
 		return jsonMap;
 	}
 }

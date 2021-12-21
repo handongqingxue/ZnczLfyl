@@ -6,9 +6,9 @@ import com.znczLfyl.entity.*;
 
 public interface DingDanService {
 
-	int queryZHCXForInt(String ddh);
+	int queryZHCXForInt(String ddh, Integer ddztId);
 
-	List<DingDan> queryZHCXList(String ddh, int page, int rows, String sort, String order);
+	List<DingDan> queryZHCXList(String ddh, Integer ddztId, int page, int rows, String sort, String order);
 
 	DingDan selectById(String id);
 

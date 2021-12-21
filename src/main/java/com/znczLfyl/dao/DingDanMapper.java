@@ -8,9 +8,9 @@ import com.znczLfyl.entity.*;
 
 public interface DingDanMapper {
 
-	int queryZHCXForInt(@Param("ddh") String ddh);
+	int queryZHCXForInt(@Param("ddh") String ddh, @Param("ddztId") Integer ddztId);
 
-	List<DingDan> queryZHCXList(@Param("ddh") String ddh, @Param("rowNum") int rowNum, @Param("rows") int rows, String sort, String order);
+	List<DingDan> queryZHCXList(@Param("ddh") String ddh, @Param("ddztId") Integer ddztId, @Param("rowNum") int rowNum, @Param("rows") int rows, String sort, String order);
 
 	DingDan selectById(@Param("id") String id);
 

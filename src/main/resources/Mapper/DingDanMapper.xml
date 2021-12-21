@@ -4,17 +4,23 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.znczLfyl.dao.DingDanMapper">
 	<select id="queryZHCXForInt" resultType="java.lang.Integer">
-		select count(*) from ding_dan where 1=1
+		select count(*) from ding_dan dd left join ding_dan_zhuang_tai ddzt on dd.ddztId=ddzt.id where 1=1
 		<if test="ddh!=''&amp;ddh!=null">
-			and ddh like CONCAT('%',#{ddh},'%')
+			and dd.ddh like CONCAT('%',#{ddh},'%')
+		</if>
+		<if test="ddztId!=''&amp;ddztId!=null">
+			and dd.ddztId=#{ddztId}
 		</if>
 	</select>
 	<select id="queryZHCXList" resultType="com.znczLfyl.entity.DingDan">
-		select * from ding_dan where 1=1
+		select dd.*,ddzt.mc ddztMc from ding_dan dd left join ding_dan_zhuang_tai ddzt on dd.ddztId=ddzt.id where 1=1
 		<if test="ddh!=''&amp;ddh!=null">
-			and ddh like CONCAT('%',#{ddh},'%')
+			and dd.ddh like CONCAT('%',#{ddh},'%')
 		</if>
-		order by bjsj desc
+		<if test="ddztId!=''&amp;ddztId!=null">
+			and dd.ddztId=#{ddztId}
+		</if>
+		order by dd.bjsj desc
 		limit #{rowNum},#{rows}
 	</select>
 	<select id="selectById" resultType="com.znczLfyl.entity.DingDan">
