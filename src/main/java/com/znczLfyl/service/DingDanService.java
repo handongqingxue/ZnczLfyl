@@ -14,6 +14,8 @@ public interface DingDanService {
 
 	int add(DingDan dd);
 
+	int deleteByIds(String ids);
+
 	int edit(DingDan dd);
 
 }

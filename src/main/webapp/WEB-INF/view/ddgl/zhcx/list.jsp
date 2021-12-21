@@ -12,14 +12,14 @@
 .tab1_div .toolbar{
 	height:32px;
 }
-.tab1_div .toolbar .ddh_span{
+.tab1_div .toolbar .ddh_span,
+.tab1_div .toolbar .ddzt_span,
+.tab1_div .toolbar .search_but{
 	margin-left: 13px;
 }
 .tab1_div .toolbar .ddh_inp{
-	width: 120px;height: 25px;
-}
-.tab1_div .toolbar .search_but{
-	margin-left: 13px;
+	width: 120px;
+	height: 25px;
 }
 </style>
 <title>Insert title here</title>
@@ -31,6 +31,7 @@ $(function(){
 	initDDZTCBB();
 	initSearchLB();
 	initAddLB();
+	initRemoveLB();
 	initTab1();
 });
 
@@ -69,6 +70,15 @@ function initAddLB(){
 		iconCls:"icon-add",
 		onClick:function(){
 			location.href=ddglPath+"zhcx/new";
+		}
+	});
+}
+
+function initRemoveLB(){
+	$("#remove_but").linkbutton({
+		iconCls:"icon-remove",
+		onClick:function(){
+			deleteByIds();
 		}
 	});
 }
@@ -124,6 +134,38 @@ function initTab1(){
 	});
 }
 
+function deleteByIds() {
+	var rows=tab1.datagrid("getSelections");
+	if (rows.length == 0) {
+		$.messager.alert("提示","请选择要删除的信息！","warning");
+		return false;
+	}
+	
+	$.messager.confirm("提示","确定要删除吗？",function(r){
+		if(r){
+			var ids = "";
+			for (var i = 0; i < rows.length; i++) {
+				ids += "," + rows[i].id;
+			}
+			ids=ids.substring(1);
+			
+			$.post(ddglPath + "deleteDingDan",
+				{ids:ids},
+				function(result){
+					if(result.status==1){
+						alert(result.msg);
+						location.href = location.href;
+					}
+					else{
+						alert(result.msg);
+					}
+				}
+			,"json");
+			
+		}
+	});
+}
+
 function setFitWidthInParent(o){
 	var width=$(o).css("width");
 	return width.substring(0,width.length-2)-250;
@@ -137,10 +179,11 @@ function setFitWidthInParent(o){
 		<div class="toolbar" id="toolbar">
 			<span class="ddh_span">订单号：</span>
 			<input type="text" class="ddh_inp" id="ddh" placeholder="请输入订单号"/>
-			<span style="margin-left: 13px;">订单状态：</span>
+			<span class="ddzt_span">订单状态：</span>
 			<input id="ddzt_cbb"/>
 			<a class="search_but" id="search_but">查询</a>
 			<a id="add_but">添加</a>
+			<a id="remove_but">删除</a>
 		</div>
 		<table id="tab1">
 		</table>

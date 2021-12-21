@@ -1,5 +1,6 @@
 package com.znczLfyl.service.serviceImpl;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,15 @@ public class DingDanServiceImpl implements DingDanService {
 	public int add(DingDan dd) {
 		// TODO Auto-generated method stub
 		return dingDanDao.add(dd);
+	}
+
+	@Override
+	public int deleteByIds(String ids) {
+		// TODO Auto-generated method stub
+		int count=0;
+		List<String> idList = Arrays.asList(ids.split(","));
+		count=dingDanDao.deleteByIds(idList);
+		return count;
 	}
 
 	@Override

@@ -16,6 +16,8 @@ public interface DingDanMapper {
 
 	int add(DingDan dd);
 
+	int deleteByIds(List<String> idList);
+
 	int edit(DingDan dd);
 
 }
