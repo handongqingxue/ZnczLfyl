@@ -63,11 +63,23 @@ public class DingDan {
 	public void setWzlxId(Integer wzlxId) {
 		this.wzlxId = wzlxId;
 	}
+	public String getWzlxMc() {
+		return wzlxMc;
+	}
+	public void setWzlxMc(String wzlxMc) {
+		this.wzlxMc = wzlxMc;
+	}
 	public Integer getWzId() {
 		return wzId;
 	}
 	public void setWzId(Integer wzId) {
 		this.wzId = wzId;
+	}
+	public String getWzMc() {
+		return wzMc;
+	}
+	public void setWzMc(String wzMc) {
+		this.wzMc = wzMc;
 	}
 	public String getBjsj() {
 		return bjsj;
@@ -84,6 +96,8 @@ public class DingDan {
 	private Float sjzl;//实际重量
 	private Float zlceb;//重量差额比
 	private Integer wzlxId;
+	private String wzlxMc;
 	private Integer wzId;
+	private String wzMc;
 	private String bjsj;//编辑时间
 }

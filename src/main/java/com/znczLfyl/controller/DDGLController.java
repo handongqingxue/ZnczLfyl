@@ -20,6 +20,9 @@ import net.sf.json.JSONObject;
 import com.znczLfyl.entity.*;
 import com.znczLfyl.controller.DDGLController;
 
+/**
+ * 订单状态：待审核-排队中-一检上磅-待一检审核-待入库-待二检审核-已完成
+ * */
 @Controller
 @RequestMapping("/"+DDGLController.MODULE_NAME)
 public class DDGLController {
@@ -60,6 +63,17 @@ public class DDGLController {
 		//publicService.selectNav(request);
 		
 		return MODULE_NAME+"/zhcx/list";
+	}
+	
+	@RequestMapping(value="/zhcx/detail")
+	public String goDdglZhcxDetail(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		String id = request.getParameter("id");
+		DingDan dd=dingDanService.selectById(id);
+		request.setAttribute("dd", dd);
+		
+		return MODULE_NAME+"/zhcx/detail";
 	}
 	
 	@RequestMapping(value="/queryZHCXList")

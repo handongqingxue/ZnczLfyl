@@ -59,6 +59,22 @@ public class GBGLController {
 		return MODULE_NAME+"/zhcx/list";
 	}
 
+	/**
+	 * 跳转到过磅管理-综合查询-详情页面
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/zhcx/detail")
+	public String goZhcxDetail(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		String id = request.getParameter("id");
+		GuoBang gb=guoBangService.selectById(id);
+		request.setAttribute("gb", gb);
+		
+		return MODULE_NAME+"/zhcx/detail";
+	}
+
 	@RequestMapping(value="/newGuoBang")
 	@ResponseBody
 	public Map<String, Object> newGuoBang(GuoBang gb) {

@@ -110,6 +110,9 @@ function initLXLXCBB(){
 		data:[
 			{"value":"","text":"请选择流向类型"},{"value":"1","text":"送运"},{"value":"2","text":"取运"}
 		],
+		onLoadSuccess:function(){
+			$(this).combobox("setValue",'${requestScope.dd.lxlx }');
+		},
 		onSelect:function(){
 			$("#lxlx").val($(this).combobox("getValue"));
 		}
