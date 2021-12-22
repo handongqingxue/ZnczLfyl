@@ -97,6 +97,9 @@ function initTab1(){
 			{field:"sjsfzh",title:"司机身份证号",width:200},
 			{field:"sjxm",title:"司机姓名",width:100},
 			{field:"cph",title:"车牌号",width:150},
+			{field:"yssMc",title:"运输商",width:150},
+			{field:"fhdwMc",title:"发货单位",width:150},
+			{field:"shbmMc",title:"收货部门",width:150},
             {field:"lxlx",title:"流向类型",width:100,formatter:function(value,row){
             	var str;
             	switch (value) {
@@ -122,7 +125,7 @@ function initTab1(){
         onLoadSuccess:function(data){
 			if(data.total==0){
 				$(this).datagrid("appendRow",{ddh:"<div style=\"text-align:center;\">暂无信息<div>"});
-				$(this).datagrid("mergeCells",{index:0,field:"ddh",colspan:11});
+				$(this).datagrid("mergeCells",{index:0,field:"ddh",colspan:14});
 				data.total=0;
 			}
 			

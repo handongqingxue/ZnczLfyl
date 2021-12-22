@@ -4,7 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.znczLfyl.dao.DingDanMapper">
 	<select id="queryZHCXForInt" resultType="java.lang.Integer">
-		select count(*) from ding_dan dd left join ding_dan_zhuang_tai ddzt on dd.ddztId=ddzt.id where 1=1
+		select count(*) from ding_dan dd left join ding_dan_zhuang_tai ddzt on dd.ddztId=ddzt.id
+		 left join yun_shu_shang yss on dd.yssId=yss.id left join fa_huo_dan_wei fhdw on dd.fhdwId=fhdw.id
+		 left join shou_huo_bu_men shbm on dd.shbmId=shbm.id where 1=1
 		<if test="ddh!=''&amp;ddh!=null">
 			and dd.ddh like CONCAT('%',#{ddh},'%')
 		</if>
@@ -13,7 +15,9 @@
 		</if>
 	</select>
 	<select id="queryZHCXList" resultType="com.znczLfyl.entity.DingDan">
-		select dd.*,ddzt.mc ddztMc from ding_dan dd left join ding_dan_zhuang_tai ddzt on dd.ddztId=ddzt.id where 1=1
+		select dd.*,ddzt.mc ddztMc,yss.mc yssMc,fhdw.mc fhdwMc,shbm.mc shbmMc from ding_dan dd left join ding_dan_zhuang_tai ddzt on dd.ddztId=ddzt.id
+		 left join yun_shu_shang yss on dd.yssId=yss.id left join fa_huo_dan_wei fhdw on dd.fhdwId=fhdw.id
+		 left join shou_huo_bu_men shbm on dd.shbmId=shbm.id where 1=1
 		<if test="ddh!=''&amp;ddh!=null">
 			and dd.ddh like CONCAT('%',#{ddh},'%')
 		</if>
@@ -24,7 +28,9 @@
 		limit #{rowNum},#{rows}
 	</select>
 	<select id="selectById" resultType="com.znczLfyl.entity.DingDan">
-		select dd.*,wzlx.mc wzlxMc,wz.mc wzMc from ding_dan dd left join wu_zi_lei_xing wzlx on dd.wzlxId=wzlx.id left join wu_zi wz on wzlx.id=wz.wzlxId where dd.id=#{id}
+		select dd.*,wzlx.mc wzlxMc,wz.mc wzMc,yss.mc yssMc,fhdw.mc fhdwMc,shbm.mc shbmMc from ding_dan dd left join wu_zi_lei_xing wzlx on dd.wzlxId=wzlx.id left join wu_zi wz on wzlx.id=wz.wzlxId
+		 left join yun_shu_shang yss on dd.yssId=yss.id left join fa_huo_dan_wei fhdw on dd.fhdwId=fhdw.id
+		 left join shou_huo_bu_men shbm on dd.shbmId=shbm.id where dd.id=#{id}
 	</select>
 	<insert id="add" parameterType="com.znczLfyl.entity.DingDan">
 		insert into ding_dan
@@ -161,6 +167,15 @@
 			</if>
 			<if test="wzId!=null">
 				wzId=#{wzId},
+			</if>
+			<if test="yssId!=null">
+				yssId=#{yssId},
+			</if>
+			<if test="fhdwId!=null">
+				fhdwId=#{fhdwId},
+			</if>
+			<if test="shbmId!=null">
+				shbmId=#{shbmId},
 			</if>
 				bjsj=now()
 		</trim>
