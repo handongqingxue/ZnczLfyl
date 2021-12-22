@@ -1,6 +1,9 @@
 package com.znczLfyl.entity;
 
 public class DingDanZhuangTai {
+	
+	public static final String DAI_SHEN_HE_TEXT="¥˝…Û∫À";
+	public static final String PAI_DUI_ZHONG_TEXT="≈≈∂”÷–";
 
 	private Integer id;
 	public Integer getId() {

@@ -20,4 +20,6 @@ public interface FaHuoDanWeiMapper {
 
 	public FaHuoDanWei selectById(String id);
 
+	List<FaHuoDanWei> queryCBBList();
+
 }

@@ -50,4 +50,7 @@
 	<select id="selectById" resultType="com.znczLfyl.entity.ShouHuoBuMen">
 		select * from shou_huo_bu_men where id=#{0}
 	</select>
+	<select id="queryCBBList" resultType="com.znczLfyl.entity.ShouHuoBuMen">
+		select id,mc from shou_huo_bu_men
+	</select>
 </mapper>

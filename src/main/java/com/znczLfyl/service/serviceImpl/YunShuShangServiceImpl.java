@@ -54,4 +54,10 @@ public class YunShuShangServiceImpl implements YunShuShangService {
 		// TODO Auto-generated method stub
 		return yunShuShangDao.selectById(id);
 	}
+	
+	@Override
+	public List<YunShuShang> queryCBBList() {
+		// TODO Auto-generated method stub
+		return yunShuShangDao.queryCBBList();
+	}
 }

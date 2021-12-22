@@ -18,4 +18,6 @@ public interface ShouHuoBuMenService {
 
 	public ShouHuoBuMen selectById(String id);
 
+	List<ShouHuoBuMen> queryCBBList();
+
 }

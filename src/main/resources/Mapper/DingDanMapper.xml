@@ -32,6 +32,9 @@
 			<if test="ddh!=null">
 				ddh,
 			</if>
+			<if test="ddztId!=null">
+				ddztId,
+			</if>
 			<if test="sjsfzh!=null">
 				sjsfzh,
 			</if>
@@ -59,12 +62,24 @@
 			<if test="wzId!=null">
 				wzId,
 			</if>
+			<if test="yssId!=null">
+				yssId,
+			</if>
+			<if test="fhdwId!=null">
+				fhdwId,
+			</if>
+			<if test="shbmId!=null">
+				shbmId,
+			</if>
 				bjsj
 		</trim>
 		values
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="ddh!=null">
 				#{ddh},
+			</if>
+			<if test="ddztId!=null">
+				#{ddztId},
 			</if>
 			<if test="sjsfzh!=null">
 				#{sjsfzh},
@@ -93,6 +108,15 @@
 			<if test="wzId!=null">
 				#{wzId},
 			</if>
+			<if test="yssId!=null">
+				#{yssId},
+			</if>
+			<if test="fhdwId!=null">
+				#{fhdwId},
+			</if>
+			<if test="shbmId!=null">
+				#{shbmId},
+			</if>
 				now()
 		</trim>
 	</insert>
@@ -107,6 +131,9 @@
 		<trim suffixOverrides=",">
 			<if test="ddh!=null">
 				ddh=#{ddh},
+			</if>
+			<if test="ddztId!=null">
+				ddztId=#{ddztId},
 			</if>
 			<if test="sjsfzh!=null">
 				sjsfzh=#{sjsfzh},

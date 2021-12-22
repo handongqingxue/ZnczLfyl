@@ -6,4 +6,7 @@
 	<select id="queryCBBList" resultType="com.znczLfyl.entity.DingDanZhuangTai">
 		select id,mc from ding_dan_zhuang_tai order by px
 	</select>
+	<select id="getIdByMc" resultType="java.lang.Integer">
+		select id from ding_dan_zhuang_tai where mc=#{mc}
+	</select>
 </mapper>

@@ -31,6 +31,7 @@
 var path='<%=basePath %>';
 var ddglPath=path+'ddgl/';
 var wzglPath=path+'wzgl/';
+var dwglPath=path+'dwgl/';
 var dialogTop=10;
 var dialogLeft=20;
 var ndNum=0;
@@ -56,7 +57,7 @@ function initNewDialog(){
 	$("#new_div").dialog({
 		title:"订单信息",
 		width:setFitWidthInParent("body","new_div"),
-		height:330,
+		height:430,
 		top:dialogTop,
 		left:dialogLeft,
 		buttons:[
@@ -98,6 +99,9 @@ function initNewDialog(){
 	initLXLXCBB();
 	initWZLXCBB();
 	initWZCBB();
+	initYSSCBB();
+	initFHDWCBB();
+	initSHBMCBB();
 }
 
 function initLXLXCBB(){
@@ -160,6 +164,60 @@ function loadWZCBBData(){
 	,"json");
 }
 
+function initYSSCBB(){
+	var data=[];
+	data.push({"value":"","text":"请选择运输商"});
+	$.post(dwglPath+"queryYunShuShangCBBList",
+		function(result){
+			var rows=result.rows;
+			for(var i=0;i<rows.length;i++){
+				data.push({"value":rows[i].id,"text":rows[i].mc});
+			}
+			yssCBB=$("#new_div #yss_cbb").combobox({
+				valueField:"value",
+				textField:"text",
+				data:data
+			});
+		}
+	,"json");
+}
+
+function initFHDWCBB(){
+	var data=[];
+	data.push({"value":"","text":"请选择发货单位"});
+	$.post(dwglPath+"queryFaHuoDanWeiCBBList",
+		function(result){
+			var rows=result.rows;
+			for(var i=0;i<rows.length;i++){
+				data.push({"value":rows[i].id,"text":rows[i].mc});
+			}
+			fhdwCBB=$("#new_div #fhdw_cbb").combobox({
+				valueField:"value",
+				textField:"text",
+				data:data
+			});
+		}
+	,"json");
+}
+
+function initSHBMCBB(){
+	var data=[];
+	data.push({"value":"","text":"请选择收货部门"});
+	$.post(dwglPath+"queryShouHuoBuMenCBBList",
+		function(result){
+			var rows=result.rows;
+			for(var i=0;i<rows.length;i++){
+				data.push({"value":rows[i].id,"text":rows[i].mc});
+			}
+			shbmCBB=$("#new_div #shbm_cbb").combobox({
+				valueField:"value",
+				textField:"text",
+				data:data
+			});
+		}
+	,"json");
+}
+
 function checkNew(){
 	if(checkYZXZL()){
 		if(checkWZLXId()){
@@ -175,6 +233,12 @@ function newDingDanZongHeChaXun(){
 	$("#new_div #wzlxId").val(wzlxId);
 	var wzId=wzCBB.combobox("getValue");
 	$("#new_div #wzId").val(wzId);
+	var yssId=yssCBB.combobox("getValue");
+	$("#new_div #yssId").val(yssId);
+	var fhdwId=fhdwCBB.combobox("getValue");
+	$("#new_div #fhdwId").val(fhdwId);
+	var shbmId=shbmCBB.combobox("getValue");
+	$("#new_div #shbmId").val(shbmId);
 	
 	var formData = new FormData($("#form1")[0]);
 	$.ajax({
@@ -329,6 +393,35 @@ function setFitWidthInParent(parent,self){
 				<td class="td2">
 					<input id="wz_cbb"/>
 					<input type="hidden" id="wzId" name="wzId"/>
+				</td>
+			  </tr>
+			  <tr>
+				<td class="td1" align="right">
+					运输商
+				</td>
+				<td class="td2">
+					<input id="yss_cbb"/>
+					<input type="hidden" id="yssId" name="yssId"/>
+				</td>
+				<td class="td1" align="right">
+					发货单位
+				</td>
+				<td class="td2">
+					<input id="fhdw_cbb"/>
+					<input type="hidden" id="fhdwId" name="fhdwId"/>
+				</td>
+			  </tr>
+			  <tr>
+				<td class="td1" align="right">
+					收货部门
+				</td>
+				<td class="td2">
+					<input id="shbm_cbb"/>
+					<input type="hidden" id="shbmId" name="shbmId"/>
+				</td>
+				<td class="td1" align="right">
+				</td>
+				<td class="td2">
 				</td>
 			  </tr>
 			</table>

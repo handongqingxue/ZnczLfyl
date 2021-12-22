@@ -19,4 +19,6 @@ public interface YunShuShangMapper {
 	public List<YunShuShang> queryList(@Param("mc") String mc, int i, int rows, String sort, String order);
 
 	public YunShuShang selectById(String id);
+
+	List<YunShuShang> queryCBBList();
 }

@@ -93,6 +93,42 @@ public class DingDan {
 	public void setWzMc(String wzMc) {
 		this.wzMc = wzMc;
 	}
+	public Integer getYssId() {
+		return yssId;
+	}
+	public void setYssId(Integer yssId) {
+		this.yssId = yssId;
+	}
+	public String getYssMc() {
+		return yssMc;
+	}
+	public void setYssMc(String yssMc) {
+		this.yssMc = yssMc;
+	}
+	public Integer getFhdwId() {
+		return fhdwId;
+	}
+	public void setFhdwId(Integer fhdwId) {
+		this.fhdwId = fhdwId;
+	}
+	public String getFhdwMc() {
+		return fhdwMc;
+	}
+	public void setFhdwMc(String fhdwMc) {
+		this.fhdwMc = fhdwMc;
+	}
+	public Integer getShbmId() {
+		return shbmId;
+	}
+	public void setShbmId(Integer shbmId) {
+		this.shbmId = shbmId;
+	}
+	public String getShbmMc() {
+		return shbmMc;
+	}
+	public void setShbmMc(String shbmMc) {
+		this.shbmMc = shbmMc;
+	}
 	public String getBjsj() {
 		return bjsj;
 	}
@@ -113,5 +149,11 @@ public class DingDan {
 	private String wzlxMc;
 	private Integer wzId;
 	private String wzMc;
+	private Integer yssId;
+	private String yssMc;
+	private Integer fhdwId;
+	private String fhdwMc;
+	private Integer shbmId;
+	private String shbmMc;
 	private String bjsj;//±à¼­Ê±¼ä
 }

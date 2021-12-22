@@ -15,6 +15,8 @@ public class DingDanServiceImpl implements DingDanService {
 
 	@Autowired
 	private DingDanMapper dingDanDao;
+	@Autowired
+	private DingDanZhuangTaiMapper dingDanZhuangTaiDao;
 
 	@Override
 	public int queryZHCXForInt(String ddh, Integer ddztId) {
@@ -37,6 +39,8 @@ public class DingDanServiceImpl implements DingDanService {
 	@Override
 	public int add(DingDan dd) {
 		// TODO Auto-generated method stub
+		int ddztId=dingDanZhuangTaiDao.getIdByMc(DingDanZhuangTai.DAI_SHEN_HE_TEXT);
+		dd.setDdztId(ddztId);
 		return dingDanDao.add(dd);
 	}
 
@@ -52,6 +56,8 @@ public class DingDanServiceImpl implements DingDanService {
 	@Override
 	public int edit(DingDan dd) {
 		// TODO Auto-generated method stub
+		int ddztId=dingDanZhuangTaiDao.getIdByMc(DingDanZhuangTai.PAI_DUI_ZHONG_TEXT);
+		dd.setDdztId(ddztId);
 		return dingDanDao.edit(dd);
 	}
 }

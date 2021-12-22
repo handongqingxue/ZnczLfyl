@@ -18,4 +18,6 @@ public interface FaHuoDanWeiService {
 
 	public FaHuoDanWei selectById(String id);
 
+	List<FaHuoDanWei> queryCBBList();
+
 }

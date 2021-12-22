@@ -54,4 +54,10 @@ public class ShouHuoBuMenServiceImpl implements ShouHuoBuMenService {
 		// TODO Auto-generated method stub
 		return shouHuoBuMenDao.selectById(id);
 	}
+	
+	@Override
+	public List<ShouHuoBuMen> queryCBBList() {
+		// TODO Auto-generated method stub
+		return shouHuoBuMenDao.queryCBBList();
+	}
 }

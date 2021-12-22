@@ -17,4 +17,6 @@ public interface YunShuShangService {
 	public List<YunShuShang> queryList(String mc, int page, int rows, String sort, String order);
 
 	public YunShuShang selectById(String id);
+
+	List<YunShuShang> queryCBBList();
 }

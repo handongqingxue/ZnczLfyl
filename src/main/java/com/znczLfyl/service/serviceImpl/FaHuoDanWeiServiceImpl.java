@@ -54,4 +54,10 @@ public class FaHuoDanWeiServiceImpl implements FaHuoDanWeiService {
 		// TODO Auto-generated method stub
 		return faHuoDanWeiDao.selectById(id);
 	}
+	
+	@Override
+	public List<FaHuoDanWei> queryCBBList() {
+		// TODO Auto-generated method stub
+		return faHuoDanWeiDao.queryCBBList();
+	}
 }

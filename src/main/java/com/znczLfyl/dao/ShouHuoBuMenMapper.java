@@ -20,4 +20,6 @@ public interface ShouHuoBuMenMapper {
 
 	public ShouHuoBuMen selectById(String id);
 
+	List<ShouHuoBuMen> queryCBBList();
+
 }
