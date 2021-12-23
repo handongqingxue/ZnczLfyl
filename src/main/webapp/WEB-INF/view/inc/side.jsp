@@ -183,7 +183,7 @@
 					<div class="line_div"></div>
 					<li class="layui-nav-item">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
-						<a href="<%=basePath%>background/bus/busNo/list">
+						<a href="<%=basePath%>xtgl/yhcx/list">
 							&nbsp;&nbsp;&nbsp;用户查询
 						</a>
 					</li>

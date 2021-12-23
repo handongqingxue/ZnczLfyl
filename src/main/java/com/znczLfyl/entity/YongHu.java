@@ -21,23 +21,17 @@ public class YongHu {
 	public void setMm(String mm) {
 		this.mm = mm;
 	}
-	public String getNc() {
-		return nc;
+	public String getZsxm() {
+		return zsxm;
 	}
-	public void setNc(String nc) {
-		this.nc = nc;
+	public void setZsxm(String zsxm) {
+		this.zsxm = zsxm;
 	}
-	public String getTx() {
-		return tx;
+	public String getCjsj() {
+		return cjsj;
 	}
-	public void setTx(String tx) {
-		this.tx = tx;
-	}
-	public String getSm() {
-		return sm;
-	}
-	public void setSm(String sm) {
-		this.sm = sm;
+	public void setCjsj(String cjsj) {
+		this.cjsj = cjsj;
 	}
 	public Integer getZt() {
 		return zt;
@@ -51,11 +45,11 @@ public class YongHu {
 	public void setJs(String js) {
 		this.js = js;
 	}
-	public Integer getJsid() {
-		return jsid;
+	public Integer getJsId() {
+		return jsId;
 	}
-	public void setJsid(Integer jsid) {
-		this.jsid = jsid;
+	public void setJsId(Integer jsId) {
+		this.jsId = jsId;
 	}
 	//https://blog.csdn.net/qq_43416276/article/details/102981480
 	public YongHu() {
@@ -68,10 +62,9 @@ public class YongHu {
 	}
 	private String yhm;
 	private String mm;
-	private String nc;
-	private String tx;
-	private String sm;
+	private String zsxm;
+	private String cjsj;
 	private Integer zt;
 	private String js;
-	private Integer jsid;
+	private Integer jsId;
 }
