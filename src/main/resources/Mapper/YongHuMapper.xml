@@ -56,4 +56,7 @@
 		order by cjsj
 		limit #{rowNum},#{rows}
 	</select>
+	<select id="selectById" resultType="com.znczLfyl.entity.YongHu">
+		select * from yong_hu where id=#{id}
+	</select>
 </mapper>

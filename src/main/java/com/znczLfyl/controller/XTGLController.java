@@ -21,6 +21,17 @@ public class XTGLController {
 	@Autowired
 	private YongHuService yongHuService;
 	public static final String MODULE_NAME="xtgl";
+
+	@RequestMapping(value="/yhcx/edit")
+	public String goYhcxEdit(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		String id = request.getParameter("id");
+		YongHu yh=yongHuService.selectById(id);
+		request.setAttribute("yh", yh);
+		
+		return MODULE_NAME+"/yhcx/edit";
+	}
 	
 	@RequestMapping(value="/yhcx/list")
 	public String goYhcxList(HttpServletRequest request) {

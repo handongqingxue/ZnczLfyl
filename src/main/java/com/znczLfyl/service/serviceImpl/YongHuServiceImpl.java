@@ -32,4 +32,10 @@ public class YongHuServiceImpl implements YongHuService {
 		// TODO Auto-generated method stub
 		return yongHuDao.queryList(yhm, (page-1)*rows, rows, sort, order);
 	}
+
+	@Override
+	public YongHu selectById(String id) {
+		// TODO Auto-generated method stub
+		return yongHuDao.selectById(id);
+	}
 }
