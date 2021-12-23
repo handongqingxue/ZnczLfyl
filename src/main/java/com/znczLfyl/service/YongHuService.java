@@ -5,6 +5,8 @@ import java.util.List;
 import com.znczLfyl.entity.*;
 
 public interface YongHuService {
+	
+	int add(YongHu yh);
 
 	int queryForInt(String yhm);
 

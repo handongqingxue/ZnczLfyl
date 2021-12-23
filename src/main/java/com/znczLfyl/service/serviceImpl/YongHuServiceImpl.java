@@ -16,6 +16,12 @@ public class YongHuServiceImpl implements YongHuService {
 	private YongHuMapper yongHuDao;
 
 	@Override
+	public int add(YongHu yh) {
+		// TODO Auto-generated method stub
+		return yongHuDao.add(yh);
+	}
+
+	@Override
 	public int queryForInt(String yhm) {
 		// TODO Auto-generated method stub
 		return yongHuDao.queryForInt(yhm);

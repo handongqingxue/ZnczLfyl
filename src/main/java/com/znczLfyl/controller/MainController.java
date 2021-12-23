@@ -1,5 +1,7 @@
 package com.znczLfyl.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,6 +24,8 @@ import com.znczLfyl.service.*;
 public class MainController {
 	@Autowired
 	private UtilService utilService;
+	@Autowired
+	private YongHuService yongHuService;
 
 	/**
 	 * 跳转到登录页
@@ -31,6 +35,37 @@ public class MainController {
 	public String goLogin() {
 		
 		return "login";
+	}
+	
+	@RequestMapping(value="/goRegist")
+	public String goRegist(HttpServletRequest request) {
+		
+		return "regist";
+	}
+	
+	/**
+	 * 注册信息处理接口
+	 * @param yh
+	 * @return
+	 */
+	@RequestMapping(value = "/regist" , method = RequestMethod.POST,produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String regist(YongHu yh) {
+		
+		PlanResult plan=new PlanResult();
+		int count=yongHuService.add(yh);
+		if(count==0) {
+			plan.setStatus(count);
+			plan.setMsg("系统错误，请联系维护人员");
+			return JsonUtil.getJsonFromObject(plan);
+		}else {
+			plan.setStatus(0);
+			plan.setMsg("注册成功");
+			plan.setData(yh);
+			plan.setUrl("/main/goLogin");
+		}
+		
+		return JsonUtil.getJsonFromObject(plan);
 	}
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST,produces="plain/text; charset=UTF-8")

@@ -8,8 +8,10 @@ import com.znczLfyl.entity.*;
 
 public interface YongHuMapper {
 
+	int add(YongHu yh);
+	
 	//通过用户信息查询用户
-	public YongHu getYongHu(YongHu yh);
+	YongHu getYongHu(YongHu yh);
 
 	int queryForInt(@Param("yhm") String yhm);
 	

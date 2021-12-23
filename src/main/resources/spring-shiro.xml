@@ -24,9 +24,7 @@
 		<property name="loginUrl" value="/main/goLogin" />
 		<property name="filterChainDefinitions">
 			<value>
-				/main/goLogin=anon
-				/main/getKaptchaImage=anon
-				/main/login=anon
+				/main/**=anon
 				/resource/**=anon
 				/**=authc
 			</value>
