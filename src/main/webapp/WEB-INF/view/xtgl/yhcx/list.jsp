@@ -64,7 +64,21 @@ function initTab1(){
 			{field:"yhm",title:"用户名",width:150},
 			{field:"zsxm",title:"真实姓名",width:150},
 			{field:"cjsj",title:"创建时间",width:150},
-			{field:"zt",title:"状态",width:100},
+			{field:"zt",title:"状态",width:100,formatter:function(value,row){
+				var str;
+				switch (value) {
+				case 0:
+					str="待审核";
+					break;
+				case 1:
+					str="审核通过";
+					break;
+				case 2:
+					str="审核未通过";
+					break;
+				}
+            	return str;
+			}},
             {field:"jsId",title:"角色",width:100},
             {field:"id",title:"操作",width:110,formatter:function(value,row){
             	var str="<a href=\"edit?id="+value+"\">编辑</a>&nbsp;&nbsp;"
