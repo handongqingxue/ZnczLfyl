@@ -18,10 +18,6 @@
 	margin-left: 20px;
 	font-size: 18px;
 }
-.mc_inp,.px_inp{
-	width: 150px;
-	height:30px;
-}
 </style>
 <script type="text/javascript">
 var path='<%=basePath %>';
@@ -128,12 +124,12 @@ function updateYHZTById(){
 		processData: false,
 		contentType: false,
 		success: function (data){
-			if(data.message=="ok"){
-				alert(data.info);
+			if(data.status==1){
+				alert(data.msg);
 				history.go(-1);
 			}
 			else{
-				alert(data.info);
+				alert(data.msg);
 			}
 		}
 	});

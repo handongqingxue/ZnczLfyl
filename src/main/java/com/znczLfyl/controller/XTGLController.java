@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.znczLfyl.entity.*;
 import com.znczLfyl.service.*;
+import com.znczLfyl.util.JsonUtil;
 import com.znczLfyl.util.PlanResult;
 
 @Controller
@@ -42,6 +43,17 @@ public class XTGLController {
 		
 		return MODULE_NAME+"/yhcx/list";
 	}
+
+	@RequestMapping(value="/yhcx/detail")
+	public String goYhcxDetail(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		String id = request.getParameter("id");
+		YongHu yh=yongHuService.selectById(id);
+		request.setAttribute("yh", yh);
+		
+		return MODULE_NAME+"/yhcx/detail";
+	}
 	
 	@RequestMapping(value="/queryYongHuList")
 	@ResponseBody
@@ -65,7 +77,13 @@ public class XTGLController {
 		PlanResult plan=new PlanResult();
 		int count=yongHuService.updateZTById(zt,id);
 		if(count==0) {
-			
+			plan.setStatus(0);
+			plan.setMsg("…Û∫À ß∞‹");
 		}
+		else {
+			plan.setStatus(1);
+			plan.setMsg("…Û∫À≥…π¶");
+		}
+		return JsonUtil.getJsonFromObject(plan);
 	}
 }
