@@ -38,4 +38,10 @@ public class YongHuServiceImpl implements YongHuService {
 		// TODO Auto-generated method stub
 		return yongHuDao.selectById(id);
 	}
+
+	@Override
+	public int updateZTById(Integer zt, Integer id) {
+		// TODO Auto-generated method stub
+		return yongHuDao.updateZTById(zt,id);
+	}
 }

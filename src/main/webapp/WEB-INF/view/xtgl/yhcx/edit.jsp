@@ -25,7 +25,7 @@
 </style>
 <script type="text/javascript">
 var path='<%=basePath %>';
-var wzglPath=path+'wzgl/';
+var xtglPath=path+'xtgl/';
 var dialogTop=10;
 var dialogLeft=20;
 var edNum=0;
@@ -111,16 +111,17 @@ function initZTCBB(){
 }
 
 function checkEdit(){
-	if(checkMC()){
-		editWuZiLeiXing();
-	}
+	updateYHZTById();
 }
 
-function editWuZiLeiXing(){
+function updateYHZTById(){
+	var zt=ztCBB.combobox("getValue");
+	$("#edit_div #zt").val(zt);
+	
 	var formData = new FormData($("#form1")[0]);
 	$.ajax({
 		type:"post",
-		url:wzglPath+"editWuZiLeiXing",
+		url:xtglPath+"updateYHZTById",
 		dataType: "json",
 		data:formData,
 		cache: false,
@@ -136,26 +137,6 @@ function editWuZiLeiXing(){
 			}
 		}
 	});
-}
-
-function focusMC(){
-	var mc = $("#mc").val();
-	if(mc=="类名不能为空"){
-		$("#mc").val("");
-		$("#mc").css("color", "#555555");
-	}
-}
-
-//验证类名
-function checkMC(){
-	var mc = $("#mc").val();
-	if(mc==null||mc==""||mc=="类名不能为空"){
-		$("#mc").css("color","#E15748");
-    	$("#mc").val("类名不能为空");
-    	return false;
-	}
-	else
-		return true;
 }
 
 function setFitWidthInParent(parent,self){

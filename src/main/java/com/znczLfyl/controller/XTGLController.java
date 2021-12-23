@@ -9,10 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.znczLfyl.entity.*;
 import com.znczLfyl.service.*;
+import com.znczLfyl.util.PlanResult;
 
 @Controller
 @RequestMapping("/"+XTGLController.MODULE_NAME)
@@ -54,5 +56,16 @@ public class XTGLController {
 		jsonMap.put("rows", yhList);
 		
 		return jsonMap;
+	}
+
+	@RequestMapping(value="/updateYHZTById",method=RequestMethod.POST,produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String updateYHZTById(Integer zt, Integer id) {
+
+		PlanResult plan=new PlanResult();
+		int count=yongHuService.updateZTById(zt,id);
+		if(count==0) {
+			
+		}
 	}
 }

@@ -13,4 +13,6 @@ public interface YongHuService {
 	List<YongHu> queryList(String yhm, int page, int rows, String sort, String order);
 
 	YongHu selectById(String id);
+
+	int updateZTById(Integer zt, Integer id);
 }

@@ -59,4 +59,7 @@
 	<select id="selectById" resultType="com.znczLfyl.entity.YongHu">
 		select * from yong_hu where id=#{id}
 	</select>
+	<update id="updateZTById">
+		update yong_hu set zt=#{zt} where id=#{id}
+	</update>
 </mapper>
