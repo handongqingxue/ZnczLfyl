@@ -11,4 +11,6 @@ public interface BangDanJiLuService {
 	int queryForInt(String ddh);
 
 	List<BangDanJiLu> queryList(String ddh, int page, int rows, String sort, String order);
+
+	BangDanJiLu selectById(String id);
 }

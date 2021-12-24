@@ -31,6 +31,22 @@ public class GBGLController {
 		
 		return MODULE_NAME+"/bdjl/new";
 	}
+
+	/**
+	 * 跳转到过磅管理-磅单记录-编辑页面
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/bdjl/edit")
+	public String goBdjlEdit(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		String id = request.getParameter("id");
+		BangDanJiLu bdjl=bangDanJiLuService.selectById(id);
+		request.setAttribute("bdjl", bdjl);
+		
+		return MODULE_NAME+"/bdjl/edit";
+	}
 	
 	/**
 	 * 跳转到过磅管理-磅单记录-列表页面

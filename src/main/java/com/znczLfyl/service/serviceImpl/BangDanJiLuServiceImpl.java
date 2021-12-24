@@ -32,4 +32,10 @@ public class BangDanJiLuServiceImpl implements BangDanJiLuService {
 		// TODO Auto-generated method stub
 		return bangDanJiLuDao.queryList(ddh, (page-1)*rows, rows, sort, order);
 	}
+
+	@Override
+	public BangDanJiLu selectById(String id) {
+		// TODO Auto-generated method stub
+		return bangDanJiLuDao.selectById(id);
+	}
 }

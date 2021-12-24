@@ -69,4 +69,7 @@
 		order by bdjl.rq desc
 		limit #{rowNum},#{rows}
 	</select>
+	<select id="selectById" resultType="com.znczLfyl.entity.BangDanJiLu">
+		select bdjl.*,dd.ddh from bang_dan_ji_lu bdjl,ding_dan dd where bdjl.ddId=dd.id and bdjl.id=#{id}
+	</select>
 </mapper>
