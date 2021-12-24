@@ -109,7 +109,7 @@ function setFitWidthInParent(parent,self){
 <div class="layui-layout layui-layout-admin">
 	<%@include file="../../inc/side.jsp"%>
 	<div class="center_con_div" id="center_con_div">
-		<div class="page_location_div">综合查询-过磅详情</div>
+		<div class="page_location_div">过磅记录-过磅详情</div>
 		
 		<div id="edit_div">
 			<form id="form1" name="form1" method="post" action="" enctype="multipart/form-data">
@@ -119,13 +119,13 @@ function setFitWidthInParent(parent,self){
 					订单号
 				</td>
 				<td class="td2">
-					${requestScope.gb.ddh }
+					${requestScope.gbjl.ddh }
 				</td>
 				<td class="td1" align="right">
 					过磅重量
 				</td>
 				<td class="td2">
-					${requestScope.gb.gbzl }
+					${requestScope.gbjl.gbzl }
 				</td>
 			  </tr>
 			  <tr>
@@ -134,7 +134,7 @@ function setFitWidthInParent(parent,self){
 				</td>
 				<td class="td2">
 					<c:choose>
-						<c:when test="${requestScope.gb.gbzt eq 1 }">正常</c:when>
+						<c:when test="${requestScope.gbjl.gbzt eq 1 }">正常</c:when>
 						<c:otherwise>异常</c:otherwise>
 					</c:choose>
 				</td>
@@ -142,10 +142,8 @@ function setFitWidthInParent(parent,self){
 					过磅类型
 				</td>
 				<td class="td2">
-					<c:if test="${requestScope.gb.gblx eq 1 }">载重</c:if>
-					<c:if test="${requestScope.gb.gblx eq 2 }">皮重</c:if>
-					<c:if test="${requestScope.gb.gblx eq 3 }">入厂</c:if>
-					<c:if test="${requestScope.gb.gblx eq 4 }">出厂</c:if>
+					<c:if test="${requestScope.gbjl.gblx eq 1 }">入厂</c:if>
+					<c:if test="${requestScope.gbjl.gblx eq 2 }">出厂</c:if>
 					过磅
 				</td>
 			  </tr>

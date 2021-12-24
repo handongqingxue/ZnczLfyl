@@ -47,15 +47,15 @@ function initAddLB(){
 	$("#add_but").linkbutton({
 		iconCls:"icon-add",
 		onClick:function(){
-			location.href=gbglPath+"zhcx/new";
+			location.href=gbglPath+"gbjl/new";
 		}
 	});
 }
 
 function initTab1(){
 	tab1=$("#tab1").datagrid({
-		title:"综合查询",
-		url:gbglPath+"queryZHCXList",
+		title:"过磅记录查询",
+		url:gbglPath+"queryGBJLList",
 		toolbar:"#toolbar",
 		width:setFitWidthInParent("body"),
 		pagination:true,
@@ -70,15 +70,9 @@ function initTab1(){
             	var str;
             	switch (value) {
 				case 1:
-					str="载重";
-					break;
-				case 2:
-					str="皮重";
-					break;
-				case 3:
 					str="入厂";
 					break;
-				case 4:
+				case 2:
 					str="出厂";
 					break;
 				}

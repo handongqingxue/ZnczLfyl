@@ -32,64 +32,64 @@ var path='<%=basePath %>';
 var gbglPath=path+'gbgl/';
 var dialogTop=10;
 var dialogLeft=20;
-var edNum=0;
+var ndNum=0;
 $(function(){
-	initEditDialog();//0
+	initNewDialog();//0
 
 	initDialogPosition();//将不同窗体移动到主要内容区域
 });
 
 function initDialogPosition(){
 	//基本属性组
-	var edpw=$("body").find(".panel.window").eq(edNum);
-	var edws=$("body").find(".window-shadow").eq(edNum);
+	var ndpw=$("body").find(".panel.window").eq(ndNum);
+	var ndws=$("body").find(".window-shadow").eq(ndNum);
 
 	var ccDiv=$("#center_con_div");
-	ccDiv.append(edpw);
-	ccDiv.append(edws);
+	ccDiv.append(ndpw);
+	ccDiv.append(ndws);
 	ccDiv.css("width",setFitWidthInParent("body","center_con_div")+"px");
 }
 
-function initEditDialog(){
+function initNewDialog(){
 	dialogTop+=20;
-	$("#edit_div").dialog({
+	$("#new_div").dialog({
 		title:"过磅信息",
-		width:setFitWidthInParent("body","edit_div"),
+		width:setFitWidthInParent("body","new_div"),
 		height:200,
 		top:dialogTop,
 		left:dialogLeft,
 		buttons:[
            {text:"保存",id:"ok_but",iconCls:"icon-ok",handler:function(){
-        	   checkEdit();
+        	   checkNew();
            }}
         ]
 	});
 
-	$("#edit_div table").css("width",(setFitWidthInParent("body","edit_div_table"))+"px");
-	$("#edit_div table").css("magin","-100px");
-	$("#edit_div table td").css("padding-left","50px");
-	$("#edit_div table td").css("padding-right","20px");
-	$("#edit_div table td").css("font-size","15px");
-	$("#edit_div table .td1").css("width","15%");
-	$("#edit_div table .td2").css("width","30%");
-	$("#edit_div table tr").css("border-bottom","#CAD9EA solid 1px");
-	$("#edit_div table tr").each(function(i){
+	$("#new_div table").css("width",(setFitWidthInParent("body","new_div_table"))+"px");
+	$("#new_div table").css("magin","-100px");
+	$("#new_div table td").css("padding-left","50px");
+	$("#new_div table td").css("padding-right","20px");
+	$("#new_div table td").css("font-size","15px");
+	$("#new_div table .td1").css("width","15%");
+	$("#new_div table .td2").css("width","30%");
+	$("#new_div table tr").css("border-bottom","#CAD9EA solid 1px");
+	$("#new_div table tr").each(function(i){
 		$(this).css("height","45px");
 	});
 
-	$(".panel.window").eq(edNum).css("margin-top","20px");
-	$(".panel.window .panel-title").eq(edNum).css("color","#000");
-	$(".panel.window .panel-title").eq(edNum).css("font-size","15px");
-	$(".panel.window .panel-title").eq(edNum).css("padding-left","10px");
+	$(".panel.window").eq(ndNum).css("margin-top","20px");
+	$(".panel.window .panel-title").eq(ndNum).css("color","#000");
+	$(".panel.window .panel-title").eq(ndNum).css("font-size","15px");
+	$(".panel.window .panel-title").eq(ndNum).css("padding-left","10px");
 	
 	$(".panel-header, .panel-body").css("border-color","#ddd");
 	
 	//以下的是表格下面的面板
-	$(".window-shadow").eq(edNum).css("margin-top","20px");
-	$(".window,.window .window-body").eq(edNum).css("border-color","#ddd");
+	$(".window-shadow").eq(ndNum).css("margin-top","20px");
+	$(".window,.window .window-body").eq(ndNum).css("border-color","#ddd");
 
-	$("#edit_div #ok_but").css("left","45%");
-	$("#edit_div #ok_but").css("position","absolute");
+	$("#new_div #ok_but").css("left","45%");
+	$("#new_div #ok_but").css("position","absolute");
 	
 	$(".dialog-button").css("background-color","#fff");
 	$(".dialog-button .l-btn-text").css("font-size","20px");
@@ -108,9 +108,6 @@ function initGBZTCBB(){
 		valueField:"value",
 		textField:"text",
 		data:data,
-		onLoadSuccess:function(){
-			$(this).combobox("setValue",'${requestScope.gb.gbzt }');
-		},
 		onSelect:function(){
 			$("#gbzt").val($(this).combobox("getValue"));
 		}
@@ -120,44 +117,39 @@ function initGBZTCBB(){
 function initGBLXCBB(){
 	var data=[];
 	data.push({"value":"","text":"请选择过磅类型"});
-	data.push({"value":"1","text":"载重过磅"});
-	data.push({"value":"2","text":"皮重过磅"});
-	data.push({"value":"3","text":"入厂过磅"});
-	data.push({"value":"4","text":"出厂过磅"});
+	data.push({"value":"1","text":"入厂过磅"});
+	data.push({"value":"2","text":"出厂过磅"});
 	
 	gblxCBB=$("#gblx_cbb").combobox({
 		valueField:"value",
 		textField:"text",
 		data:data,
-		onLoadSuccess:function(){
-			$(this).combobox("setValue",'${requestScope.gb.gblx }');
-		},
 		onSelect:function(){
 			$("#gblx").val($(this).combobox("getValue"));
 		}
 	});
 }
 
-function checkEdit(){
+function checkNew(){
 	if(checkGBZL()){
 		if(checkGBZTId()){
 			if(checkGBLX()){
-				editGuoBangZongHeChaXun();
+				newGuoBangJiLu();
 			}
 		}
 	}
 }
 
-function editGuoBangZongHeChaXun(){
+function newGuoBangJiLu(){
 	var gbztId=gbztCBB.combobox("getValue");
-	$("#edit_div #gbztId").val(gbztId);
+	$("#new_div #gbztId").val(gbztId);
 	var gblxId=gblxCBB.combobox("getValue");
-	$("#edit_div #gblxId").val(gblxId);
+	$("#new_div #gblxId").val(gblxId);
 	
 	var formData = new FormData($("#form1")[0]);
 	$.ajax({
 		type:"post",
-		url:gbglPath+"editGuoBang",
+		url:gbglPath+"newGuoBangJiLu",
 		dataType: "json",
 		data:formData,
 		cache: false,
@@ -177,7 +169,7 @@ function editGuoBangZongHeChaXun(){
 
 //验证过磅重量
 function checkGBZL(){
-	var gbzl = $("#edit_div #gbzl").val();
+	var gbzl = $("#new_div #gbzl").val();
 	if(gbzl==null||gbzl==""){
 	  	alert("请输入过磅重量");
 	  	return false;
@@ -214,10 +206,10 @@ function setFitWidthInParent(parent,self){
 	case "center_con_div":
 		space=205;
 		break;
-	case "edit_div":
+	case "new_div":
 		space=340;
 		break;
-	case "edit_div_table":
+	case "new_div_table":
 	case "panel_window":
 		space=355;
 		break;
@@ -231,24 +223,23 @@ function setFitWidthInParent(parent,self){
 <div class="layui-layout layui-layout-admin">
 	<%@include file="../../inc/side.jsp"%>
 	<div class="center_con_div" id="center_con_div">
-		<div class="page_location_div">综合查询-编辑过磅</div>
+		<div class="page_location_div">综合查询-添加过磅</div>
 		
-		<div id="edit_div">
+		<div id="new_div">
 			<form id="form1" name="form1" method="post" action="" enctype="multipart/form-data">
-			<input type="hidden" id="id" name="id" value="${requestScope.gb.id }"/>
 			<table>
 			  <tr>
 				<td class="td1" align="right">
-					订单号
+					订单id
 				</td>
 				<td class="td2">
-					${requestScope.gb.ddh }
+					<input type="text" class="ddId_inp" id="ddId" name="ddId" placeholder="请输入订单id"/>
 				</td>
 				<td class="td1" align="right">
 					过磅重量
 				</td>
 				<td class="td2">
-					<input type="number" class="gbzl_inp" id="gbzl" name="gbzl" value="${requestScope.gb.gbzl }" placeholder="请输入过磅重量"/>
+					<input type="number" class="gbzl_inp" id="gbzl" name="gbzl" placeholder="请输入过磅重量"/>
 				</td>
 			  </tr>
 			  <tr>
@@ -257,14 +248,14 @@ function setFitWidthInParent(parent,self){
 				</td>
 				<td class="td2">
 					<input id="gbzt_cbb"/>
-					<input type="hidden" id="gbzt" name="gbzt" value="${requestScope.gb.gbzt }"/>
+					<input type="hidden" id="gbzt" name="gbzt"/>
 				</td>
 				<td class="td1" align="right">
 					过磅类型
 				</td>
 				<td class="td2">
 					<input id="gblx_cbb"/>
-					<input type="hidden" id="gblx" name="gblx" value="${requestScope.gb.gblx }"/>
+					<input type="hidden" id="gblx" name="gblx"/>
 				</td>
 			  </tr>
 			</table>

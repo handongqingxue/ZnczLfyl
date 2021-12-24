@@ -19,69 +19,69 @@ import com.znczLfyl.service.*;
 public class GBGLController {
 
 	@Autowired
-	private GuoBangService guoBangService;
+	private GuoBangJiLuService guoBangJiLuService;
 	public static final String MODULE_NAME="gbgl";
 	
-	@RequestMapping(value="/zhcx/new")
-	public String goZhcxNew(HttpServletRequest request) {
+	@RequestMapping(value="/gbjl/new")
+	public String goGbjlNew(HttpServletRequest request) {
 		
 		//publicService.selectNav(request);
 		
-		return MODULE_NAME+"/zhcx/new";
+		return MODULE_NAME+"/gbjl/new";
 	}
 
 	/**
-	 * 跳转到过磅管理-综合查询-编辑页面
+	 * 跳转到过磅管理-过磅记录-编辑页面
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value="/zhcx/edit")
-	public String goZhcxEdit(HttpServletRequest request) {
+	@RequestMapping(value="/gbjl/edit")
+	public String goGbjlEdit(HttpServletRequest request) {
 		
 		//publicService.selectNav(request);
 		String id = request.getParameter("id");
-		GuoBang gb=guoBangService.selectById(id);
-		request.setAttribute("gb", gb);
+		GuoBangJiLu gbjl=guoBangJiLuService.selectById(id);
+		request.setAttribute("gbjl", gbjl);
 		
-		return MODULE_NAME+"/zhcx/edit";
+		return MODULE_NAME+"/gbjl/edit";
 	}
 	
 	/**
-	 * 跳转到过磅管理-综合查询-列表页面
+	 * 跳转到过磅管理-过磅记录-列表页面
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value="/zhcx/list")
-	public String goZhcxList(HttpServletRequest request) {
+	@RequestMapping(value="/gbjl/list")
+	public String goGbjlList(HttpServletRequest request) {
 		
 		//publicService.selectNav(request);
 		
-		return MODULE_NAME+"/zhcx/list";
+		return MODULE_NAME+"/gbjl/list";
 	}
 
 	/**
-	 * 跳转到过磅管理-综合查询-详情页面
+	 * 跳转到过磅管理-过磅记录-详情页面
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value="/zhcx/detail")
-	public String goZhcxDetail(HttpServletRequest request) {
+	@RequestMapping(value="/gbjl/detail")
+	public String goGbjlDetail(HttpServletRequest request) {
 		
 		//publicService.selectNav(request);
 		String id = request.getParameter("id");
-		GuoBang gb=guoBangService.selectById(id);
-		request.setAttribute("gb", gb);
+		GuoBangJiLu gbjl=guoBangJiLuService.selectById(id);
+		request.setAttribute("gbjl", gbjl);
 		
-		return MODULE_NAME+"/zhcx/detail";
+		return MODULE_NAME+"/gbjl/detail";
 	}
 
-	@RequestMapping(value="/newGuoBang")
+	@RequestMapping(value="/newGuoBangJiLu")
 	@ResponseBody
-	public Map<String, Object> newGuoBang(GuoBang gb) {
+	public Map<String, Object> newGuoBangJiLu(GuoBangJiLu gbjl) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
-		int count=guoBangService.add(gb);
+		int count=guoBangJiLuService.add(gbjl);
 		if(count>0) {
 			jsonMap.put("message", "ok");
 			jsonMap.put("info", "创建过磅信息成功！");
@@ -93,13 +93,13 @@ public class GBGLController {
 		return jsonMap;
 	}
 
-	@RequestMapping(value="/editGuoBang")
+	@RequestMapping(value="/editGuoBangJiLu")
 	@ResponseBody
-	public Map<String, Object> editGuoBang(GuoBang gb) {
+	public Map<String, Object> editGuoBangJiLu(GuoBangJiLu gbjl) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
-		int count=guoBangService.edit(gb);
+		int count=guoBangJiLuService.edit(gbjl);
 		if(count>0) {
 			jsonMap.put("message", "ok");
 			jsonMap.put("info", "编辑过磅信息成功！");
@@ -111,17 +111,17 @@ public class GBGLController {
 		return jsonMap;
 	}
 
-	@RequestMapping(value="/queryZHCXList")
+	@RequestMapping(value="/queryGBJLList")
 	@ResponseBody
-	public Map<String, Object> queryZHCXList(String ddh,int page,int rows,String sort,String order) {
+	public Map<String, Object> queryGBJLList(String ddh,int page,int rows,String sort,String order) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
-		int count = guoBangService.queryZHCXForInt(ddh);
-		List<GuoBang> zhglList=guoBangService.queryZHCXList(ddh, page, rows, sort, order);
+		int count = guoBangJiLuService.queryForInt(ddh);
+		List<GuoBangJiLu> gbjlList=guoBangJiLuService.queryList(ddh, page, rows, sort, order);
 		
 		jsonMap.put("total", count);
-		jsonMap.put("rows", zhglList);
+		jsonMap.put("rows", gbjlList);
 		
 		return jsonMap;
 	}

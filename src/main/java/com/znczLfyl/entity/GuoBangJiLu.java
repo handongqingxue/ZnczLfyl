@@ -1,6 +1,6 @@
 package com.znczLfyl.entity;
 
-public class GuoBang {
+public class GuoBangJiLu {
 
 	private Integer id;
 	public Integer getId() {
