@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znczLfyl.dao.BangDanJiLuMapper">
+	<select id="queryForInt" resultType="java.lang.Integer">
+		select count(*) from bang_dan_ji_lu bdjl left join ding_dan dd on bdjl.ddId=dd.id where 1=1
+		<if test="ddh!=''&amp;ddh!=null">
+			and dd.ddh like CONCAT('%',#{ddh},'%')
+		</if>
+	</select>
+	<select id="queryList" resultType="com.znczLfyl.entity.BangDanJiLu">
+		select bdjl.*,dd.ddh from bang_dan_ji_lu bdjl left join ding_dan dd on bdjl.ddId=dd.id where 1=1
+		<if test="ddh!=''&amp;ddh!=null">
+			and dd.ddh like CONCAT('%',#{ddh},'%')
+		</if>
+		order by bdjl.rq desc
+		limit #{rowNum},#{rows}
+	</select>
+</mapper>

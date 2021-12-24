@@ -120,6 +120,13 @@
 					<div class="line_div"></div>
 					<li class="layui-nav-item">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
+						<a href="<%=basePath%>gbgl/bdjl/list">
+							&nbsp;&nbsp;&nbsp;磅单记录
+						</a>
+					</li>
+					<div class="line_div"></div>
+					<li class="layui-nav-item">
+						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>gbgl/gbjl/list">
 							&nbsp;&nbsp;&nbsp;过磅记录
 						</a>
