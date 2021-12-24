@@ -24,6 +24,14 @@ public class GBGLController {
 	private BangDanJiLuService bangDanJiLuService;
 	public static final String MODULE_NAME="gbgl";
 	
+	@RequestMapping(value="/bdjl/new")
+	public String goBdjlNew(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		
+		return MODULE_NAME+"/bdjl/new";
+	}
+	
 	/**
 	 * 跳转到过磅管理-磅单记录-列表页面
 	 * @param request
@@ -88,6 +96,24 @@ public class GBGLController {
 		request.setAttribute("gbjl", gbjl);
 		
 		return MODULE_NAME+"/gbjl/detail";
+	}
+
+	@RequestMapping(value="/newBangDanJiLu")
+	@ResponseBody
+	public Map<String, Object> newBangDanJiLu(BangDanJiLu bdjl) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		int count=bangDanJiLuService.add(bdjl);
+		if(count>0) {
+			jsonMap.put("message", "ok");
+			jsonMap.put("info", "创建磅单信息成功！");
+		}
+		else {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "创建磅单信息失败！");
+		}
+		return jsonMap;
 	}
 
 	@RequestMapping(value="/queryBDJLList")

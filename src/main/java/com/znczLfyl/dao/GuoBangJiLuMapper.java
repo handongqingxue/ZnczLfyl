@@ -8,9 +8,9 @@ import com.znczLfyl.entity.*;
 
 public interface GuoBangJiLuMapper {
 
-	int add(GuoBangJiLu gb);
+	int add(GuoBangJiLu gbjl);
 
-	int edit(GuoBangJiLu gb);
+	int edit(GuoBangJiLu gbjl);
 
 	int queryForInt(@Param("ddh") String ddh);
 

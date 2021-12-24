@@ -3,6 +3,58 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.znczLfyl.dao.BangDanJiLuMapper">
+	<insert id="add" parameterType="com.znczLfyl.entity.BangDanJiLu">
+		insert into bang_dan_ji_lu
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="mz!=null">
+				mz,
+			</if>
+			<if test="pz!=null">
+				pz,
+			</if>
+			<if test="jz!=null">
+				jz,
+			</if>
+			<if test="dj!=null">
+				dj,
+			</if>
+			<if test="je!=null">
+				je,
+			</if>
+				rq,
+			<if test="ddId!=null">
+				ddId,
+			</if>
+			<if test="bz!=null">
+				bz,
+			</if>
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="mz!=null">
+				#{mz},
+			</if>
+			<if test="pz!=null">
+				#{pz},
+			</if>
+			<if test="jz!=null">
+				#{jz},
+			</if>
+			<if test="dj!=null">
+				#{dj},
+			</if>
+			<if test="je!=null">
+				#{je},
+			</if>
+				now(),
+			<if test="ddId!=null">
+				#{ddId},
+			</if>
+			<if test="bz!=null">
+				#{bz},
+			</if>
+		</trim>
+	</insert>
 	<select id="queryForInt" resultType="java.lang.Integer">
 		select count(*) from bang_dan_ji_lu bdjl left join ding_dan dd on bdjl.ddId=dd.id where 1=1
 		<if test="ddh!=''&amp;ddh!=null">

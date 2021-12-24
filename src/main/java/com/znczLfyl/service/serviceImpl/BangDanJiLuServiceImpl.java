@@ -16,6 +16,12 @@ public class BangDanJiLuServiceImpl implements BangDanJiLuService {
 	private BangDanJiLuMapper bangDanJiLuDao;
 
 	@Override
+	public int add(BangDanJiLu bdjl) {
+		// TODO Auto-generated method stub
+		return bangDanJiLuDao.add(bdjl);
+	}
+
+	@Override
 	public int queryForInt(String ddh) {
 		// TODO Auto-generated method stub
 		return bangDanJiLuDao.queryForInt(ddh);

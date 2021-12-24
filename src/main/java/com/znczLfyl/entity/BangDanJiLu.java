@@ -51,6 +51,12 @@ public class BangDanJiLu {
 	public void setDdId(Integer ddId) {
 		this.ddId = ddId;
 	}
+	public String getDdh() {
+		return ddh;
+	}
+	public void setDdh(String ddh) {
+		this.ddh = ddh;
+	}
 	public String getBz() {
 		return bz;
 	}
@@ -64,5 +70,6 @@ public class BangDanJiLu {
 	private Float je;
 	private String rq;
 	private Integer ddId;
+	private String ddh;
 	private String bz;
 }
