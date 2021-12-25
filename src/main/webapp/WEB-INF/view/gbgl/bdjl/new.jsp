@@ -147,17 +147,6 @@ function newBangDanJiLu(){
 	});
 }
 
-//验证单价
-function checkDJ(){
-	var dj = $("#new_div #dj").val();
-	if(dj==null||dj==""){
-	  	alert("请输入单价");
-	  	return false;
-	}
-	else
-		return true;
-}
-
 function setFitWidthInParent(parent,self){
 	var space=0;
 	switch (self) {

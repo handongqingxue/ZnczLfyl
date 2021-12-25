@@ -18,11 +18,7 @@
 	margin-left: 20px;
 	font-size: 18px;
 }
-.ddId_inp{
-	width: 180px;
-	height:30px;
-}
-.gbzl_inp{
+.mz_inp,.pz_inp,.jz_inp,.dj_inp,.je_inp{
 	width: 150px;
 	height:30px;
 }
@@ -53,9 +49,9 @@ function initDialogPosition(){
 function initEditDialog(){
 	dialogTop+=20;
 	$("#edit_div").dialog({
-		title:"过磅信息",
+		title:"磅单信息",
 		width:setFitWidthInParent("body","edit_div"),
-		height:200,
+		height:330,
 		top:dialogTop,
 		left:dialogLeft,
 		buttons:[
@@ -74,7 +70,7 @@ function initEditDialog(){
 	$("#edit_div table .td2").css("width","30%");
 	$("#edit_div table tr").css("border-bottom","#CAD9EA solid 1px");
 	$("#edit_div table tr").each(function(i){
-		$(this).css("height","45px");
+		$(this).css("height",(i==3?90:45)+"px");
 	});
 
 	$(".panel.window").eq(edNum).css("margin-top","20px");
@@ -93,69 +89,43 @@ function initEditDialog(){
 	
 	$(".dialog-button").css("background-color","#fff");
 	$(".dialog-button .l-btn-text").css("font-size","20px");
-	
-	initGBZTCBB();
-	initGBLXCBB();
-}
-
-function initGBZTCBB(){
-	var data=[];
-	data.push({"value":"","text":"请选择过磅状态"});
-	data.push({"value":"1","text":"正常"});
-	data.push({"value":"2","text":"异常"});
-	
-	gbztCBB=$("#gbzt_cbb").combobox({
-		valueField:"value",
-		textField:"text",
-		data:data,
-		onLoadSuccess:function(){
-			$(this).combobox("setValue",'${requestScope.gbjl.gbzt }');
-		},
-		onSelect:function(){
-			$("#gbzt").val($(this).combobox("getValue"));
-		}
-	});
-}
-
-function initGBLXCBB(){
-	var data=[];
-	data.push({"value":"","text":"请选择过磅类型"});
-	data.push({"value":"1","text":"入厂过磅"});
-	data.push({"value":"2","text":"出厂过磅"});
-	
-	gblxCBB=$("#gblx_cbb").combobox({
-		valueField:"value",
-		textField:"text",
-		data:data,
-		onLoadSuccess:function(){
-			$(this).combobox("setValue",'${requestScope.gbjl.gblx }');
-		},
-		onSelect:function(){
-			$("#gblx").val($(this).combobox("getValue"));
-		}
-	});
 }
 
 function checkEdit(){
-	if(checkGBZL()){
-		if(checkGBZTId()){
-			if(checkGBLX()){
-				editGuoBangJiLu();
-			}
+	if(checkDJ()){
+		if(checkJE()){
+			editBangDanJiLu();
 		}
 	}
 }
 
-function editGuoBangJiLu(){
-	var gbztId=gbztCBB.combobox("getValue");
-	$("#edit_div #gbztId").val(gbztId);
-	var gblxId=gblxCBB.combobox("getValue");
-	$("#edit_div #gblxId").val(gblxId);
-	
+//验证单价
+function checkDJ(){
+	var dj = $("#edit_div #dj").val();
+	if(dj==null||dj==""){
+	  	alert("请输入单价");
+	  	return false;
+	}
+	else
+		return true;
+}
+
+//验证金额
+function checkJE(){
+	var je = $("#edit_div #je").val();
+	if(je==null||je==""){
+	  	alert("请输入金额");
+	  	return false;
+	}
+	else
+		return true;
+}
+
+function editBangDanJiLu(){
 	var formData = new FormData($("#form1")[0]);
 	$.ajax({
 		type:"post",
-		url:gbglPath+"editGuoBangJiLu",
+		url:gbglPath+"editBangDanJiLu",
 		dataType: "json",
 		data:formData,
 		cache: false,
@@ -171,39 +141,6 @@ function editGuoBangJiLu(){
 			}
 		}
 	});
-}
-
-//验证过磅重量
-function checkGBZL(){
-	var gbzl = $("#edit_div #gbzl").val();
-	if(gbzl==null||gbzl==""){
-	  	alert("请输入过磅重量");
-	  	return false;
-	}
-	else
-		return true;
-}
-
-//验证过磅状态
-function checkGBZTId(){
-	var gbztId=gbztCBB.combobox("getValue");
-	if(gbztId==null||gbztId==""){
-	  	alert("请选择过磅状态");
-	  	return false;
-	}
-	else
-		return true;
-}
-
-//验证过磅类型
-function checkGBLX(){
-	var gblxId=gblxCBB.combobox("getValue");
-	if(gblxId==null||gblxId==""){
-	  	alert("请选择过磅类型");
-	  	return false;
-	}
-	else
-		return true;
 }
 
 function setFitWidthInParent(parent,self){
@@ -229,40 +166,64 @@ function setFitWidthInParent(parent,self){
 <div class="layui-layout layui-layout-admin">
 	<%@include file="../../inc/side.jsp"%>
 	<div class="center_con_div" id="center_con_div">
-		<div class="page_location_div">过磅记录-编辑过磅</div>
+		<div class="page_location_div">磅单记录-编辑磅单</div>
 		
 		<div id="edit_div">
 			<form id="form1" name="form1" method="post" action="" enctype="multipart/form-data">
-			<input type="hidden" id="id" name="id" value="${requestScope.gbjl.id }"/>
+			<input type="hidden" id="id" name="id" value="${requestScope.bdjl.id }"/>
 			<table>
 			  <tr>
 				<td class="td1" align="right">
 					订单号
 				</td>
 				<td class="td2">
-					${requestScope.gbjl.ddh }
+					${requestScope.bdjl.ddh }
 				</td>
 				<td class="td1" align="right">
-					过磅重量
+					毛重
 				</td>
 				<td class="td2">
-					<input type="number" class="gbzl_inp" id="gbzl" name="gbzl" value="${requestScope.gbjl.gbzl }" placeholder="请输入过磅重量"/>
+					<input type="number" class="mz_inp" id="mz" name="mz" value="${requestScope.bdjl.mz }" placeholder="请输入毛重"/>
 				</td>
 			  </tr>
 			  <tr>
 				<td class="td1" align="right">
-					过磅状态
+					皮重
 				</td>
 				<td class="td2">
-					<input id="gbzt_cbb"/>
-					<input type="hidden" id="gbzt" name="gbzt" value="${requestScope.gbjl.gbzt }"/>
+					<input type="number" class="pz_inp" id="pz" name="pz" value="${requestScope.bdjl.pz }" placeholder="请输入皮重"/>
 				</td>
 				<td class="td1" align="right">
-					过磅类型
+					净重
 				</td>
 				<td class="td2">
-					<input id="gblx_cbb"/>
-					<input type="hidden" id="gblx" name="gblx" value="${requestScope.gbjl.gblx }"/>
+					<input type="number" class="jz_inp" id="jz" name="jz" value="${requestScope.bdjl.jz }" placeholder="请输入净重"/>
+				</td>
+			  </tr>
+			  <tr>
+				<td class="td1" align="right">
+					单价
+				</td>
+				<td class="td2">
+					<input type="number" class="dj_inp" id="dj" name="dj" value="${requestScope.bdjl.dj }" placeholder="请输入单价"/>
+				</td>
+				<td class="td1" align="right">
+					金额
+				</td>
+				<td class="td2">
+					<input type="number" class="je_inp" id="je" name="je" value="${requestScope.bdjl.je }" placeholder="请输入金额"/>
+				</td>
+			  </tr>
+			  <tr>
+				<td class="td1" align="right">
+					备注
+				</td>
+				<td class="td2">
+					<textarea id="bz" name="bz" rows="3" cols="30" placeholder="请输入备注">${requestScope.bdjl.bz }</textarea>
+				</td>
+				<td class="td1" align="right">
+				</td>
+				<td class="td2">
 				</td>
 			  </tr>
 			</table>

@@ -60,6 +60,22 @@ public class GBGLController {
 		
 		return MODULE_NAME+"/bdjl/list";
 	}
+
+	/**
+	 * 跳转到过磅管理-磅单记录-详情页面
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/bdjl/detail")
+	public String goBdjlDetail(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		String id = request.getParameter("id");
+		BangDanJiLu bdjl=bangDanJiLuService.selectById(id);
+		request.setAttribute("bdjl", bdjl);
+		
+		return MODULE_NAME+"/bdjl/detail";
+	}
 	
 	@RequestMapping(value="/gbjl/new")
 	public String goGbjlNew(HttpServletRequest request) {
@@ -128,6 +144,24 @@ public class GBGLController {
 		else {
 			jsonMap.put("message", "no");
 			jsonMap.put("info", "创建磅单信息失败！");
+		}
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/editBangDanJiLu")
+	@ResponseBody
+	public Map<String, Object> editBangDanJiLu(BangDanJiLu bdjl) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		int count=bangDanJiLuService.edit(bdjl);
+		if(count>0) {
+			jsonMap.put("message", "ok");
+			jsonMap.put("info", "编辑磅单信息成功！");
+		}
+		else {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "编辑磅单信息失败！");
 		}
 		return jsonMap;
 	}

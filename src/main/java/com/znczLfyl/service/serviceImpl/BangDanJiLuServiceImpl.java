@@ -22,6 +22,12 @@ public class BangDanJiLuServiceImpl implements BangDanJiLuService {
 	}
 
 	@Override
+	public int edit(BangDanJiLu bdjl) {
+		// TODO Auto-generated method stub
+		return bangDanJiLuDao.edit(bdjl);
+	}
+
+	@Override
 	public int queryForInt(String ddh) {
 		// TODO Auto-generated method stub
 		return bangDanJiLuDao.queryForInt(ddh);

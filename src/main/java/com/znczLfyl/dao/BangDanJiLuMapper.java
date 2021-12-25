@@ -10,6 +10,8 @@ public interface BangDanJiLuMapper {
 
 	int add(BangDanJiLu bdjl);
 
+	int edit(BangDanJiLu bdjl);
+
 	int queryForInt(@Param("ddh") String ddh);
 	
 	List<BangDanJiLu> queryList(@Param("ddh") String ddh, @Param("rowNum") int rowNum, @Param("rows") int rows, String sort, String order);
