@@ -72,12 +72,6 @@ function initDetailDialog(){
 	//以下的是表格下面的面板
 	$(".window-shadow").eq(ddNum).css("margin-top","20px");
 	$(".window,.window .window-body").eq(ddNum).css("border-color","#ddd");
-
-	$("#detail_div #ok_but").css("left","45%");
-	$("#detail_div #ok_but").css("position","absolute");
-	
-	$(".dialog-button").css("background-color","#fff");
-	$(".dialog-button .l-btn-text").css("font-size","20px");
 }
 
 function setFitWidthInParent(parent,self){

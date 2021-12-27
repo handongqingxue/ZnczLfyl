@@ -119,18 +119,18 @@ function editDingDanZhuangTai(){
 
 function focusMC(){
 	var mc = $("#mc").val();
-	if(mc=="类名不能为空"){
+	if(mc=="名称不能为空"){
 		$("#mc").val("");
 		$("#mc").css("color", "#555555");
 	}
 }
 
-//验证类名
+//验证名称
 function checkMC(){
 	var mc = $("#mc").val();
-	if(mc==null||mc==""||mc=="类名不能为空"){
+	if(mc==null||mc==""||mc=="名称不能为空"){
 		$("#mc").css("color","#E15748");
-    	$("#mc").val("类名不能为空");
+    	$("#mc").val("名称不能为空");
     	return false;
 	}
 	else
