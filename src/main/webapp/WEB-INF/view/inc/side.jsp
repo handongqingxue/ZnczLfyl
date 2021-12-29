@@ -6,6 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>边框导航栏</title>
 <style type="text/css">
+.layui-layout-admin{
+	padding: 1px;
+}
 .header_div{
 	position: fixed;
 }

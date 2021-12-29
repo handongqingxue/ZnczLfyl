@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 .tab1_div{
-	margin-top:20px;
+	margin-top:80px;
 	margin-left: 220px;
 }
 .tab1_div .toolbar{

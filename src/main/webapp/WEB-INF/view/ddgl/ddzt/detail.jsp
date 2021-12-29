@@ -15,6 +15,7 @@
 .page_location_div{
 	height: 50px;
 	line-height: 50px;
+	margin-top: 60px;
 	margin-left: 20px;
 	font-size: 18px;
 }
@@ -22,7 +23,7 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var ddglPath=path+'ddgl/';
-var dialogTop=10;
+var dialogTop=70;
 var dialogLeft=20;
 var ddNum=0;
 $(function(){

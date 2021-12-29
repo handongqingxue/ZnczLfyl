@@ -5,10 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
-.main_div{
-	padding: 1px;
-}
-
 .tab1_div{
 	margin-top:80px;
 	margin-left: 220px;
@@ -339,7 +335,7 @@ function setFitWidthInParent(parent,self){
 </script>
 </head>
 <body>
-<div class="layui-layout layui-layout-admin main_div">
+<div class="layui-layout layui-layout-admin">
 	<%@include file="../../inc/side.jsp"%>
 	<div class="tab1_div" id="tab1_div">
 		<div class="toolbar" id="toolbar">
