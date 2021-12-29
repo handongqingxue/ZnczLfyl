@@ -202,6 +202,26 @@ public class DDGLController {
 		return jsonMap;
 	}
 
+	@RequestMapping(value="/checkDingDanById",produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String checkDingDanById(Integer id) {
+		//TODO 针对分类的动态进行实时调整更新
+		int count=dingDanService.checkById(id);
+		PlanResult plan=new PlanResult();
+		String json;
+		if(count==0) {
+			plan.setStatus(0);
+			plan.setMsg("审核订单失败");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		else {
+			plan.setStatus(1);
+			plan.setMsg("审核订单成功");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		return json;
+	}
+
 	@RequestMapping(value="/deleteDingDan",produces="plain/text; charset=UTF-8")
 	@ResponseBody
 	public String deleteDingDan(String ids) {

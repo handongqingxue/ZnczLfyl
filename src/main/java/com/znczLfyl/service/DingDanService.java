@@ -18,4 +18,6 @@ public interface DingDanService {
 
 	int edit(DingDan dd);
 
+	int checkById(Integer id);
+
 }

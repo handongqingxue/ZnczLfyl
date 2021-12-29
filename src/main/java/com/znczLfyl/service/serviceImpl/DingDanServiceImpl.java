@@ -60,4 +60,14 @@ public class DingDanServiceImpl implements DingDanService {
 		dd.setDdztId(ddztId);
 		return dingDanDao.edit(dd);
 	}
+
+	@Override
+	public int checkById(Integer id) {
+		// TODO Auto-generated method stub
+		int ddztId=dingDanZhuangTaiDao.getIdByMc(DingDanZhuangTai.YI_SHEN_HE_TEXT);
+		DingDan dd=new DingDan();
+		dd.setId(id);
+		dd.setDdztId(ddztId);
+		return dingDanDao.edit(dd);
+	}
 }

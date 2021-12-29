@@ -119,4 +119,12 @@ public class MainController {
 	public void getKaptchaImage(HttpSession session, String identity, HttpServletResponse response) {
 		utilService.getKaptchaImage(session, identity, response);
 	}
+	
+	@RequestMapping(value="/exit")
+	public String exit(HttpSession session) {
+		System.out.println("ÍË³ö½Ó¿Ú");
+		Subject currentUser = SecurityUtils.getSubject();       
+	    currentUser.logout();    
+		return "login";
+	}
 }

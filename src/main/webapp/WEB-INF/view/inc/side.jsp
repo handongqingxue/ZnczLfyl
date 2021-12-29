@@ -6,6 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>边框导航栏</title>
 <style type="text/css">
+.header_div{
+	position: fixed;
+}
 .side {
 	position: fixed;
 	top: 50px;
@@ -57,6 +60,7 @@
 	border-right:#86B9D6 solid 1px;
 }
 .layui-layout-admin .layui-header{
+	width:100%;
 	background-color:  #E7F4FD;
 }
 .line_div{
@@ -71,7 +75,7 @@
 </style>
 </head>
 <body>
-<div class="layui-header ">
+<div class="layui-header header_div">
 		<div class="layui-logo">
 			<img class="electronicGuide_img" alt="" src="<%=basePath%>resource/image/electronicGuide.png"/>
 			<a>智能称重平台系统</a>
@@ -82,7 +86,7 @@
 					${sessionScope.user.userName }
 				</a>
 			</li>
-			<li class="layui-nav-item"><a href="<%=basePath%>background/exit">退出</a>
+			<li class="layui-nav-item"><a href="<%=basePath%>main/exit">退出</a>
 			</li>
 		</ul>
 	</div>
@@ -194,6 +198,7 @@
 							&nbsp;&nbsp;&nbsp;用户查询
 						</a>
 					</li>
+					<!-- 
 					<div class="line_div"></div>
 					<li class="layui-nav-item">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
@@ -215,6 +220,7 @@
 							&nbsp;&nbsp;&nbsp;菜单查询
 						</a>
 					</li>
+					 -->
 				</div>
 			</ul>
 		</div>
