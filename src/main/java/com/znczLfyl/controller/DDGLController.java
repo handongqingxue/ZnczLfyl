@@ -267,13 +267,14 @@ public class DDGLController {
 	
 	@RequestMapping(value="/queryZHCXList")
 	@ResponseBody
-	public Map<String, Object> queryZHCXList(String ddh,Integer ddztId,int page,int rows,String sort,String order) {
+	public Map<String, Object> queryZHCXList(String ddh,Integer ddztId,String cph,String yssMc,String wzMc,
+			String fhdwMc,String shbmMc,String sjxm,String sjsfzh,int page,int rows,String sort,String order) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
 		try {
-			int count = dingDanService.queryZHCXForInt(ddh,ddztId);
-			List<DingDan> zhglList=dingDanService.queryZHCXList(ddh, ddztId, page, rows, sort, order);
+			int count = dingDanService.queryZHCXForInt(ddh,ddztId,cph,yssMc,wzMc,fhdwMc,shbmMc,sjxm,sjsfzh);
+			List<DingDan> zhglList=dingDanService.queryZHCXList(ddh, ddztId,cph,yssMc,wzMc,fhdwMc,shbmMc,sjxm,sjsfzh, page, rows, sort, order);
 			
 			jsonMap.put("total", count);
 			jsonMap.put("rows", zhglList);

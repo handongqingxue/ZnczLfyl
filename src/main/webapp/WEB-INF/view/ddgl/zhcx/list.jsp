@@ -11,14 +11,31 @@
 	position: fixed;
 }
 .tab1_div .toolbar{
+	height:64px;
+}
+.tab1_div .toolbar .row_div{
 	height:32px;
 }
-.tab1_div .toolbar .ddh_span,
-.tab1_div .toolbar .ddzt_span,
-.tab1_div .toolbar .search_but{
+.tab1_div .toolbar .row_div .ddh_span,
+.tab1_div .toolbar .row_div .ddzt_span,
+.tab1_div .toolbar .row_div .cph_span,
+.tab1_div .toolbar .row_div .yss_span,
+.tab1_div .toolbar .row_div .wzmc_span,
+.tab1_div .toolbar .row_div .fhdw_span,
+.tab1_div .toolbar .row_div .shbm_span,
+.tab1_div .toolbar .row_div .sjxm_span,
+.tab1_div .toolbar .row_div .sjsfzh_span,
+.tab1_div .toolbar .row_div .search_but{
 	margin-left: 13px;
 }
-.tab1_div .toolbar .ddh_inp{
+.tab1_div .toolbar .row_div .ddh_inp,
+.tab1_div .toolbar .row_div .cph_inp,
+.tab1_div .toolbar .row_div .yssMc_inp,
+.tab1_div .toolbar .row_div .wzMc_inp,
+.tab1_div .toolbar .row_div .fhdwMc_inp,
+.tab1_div .toolbar .row_div .shbmMc_inp,
+.tab1_div .toolbar .row_div .sjxm_inp,
+.tab1_div .toolbar .row_div .sjsfzh_inp{
 	width: 120px;
 	height: 25px;
 }
@@ -146,7 +163,15 @@ function initSearchLB(){
 		onClick:function(){
 			var ddh=$("#toolbar #ddh").val();
 			var ddztId=ddztCBB.combobox("getValue");
-			tab1.datagrid("load",{ddh:ddh,ddztId:ddztId});
+			var cph=$("#toolbar #cph").val();
+			var yssMc=$("#toolbar #yssMc").val();
+			var wzMc=$("#toolbar #wzMc").val();
+			var fhdwMc=$("#toolbar #fhdwMc").val();
+			var shbmMc=$("#toolbar #shbmMc").val();
+			var sjxm=$("#toolbar #sjxm").val();
+			var sjsfzh=$("#toolbar #sjsfzh").val();
+			tab1.datagrid("load",{ddh:ddh,ddztId:ddztId,cph:cph,yssMc:yssMc,wzMc:wzMc,
+				fhdwMc:fhdwMc,shbmMc:shbmMc,sjxm:sjxm,sjsfzh:sjsfzh});
 		}
 	});
 }
@@ -339,13 +364,31 @@ function setFitWidthInParent(parent,self){
 	<%@include file="../../inc/side.jsp"%>
 	<div class="tab1_div" id="tab1_div">
 		<div class="toolbar" id="toolbar">
-			<span class="ddh_span">订单号：</span>
-			<input type="text" class="ddh_inp" id="ddh" placeholder="请输入订单号"/>
-			<span class="ddzt_span">订单状态：</span>
-			<input id="ddzt_cbb"/>
-			<a class="search_but" id="search_but">查询</a>
-			<a id="add_but">添加</a>
-			<a id="remove_but">删除</a>
+			<div class="row_div">
+				<span class="ddh_span">订单号：</span>
+				<input type="text" class="ddh_inp" id="ddh" placeholder="请输入订单号"/>
+				<span class="ddzt_span">订单状态：</span>
+				<input id="ddzt_cbb"/>
+				<span class="cph_span">车牌号：</span>
+				<input type="text" class="cph_inp" id="cph" placeholder="请输入车牌号"/>
+				<span class="yss_span">运输商：</span>
+				<input type="text" class="yssMc_inp" id="yssMc" placeholder="请输入运输商"/>
+				<span class="wzMc_span">物资名称：</span>
+				<input type="text" class="wzMc_inp" id="wzMc" placeholder="请输入物资名称"/>
+			</div>
+			<div class="row_div">
+				<span class="fhdw_span">发货单位：</span>
+				<input type="text" class="fhdwMc_inp" id="fhdwMc" placeholder="请输入发货单位"/>
+				<span class="shbm_span">收货部门：</span>
+				<input type="text" class="shbmMc_inp" id="shbmMc" placeholder="请输入收货部门"/>
+				<span class="sjxm_span">司机姓名：</span>
+				<input type="text" class="sjxm_inp" id="sjxm" placeholder="请输入司机姓名"/>
+				<span class="sjsfzh_span">司机身份证号：</span>
+				<input type="text" class="sjsfzh_inp" id="sjsfzh" placeholder="请输入司机身份证号"/>
+				<a class="search_but" id="search_but">查询</a>
+				<a id="add_but">添加</a>
+				<a id="remove_but">删除</a>
+			</div>
 		</div>
 		<table id="tab1">
 		</table>
