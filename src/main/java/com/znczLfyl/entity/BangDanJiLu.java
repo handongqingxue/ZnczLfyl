@@ -51,6 +51,54 @@ public class BangDanJiLu {
 	public void setBz(String bz) {
 		this.bz = bz;
 	}
+	public String getSjxm() {
+		return sjxm;
+	}
+	public void setSjxm(String sjxm) {
+		this.sjxm = sjxm;
+	}
+	public String getCph() {
+		return cph;
+	}
+	public void setCph(String cph) {
+		this.cph = cph;
+	}
+	public Integer getLxlx() {
+		return lxlx;
+	}
+	public void setLxlx(Integer lxlx) {
+		this.lxlx = lxlx;
+	}
+	public String getWzMc() {
+		return wzMc;
+	}
+	public void setWzMc(String wzMc) {
+		this.wzMc = wzMc;
+	}
+	public String getShbmMc() {
+		return shbmMc;
+	}
+	public void setShbmMc(String shbmMc) {
+		this.shbmMc = shbmMc;
+	}
+	public String getFhdwMc() {
+		return fhdwMc;
+	}
+	public void setFhdwMc(String fhdwMc) {
+		this.fhdwMc = fhdwMc;
+	}
+	public String getSygbsj() {
+		return sygbsj;
+	}
+	public void setSygbsj(String sygbsj) {
+		this.sygbsj = sygbsj;
+	}
+	public String getQygbsj() {
+		return qygbsj;
+	}
+	public void setQygbsj(String qygbsj) {
+		this.qygbsj = qygbsj;
+	}
 	private Float mz;
 	private Float pz;
 	private Float jz;
@@ -58,4 +106,12 @@ public class BangDanJiLu {
 	private Integer ddId;
 	private String ddh;
 	private String bz;
+	private String sjxm;
+	private String cph;
+	private Integer lxlx;
+	private String wzMc;
+	private String shbmMc;
+	private String fhdwMc;
+	private String sygbsj;
+	private String qygbsj;
 }
