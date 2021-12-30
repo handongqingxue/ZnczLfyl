@@ -255,117 +255,69 @@ function setFitWidthInParent(parent,self){
 	<div class="preview_bdxx_bg_div" id="preview_bdxx_bg_div">
 		<div class="preview_bdxx_div" id="preview_bdxx_div">
 			<div class="preview_bdxx_dialog_div" id="preview_bdxx_dialog_div">
-				<input type="hidden" id="id"/>
-				<table>
+				<table border="1" bordercolor="red" style="width: 100%;">
 				  <tr>
-					<td class="td1" align="right">
-						订单号
-					</td>
-					<td class="td2">
-						<span id="ddh_span"></span>
-					</td>
-					<td class="td1" align="right">
-						司机身份证号
-					</td>
-					<td class="td2">
-						<span id="sjsfzh_span"></span>
-					</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
 				  </tr>
 				  <tr>
-					<td class="td1" align="right">
-						司机姓名
-					</td>
-					<td class="td2">
-						<span id="sjxm_span"></span>
-					</td>
-					<td class="td1" align="right">
-						车牌号
-					</td>
-					<td class="td2">
-						<span id="cph_span"></span>
-					</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
 				  </tr>
 				  <tr>
-					<td class="td1" align="right">
-						流向类型
-					</td>
-					<td class="td2">
-						<span id="lxlxMc_span"></span>
-					</td>
-					<td class="td1" align="right">
-						预装卸重量
-					</td>
-					<td class="td2">
-						<span id="yzxzl_span"></span>
-					</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
 				  </tr>
 				  <tr>
-					<td class="td1" align="right">
-						实际重量
-					</td>
-					<td class="td2">
-						<span id="sjzl_span"></span>
-					</td>
-					<td class="td1" align="right">
-						重量差额比
-					</td>
-					<td class="td2">
-						<span id="zlceb_span"></span>
-					</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
 				  </tr>
 				  <tr>
-					<td class="td1" align="right">
-						单价
-					</td>
-					<td class="td2">
-						<span id="dj_span"></span>
-					</td>
-					<td class="td1" align="right">
-						金额
-					</td>
-					<td class="td2">
-						<span id="je_span"></span>
-					</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
 				  </tr>
 				  <tr>
-					<td class="td1" align="right">
-						物资类型
-					</td>
-					<td class="td2">
-						<span id="wzlxMc_span"></span>
-					</td>
-					<td class="td1" align="right">
-						物资名称
-					</td>
-					<td class="td2">
-						<span id="wzMc_span"></span>
-					</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
 				  </tr>
 				  <tr>
-					<td class="td1" align="right">
-						运输商
-					</td>
-					<td class="td2">
-						<span id="yssMc_span"></span>
-					</td>
-					<td class="td1" align="right">
-						发货单位
-					</td>
-					<td class="td2">
-						<span id="fhdwMc_span"></span>
-					</td>
-				  </tr>
-				  <tr>
-					<td class="td1" align="right">
-						收货部门
-					</td>
-					<td class="td2">
-						<span id="shbmMc_span"></span>
-					</td>
-					<td class="td1" align="right">
-					</td>
-					<td class="td2">
-					</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
 				  </tr>
 				</table>
 			</div>
