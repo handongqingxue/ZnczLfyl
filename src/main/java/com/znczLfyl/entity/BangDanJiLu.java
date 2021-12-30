@@ -27,18 +27,6 @@ public class BangDanJiLu {
 	public void setJz(Float jz) {
 		this.jz = jz;
 	}
-	public Float getDj() {
-		return dj;
-	}
-	public void setDj(Float dj) {
-		this.dj = dj;
-	}
-	public Float getJe() {
-		return je;
-	}
-	public void setJe(Float je) {
-		this.je = je;
-	}
 	public String getRq() {
 		return rq;
 	}
@@ -66,8 +54,6 @@ public class BangDanJiLu {
 	private Float mz;
 	private Float pz;
 	private Float jz;
-	private Float dj;
-	private Float je;
 	private String rq;
 	private Integer ddId;
 	private String ddh;

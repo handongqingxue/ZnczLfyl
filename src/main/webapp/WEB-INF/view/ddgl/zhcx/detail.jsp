@@ -165,6 +165,20 @@ function setFitWidthInParent(parent,self){
 			  </tr>
 			  <tr>
 				<td class="td1" align="right">
+					单价
+				</td>
+				<td class="td2">
+					${requestScope.dd.dj }
+				</td>
+				<td class="td1" align="right">
+					金额
+				</td>
+				<td class="td2">
+					${requestScope.dd.je }
+				</td>
+			  </tr>
+			  <tr>
+				<td class="td1" align="right">
 					物资类型
 				</td>
 				<td class="td2">

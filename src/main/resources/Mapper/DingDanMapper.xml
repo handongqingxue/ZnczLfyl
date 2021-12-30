@@ -104,6 +104,12 @@
 			<if test="zlceb!=null">
 				zlceb,
 			</if>
+			<if test="dj!=null">
+				dj,
+			</if>
+			<if test="je!=null">
+				je,
+			</if>
 			<if test="wzlxId!=null">
 				wzlxId,
 			</if>
@@ -149,6 +155,12 @@
 			</if>
 			<if test="zlceb!=null">
 				#{zlceb},
+			</if>
+			<if test="dj!=null">
+				#{dj},
+			</if>
+			<if test="je!=null">
+				#{je},
 			</if>
 			<if test="wzlxId!=null">
 				#{wzlxId},
@@ -203,6 +215,12 @@
 			</if>
 			<if test="zlceb!=null">
 				zlceb=#{zlceb},
+			</if>
+			<if test="dj!=null">
+				dj=#{dj},
+			</if>
+			<if test="je!=null">
+				je=#{je},
 			</if>
 			<if test="wzlxId!=null">
 				wzlxId=#{wzlxId},

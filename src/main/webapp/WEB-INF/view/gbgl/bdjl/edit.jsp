@@ -19,7 +19,7 @@
 	margin-left: 20px;
 	font-size: 18px;
 }
-.mz_inp,.pz_inp,.jz_inp,.dj_inp,.je_inp{
+.mz_inp,.pz_inp,.jz_inp{
 	width: 150px;
 	height:30px;
 }
@@ -93,33 +93,7 @@ function initEditDialog(){
 }
 
 function checkEdit(){
-	if(checkDJ()){
-		if(checkJE()){
-			editBangDanJiLu();
-		}
-	}
-}
-
-//验证单价
-function checkDJ(){
-	var dj = $("#edit_div #dj").val();
-	if(dj==null||dj==""){
-	  	alert("请输入单价");
-	  	return false;
-	}
-	else
-		return true;
-}
-
-//验证金额
-function checkJE(){
-	var je = $("#edit_div #je").val();
-	if(je==null||je==""){
-	  	alert("请输入金额");
-	  	return false;
-	}
-	else
-		return true;
+	editBangDanJiLu();
 }
 
 function editBangDanJiLu(){
@@ -206,13 +180,13 @@ function setFitWidthInParent(parent,self){
 					单价
 				</td>
 				<td class="td2">
-					<input type="number" class="dj_inp" id="dj" name="dj" value="${requestScope.bdjl.dj }" placeholder="请输入单价"/>
+					${requestScope.dd.dj }
 				</td>
 				<td class="td1" align="right">
 					金额
 				</td>
 				<td class="td2">
-					<input type="number" class="je_inp" id="je" name="je" value="${requestScope.bdjl.je }" placeholder="请输入金额"/>
+					${requestScope.dd.je }
 				</td>
 			  </tr>
 			  <tr>

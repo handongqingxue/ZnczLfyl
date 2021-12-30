@@ -137,13 +137,13 @@ function setFitWidthInParent(parent,self){
 					单价
 				</td>
 				<td class="td2">
-					${requestScope.bdjl.dj }
+					${requestScope.dd.dj }
 				</td>
 				<td class="td1" align="right">
 					金额
 				</td>
 				<td class="td2">
-					${requestScope.bdjl.je }
+					${requestScope.dd.je }
 				</td>
 			  </tr>
 			  <tr>

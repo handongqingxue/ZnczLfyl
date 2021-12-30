@@ -15,12 +15,6 @@
 			<if test="jz!=null">
 				jz,
 			</if>
-			<if test="dj!=null">
-				dj,
-			</if>
-			<if test="je!=null">
-				je,
-			</if>
 				rq,
 			<if test="ddId!=null">
 				ddId,
@@ -39,12 +33,6 @@
 			</if>
 			<if test="jz!=null">
 				#{jz},
-			</if>
-			<if test="dj!=null">
-				#{dj},
-			</if>
-			<if test="je!=null">
-				#{je},
 			</if>
 				now(),
 			<if test="ddId!=null">
@@ -66,12 +54,6 @@
 			</if>
 			<if test="jz!=null">
 				jz=#{jz},
-			</if>
-			<if test="dj!=null">
-				dj=#{dj},
-			</if>
-			<if test="je!=null">
-				je=#{je},
 			</if>
 			<if test="bz!=null">
 				bz=#{bz},

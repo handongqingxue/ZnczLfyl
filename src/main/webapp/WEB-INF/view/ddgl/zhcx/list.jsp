@@ -50,7 +50,7 @@
 }
 .check_ddxx_div{
 	width: 1000px;
-	height: 520px;
+	height: 570px;
 	margin: 100px auto 0;
 	background-color: #fff;
 	border-radius:5px;
@@ -92,7 +92,7 @@ function initCheckDDXXDialog(){
 	$("#check_ddxx_dialog_div").dialog({
 		title:"订单信息",
 		width:setFitWidthInParent("#check_ddxx_div","check_ddxx_dialog_div"),
-		height:430,
+		height:480,
 		top:dialogTop,
 		left:dialogLeft,
 		buttons:[
@@ -264,6 +264,8 @@ function openCheckDDXXDialog(flag,row){
 		$("#check_ddxx_div #yzxzl_span").text(row.yzxzl);
 		$("#check_ddxx_div #sjzl_span").text(row.sjzl);
 		$("#check_ddxx_div #zlceb_span").text(row.zlceb);
+		$("#check_ddxx_div #dj_span").text(row.dj);
+		$("#check_ddxx_div #je_span").text(row.je);
 		$("#check_ddxx_div #wzlxMc_span").text(row.wzlxMc);
 		$("#check_ddxx_div #wzMc_span").text(row.wzMc);
 		$("#check_ddxx_div #yssMc_span").text(row.yssMc);
@@ -281,6 +283,8 @@ function openCheckDDXXDialog(flag,row){
 		$("#check_ddxx_div #yzxzl_span").text("");
 		$("#check_ddxx_div #sjzl_span").text("");
 		$("#check_ddxx_div #zlceb_span").text("");
+		$("#check_ddxx_div #dj_span").text("");
+		$("#check_ddxx_div #je_span").text("");
 		$("#check_ddxx_div #wzlxMc_span").text("");
 		$("#check_ddxx_div #wzMc_span").text("");
 		$("#check_ddxx_div #yssMc_span").text("");
@@ -453,6 +457,20 @@ function setFitWidthInParent(parent,self){
 			</td>
 			<td class="td2">
 				<span id="zlceb_span"></span>
+			</td>
+		  </tr>
+		  <tr>
+			<td class="td1" align="right">
+				单价
+			</td>
+			<td class="td2">
+				<span id="dj_span"></span>
+			</td>
+			<td class="td1" align="right">
+				金额
+			</td>
+			<td class="td2">
+				<span id="je_span"></span>
 			</td>
 		  </tr>
 		  <tr>

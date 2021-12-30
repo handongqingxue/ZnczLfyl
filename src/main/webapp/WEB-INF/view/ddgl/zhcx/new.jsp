@@ -23,7 +23,7 @@
 	width: 180px;
 	height:30px;
 }
-.sjxm_inp,.yzxzl_inp,.sjzl_inp,.zlceb_inp{
+.sjxm_inp,.yzxzl_inp,.sjzl_inp,.zlceb_inp,.dj_inp,.je_inp{
 	width: 150px;
 	height:30px;
 }
@@ -58,7 +58,7 @@ function initNewDialog(){
 	$("#new_div").dialog({
 		title:"订单信息",
 		width:setFitWidthInParent("body","new_div"),
-		height:430,
+		height:460,
 		top:dialogTop,
 		left:dialogLeft,
 		buttons:[
@@ -221,9 +221,13 @@ function initSHBMCBB(){
 
 function checkNew(){
 	if(checkYZXZL()){
-		if(checkWZLXId()){
-			if(checkWZId()){
-				newDingDanZongHeChaXun();
+		if(checkDJ()){
+			if(checkJE()){
+				if(checkWZLXId()){
+					if(checkWZId()){
+						newDingDanZongHeChaXun();
+					}
+				}
 			}
 		}
 	}
@@ -267,6 +271,28 @@ function checkYZXZL(){
 	var yzxzl = $("#new_div #yzxzl").val();
 	if(yzxzl==null||yzxzl==""){
 	  	alert("请输入预装卸重量");
+	  	return false;
+	}
+	else
+		return true;
+}
+
+//验证单价
+function checkDJ(){
+	var dj = $("#new_div #dj").val();
+	if(dj==null||dj==""){
+	  	alert("请输入单价");
+	  	return false;
+	}
+	else
+		return true;
+}
+
+//验证金额
+function checkJE(){
+	var je = $("#new_div #je").val();
+	if(je==null||je==""){
+	  	alert("请输入金额");
 	  	return false;
 	}
 	else
@@ -378,6 +404,20 @@ function setFitWidthInParent(parent,self){
 				</td>
 				<td class="td2">
 					<input type="number" class="zlceb_inp" id="zlceb" name="zlceb" placeholder="无需输入" disabled="disabled"/>
+				</td>
+			  </tr>
+			  <tr>
+				<td class="td1" align="right">
+					单价
+				</td>
+				<td class="td2">
+					<input type="number" class="dj_inp" id="dj" name="dj" placeholder="请输入单价"/>
+				</td>
+				<td class="td1" align="right">
+					金额
+				</td>
+				<td class="td2">
+					<input type="number" class="je_inp" id="je" name="je" placeholder="请输入金额"/>
 				</td>
 			  </tr>
 			  <tr>

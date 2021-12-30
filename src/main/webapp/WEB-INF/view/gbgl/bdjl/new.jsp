@@ -23,7 +23,7 @@
 	width: 180px;
 	height:30px;
 }
-.mz_inp,.pz_inp,.jz_inp,.dj_inp,.je_inp{
+.mz_inp,.pz_inp,.jz_inp{
 	width: 150px;
 	height:30px;
 }
@@ -56,7 +56,7 @@ function initNewDialog(){
 	$("#new_div").dialog({
 		title:"磅单信息",
 		width:setFitWidthInParent("body","new_div"),
-		height:330,
+		height:300,
 		top:dialogTop,
 		left:dialogLeft,
 		buttons:[
@@ -75,7 +75,7 @@ function initNewDialog(){
 	$("#new_div table .td2").css("width","30%");
 	$("#new_div table tr").css("border-bottom","#CAD9EA solid 1px");
 	$("#new_div table tr").each(function(i){
-		$(this).css("height",(i==3?90:45)+"px");
+		$(this).css("height",(i==2?90:45)+"px");
 	});
 
 	$(".panel.window").eq(ndNum).css("margin-top","20px");
@@ -97,33 +97,7 @@ function initNewDialog(){
 }
 
 function checkNew(){
-	if(checkDJ()){
-		if(checkJE()){
-			newBangDanJiLu();
-		}
-	}
-}
-
-//验证单价
-function checkDJ(){
-	var dj = $("#new_div #dj").val();
-	if(dj==null||dj==""){
-	  	alert("请输入单价");
-	  	return false;
-	}
-	else
-		return true;
-}
-
-//验证金额
-function checkJE(){
-	var je = $("#new_div #je").val();
-	if(je==null||je==""){
-	  	alert("请输入金额");
-	  	return false;
-	}
-	else
-		return true;
+	newBangDanJiLu();
 }
 
 function newBangDanJiLu(){
@@ -202,20 +176,6 @@ function setFitWidthInParent(parent,self){
 				</td>
 				<td class="td2">
 					<input type="number" class="jz_inp" id="jz" name="jz" placeholder="请输入净重"/>
-				</td>
-			  </tr>
-			  <tr>
-				<td class="td1" align="right">
-					单价
-				</td>
-				<td class="td2">
-					<input type="number" class="dj_inp" id="dj" name="dj" placeholder="请输入单价"/>
-				</td>
-				<td class="td1" align="right">
-					金额
-				</td>
-				<td class="td2">
-					<input type="number" class="je_inp" id="je" name="je" placeholder="请输入金额"/>
 				</td>
 			  </tr>
 			  <tr>

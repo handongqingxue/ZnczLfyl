@@ -22,6 +22,8 @@ public class GBGLController {
 	private GuoBangJiLuService guoBangJiLuService;
 	@Autowired
 	private BangDanJiLuService bangDanJiLuService;
+	@Autowired
+	private DingDanService dingDanService;
 	public static final String MODULE_NAME="gbgl";
 	
 	@RequestMapping(value="/bdjl/new")
@@ -44,6 +46,9 @@ public class GBGLController {
 		String id = request.getParameter("id");
 		BangDanJiLu bdjl=bangDanJiLuService.selectById(id);
 		request.setAttribute("bdjl", bdjl);
+		
+		DingDan dd=dingDanService.selectById(bdjl.getDdId().toString());
+		request.setAttribute("dd", dd);
 		
 		return MODULE_NAME+"/bdjl/edit";
 	}
@@ -73,6 +78,9 @@ public class GBGLController {
 		String id = request.getParameter("id");
 		BangDanJiLu bdjl=bangDanJiLuService.selectById(id);
 		request.setAttribute("bdjl", bdjl);
+		
+		DingDan dd=dingDanService.selectById(bdjl.getDdId().toString());
+		request.setAttribute("dd", dd);
 		
 		return MODULE_NAME+"/bdjl/detail";
 	}
