@@ -16,14 +16,14 @@ public class CheLiangTaiZhangServiceImpl implements CheLiangTaiZhangService {
 	private CheLiangTaiZhangMapper cheLiangTaiZhangDao;
 
 	@Override
-	public int queryZHCXForInt(String cph, String jcsjks, String jcsjjs) {
+	public int queryZHCXForInt(String ddh, String cph, String jcsjks, String jcsjjs) {
 		// TODO Auto-generated method stub
-		return cheLiangTaiZhangDao.queryZHCXForInt(cph,jcsjks,jcsjjs);
+		return cheLiangTaiZhangDao.queryZHCXForInt(ddh,cph,jcsjks,jcsjjs);
 	}
 
 	@Override
-	public List<CheLiangTaiZhang> queryZHCXList(String cph, String jcsjks, String jcsjjs, int page, int rows, String sort, String order) {
+	public List<CheLiangTaiZhang> queryZHCXList(String ddh, String cph, String jcsjks, String jcsjjs, int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
-		return cheLiangTaiZhangDao.queryZHCXList(cph, jcsjks, jcsjjs, (page-1)*rows, rows, sort, order);
+		return cheLiangTaiZhangDao.queryZHCXList(ddh, cph, jcsjks, jcsjjs, (page-1)*rows, rows, sort, order);
 	}
 }

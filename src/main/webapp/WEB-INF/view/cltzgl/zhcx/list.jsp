@@ -15,6 +15,7 @@
 }
 .tab1_div .toolbar .ddh_span,
 .tab1_div .toolbar .cph_span,
+.tab1_div .toolbar .jcsj_span,
 .tab1_div .toolbar .search_but{
 	margin-left: 13px;
 }
@@ -30,27 +31,35 @@
 var path='<%=basePath %>';
 var cltzglPath=path+'cltzgl/';
 $(function(){
+	initJCSJKSDTB();
+	initJCSJJSDTB();
 	initSearchLB();
 	initAddLB();
 	initRemoveLB();
 	initTab1();
 });
 
+function initJCSJKSDTB(){
+	jcsjksDTB=$("#jcsjks_dtb").datetimebox({
+        required:false
+    });
+}
+
+function initJCSJJSDTB(){
+	jcsjjsDTB=$("#jcsjjs_dtb").datetimebox({
+        required:false
+    });
+}
+
 function initSearchLB(){
 	$("#search_but").linkbutton({
 		iconCls:"icon-search",
 		onClick:function(){
 			var ddh=$("#toolbar #ddh").val();
-			var ddztId=ddztCBB.combobox("getValue");
 			var cph=$("#toolbar #cph").val();
-			var yssMc=$("#toolbar #yssMc").val();
-			var wzMc=$("#toolbar #wzMc").val();
-			var fhdwMc=$("#toolbar #fhdwMc").val();
-			var shbmMc=$("#toolbar #shbmMc").val();
-			var sjxm=$("#toolbar #sjxm").val();
-			var sjsfzh=$("#toolbar #sjsfzh").val();
-			tab1.datagrid("load",{ddh:ddh,ddztId:ddztId,cph:cph,yssMc:yssMc,wzMc:wzMc,
-				fhdwMc:fhdwMc,shbmMc:shbmMc,sjxm:sjxm,sjsfzh:sjsfzh});
+			var jcsjks=jcsjksDTB.datetimebox("getValue");
+			var jcsjjs=jcsjjsDTB.datetimebox("getValue");
+			tab1.datagrid("load",{ddh:ddh,cph:cph,jcsjks:jcsjks,jcsjjs:jcsjjs});
 		}
 	});
 }
@@ -167,6 +176,9 @@ function setFitWidthInParent(parent,self){
 			<input type="text" class="ddh_inp" id="ddh" placeholder="请输入订单号"/>
 			<span class="cph_span">车牌号：</span>
 			<input type="text" class="cph_inp" id="cph" placeholder="请输入车牌号"/>
+			<span class="jcsj_span">进厂时间：</span>
+			<input id="jcsjks_dtb"/>-
+			<input id="jcsjjs_dtb"/>
 			<a class="search_but" id="search_but">查询</a>
 			<a id="add_but">添加</a>
 			<a id="remove_but">删除</a>

@@ -6,7 +6,7 @@ import com.znczLfyl.entity.*;
 
 public interface CheLiangTaiZhangService {
 
-	int queryZHCXForInt(String cph, String jcsjks, String jcsjjs);
+	int queryZHCXForInt(String ddh, String cph, String jcsjks, String jcsjjs);
 
-	List<CheLiangTaiZhang> queryZHCXList(String cph, String jcsjks, String jcsjjs, int page, int rows, String sort, String order);
+	List<CheLiangTaiZhang> queryZHCXList(String ddh, String cph, String jcsjks, String jcsjjs, int page, int rows, String sort, String order);
 }

@@ -37,13 +37,13 @@ public class CLTZGLController {
 	
 	@RequestMapping(value="/queryZHCXList")
 	@ResponseBody
-	public Map<String, Object> queryZHCXList(String cph,String jcsjks,String jcsjjs,int page,int rows,String sort,String order) {
+	public Map<String, Object> queryZHCXList(String ddh,String cph,String jcsjks,String jcsjjs,int page,int rows,String sort,String order) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
 		try {
-			int count = cheLiangTaiZhangService.queryZHCXForInt(cph,jcsjks,jcsjjs);
-			List<CheLiangTaiZhang> zhglList=cheLiangTaiZhangService.queryZHCXList(cph,jcsjks,jcsjjs, page, rows, sort, order);
+			int count = cheLiangTaiZhangService.queryZHCXForInt(ddh,cph,jcsjks,jcsjjs);
+			List<CheLiangTaiZhang> zhglList=cheLiangTaiZhangService.queryZHCXList(ddh,cph,jcsjks,jcsjjs, page, rows, sort, order);
 			
 			jsonMap.put("total", count);
 			jsonMap.put("rows", zhglList);
