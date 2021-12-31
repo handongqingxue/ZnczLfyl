@@ -17,8 +17,8 @@
 			</if>
 				cjsj,
 				zt,
-			<if test="js!=null">
-				js,
+			<if test="qxIds!=null">
+				qxIds,
 			</if>
 		</trim>
 		values
@@ -34,8 +34,8 @@
 			</if>
 				now(),
 				0,
-			<if test="js!=null">
-				#{js},
+			<if test="qxIds!=null">
+				#{qxIds},
 			</if>
 		</trim>
 	</insert>

@@ -45,11 +45,11 @@ public class YongHu {
 	public void setJs(String js) {
 		this.js = js;
 	}
-	public Integer getJsId() {
-		return jsId;
+	public String getQxIds() {
+		return qxIds;
 	}
-	public void setJsId(Integer jsId) {
-		this.jsId = jsId;
+	public void setQxIds(String qxIds) {
+		this.qxIds = qxIds;
 	}
 	//https://blog.csdn.net/qq_43416276/article/details/102981480
 	public YongHu() {
@@ -66,5 +66,5 @@ public class YongHu {
 	private String cjsj;
 	private Integer zt;
 	private String js;
-	private Integer jsId;
+	private String qxIds;
 }

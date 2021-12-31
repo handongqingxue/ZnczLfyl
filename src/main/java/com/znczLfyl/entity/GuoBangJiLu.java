@@ -15,6 +15,24 @@ public class GuoBangJiLu {
 	public void setGbzl(Float gbzl) {
 		this.gbzl = gbzl;
 	}
+	public String getZp1() {
+		return zp1;
+	}
+	public void setZp1(String zp1) {
+		this.zp1 = zp1;
+	}
+	public String getZp2() {
+		return zp2;
+	}
+	public void setZp2(String zp2) {
+		this.zp2 = zp2;
+	}
+	public String getZp3() {
+		return zp3;
+	}
+	public void setZp3(String zp3) {
+		this.zp3 = zp3;
+	}
 	public Integer getGbzt() {
 		return gbzt;
 	}
@@ -45,10 +63,20 @@ public class GuoBangJiLu {
 	public void setDdh(String ddh) {
 		this.ddh = ddh;
 	}
+	public String getCph() {
+		return cph;
+	}
+	public void setCph(String cph) {
+		this.cph = cph;
+	}
 	private Float gbzl;
+	private String zp1;
+	private String zp2;
+	private String zp3;
 	private Integer gbzt;
 	private String gbsj;
 	private Integer gblx;
 	private Integer ddId;
 	private String ddh;
+	private String cph;
 }

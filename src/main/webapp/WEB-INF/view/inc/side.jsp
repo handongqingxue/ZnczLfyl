@@ -191,6 +191,20 @@
 				<div class="first-level-div">
 					<li class="layui-nav-item first-level">
 						<a>
+							车辆台账管理
+						</a>
+					</li>
+					<div class="line_div"></div>
+					<li class="layui-nav-item">
+						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
+						<a href="<%=basePath%>cltzgl/zhcx/list">
+							&nbsp;&nbsp;&nbsp;综合查询
+						</a>
+					</li>
+				</div>
+				<div class="first-level-div">
+					<li class="layui-nav-item first-level">
+						<a>
 							系统管理
 						</a>
 					</li>
