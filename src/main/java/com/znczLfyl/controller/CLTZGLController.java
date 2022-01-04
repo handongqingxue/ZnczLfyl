@@ -54,6 +54,17 @@ public class CLTZGLController {
 		return MODULE_NAME+"/zhcx/list";
 	}
 	
+	@RequestMapping(value="/zhcx/detail")
+	public String goZhcxDetail(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		String id = request.getParameter("id");
+		CheLiangTaiZhang cltz=cheLiangTaiZhangService.selectById(id);
+		request.setAttribute("cltz", cltz);
+		
+		return MODULE_NAME+"/zhcx/detail";
+	}
+	
 	@RequestMapping(value="/newCheLiangTaiZhang")
 	@ResponseBody
 	public Map<String, Object> newCheLiangTaiZhang(CheLiangTaiZhang cltz) {
