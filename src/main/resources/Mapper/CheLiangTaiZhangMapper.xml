@@ -3,6 +3,32 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.znczLfyl.dao.CheLiangTaiZhangMapper">
+	<insert id="add" parameterType="com.znczLfyl.entity.CheLiangTaiZhang">
+		insert into che_liang_tai_zhang
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="jcsj!=null">
+				jcsj,
+			</if>
+			<if test="ccsj!=null">
+				ccsj,
+			</if>
+			<if test="ddId!=null">
+				ddId,
+			</if>
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="jcsj!=null">
+				#{jcsj},
+			</if>
+			<if test="ccsj!=null">
+				#{ccsj},
+			</if>
+			<if test="ddId!=null">
+				#{ddId},
+			</if>
+		</trim>
+	</insert>
 	<select id="queryZHCXForInt" resultType="java.lang.Integer">
 		select count(*) from che_liang_tai_zhang cltz left join ding_dan dd on cltz.ddId=dd.id where 1=1
 		<if test="ddh!=''&amp;ddh!=null">
@@ -16,7 +42,7 @@
 		</if>
 	</select>
 	<select id="queryZHCXList" resultType="com.znczLfyl.entity.CheLiangTaiZhang">
-		select cltz.*,dd.cph from che_liang_tai_zhang cltz left join ding_dan dd on cltz.ddId=dd.id where 1=1
+		select cltz.*,dd.ddh,dd.cph,dd.sjzl from che_liang_tai_zhang cltz left join ding_dan dd on cltz.ddId=dd.id where 1=1
 		<if test="ddh!=''&amp;ddh!=null">
 			and dd.ddh like CONCAT('%',#{ddh},'%')
 		</if>

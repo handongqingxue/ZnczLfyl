@@ -16,6 +16,12 @@ public class CheLiangTaiZhangServiceImpl implements CheLiangTaiZhangService {
 	private CheLiangTaiZhangMapper cheLiangTaiZhangDao;
 
 	@Override
+	public int add(CheLiangTaiZhang cltz) {
+		// TODO Auto-generated method stub
+		return cheLiangTaiZhangDao.add(cltz);
+	}
+
+	@Override
 	public int queryZHCXForInt(String ddh, String cph, String jcsjks, String jcsjjs) {
 		// TODO Auto-generated method stub
 		return cheLiangTaiZhangDao.queryZHCXForInt(ddh,cph,jcsjks,jcsjjs);
