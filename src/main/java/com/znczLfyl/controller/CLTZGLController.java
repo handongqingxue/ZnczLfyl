@@ -29,6 +29,17 @@ public class CLTZGLController {
 		
 		return MODULE_NAME+"/zhcx/new";
 	}
+	
+	@RequestMapping(value="/zhcx/edit")
+	public String goZhcxEdit(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		String id = request.getParameter("id");
+		CheLiangTaiZhang cltz=cheLiangTaiZhangService.selectById(id);
+		request.setAttribute("cltz", cltz);
+		
+		return MODULE_NAME+"/zhcx/edit";
+	}
 
 	/**
 	 * 跳转到车辆台账管理-综合查询-列表页面
@@ -57,6 +68,24 @@ public class CLTZGLController {
 		else {
 			jsonMap.put("message", "no");
 			jsonMap.put("info", "创建车辆台账失败！");
+		}
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/editCheLiangTaiZhang")
+	@ResponseBody
+	public Map<String, Object> editCheLiangTaiZhang(CheLiangTaiZhang cltz) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		int count=cheLiangTaiZhangService.edit(cltz);
+		if(count>0) {
+			jsonMap.put("message", "ok");
+			jsonMap.put("info", "编辑车辆台账成功！");
+		}
+		else {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "编辑车辆台账失败！");
 		}
 		return jsonMap;
 	}

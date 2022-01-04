@@ -29,6 +29,18 @@
 			</if>
 		</trim>
 	</insert>
+	<update id="edit" parameterType="com.znczLfyl.entity.CheLiangTaiZhang">
+		update che_liang_tai_zhang set 
+		<trim suffixOverrides=",">
+			<if test="jcsj!=null">
+				jcsj=#{jcsj},
+			</if>
+			<if test="ccsj!=null">
+				ccsj=#{ccsj},
+			</if>
+		</trim>
+		where id=#{id}
+	</update>
 	<select id="queryZHCXForInt" resultType="java.lang.Integer">
 		select count(*) from che_liang_tai_zhang cltz left join ding_dan dd on cltz.ddId=dd.id where 1=1
 		<if test="ddh!=''&amp;ddh!=null">
@@ -52,5 +64,8 @@
 		<if test="jcsjks!=''&amp;jcsjks!=null&amp;jcsjjs!=''&amp;jcsjjs!=null">
 			and cltz.jcsj between #{jcsjks} and #{jcsjjs}
 		</if>
+	</select>
+	<select id="selectById" resultType="com.znczLfyl.entity.CheLiangTaiZhang">
+		select cltz.*,dd.ddh from che_liang_tai_zhang cltz,ding_dan dd where cltz.ddId=dd.id and cltz.id=#{id}
 	</select>
 </mapper>

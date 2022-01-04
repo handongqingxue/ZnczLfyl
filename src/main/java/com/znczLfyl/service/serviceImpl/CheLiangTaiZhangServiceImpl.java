@@ -22,6 +22,12 @@ public class CheLiangTaiZhangServiceImpl implements CheLiangTaiZhangService {
 	}
 
 	@Override
+	public int edit(CheLiangTaiZhang cltz) {
+		// TODO Auto-generated method stub
+		return cheLiangTaiZhangDao.edit(cltz);
+	}
+
+	@Override
 	public int queryZHCXForInt(String ddh, String cph, String jcsjks, String jcsjjs) {
 		// TODO Auto-generated method stub
 		return cheLiangTaiZhangDao.queryZHCXForInt(ddh,cph,jcsjks,jcsjjs);
@@ -31,5 +37,11 @@ public class CheLiangTaiZhangServiceImpl implements CheLiangTaiZhangService {
 	public List<CheLiangTaiZhang> queryZHCXList(String ddh, String cph, String jcsjks, String jcsjjs, int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
 		return cheLiangTaiZhangDao.queryZHCXList(ddh, cph, jcsjks, jcsjjs, (page-1)*rows, rows, sort, order);
+	}
+
+	@Override
+	public CheLiangTaiZhang selectById(String id) {
+		// TODO Auto-generated method stub
+		return cheLiangTaiZhangDao.selectById(id);
 	}
 }

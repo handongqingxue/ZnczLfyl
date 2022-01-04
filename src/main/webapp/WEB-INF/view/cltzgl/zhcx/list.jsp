@@ -132,7 +132,7 @@ function deleteByIds() {
 			}
 			ids=ids.substring(1);
 			
-			$.post(cltzglPath + "deleteDingDan",
+			$.post(cltzglPath + "deleteCheLiangTaiZhang",
 				{ids:ids},
 				function(result){
 					if(result.status==1){
