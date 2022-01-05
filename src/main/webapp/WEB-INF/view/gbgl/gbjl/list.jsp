@@ -31,11 +31,13 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var gbglPath=path+'gbgl/';
+var exportExcelPath=path+'exportExcel/';
 $(function(){
 	initGBSJKSDTB();
 	initGBSJJSDTB();
 	initSearchLB();
 	initAddLB();
+	initOutputBut();
 	initTab1();
 });
 
@@ -69,6 +71,15 @@ function initAddLB(){
 		iconCls:"icon-add",
 		onClick:function(){
 			location.href=gbglPath+"gbjl/new";
+		}
+	});
+}
+
+function initOutputBut(){
+	opBut=$("#output_but").linkbutton({
+		iconCls:"icon-remove",
+		onClick:function(){
+			location.href=exportExcelPath+"exportGBJLList";
 		}
 	});
 }
@@ -142,6 +153,7 @@ function setFitWidthInParent(o){
 			<input id="gbsjjs_dtb"/>
 			<a class="search_but" id="search_but">查询</a>
 			<a id="add_but">添加</a>
+         	<a id="output_but">导出</a>
 		</div>
 		<table id="tab1">
 		</table>
