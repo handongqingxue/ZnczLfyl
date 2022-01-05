@@ -23,4 +23,6 @@ public interface DingDanMapper {
 
 	int edit(DingDan dd);
 
+	DingDan getByZtCph(@Param("ddztId") int ddztId, @Param("cph") String cph);
+
 }

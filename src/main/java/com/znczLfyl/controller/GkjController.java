@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.znczLfyl.entity.*;
-import com.znczLfyl.service.YongHuService;
+import com.znczLfyl.service.*;
 
 @Controller
 @RequestMapping("/gkj")
@@ -17,18 +17,56 @@ public class GkjController {
 	
 	@Autowired
 	private YongHuService yongHuService;
+	@Autowired
+	private DingDanService dingDanService;
+	@Autowired
+	private DingDanZhuangTaiService dingDanZhuangTaiService;
+	@Autowired
+	private BangDanJiLuService bangDanJiLuService;
 
-	@RequestMapping(value="/aaa")
+	@RequestMapping(value="/getDingDan")
 	@ResponseBody
-	public Map<String, Object> aaa(String mm) {
+	public Map<String, Object> getDingDan(String cph,String ddztMc) {
 		
-		System.out.println("mm==="+mm);
+		System.out.println("cph==="+cph);
+		System.out.println("ddztMc==="+ddztMc);
+		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
-		YongHu yh = yongHuService.selectById("1");
+		DingDan dd = dingDanService.getDingDan(cph, ddztMc);
 		
-		jsonMap.put("message", "ok");
-		jsonMap.put("yh", yh);
+		if(dd==null) {
+			jsonMap.put("status", "no");
+			jsonMap.put("message", "没找到相关订单");
+		}
+		else {
+			jsonMap.put("status", "ok");
+			jsonMap.put("dingDan", dd);
+		}
+		
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/newBangDanJiLu")
+	@ResponseBody
+	public Map<String, Object> newBangDanJiLu(Integer ddId) {
+
+		System.out.println("ddId==="+ddId);
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		BangDanJiLu bdjl=new BangDanJiLu();
+		bdjl.setDdId(ddId);
+		int count = bangDanJiLuService.add(bdjl);
+		
+		if(count==0) {
+			jsonMap.put("status", "no");
+			jsonMap.put("message", "创建磅单信息失败！");
+		}
+		else {
+			jsonMap.put("status", "ok");
+			jsonMap.put("message", "创建磅单信息成功！");
+		}
 		
 		return jsonMap;
 	}

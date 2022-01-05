@@ -241,4 +241,7 @@
 		</trim>
 		where id=#{id}
 	</update>
+	<select id="getByZtCph" resultType="com.znczLfyl.entity.DingDan">
+		select * from ding_dan where ddztId=#{ddztId} and cph=#{cph}
+	</select>
 </mapper>

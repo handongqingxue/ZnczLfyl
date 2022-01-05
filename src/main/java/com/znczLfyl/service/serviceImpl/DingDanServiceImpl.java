@@ -72,4 +72,12 @@ public class DingDanServiceImpl implements DingDanService {
 		dd.setDdztId(ddztId);
 		return dingDanDao.edit(dd);
 	}
+
+	@Override
+	public DingDan getDingDan(String cph, String ddztMc) {
+		// TODO Auto-generated method stub
+		int ddztId=dingDanZhuangTaiDao.getIdByMc(ddztMc);
+		DingDan dd = dingDanDao.getByZtCph(ddztId,cph);
+		return dd;
+	}
 }

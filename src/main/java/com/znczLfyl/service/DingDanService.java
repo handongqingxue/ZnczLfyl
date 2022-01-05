@@ -22,4 +22,6 @@ public interface DingDanService {
 
 	int checkById(Integer id);
 
+	DingDan getDingDan(String cph, String ddztMc);
+
 }
