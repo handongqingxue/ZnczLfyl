@@ -8,6 +8,8 @@ public interface CheLiangTaiZhangService {
 
 	int add(CheLiangTaiZhang cltz);
 
+	int deleteByIds(String ids);
+
 	int edit(CheLiangTaiZhang cltz);
 
 	int queryZHCXForInt(String ddh, String cph, String jcsjks, String jcsjjs);

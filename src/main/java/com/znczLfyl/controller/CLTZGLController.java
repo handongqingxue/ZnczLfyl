@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.znczLfyl.entity.*;
 import com.znczLfyl.service.*;
+import com.znczLfyl.util.JsonUtil;
+import com.znczLfyl.util.PlanResult;
 
 @Controller
 @RequestMapping("/"+CLTZGLController.MODULE_NAME)
@@ -81,6 +83,26 @@ public class CLTZGLController {
 			jsonMap.put("info", "创建车辆台账失败！");
 		}
 		return jsonMap;
+	}
+
+	@RequestMapping(value="/deleteCheLiangTaiZhang",produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String deleteCheLiangTaiZhang(String ids) {
+		//TODO 针对分类的动态进行实时调整更新
+		int count=cheLiangTaiZhangService.deleteByIds(ids);
+		PlanResult plan=new PlanResult();
+		String json;
+		if(count==0) {
+			plan.setStatus(0);
+			plan.setMsg("删除车辆台账失败");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		else {
+			plan.setStatus(1);
+			plan.setMsg("删除车辆台账成功");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		return json;
 	}
 	
 	@RequestMapping(value="/editCheLiangTaiZhang")

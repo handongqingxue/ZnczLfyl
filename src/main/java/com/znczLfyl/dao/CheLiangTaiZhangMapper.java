@@ -10,6 +10,8 @@ public interface CheLiangTaiZhangMapper {
 
 	int add(CheLiangTaiZhang cltz);
 
+	int deleteByIds(List<String> idList);
+
 	int edit(CheLiangTaiZhang cltz);
 
 	int queryZHCXForInt(@Param("ddh") String ddh, @Param("cph") String cph, @Param("jcsjks") String jcsjks, @Param("jcsjjs") String jcsjjs);
