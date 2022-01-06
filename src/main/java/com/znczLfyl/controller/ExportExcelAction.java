@@ -20,8 +20,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.hssf.usermodel.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.znczLfyl.dao.*;
+import com.znczLfyl.entity.*;
 
 //https://www.cnblogs.com/RunningSnails/p/13275549.html
 //https://www.cnblogs.com/wangjuns8/p/7243342.html
@@ -29,17 +33,81 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/"+ExportExcelAction.MODULE_NAME)
 public class ExportExcelAction {
 
+	@Autowired
+	private ExportExcelMapper exportExcelDao;
 	public static final String MODULE_NAME="exportExcel";
 
 	@RequestMapping(value="/exportGBJLList")
-	public void exportGBJLList(HttpServletResponse response) {
+	public void exportGBJLList(String ddh,String cph,String gbsjks,String gbsjjs,HttpServletResponse response) {
 		try {
+			int rowNum=0;
 			//第一步，创建一个Workbook，对应一个Excel文件
 			HSSFWorkbook wb=new HSSFWorkbook();
 			//第二步，在Workbook里添加一个sheet，对应Excel文件里的sheet
-			HSSFSheet sheet = wb.createSheet("营业汇总日报");
+			HSSFSheet sheet = wb.createSheet("过磅记录");
+			HSSFRow row = sheet.createRow(rowNum);
+			HSSFCellStyle style = wb.createCellStyle();
+			HSSFCell cell = row.createCell(0);
+			cell.setCellValue("订单号");
+			cell.setCellStyle(style);
 			
-			download("交班记录查询", wb, response);
+			cell = row.createCell(1);
+			cell.setCellValue("车牌号");
+			cell.setCellStyle(style);
+			
+			cell = row.createCell(2);
+			cell.setCellValue("过磅重量");
+			cell.setCellStyle(style);
+			
+			cell = row.createCell(3);
+			cell.setCellValue("过磅状态");
+			cell.setCellStyle(style);
+			
+			cell = row.createCell(4);
+			cell.setCellValue("过磅类型");
+			cell.setCellStyle(style);
+			
+			cell = row.createCell(5);
+			cell.setCellValue("过磅时间");
+			cell.setCellStyle(style);
+			
+			List<GuoBangJiLu> gbjlList = exportExcelDao.queryGBJList(ddh, cph, gbsjks, gbsjjs);
+			for (int i = 0; i < gbjlList.size(); i++) {
+				GuoBangJiLu gbjl = gbjlList.get(i);
+				row=sheet.createRow(++rowNum);
+				
+				cell = row.createCell(0);
+				String ddh1 = gbjl.getDdh();
+				if(ddh1!=""&&ddh1!=null)
+					cell.setCellValue(ddh1);
+				
+				cell = row.createCell(1);
+				String cph1 = gbjl.getCph();
+				if(cph1!=""&&cph1!=null)
+					cell.setCellValue(cph1);
+				
+				cell = row.createCell(2);
+				Float gbzl = gbjl.getGbzl();
+				if(gbzl!=null)
+					cell.setCellValue(gbzl);
+				
+				cell = row.createCell(3);
+				Integer gbzt = gbjl.getGbzt();
+				if(gbzt!=null)
+					cell.setCellValue(gbzt==1?"正常":"异常");
+				
+				cell = row.createCell(4);
+				Integer gblx = gbjl.getGblx();
+				if(gblx!=null)
+					cell.setCellValue(gblx==1?"入厂":"出厂");
+				
+				cell = row.createCell(5);
+				String gbsj = gbjl.getGbsj();
+				if(gbsj!=""&&gbsj!=null)
+					cell.setCellValue(gbsj);
+			}
+			
+			download("过磅记录查询", wb, response);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
