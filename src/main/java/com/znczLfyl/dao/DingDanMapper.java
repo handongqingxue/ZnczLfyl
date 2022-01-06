@@ -23,6 +23,10 @@ public interface DingDanMapper {
 
 	int edit(DingDan dd);
 
+	int editByZt(DingDan dd);
+
 	DingDan getByZtCph(@Param("ddztId") int ddztId, @Param("cph") String cph);
+
+	DingDan getByZt(@Param("ddztMc") String ddztMc, @Param("yjzt") Integer yjzt, @Param("ejzt") Integer ejzt);
 
 }

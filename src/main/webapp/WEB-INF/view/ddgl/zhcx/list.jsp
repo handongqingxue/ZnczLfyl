@@ -205,6 +205,36 @@ function initTab1(){
 		columns:[[
 			{field:"ddh",title:"订单号",width:150},
 			{field:"ddztMc",title:"订单状态",width:150},
+			{field:"yjzt",title:"一检状态",width:100,formatter:function(value,row){
+            	var str;
+            	switch (value) {
+				case 1:
+					str="待上磅";
+					break;
+				case 2:
+					str="上磅中";
+					break;
+				case 3:
+					str="已完成";
+					break;
+				}
+            	return str;
+            }},
+			{field:"ejzt",title:"二检状态",width:100,formatter:function(value,row){
+            	var str;
+            	switch (value) {
+				case 1:
+					str="待上磅";
+					break;
+				case 2:
+					str="上磅中";
+					break;
+				case 3:
+					str="已完成";
+					break;
+				}
+            	return str;
+            }},
 			{field:"sjsfzh",title:"司机身份证号",width:200},
 			{field:"sjxm",title:"司机姓名",width:100},
 			{field:"cph",title:"车牌号",width:150},
@@ -240,7 +270,7 @@ function initTab1(){
         onLoadSuccess:function(data){
 			if(data.total==0){
 				$(this).datagrid("appendRow",{ddh:"<div style=\"text-align:center;\">暂无信息<div>"});
-				$(this).datagrid("mergeCells",{index:0,field:"ddh",colspan:14});
+				$(this).datagrid("mergeCells",{index:0,field:"ddh",colspan:16});
 				data.total=0;
 			}
 			

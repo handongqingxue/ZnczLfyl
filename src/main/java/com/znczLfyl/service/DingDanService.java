@@ -20,8 +20,12 @@ public interface DingDanService {
 
 	int edit(DingDan dd);
 
+	int editByZt(DingDan dd);
+
 	int checkById(Integer id);
 
 	DingDan getDingDan(String cph, String ddztMc);
+
+	DingDan getByZt(String ddztMc, Integer yjzt, Integer ejzt);
 
 }

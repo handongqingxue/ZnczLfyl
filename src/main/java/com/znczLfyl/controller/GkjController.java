@@ -3,6 +3,8 @@ package com.znczLfyl.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +46,77 @@ public class GkjController {
 			jsonMap.put("dingDan", dd);
 		}
 		
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/getDingDanByZt")
+	@ResponseBody
+	public Map<String, Object> getDingDanByZt(String ddztMc,Integer yjzt,Integer ejzt) {
+		
+		System.out.println("ddztMc==="+ddztMc);
+		System.out.println("yjzt==="+yjzt);
+		System.out.println("ejzt==="+ejzt);
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		DingDan dd = dingDanService.getByZt(ddztMc,yjzt,ejzt);
+		
+		if(dd==null) {
+			jsonMap.put("status", "no");
+			jsonMap.put("message", "没找到相关订单");
+		}
+		else {
+			jsonMap.put("status", "ok");
+			jsonMap.put("dingDan", dd);
+		}
+		
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/editDingDan")
+	@ResponseBody
+	public Map<String, Object> editDingDan(DingDan dd,
+			HttpServletRequest request) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		try {
+			int count=dingDanService.edit(dd);
+			if(count>0) {
+				jsonMap.put("message", "ok");
+				jsonMap.put("info", "编辑订单成功！");
+			}
+			else {
+				jsonMap.put("message", "no");
+				jsonMap.put("info", "编辑订单失败！");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/editDingDanByZt")
+	@ResponseBody
+	public Map<String, Object> editDingDanByZt(DingDan dd,
+			HttpServletRequest request) {
+		
+		System.out.println("111111111111");
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		try {
+			int count=dingDanService.editByZt(dd);
+			if(count>0) {
+				jsonMap.put("message", "ok");
+				jsonMap.put("info", "编辑订单成功！");
+			}
+			else {
+				jsonMap.put("message", "no");
+				jsonMap.put("info", "编辑订单失败！");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return jsonMap;
 	}
 

@@ -96,6 +96,8 @@ public class DDGLController {
 		DingDan dd=dingDanService.selectById(id);
 		request.setAttribute("dd", dd);
 		
+		request.setAttribute("ddztMc", DingDanZhuangTai.PAI_DUI_ZHONG_TEXT);
+		
 		return MODULE_NAME+"/zhcx/edit";
 	}
 

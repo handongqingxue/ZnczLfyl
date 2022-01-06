@@ -3,6 +3,7 @@ package com.znczLfyl.service.serviceImpl;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,9 +59,22 @@ public class DingDanServiceImpl implements DingDanService {
 	@Override
 	public int edit(DingDan dd) {
 		// TODO Auto-generated method stub
-		int ddztId=dingDanZhuangTaiDao.getIdByMc(DingDanZhuangTai.PAI_DUI_ZHONG_TEXT);
+		int ddztId=dingDanZhuangTaiDao.getIdByMc(dd.getDdztMc());
 		dd.setDdztId(ddztId);
 		return dingDanDao.edit(dd);
+	}
+
+	@Override
+	public int editByZt(DingDan dd) {
+		// TODO Auto-generated method stub
+		int ddztId=dingDanZhuangTaiDao.getIdByMc(dd.getDdztMc());
+		dd.setDdztId(ddztId);
+		String xddztMc = dd.getXddztMc();
+		if(!StringUtils.isEmpty(xddztMc)) {
+			int xddztId=dingDanZhuangTaiDao.getIdByMc(dd.getXddztMc());
+			dd.setXddztId(xddztId);
+		}
+		return dingDanDao.editByZt(dd);
 	}
 
 	@Override
@@ -79,5 +93,11 @@ public class DingDanServiceImpl implements DingDanService {
 		int ddztId=dingDanZhuangTaiDao.getIdByMc(ddztMc);
 		DingDan dd = dingDanDao.getByZtCph(ddztId,cph);
 		return dd;
+	}
+
+	@Override
+	public DingDan getByZt(String ddztMc, Integer yjzt, Integer ejzt) {
+		// TODO Auto-generated method stub
+		return dingDanDao.getByZt(ddztMc, yjzt, ejzt);
 	}
 }

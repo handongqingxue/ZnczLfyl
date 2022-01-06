@@ -1,6 +1,10 @@
 package com.znczLfyl.entity;
 
 public class DingDan {
+	
+	public static final Integer DAI_SHANG_BANG=1;
+	public static final Integer SHANG_BANG_ZHONG=2;
+	public static final Integer YI_WAN_CHENG=3;
 
 	private Integer id;
 	public Integer getId() {
@@ -26,6 +30,42 @@ public class DingDan {
 	}
 	public void setDdztMc(String ddztMc) {
 		this.ddztMc = ddztMc;
+	}
+	public Integer getXddztId() {
+		return xddztId;
+	}
+	public void setXddztId(Integer xddztId) {
+		this.xddztId = xddztId;
+	}
+	public String getXddztMc() {
+		return xddztMc;
+	}
+	public void setXddztMc(String xddztMc) {
+		this.xddztMc = xddztMc;
+	}
+	public Integer getYjzt() {
+		return yjzt;
+	}
+	public void setYjzt(Integer yjzt) {
+		this.yjzt = yjzt;
+	}
+	public Integer getXyjzt() {
+		return xyjzt;
+	}
+	public void setXyjzt(Integer xyjzt) {
+		this.xyjzt = xyjzt;
+	}
+	public Integer getEjzt() {
+		return ejzt;
+	}
+	public void setEjzt(Integer ejzt) {
+		this.ejzt = ejzt;
+	}
+	public Integer getXejzt() {
+		return xejzt;
+	}
+	public void setXejzt(Integer xejzt) {
+		this.xejzt = xejzt;
 	}
 	public String getSjsfzh() {
 		return sjsfzh;
@@ -150,6 +190,12 @@ public class DingDan {
 	private String ddh;//订单号
 	private Integer ddztId;
 	private String ddztMc;
+	private Integer xddztId;//新订单状态id
+	private String xddztMc;//新订单状态名称
+	private Integer yjzt;//一检状态(1.待上磅 2.上磅中 3.已完成)
+	private Integer xyjzt;//新一检状态(1.待上磅 2.上磅中 3.已完成)
+	private Integer ejzt;//二检状态(1.待上磅 2.上磅中 3.已完成)
+	private Integer xejzt;//新二检状态(1.待上磅 2.上磅中 3.已完成)
 	private String sjsfzh;
 	private String sjxm;
 	private String cph;

@@ -370,6 +370,7 @@ function setFitWidthInParent(parent,self){
 		<div id="edit_div">
 			<form id="form1" name="form1" method="post" action="" enctype="multipart/form-data">
 			<input type="hidden" id="id" name="id" value="${requestScope.dd.id }"/>
+			<input type="hidden" id="ddztMc" name="ddztMc" value="${requestScope.ddztMc }"/>
 			<table>
 			  <tr>
 				<td class="td1" align="right">

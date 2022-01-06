@@ -83,6 +83,8 @@
 			<if test="ddztId!=null">
 				ddztId,
 			</if>
+				yjzt,
+				ejzt,
 			<if test="sjsfzh!=null">
 				sjsfzh,
 			</if>
@@ -135,6 +137,8 @@
 			<if test="ddztId!=null">
 				#{ddztId},
 			</if>
+				1,
+				1,
 			<if test="sjsfzh!=null">
 				#{sjsfzh},
 			</if>
@@ -195,6 +199,12 @@
 			<if test="ddztId!=null">
 				ddztId=#{ddztId},
 			</if>
+			<if test="yjzt!=null">
+				yjzt=#{yjzt},
+			</if>
+			<if test="ejzt!=null">
+				ejzt=#{ejzt},
+			</if>
 			<if test="sjsfzh!=null">
 				sjsfzh=#{sjsfzh},
 			</if>
@@ -241,7 +251,83 @@
 		</trim>
 		where id=#{id}
 	</update>
+	<update id="editByZt" parameterType="com.znczLfyl.entity.DingDan">
+		update ding_dan set 
+		<trim suffixOverrides=",">
+			<if test="ddh!=null">
+				ddh=#{ddh},
+			</if>
+			<if test="xddztId!=null">
+				xddztId=#{xddztId},
+			</if>
+			<if test="xyjzt!=null">
+				yjzt=#{xyjzt},
+			</if>
+			<if test="ejzt!=null">
+				ejzt=#{xejzt},
+			</if>
+			<if test="sjsfzh!=null">
+				sjsfzh=#{sjsfzh},
+			</if>
+			<if test="sjxm!=null">
+				sjxm=#{sjxm},
+			</if>
+			<if test="cph!=null">
+				cph=#{cph},
+			</if>
+			<if test="lxlx!=null">
+				lxlx=#{lxlx},
+			</if>
+			<if test="yzxzl!=null">
+				yzxzl=#{yzxzl},
+			</if>
+			<if test="sjzl!=null">
+				sjzl=#{sjzl},
+			</if>
+			<if test="zlceb!=null">
+				zlceb=#{zlceb},
+			</if>
+			<if test="dj!=null">
+				dj=#{dj},
+			</if>
+			<if test="je!=null">
+				je=#{je},
+			</if>
+			<if test="wzlxId!=null">
+				wzlxId=#{wzlxId},
+			</if>
+			<if test="wzId!=null">
+				wzId=#{wzId},
+			</if>
+			<if test="yssId!=null">
+				yssId=#{yssId},
+			</if>
+			<if test="fhdwId!=null">
+				fhdwId=#{fhdwId},
+			</if>
+			<if test="shbmId!=null">
+				shbmId=#{shbmId},
+			</if>
+				bjsj=now()
+		</trim>
+		where ddztId=#{ddztId}
+		<if test="yjzt!=0">
+			and yjzt=#{yjzt}
+		</if>
+		<if test="ejzt!=0">
+			and ejzt=#{ejzt}
+		</if>
+	</update>
 	<select id="getByZtCph" resultType="com.znczLfyl.entity.DingDan">
 		select * from ding_dan where ddztId=#{ddztId} and cph=#{cph}
+	</select>
+	<select id="getByZt" resultType="com.znczLfyl.entity.DingDan">
+		select dd.* from ding_dan dd,ding_dan_zhuang_tai ddzt where dd.ddztId=ddzt.id and ddzt.mc=#{ddztMc}
+		<if test="yjzt!=0">
+		 and dd.yjzt=#{yjzt}
+		</if>
+		<if test="ejzt!=0">
+		 and dd.ejzt=#{ejzt}
+		</if>
 	</select>
 </mapper>
