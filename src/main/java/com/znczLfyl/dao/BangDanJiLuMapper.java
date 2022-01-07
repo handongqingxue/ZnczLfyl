@@ -17,4 +17,6 @@ public interface BangDanJiLuMapper {
 	List<BangDanJiLu> queryList(@Param("ddh") String ddh, @Param("rowNum") int rowNum, @Param("rows") int rows, String sort, String order);
 	
 	BangDanJiLu selectById(@Param("id") String id);
+
+	BangDanJiLu selectByDdId(@Param("ddId") Integer ddId);
 }

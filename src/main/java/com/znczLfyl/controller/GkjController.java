@@ -25,6 +25,8 @@ public class GkjController {
 	private DingDanZhuangTaiService dingDanZhuangTaiService;
 	@Autowired
 	private BangDanJiLuService bangDanJiLuService;
+	@Autowired
+	private GuoBangJiLuService guoBangJiLuService;
 
 	@RequestMapping(value="/getDingDan")
 	@ResponseBody
@@ -101,7 +103,6 @@ public class GkjController {
 	public Map<String, Object> editDingDanByZt(DingDan dd,
 			HttpServletRequest request) {
 		
-		System.out.println("111111111111");
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		try {
 			int count=dingDanService.editByZt(dd);
@@ -161,6 +162,44 @@ public class GkjController {
 		else {
 			jsonMap.put("message", "no");
 			jsonMap.put("info", "编辑磅单信息失败！");
+		}
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/selectBangDanJiLuByDdId")
+	@ResponseBody
+	public Map<String, Object> selectBangDanJiLuByDdId(Integer ddId) {
+
+		System.out.println("ddId==="+ddId);
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+
+		BangDanJiLu bdjl = bangDanJiLuService.selectByDdId(ddId);
+		if(bdjl==null) {
+			jsonMap.put("status", "no");
+			jsonMap.put("message", "找不到相关磅单！");
+		}
+		else {
+			jsonMap.put("status", "ok");
+			jsonMap.put("bdjl", bdjl);
+		}
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/newGuoBangJiLu")
+	@ResponseBody
+	public Map<String, Object> newGuoBangJiLu(GuoBangJiLu gbjl) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		int count=guoBangJiLuService.add(gbjl);
+		if(count>0) {
+			jsonMap.put("message", "ok");
+			jsonMap.put("info", "创建过磅信息成功！");
+		}
+		else {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "创建过磅信息失败！");
 		}
 		return jsonMap;
 	}

@@ -258,12 +258,12 @@
 				ddh=#{ddh},
 			</if>
 			<if test="xddztId!=null">
-				xddztId=#{xddztId},
+				ddztId=#{xddztId},
 			</if>
-			<if test="xyjzt!=null">
+			<if test="xyjzt!=0">
 				yjzt=#{xyjzt},
 			</if>
-			<if test="ejzt!=null">
+			<if test="ejzt!=0">
 				ejzt=#{xejzt},
 			</if>
 			<if test="sjsfzh!=null">

@@ -44,4 +44,10 @@ public class BangDanJiLuServiceImpl implements BangDanJiLuService {
 		// TODO Auto-generated method stub
 		return bangDanJiLuDao.selectById(id);
 	}
+
+	@Override
+	public BangDanJiLu selectByDdId(Integer ddId) {
+		// TODO Auto-generated method stub
+		return bangDanJiLuDao.selectByDdId(ddId);
+	}
 }

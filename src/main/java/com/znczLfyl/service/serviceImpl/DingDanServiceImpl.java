@@ -70,7 +70,7 @@ public class DingDanServiceImpl implements DingDanService {
 		int ddztId=dingDanZhuangTaiDao.getIdByMc(dd.getDdztMc());
 		dd.setDdztId(ddztId);
 		String xddztMc = dd.getXddztMc();
-		if(!StringUtils.isEmpty(xddztMc)) {
+		if(!StringUtils.isEmpty(xddztMc)&&!"null".equals(xddztMc)) {
 			int xddztId=dingDanZhuangTaiDao.getIdByMc(dd.getXddztMc());
 			dd.setXddztId(xddztId);
 		}
