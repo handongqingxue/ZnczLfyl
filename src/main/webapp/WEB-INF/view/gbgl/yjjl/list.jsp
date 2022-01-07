@@ -67,10 +67,15 @@ function initSearchLB(){
 		iconCls:"icon-search",
 		onClick:function(){
 			var ddh=$("#toolbar #ddh").val();
+			var sjxm=$("#toolbar #sjxm").val();
+			var sjsfzh=$("#toolbar #sjsfzh").val();
 			var cph=$("#toolbar #cph").val();
+			var yssMc=$("#toolbar #yssMc").val();
+			var fhdwMc=$("#toolbar #fhdwMc").val();
+			var shbmMc=$("#toolbar #shbmMc").val();
 			var gbsjks=gbsjksDTB.datetimebox("getValue");
 			var gbsjjs=gbsjjsDTB.datetimebox("getValue");
-			tab1.datagrid("load",{ddh:ddh,cph:cph,gbsjks:gbsjks,gbsjjs:gbsjjs});
+			tab1.datagrid("load",{ddh:ddh,sjxm:sjxm,sjsfzh:sjsfzh,cph:cph,yssMc:yssMc,fhdwMc:fhdwMc,shbmMc:shbmMc,gbsjks:gbsjks,gbsjjs:gbsjjs});
 		}
 	});
 }

@@ -93,6 +93,18 @@ public class GuoBangJiLu {
 	public void setYssMc(String yssMc) {
 		this.yssMc = yssMc;
 	}
+	public String getFhdwMc() {
+		return fhdwMc;
+	}
+	public void setFhdwMc(String fhdwMc) {
+		this.fhdwMc = fhdwMc;
+	}
+	public String getShbmMc() {
+		return shbmMc;
+	}
+	public void setShbmMc(String shbmMc) {
+		this.shbmMc = shbmMc;
+	}
 	private Float gbzl;
 	private String zp1;
 	private String zp2;
@@ -107,4 +119,6 @@ public class GuoBangJiLu {
 	private String sjxm;
 	private Integer lxlx;//流向类型
 	private String yssMc;
+	private String fhdwMc;
+	private String shbmMc;
 }
