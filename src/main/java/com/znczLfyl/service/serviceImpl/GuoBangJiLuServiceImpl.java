@@ -44,4 +44,17 @@ public class GuoBangJiLuServiceImpl implements GuoBangJiLuService {
 		// TODO Auto-generated method stub
 		return guoBangJiLuDao.selectById(id);
 	}
+
+	@Override
+	public int queryJYJLForInt(String ddh, String cph, String gbsjks, String gbsjjs) {
+		// TODO Auto-generated method stub
+		return guoBangJiLuDao.queryJYJLForInt(ddh, cph, gbsjks, gbsjjs);
+	}
+
+	@Override
+	public List<GuoBangJiLu> queryJYJLList(String ddh, String cph, String gbsjks, String gbsjjs, int page, int rows,
+			String sort, String order) {
+		// TODO Auto-generated method stub
+		return guoBangJiLuDao.queryJYJLList(ddh, cph, gbsjks, gbsjjs, (page-1)*rows, rows, sort, order);
+	}
 }

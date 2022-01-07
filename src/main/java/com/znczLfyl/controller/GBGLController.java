@@ -121,6 +121,19 @@ public class GBGLController {
 		
 		return MODULE_NAME+"/gbjl/list";
 	}
+	
+	/**
+	 * 跳转到过磅管理-一检记录-列表页面
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/yjjl/list")
+	public String goYjjlList(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		
+		return MODULE_NAME+"/yjjl/list";
+	}
 
 	/**
 	 * 跳转到过磅管理-过磅记录-详情页面
@@ -236,6 +249,21 @@ public class GBGLController {
 		
 		jsonMap.put("total", count);
 		jsonMap.put("rows", gbjlList);
+		
+		return jsonMap;
+	}
+
+	@RequestMapping(value="/queryJYJLList")
+	@ResponseBody
+	public Map<String, Object> queryJYJLList(String ddh,String cph,String gbsjks,String gbsjjs,int page,int rows,String sort,String order) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		int count = guoBangJiLuService.queryJYJLForInt(ddh,cph,gbsjks,gbsjjs);
+		List<GuoBangJiLu> jyjlList=guoBangJiLuService.queryJYJLList(ddh, cph, gbsjks, gbsjjs, page, rows, sort, order);
+		
+		jsonMap.put("total", count);
+		jsonMap.put("rows", jyjlList);
 		
 		return jsonMap;
 	}

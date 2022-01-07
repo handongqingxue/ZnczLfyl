@@ -16,4 +16,9 @@ public interface GuoBangJiLuService {
 
 	GuoBangJiLu selectById(String id);
 
+	int queryJYJLForInt(String ddh, String cph, String gbsjks, String gbsjjs);
+
+	List<GuoBangJiLu> queryJYJLList(String ddh, String cph, String gbsjks, String gbsjjs, int page, int rows,
+			String sort, String order);
+
 }

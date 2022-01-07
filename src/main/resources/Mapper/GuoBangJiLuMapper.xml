@@ -81,4 +81,34 @@
 	<select id="selectById" resultType="com.znczLfyl.entity.GuoBangJiLu">
 		select gbjl.*,dd.ddh from guo_bang_ji_lu gbjl,ding_dan dd where gbjl.ddId=dd.id and gbjl.id=#{id}
 	</select>
+	<select id="queryJYJLForInt" resultType="java.lang.Integer">
+		select count(*) from guo_bang_ji_lu gbjl left join ding_dan dd on gbjl.ddId=dd.id
+		 left join yun_shu_shang yss on dd.yssId=yss.id
+		where 1=1
+		<if test="ddh!=''&amp;ddh!=null">
+			and dd.ddh like CONCAT('%',#{ddh},'%')
+		</if>
+		<if test="cph!=''&amp;cph!=null">
+			and dd.cph like CONCAT('%',#{cph},'%')
+		</if>
+		<if test="gbsjks!=''&amp;gbsjks!=null&amp;gbsjjs!=''&amp;gbsjjs!=null">
+			and gbjl.gbsj between #{gbsjks} and #{gbsjjs}
+		</if>
+	</select>
+	<select id="queryJYJLList" resultType="com.znczLfyl.entity.GuoBangJiLu">
+		select gbjl.*,dd.sjxm,dd.sjsfzh,dd.ddh,dd.cph,dd.lxlx,yss.mc yssMc from guo_bang_ji_lu gbjl left join ding_dan dd on gbjl.ddId=dd.id
+		 left join yun_shu_shang yss on dd.yssId=yss.id
+		where 1=1
+		<if test="ddh!=''&amp;ddh!=null">
+			and dd.ddh like CONCAT('%',#{ddh},'%')
+		</if>
+		<if test="cph!=''&amp;cph!=null">
+			and dd.cph like CONCAT('%',#{cph},'%')
+		</if>
+		<if test="gbsjks!=''&amp;gbsjks!=null&amp;gbsjjs!=''&amp;gbsjjs!=null">
+			and gbjl.gbsj between #{gbsjks} and #{gbsjjs}
+		</if>
+		order by gbjl.gbsj desc
+		limit #{rowNum},#{rows}
+	</select>
 </mapper>

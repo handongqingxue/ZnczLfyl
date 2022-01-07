@@ -69,6 +69,30 @@ public class GuoBangJiLu {
 	public void setCph(String cph) {
 		this.cph = cph;
 	}
+	public String getSjsfzh() {
+		return sjsfzh;
+	}
+	public void setSjsfzh(String sjsfzh) {
+		this.sjsfzh = sjsfzh;
+	}
+	public String getSjxm() {
+		return sjxm;
+	}
+	public void setSjxm(String sjxm) {
+		this.sjxm = sjxm;
+	}
+	public Integer getLxlx() {
+		return lxlx;
+	}
+	public void setLxlx(Integer lxlx) {
+		this.lxlx = lxlx;
+	}
+	public String getYssMc() {
+		return yssMc;
+	}
+	public void setYssMc(String yssMc) {
+		this.yssMc = yssMc;
+	}
 	private Float gbzl;
 	private String zp1;
 	private String zp2;
@@ -79,4 +103,8 @@ public class GuoBangJiLu {
 	private Integer ddId;
 	private String ddh;
 	private String cph;
+	private String sjsfzh;
+	private String sjxm;
+	private Integer lxlx;//流向类型
+	private String yssMc;
 }
