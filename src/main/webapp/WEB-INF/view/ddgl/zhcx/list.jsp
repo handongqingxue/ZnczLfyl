@@ -326,8 +326,10 @@ function openCheckDDXXDialog(flag,row){
 function checkById(){
 	var id=$("#check_ddxx_div #id").val();
 	var ddztMc=$("#check_ddxx_div #ddztMc").val();
+	var shlx='${requestScope.shlx}';
+	var shrId='${sessionScope.yongHu.id}';
 	$.post(ddglPath + "checkDingDanByIds",
-		{ids:id,ddztMc:ddztMc},
+		{ids:id,ddztMc:ddztMc,shlx:shlx,shjg:true,shrId:shrId},
 		function(result){
 			if(result.status==1){
 				alert(result.msg);

@@ -18,6 +18,8 @@ public class DingDanServiceImpl implements DingDanService {
 	private DingDanMapper dingDanDao;
 	@Autowired
 	private DingDanZhuangTaiMapper dingDanZhuangTaiDao;
+	@Autowired
+	private ShenHeJiLuMapper shenHeJiLuDao;
 
 	@Override
 	public int queryZHCXForInt(String ddh, Integer ddztId, String cph, String yssMc, String wzMc, 
@@ -78,11 +80,14 @@ public class DingDanServiceImpl implements DingDanService {
 	}
 
 	@Override
-	public int checkByIds(String ids,String ddztMc) {
+	public int checkByIds(String ids,String ddztMc,ShenHeJiLu shjl) {
 		// TODO Auto-generated method stub
+		int count=0;
 		int ddztId=dingDanZhuangTaiDao.getIdByMc(ddztMc);
 		List<String> idList = Arrays.asList(ids.split(","));
-		return dingDanDao.checkByIds(idList,ddztId);
+		if(dingDanDao.checkByIds(idList,ddztId)>0)
+			count=shenHeJiLuDao.add(shjl);
+		return count;
 	}
 
 	@Override

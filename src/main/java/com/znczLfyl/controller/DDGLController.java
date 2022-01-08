@@ -111,6 +111,7 @@ public class DDGLController {
 		
 		//publicService.selectNav(request);
 		request.setAttribute("checkDdztMc", DingDanZhuangTai.YI_SHEN_HE_TEXT);
+		request.setAttribute("shlx", ShenHeJiLu.XIA_DAN_SHEN_HE);
 		
 		return MODULE_NAME+"/zhcx/list";
 	}
@@ -207,9 +208,9 @@ public class DDGLController {
 
 	@RequestMapping(value="/checkDingDanByIds",produces="plain/text; charset=UTF-8")
 	@ResponseBody
-	public String checkDingDanByIds(String ids, String ddztMc) {
+	public String checkDingDanByIds(String ids, String ddztMc, ShenHeJiLu shjl) {
 		//TODO 针对分类的动态进行实时调整更新
-		int count=dingDanService.checkByIds(ids,ddztMc);
+		int count=dingDanService.checkByIds(ids,ddztMc,shjl);
 		PlanResult plan=new PlanResult();
 		String json;
 		if(count==0) {
