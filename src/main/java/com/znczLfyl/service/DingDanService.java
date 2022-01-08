@@ -6,10 +6,10 @@ import com.znczLfyl.entity.*;
 
 public interface DingDanService {
 
-	int queryZHCXForInt(String ddh, Integer ddztId, String cph, String yssMc, String wzMc, 
+	int queryZHCXForInt(String ddh, Integer ddztId, String ddztMc, String cph, String yssMc, String wzMc, 
 			String fhdwMc, String shbmMc, String sjxm, String sjsfzh);
 
-	List<DingDan> queryZHCXList(String ddh, Integer ddztId, String cph, String yssMc, String wzMc, 
+	List<DingDan> queryZHCXList(String ddh, Integer ddztId, String ddztMc, String cph, String yssMc, String wzMc, 
 			String fhdwMc, String shbmMc, String sjxm, String sjsfzh, int page, int rows, String sort, String order);
 
 	DingDan selectById(String id);

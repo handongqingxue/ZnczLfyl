@@ -79,6 +79,22 @@ public class DDGLController {
 		
 		return MODULE_NAME+"/ddzt/detail";
 	}
+
+	/**
+	 * 跳转到订单管理-待入库-列表页面
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/drk/list")
+	public String goDrkList(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		request.setAttribute("ddztMc", DingDanZhuangTai.DAI_RU_KU_TEXT);
+		request.setAttribute("checkDdztMc", DingDanZhuangTai.ER_JIAN_SHANG_BANG_TEXT);
+		request.setAttribute("shlx", ShenHeJiLu.YI_JIAN_SHEN_HE);
+		
+		return MODULE_NAME+"/drk/list";
+	}
 	
 	@RequestMapping(value="/zhcx/new")
 	public String goDdglZhcxNew(HttpServletRequest request) {
@@ -271,14 +287,14 @@ public class DDGLController {
 	
 	@RequestMapping(value="/queryZHCXList")
 	@ResponseBody
-	public Map<String, Object> queryZHCXList(String ddh,Integer ddztId,String cph,String yssMc,String wzMc,
+	public Map<String, Object> queryZHCXList(String ddh,Integer ddztId,String ddztMc,String cph,String yssMc,String wzMc,
 			String fhdwMc,String shbmMc,String sjxm,String sjsfzh,int page,int rows,String sort,String order) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
 		try {
-			int count = dingDanService.queryZHCXForInt(ddh,ddztId,cph,yssMc,wzMc,fhdwMc,shbmMc,sjxm,sjsfzh);
-			List<DingDan> zhglList=dingDanService.queryZHCXList(ddh, ddztId,cph,yssMc,wzMc,fhdwMc,shbmMc,sjxm,sjsfzh, page, rows, sort, order);
+			int count = dingDanService.queryZHCXForInt(ddh,ddztId,ddztMc,cph,yssMc,wzMc,fhdwMc,shbmMc,sjxm,sjsfzh);
+			List<DingDan> zhglList=dingDanService.queryZHCXList(ddh,ddztId,ddztMc,cph,yssMc,wzMc,fhdwMc,shbmMc,sjxm,sjsfzh, page, rows, sort, order);
 			
 			jsonMap.put("total", count);
 			jsonMap.put("rows", zhglList);

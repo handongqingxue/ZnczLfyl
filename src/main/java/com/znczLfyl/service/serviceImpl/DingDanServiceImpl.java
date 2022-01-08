@@ -22,17 +22,17 @@ public class DingDanServiceImpl implements DingDanService {
 	private ShenHeJiLuMapper shenHeJiLuDao;
 
 	@Override
-	public int queryZHCXForInt(String ddh, Integer ddztId, String cph, String yssMc, String wzMc, 
+	public int queryZHCXForInt(String ddh, Integer ddztId, String ddztMc, String cph, String yssMc, String wzMc, 
 			String fhdwMc, String shbmMc, String sjxm, String sjsfzh) {
 		// TODO Auto-generated method stub
-		return dingDanDao.queryZHCXForInt(ddh,ddztId,cph,yssMc,wzMc,fhdwMc,shbmMc,sjxm,sjsfzh);
+		return dingDanDao.queryZHCXForInt(ddh,ddztId,ddztMc,cph,yssMc,wzMc,fhdwMc,shbmMc,sjxm,sjsfzh);
 	}
 
 	@Override
-	public List<DingDan> queryZHCXList(String ddh, Integer ddztId, String cph, String yssMc, String wzMc, 
+	public List<DingDan> queryZHCXList(String ddh, Integer ddztId, String ddztMc, String cph, String yssMc, String wzMc, 
 			String fhdwMc, String shbmMc, String sjxm, String sjsfzh, int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
-		return dingDanDao.queryZHCXList(ddh, ddztId, cph, yssMc, wzMc, fhdwMc, shbmMc, sjxm, sjsfzh, (page-1)*rows, rows, sort, order);
+		return dingDanDao.queryZHCXList(ddh, ddztId, ddztMc, cph, yssMc, wzMc, fhdwMc, shbmMc, sjxm, sjsfzh, (page-1)*rows, rows, sort, order);
 	}
 
 	@Override
