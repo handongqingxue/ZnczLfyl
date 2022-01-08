@@ -42,11 +42,13 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var gbglPath=path+'gbgl/';
+var ddglPath=path+'ddgl/';
 var exportExcelPath=path+'exportExcel/';
 $(function(){
 	initGBSJKSDTB();
 	initGBSJJSDTB();
 	initSearchLB();
+	initCheckLB();
 	initTab1();
 });
 
@@ -80,12 +82,49 @@ function initSearchLB(){
 	});
 }
 
+function initCheckLB(){
+	$("#check_but").linkbutton({
+		iconCls:"icon-ok",
+		onClick:function(){
+			checkByIds();
+		}
+	});
+}
+
+function checkByIds() {
+	var rows=tab1.datagrid("getSelections");
+	if (rows.length == 0) {
+		$.messager.alert("提示","请选择要审核的信息！","warning");
+		return false;
+	}
+	
+	var ddIds = "";
+	for (var i = 0; i < rows.length; i++) {
+		ddIds += "," + rows[i].ddId;
+	}
+	ddIds=ddIds.substring(1);
+	
+	$.post(ddglPath + "checkDingDanByIds",
+		{ids:ddIds,ddztMc:'${requestScope.drkDdztMc}'},
+		function(result){
+			if(result.status==1){
+				alert(result.msg);
+				tab1.datagrid("load");
+			}
+			else{
+				alert(result.msg);
+			}
+		}
+	,"json");
+}
+
 function initTab1(){
 	tab1=$("#tab1").datagrid({
 		title:"一检记录查询",
 		url:gbglPath+"queryJYJLList",
 		toolbar:"#toolbar",
 		width:setFitWidthInParent("body"),
+		queryParams:{ddztMc:'${requestScope.dyjsjDdztMc}'},
 		pagination:true,
 		pageSize:10,
 		columns:[[
@@ -165,6 +204,7 @@ function setFitWidthInParent(o){
 				<input id="gbsjks_dtb"/>-
 				<input id="gbsjjs_dtb"/>
 				<a class="search_but" id="search_but">查询</a>
+				<a id="check_but">审核</a>
 			</div>
 		</div>
 		<table id="tab1">

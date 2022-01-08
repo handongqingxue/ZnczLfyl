@@ -29,4 +29,6 @@ public interface DingDanMapper {
 
 	DingDan getByZt(@Param("ddztMc") String ddztMc, @Param("yjzt") Integer yjzt, @Param("ejzt") Integer ejzt);
 
+	int checkByIds(@Param("idList") List<String> idList, @Param("ddztId") int ddztId);
+
 }

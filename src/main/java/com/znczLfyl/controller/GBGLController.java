@@ -132,6 +132,9 @@ public class GBGLController {
 		
 		//publicService.selectNav(request);
 		
+		request.setAttribute("dyjsjDdztMc", DingDanZhuangTai.DAI_YI_JIAN_SHEN_HE_TEXT);
+		request.setAttribute("drkDdztMc", DingDanZhuangTai.DAI_RU_KU_TEXT);
+		
 		return MODULE_NAME+"/yjjl/list";
 	}
 
@@ -255,13 +258,13 @@ public class GBGLController {
 
 	@RequestMapping(value="/queryJYJLList")
 	@ResponseBody
-	public Map<String, Object> queryJYJLList(String ddh,String sjxm,String sjsfzh,String cph,String yssMc,String fhdwMc,
+	public Map<String, Object> queryJYJLList(String ddh,String ddztMc,String sjxm,String sjsfzh,String cph,String yssMc,String fhdwMc,
 			String shbmMc,String gbsjks,String gbsjjs,int page,int rows,String sort,String order) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
-		int count = guoBangJiLuService.queryJYJLForInt(ddh,sjxm,sjsfzh,cph,yssMc,fhdwMc,shbmMc,gbsjks,gbsjjs);
-		List<GuoBangJiLu> jyjlList=guoBangJiLuService.queryJYJLList(ddh, sjxm, sjsfzh, cph, yssMc, fhdwMc, shbmMc, gbsjks, gbsjjs, page, rows, sort, order);
+		int count = guoBangJiLuService.queryJYJLForInt(ddh,ddztMc,sjxm,sjsfzh,cph,yssMc,fhdwMc,shbmMc,gbsjks,gbsjjs);
+		List<GuoBangJiLu> jyjlList=guoBangJiLuService.queryJYJLList(ddh, ddztMc, sjxm, sjsfzh, cph, yssMc, fhdwMc, shbmMc, gbsjks, gbsjjs, page, rows, sort, order);
 		
 		jsonMap.put("total", count);
 		jsonMap.put("rows", jyjlList);

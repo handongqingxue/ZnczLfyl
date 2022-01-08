@@ -325,8 +325,9 @@ function openCheckDDXXDialog(flag,row){
 
 function checkById(){
 	var id=$("#check_ddxx_div #id").val();
-	$.post(ddglPath + "checkDingDanById",
-		{id:id},
+	var ddztMc=$("#check_ddxx_div #ddztMc").val();
+	$.post(ddglPath + "checkDingDanByIds",
+		{ids:id,ddztMc:ddztMc},
 		function(result){
 			if(result.status==1){
 				alert(result.msg);
@@ -432,6 +433,7 @@ function setFitWidthInParent(parent,self){
 		<div class="check_ddxx_div" id="check_ddxx_div">
 			<div class="check_ddxx_dialog_div" id="check_ddxx_dialog_div">
 				<input type="hidden" id="id"/>
+				<input type="hidden" id="ddztMc" value="${requestScope.checkDdztMc}"/>
 				<table>
 				  <tr>
 					<td class="td1" align="right">

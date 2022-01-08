@@ -22,7 +22,7 @@ public interface DingDanService {
 
 	int editByZt(DingDan dd);
 
-	int checkById(Integer id);
+	int checkByIds(String ids,String ddztMc);
 
 	DingDan getDingDan(String cph, String ddztMc);
 

@@ -78,13 +78,11 @@ public class DingDanServiceImpl implements DingDanService {
 	}
 
 	@Override
-	public int checkById(Integer id) {
+	public int checkByIds(String ids,String ddztMc) {
 		// TODO Auto-generated method stub
-		int ddztId=dingDanZhuangTaiDao.getIdByMc(DingDanZhuangTai.YI_SHEN_HE_TEXT);
-		DingDan dd=new DingDan();
-		dd.setId(id);
-		dd.setDdztId(ddztId);
-		return dingDanDao.edit(dd);
+		int ddztId=dingDanZhuangTaiDao.getIdByMc(ddztMc);
+		List<String> idList = Arrays.asList(ids.split(","));
+		return dingDanDao.checkByIds(idList,ddztId);
 	}
 
 	@Override
