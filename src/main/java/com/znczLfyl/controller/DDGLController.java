@@ -34,6 +34,8 @@ public class DDGLController {
 	@Autowired
 	private DingDanService dingDanService;
 	@Autowired
+	private ShenHeJiLuService shenHeJiLuService;
+	@Autowired
 	private DingDanZhuangTaiService dingDanZhuangTaiService;
 	public static final String MODULE_NAME="ddgl";
 	
@@ -133,7 +135,7 @@ public class DDGLController {
 	}
 	
 	@RequestMapping(value="/zhcx/detail")
-	public String goDdglZhcxDetail(HttpServletRequest request) {
+	public String goZhcxDetail(HttpServletRequest request) {
 		
 		//publicService.selectNav(request);
 		String id = request.getParameter("id");
@@ -141,6 +143,19 @@ public class DDGLController {
 		request.setAttribute("dd", dd);
 		
 		return MODULE_NAME+"/zhcx/detail";
+	}
+
+	/**
+	 * 跳转到订单管理-审核记录-列表页面
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/shjl/list")
+	public String goShjlList(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		
+		return MODULE_NAME+"/shjl/list";
 	}
 	
 	@RequestMapping(value="/newDingDanZhuangTai")
@@ -298,6 +313,27 @@ public class DDGLController {
 			
 			jsonMap.put("total", count);
 			jsonMap.put("rows", zhglList);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/querySHJLList")
+	@ResponseBody
+	public Map<String, Object> querySHJLList(String ddh,Integer shlx,String shsjks,String shsjjs,String cph,String shrYhm,
+			String yssMc,String wzMc,String fhdwMc,String shbmMc,String sjxm,String sjsfzh,int page,int rows,String sort,String order) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		try {
+			int count = shenHeJiLuService.queryForInt(ddh,shlx,shsjks,shsjjs,cph,shrYhm,yssMc,wzMc,fhdwMc,shbmMc,sjxm,sjsfzh);
+			List<ShenHeJiLu> shjlList=shenHeJiLuService.queryList(ddh,shlx,shsjks,shsjjs,cph,shrYhm,yssMc,wzMc,fhdwMc,shbmMc,sjxm,sjsfzh, page, rows, sort, order);
+			
+			jsonMap.put("total", count);
+			jsonMap.put("rows", shjlList);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

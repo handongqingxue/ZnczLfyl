@@ -124,6 +124,13 @@
 							&nbsp;&nbsp;&nbsp;综合查询
 						</a>
 					</li>
+					<div class="line_div"></div>
+					<li class="layui-nav-item">
+						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
+						<a href="<%=basePath%>ddgl/shjl/list">
+							&nbsp;&nbsp;&nbsp;审核记录
+						</a>
+					</li>
 				</div>
 				<div class="first-level-div">
 					<li class="layui-nav-item first-level">
