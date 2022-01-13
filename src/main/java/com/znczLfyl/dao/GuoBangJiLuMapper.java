@@ -19,8 +19,8 @@ public interface GuoBangJiLuMapper {
 	
 	GuoBangJiLu selectById(@Param("id") String id);
 
-	int queryJYJLForInt(@Param("ddh") String ddh, @Param("ddztMc") String ddztMc, @Param("sjxm") String sjxm, @Param("sjsfzh") String sjsfzh, @Param("cph") String cph, @Param("yssMc") String yssMc, @Param("fhdwMc") String fhdwMc, @Param("shbmMc") String shbmMc, @Param("gbsjks") String gbsjks, @Param("gbsjjs") String gbsjjs);
+	int queryDJYForInt(@Param("ddh") String ddh, @Param("ddztMc") String ddztMc, @Param("sjxm") String sjxm, @Param("sjsfzh") String sjsfzh, @Param("cph") String cph, @Param("yssMc") String yssMc, @Param("fhdwMc") String fhdwMc, @Param("shbmMc") String shbmMc, @Param("gbsjks") String gbsjks, @Param("gbsjjs") String gbsjjs, @Param("gblx") Integer gblx);
 
-	List<GuoBangJiLu> queryJYJLList(@Param("ddh") String ddh, @Param("ddztMc") String ddztMc, @Param("sjxm") String sjxm, @Param("sjsfzh") String sjsfzh, @Param("cph") String cph, @Param("yssMc") String yssMc, @Param("fhdwMc") String fhdwMc, @Param("shbmMc") String shbmMc, @Param("gbsjks") String gbsjks, @Param("gbsjjs") String gbsjjs, @Param("rowNum") int rowNum, @Param("rows") int rows, String sort,
+	List<GuoBangJiLu> queryDJYList(@Param("ddh") String ddh, @Param("ddztMc") String ddztMc, @Param("sjxm") String sjxm, @Param("sjsfzh") String sjsfzh, @Param("cph") String cph, @Param("yssMc") String yssMc, @Param("fhdwMc") String fhdwMc, @Param("shbmMc") String shbmMc, @Param("gbsjks") String gbsjks, @Param("gbsjjs") String gbsjjs, @Param("gblx") Integer gblx, @Param("rowNum") int rowNum, @Param("rows") int rows, String sort,
 			String order);
 }

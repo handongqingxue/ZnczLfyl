@@ -155,15 +155,15 @@
 					<div class="line_div"></div>
 					<li class="layui-nav-item">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
-						<a href="<%=basePath%>gbgl/yjjl/list">
-							&nbsp;&nbsp;&nbsp;一检记录
+						<a href="<%=basePath%>gbgl/dyjsh/list">
+							&nbsp;&nbsp;&nbsp;待一检审核
 						</a>
 					</li>
 					<div class="line_div"></div>
 					<li class="layui-nav-item">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
-						<a href="<%=basePath%>gbgl/ejjl/list">
-							&nbsp;&nbsp;&nbsp;二检记录
+						<a href="<%=basePath%>gbgl/dejsh/list">
+							&nbsp;&nbsp;&nbsp;待二检审核
 						</a>
 					</li>
 				</div>

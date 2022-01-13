@@ -81,7 +81,7 @@
 	<select id="selectById" resultType="com.znczLfyl.entity.GuoBangJiLu">
 		select gbjl.*,dd.ddh from guo_bang_ji_lu gbjl,ding_dan dd where gbjl.ddId=dd.id and gbjl.id=#{id}
 	</select>
-	<select id="queryJYJLForInt" resultType="java.lang.Integer">
+	<select id="queryDJYForInt" resultType="java.lang.Integer">
 		select count(*) from guo_bang_ji_lu gbjl left join ding_dan dd on gbjl.ddId=dd.id left join ding_dan_zhuang_tai ddzt on dd.ddztId=ddzt.id
 		 left join yun_shu_shang yss on dd.yssId=yss.id left join fa_huo_dan_wei fhdw on dd.fhdwId=fhdw.id
 		 left join shou_huo_bu_men shbm on dd.shbmId=shbm.id where ddzt.mc=#{ddztMc}
@@ -109,8 +109,11 @@
 		<if test="gbsjks!=''&amp;gbsjks!=null&amp;gbsjjs!=''&amp;gbsjjs!=null">
 			and gbjl.gbsj between #{gbsjks} and #{gbsjjs}
 		</if>
+		<if test="gblx!=''&amp;gblx!=null">
+			and gbjl.gblx=#{gblx}
+		</if>
 	</select>
-	<select id="queryJYJLList" resultType="com.znczLfyl.entity.GuoBangJiLu">
+	<select id="queryDJYList" resultType="com.znczLfyl.entity.GuoBangJiLu">
 		select gbjl.*,dd.sjxm,dd.sjsfzh,dd.ddh,dd.cph,dd.lxlx,yss.mc yssMc,fhdw.mc fhdwMc,shbm.mc shbmMc from guo_bang_ji_lu gbjl left join ding_dan dd on gbjl.ddId=dd.id
 		 left join ding_dan_zhuang_tai ddzt on dd.ddztId=ddzt.id left join yun_shu_shang yss on dd.yssId=yss.id left join fa_huo_dan_wei fhdw on dd.fhdwId=fhdw.id
 		 left join shou_huo_bu_men shbm on dd.shbmId=shbm.id where ddzt.mc=#{ddztMc}
@@ -137,6 +140,9 @@
 		</if>
 		<if test="gbsjks!=''&amp;gbsjks!=null&amp;gbsjjs!=''&amp;gbsjjs!=null">
 			and gbjl.gbsj between #{gbsjks} and #{gbsjjs}
+		</if>
+		<if test="gblx!=''&amp;gblx!=null">
+			and gbjl.gblx=#{gblx}
 		</if>
 		order by gbjl.gbsj desc
 		limit #{rowNum},#{rows}

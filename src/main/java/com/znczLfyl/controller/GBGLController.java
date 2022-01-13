@@ -121,23 +121,6 @@ public class GBGLController {
 		
 		return MODULE_NAME+"/gbjl/list";
 	}
-	
-	/**
-	 * 跳转到过磅管理-一检记录-列表页面
-	 * @param request
-	 * @return
-	 */
-	@RequestMapping(value="/yjjl/list")
-	public String goYjjlList(HttpServletRequest request) {
-		
-		//publicService.selectNav(request);
-		
-		request.setAttribute("dyjsjDdztMc", DingDanZhuangTai.DAI_YI_JIAN_SHEN_HE_TEXT);
-		request.setAttribute("drkDdztMc", DingDanZhuangTai.DAI_RU_KU_TEXT);
-		request.setAttribute("shlx", ShenHeJiLu.YI_JIAN_SHEN_HE);
-		
-		return MODULE_NAME+"/yjjl/list";
-	}
 
 	/**
 	 * 跳转到过磅管理-过磅记录-详情页面
@@ -153,6 +136,42 @@ public class GBGLController {
 		request.setAttribute("gbjl", gbjl);
 		
 		return MODULE_NAME+"/gbjl/detail";
+	}
+	
+	/**
+	 * 跳转到过磅管理-待一检审核-列表页面
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/dyjsh/list")
+	public String goDyjshList(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		
+		request.setAttribute("dyjshDdztMc", DingDanZhuangTai.DAI_YI_JIAN_SHEN_HE_TEXT);
+		request.setAttribute("drkDdztMc", DingDanZhuangTai.DAI_RU_KU_TEXT);
+		request.setAttribute("shlx", ShenHeJiLu.YI_JIAN_SHEN_HE);
+		request.setAttribute("gblx", GuoBangJiLu.RU_CHANG_GUO_BANG);
+		
+		return MODULE_NAME+"/dyjsh/list";
+	}
+	
+	/**
+	 * 跳转到过磅管理-待二检审核-列表页面
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/dejsh/list")
+	public String goDejshList(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		
+		request.setAttribute("dejshDdztMc", DingDanZhuangTai.DAI_ER_JIAN_SHEN_HE_TEXT);
+		request.setAttribute("ywcDdztMc", DingDanZhuangTai.YI_WAN_CHENG_TEXT);
+		request.setAttribute("shlx", ShenHeJiLu.ER_JIAN_SHEN_HE);
+		request.setAttribute("gblx", GuoBangJiLu.CHU_CHANG_GUO_BANG);
+		
+		return MODULE_NAME+"/dejsh/list";
 	}
 
 	@RequestMapping(value="/newBangDanJiLu")
@@ -257,15 +276,15 @@ public class GBGLController {
 		return jsonMap;
 	}
 
-	@RequestMapping(value="/queryJYJLList")
+	@RequestMapping(value="/queryDJYList")
 	@ResponseBody
-	public Map<String, Object> queryJYJLList(String ddh,String ddztMc,String sjxm,String sjsfzh,String cph,String yssMc,String fhdwMc,
-			String shbmMc,String gbsjks,String gbsjjs,int page,int rows,String sort,String order) {
+	public Map<String, Object> queryDJYList(String ddh,String ddztMc,String sjxm,String sjsfzh,String cph,String yssMc,String fhdwMc,
+			String shbmMc,String gbsjks,String gbsjjs,Integer gblx,int page,int rows,String sort,String order) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
-		int count = guoBangJiLuService.queryJYJLForInt(ddh,ddztMc,sjxm,sjsfzh,cph,yssMc,fhdwMc,shbmMc,gbsjks,gbsjjs);
-		List<GuoBangJiLu> jyjlList=guoBangJiLuService.queryJYJLList(ddh, ddztMc, sjxm, sjsfzh, cph, yssMc, fhdwMc, shbmMc, gbsjks, gbsjjs, page, rows, sort, order);
+		int count = guoBangJiLuService.queryDJYForInt(ddh,ddztMc,sjxm,sjsfzh,cph,yssMc,fhdwMc,shbmMc,gbsjks,gbsjjs,gblx);
+		List<GuoBangJiLu> jyjlList=guoBangJiLuService.queryDJYList(ddh, ddztMc, sjxm, sjsfzh, cph, yssMc, fhdwMc, shbmMc, gbsjks, gbsjjs, gblx, page, rows, sort, order);
 		
 		jsonMap.put("total", count);
 		jsonMap.put("rows", jyjlList);

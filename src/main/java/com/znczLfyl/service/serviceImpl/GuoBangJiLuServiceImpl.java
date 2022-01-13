@@ -46,15 +46,15 @@ public class GuoBangJiLuServiceImpl implements GuoBangJiLuService {
 	}
 
 	@Override
-	public int queryJYJLForInt(String ddh, String ddztMc, String sjxm, String sjsfzh, String cph, String yssMc, String fhdwMc, String shbmMc, String gbsjks, String gbsjjs) {
+	public int queryDJYForInt(String ddh, String ddztMc, String sjxm, String sjsfzh, String cph, String yssMc, String fhdwMc, String shbmMc, String gbsjks, String gbsjjs, Integer gblx) {
 		// TODO Auto-generated method stub
-		return guoBangJiLuDao.queryJYJLForInt(ddh, ddztMc, sjxm, sjsfzh, cph, yssMc, fhdwMc, shbmMc, gbsjks, gbsjjs);
+		return guoBangJiLuDao.queryDJYForInt(ddh, ddztMc, sjxm, sjsfzh, cph, yssMc, fhdwMc, shbmMc, gbsjks, gbsjjs, gblx);
 	}
 
 	@Override
-	public List<GuoBangJiLu> queryJYJLList(String ddh, String ddztMc, String sjxm, String sjsfzh, String cph, String yssMc, String fhdwMc, String shbmMc, String gbsjks, String gbsjjs, int page, int rows,
+	public List<GuoBangJiLu> queryDJYList(String ddh, String ddztMc, String sjxm, String sjsfzh, String cph, String yssMc, String fhdwMc, String shbmMc, String gbsjks, String gbsjjs, Integer gblx, int page, int rows,
 			String sort, String order) {
 		// TODO Auto-generated method stub
-		return guoBangJiLuDao.queryJYJLList(ddh, ddztMc, sjxm, sjsfzh, cph, yssMc, fhdwMc, shbmMc, gbsjks, gbsjjs, (page-1)*rows, rows, sort, order);
+		return guoBangJiLuDao.queryDJYList(ddh, ddztMc, sjxm, sjsfzh, cph, yssMc, fhdwMc, shbmMc, gbsjks, gbsjjs, gblx, (page-1)*rows, rows, sort, order);
 	}
 }

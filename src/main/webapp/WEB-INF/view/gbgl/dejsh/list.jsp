@@ -44,6 +44,8 @@ var path='<%=basePath %>';
 var gbglPath=path+'gbgl/';
 var ddglPath=path+'ddgl/';
 var exportExcelPath=path+'exportExcel/';
+var ddztMc='${requestScope.dejshDdztMc}';
+var gblx='${requestScope.gblx}';
 $(function(){
 	initGBSJKSDTB();
 	initGBSJJSDTB();
@@ -77,7 +79,7 @@ function initSearchLB(){
 			var shbmMc=$("#toolbar #shbmMc").val();
 			var gbsjks=gbsjksDTB.datetimebox("getValue");
 			var gbsjjs=gbsjjsDTB.datetimebox("getValue");
-			tab1.datagrid("load",{ddh:ddh,sjxm:sjxm,sjsfzh:sjsfzh,cph:cph,yssMc:yssMc,fhdwMc:fhdwMc,shbmMc:shbmMc,gbsjks:gbsjks,gbsjjs:gbsjjs});
+			tab1.datagrid("load",{ddztMc:ddztMc,ddh:ddh,sjxm:sjxm,sjsfzh:sjsfzh,cph:cph,yssMc:yssMc,fhdwMc:fhdwMc,shbmMc:shbmMc,gbsjks:gbsjks,gbsjjs:gbsjjs,gblx:gblx});
 		}
 	});
 }
@@ -104,7 +106,7 @@ function checkByIds() {
 	}
 	ddIds=ddIds.substring(1);
 	
-	var ddztMc='${requestScope.drkDdztMc}';
+	var ddztMc='${requestScope.ywcDdztMc}';
 	var shlx='${requestScope.shlx}';
 	var shrId='${sessionScope.yongHu.id}';
 	$.post(ddglPath + "checkDingDanByIds",
@@ -123,11 +125,11 @@ function checkByIds() {
 
 function initTab1(){
 	tab1=$("#tab1").datagrid({
-		title:"一检记录查询",
-		url:gbglPath+"queryJYJLList",
+		title:"待二检审核查询",
+		url:gbglPath+"queryDJYList",
 		toolbar:"#toolbar",
 		width:setFitWidthInParent("body"),
-		queryParams:{ddztMc:'${requestScope.dyjsjDdztMc}'},
+		queryParams:{ddztMc:ddztMc,gblx:gblx},
 		pagination:true,
 		pageSize:10,
 		columns:[[
