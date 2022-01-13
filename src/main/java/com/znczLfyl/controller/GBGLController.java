@@ -134,6 +134,7 @@ public class GBGLController {
 		
 		request.setAttribute("dyjsjDdztMc", DingDanZhuangTai.DAI_YI_JIAN_SHEN_HE_TEXT);
 		request.setAttribute("drkDdztMc", DingDanZhuangTai.DAI_RU_KU_TEXT);
+		request.setAttribute("shlx", ShenHeJiLu.YI_JIAN_SHEN_HE);
 		
 		return MODULE_NAME+"/yjjl/list";
 	}

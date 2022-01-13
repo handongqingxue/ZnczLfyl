@@ -104,8 +104,11 @@ function checkByIds() {
 	}
 	ddIds=ddIds.substring(1);
 	
+	var ddztMc='${requestScope.drkDdztMc}';
+	var shlx='${requestScope.shlx}';
+	var shrId='${sessionScope.yongHu.id}';
 	$.post(ddglPath + "checkDingDanByIds",
-		{ids:ddIds,ddztMc:'${requestScope.drkDdztMc}'},
+		{ids:ddIds,ddztMc:ddztMc,shlx:shlx,shjg:true,shrId:shrId},
 		function(result){
 			if(result.status==1){
 				alert(result.msg);

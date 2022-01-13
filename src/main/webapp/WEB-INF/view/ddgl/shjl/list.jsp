@@ -203,12 +203,12 @@ function deleteByIds() {
 			}
 			ids=ids.substring(1);
 			
-			$.post(ddglPath + "deleteDingDan",
+			$.post(ddglPath + "deleteShenHeJiLu",
 				{ids:ids},
 				function(result){
 					if(result.status==1){
 						alert(result.msg);
-						location.href = location.href;
+						tab1.datagrid("load");
 					}
 					else{
 						alert(result.msg);

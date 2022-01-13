@@ -85,8 +85,12 @@ public class DingDanServiceImpl implements DingDanService {
 		int count=0;
 		int ddztId=dingDanZhuangTaiDao.getIdByMc(ddztMc);
 		List<String> idList = Arrays.asList(ids.split(","));
-		if(dingDanDao.checkByIds(idList,ddztId)>0)
-			count=shenHeJiLuDao.add(shjl);
+		if(dingDanDao.checkByIds(idList,ddztId)>0) {
+			for (String idStr : idList) {
+				shjl.setDdId(Integer.valueOf(idStr));
+				count+=shenHeJiLuDao.add(shjl);
+			}
+		}
 		return count;
 	}
 
