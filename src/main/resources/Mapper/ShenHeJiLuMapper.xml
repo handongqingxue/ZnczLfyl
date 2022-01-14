@@ -118,6 +118,8 @@
 		<if test="sjsfzh!=''&amp;sjsfzh!=null">
 			and dd.sjsfzh like CONCAT('%',#{sjsfzh},'%')
 		</if>
+		order by shjl.shsj desc
+		limit #{rowNum},#{rows}
 	</select>
 	<delete id="deleteByIds">
 		delete from shen_he_ji_lu where 1=1

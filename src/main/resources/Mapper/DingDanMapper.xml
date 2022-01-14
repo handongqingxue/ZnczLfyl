@@ -270,7 +270,7 @@
 			<if test="xyjzt!=0">
 				yjzt=#{xyjzt},
 			</if>
-			<if test="ejzt!=0">
+			<if test="xejzt!=0">
 				ejzt=#{xejzt},
 			</if>
 			<if test="sjsfzh!=null">
