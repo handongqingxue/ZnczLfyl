@@ -23,6 +23,9 @@
 			</if>
 		</trim>
 	</insert>
+	<update id="edit" parameterType="com.znczLfyl.entity.QuanXian">
+		update quan_xian set mc=#{mc},ms=#{ms} where id=#{id}
+	</update>
 	<select id="queryForInt" resultType="java.lang.Integer">
 		select count(*) from quan_xian where 1=1
 		<if test="mc!=''&amp;mc!=null">
@@ -35,5 +38,11 @@
 			and mc like CONCAT('%',#{mc},'%')
 		</if>
 		limit #{rowNum},#{rows}
+	</select>
+	<select id="selectById" resultType="com.znczLfyl.entity.QuanXian">
+		select * from quan_xian where id=#{id}
+	</select>
+	<select id="queryCBBList" resultType="com.znczLfyl.entity.QuanXian">
+		select id,mc from quan_xian
 	</select>
 </mapper>

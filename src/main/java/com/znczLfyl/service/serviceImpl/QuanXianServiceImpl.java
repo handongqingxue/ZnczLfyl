@@ -22,6 +22,12 @@ public class QuanXianServiceImpl implements QuanXianService {
 	}
 
 	@Override
+	public int edit(QuanXian qx) {
+		// TODO Auto-generated method stub
+		return quanXianDao.edit(qx);
+	}
+
+	@Override
 	public int queryForInt(String mc) {
 		// TODO Auto-generated method stub
 		return quanXianDao.queryForInt(mc);
@@ -31,6 +37,18 @@ public class QuanXianServiceImpl implements QuanXianService {
 	public List<QuanXian> queryList(String mc, int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
 		return quanXianDao.queryList(mc, (page-1)*rows, rows, sort, order);
+	}
+
+	@Override
+	public QuanXian selectById(String id) {
+		// TODO Auto-generated method stub
+		return quanXianDao.selectById(id);
+	}
+
+	@Override
+	public List<QuanXian> queryCBBList() {
+		// TODO Auto-generated method stub
+		return quanXianDao.queryCBBList();
 	}
 
 }

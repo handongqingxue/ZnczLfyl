@@ -19,7 +19,7 @@
 	margin-left: 20px;
 	font-size: 18px;
 }
-.mc_inp,.px_inp{
+.mc_inp{
 	width: 150px;
 	height:30px;
 }

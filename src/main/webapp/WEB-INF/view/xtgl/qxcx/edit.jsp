@@ -19,6 +19,10 @@
 	margin-left: 20px;
 	font-size: 18px;
 }
+.mc_inp,.px_inp{
+	width: 150px;
+	height:30px;
+}
 </style>
 <script type="text/javascript">
 var path='<%=basePath %>';
@@ -46,9 +50,9 @@ function initDialogPosition(){
 function initEditDialog(){
 	dialogTop+=20;
 	$("#edit_div").dialog({
-		title:"用户信息",
+		title:"权限信息",
 		width:setFitWidthInParent("body","edit_div"),
-		height:330,
+		height:200,
 		top:dialogTop,
 		left:dialogLeft,
 		buttons:[
@@ -67,7 +71,7 @@ function initEditDialog(){
 	$("#edit_div table .td2").css("width","30%");
 	$("#edit_div table tr").css("border-bottom","#CAD9EA solid 1px");
 	$("#edit_div table tr").each(function(i){
-		$(this).css("height",(i==3?90:45)+"px");
+		$(this).css("height",(i==0?90:45)+"px");
 	});
 
 	$(".panel.window").eq(edNum).css("margin-top","20px");
@@ -86,78 +90,54 @@ function initEditDialog(){
 	
 	$(".dialog-button").css("background-color","#fff");
 	$(".dialog-button .l-btn-text").css("font-size","20px");
-
-	initZTCBB();
-	initQXCBB();
-}
-
-function initZTCBB(){
-	var data=[];
-	data.push({"value":"","text":"请选择状态"});
-	data.push({"value":0,"text":"待审核"});
-	data.push({"value":1,"text":"审核通过"});
-	data.push({"value":2,"text":"审核未通过"});
-	
-	ztCBB=$("#edit_div #zt_cbb").combobox({
-		valueField:"value",
-		textField:"text",
-		data:data,
-		onLoadSuccess:function(){
-			$(this).combobox("setValue",'${requestScope.yh.zt }');
-		}
-	});
-}
-
-function initQXCBB(){
-	var data=[];
-	data.push({"value":"","text":"请选择权限"});
-	$.post(xtglPath+"queryQuanXianCBBList",
-		function(result){
-			var rows=result.rows;
-			for(var i=0;i<rows.length;i++){
-				data.push({"value":rows[i].id,"text":rows[i].mc});
-			}
-			qxCBB=$("#edit_div #qx_cbb").combobox({
-				valueField:"value",
-				textField:"text",
-				data:data,
-				onLoadSuccess:function(){
-					$(this).combobox("setValue",'${requestScope.yh.qxIds }');
-				}
-			});
-		}
-	,"json");
 }
 
 function checkEdit(){
-	updateYHZTById();
+	if(checkMC()){
+		editQuanXian();
+	}
 }
 
-function updateYHZTById(){
-	var zt=ztCBB.combobox("getValue");
-	$("#edit_div #zt").val(zt);
-	var qxIds=qxCBB.combobox("getValue");
-	$("#edit_div #qxIds").val(qxIds);
-	
+function editQuanXian(){
 	var formData = new FormData($("#form1")[0]);
 	$.ajax({
 		type:"post",
-		url:xtglPath+"updateYHZTById",
+		url:xtglPath+"editQuanXian",
 		dataType: "json",
 		data:formData,
 		cache: false,
 		processData: false,
 		contentType: false,
 		success: function (data){
-			if(data.status==1){
-				alert(data.msg);
+			if(data.message=="ok"){
+				alert(data.info);
 				history.go(-1);
 			}
 			else{
-				alert(data.msg);
+				alert(data.info);
 			}
 		}
 	});
+}
+
+function focusMC(){
+	var mc = $("#mc").val();
+	if(mc=="名称不能为空"){
+		$("#mc").val("");
+		$("#mc").css("color", "#555555");
+	}
+}
+
+//验证名称
+function checkMC(){
+	var mc = $("#mc").val();
+	if(mc==null||mc==""||mc=="名称不能为空"){
+		$("#mc").css("color","#E15748");
+    	$("#mc").val("名称不能为空");
+    	return false;
+	}
+	else
+		return true;
 }
 
 function setFitWidthInParent(parent,self){
@@ -183,66 +163,24 @@ function setFitWidthInParent(parent,self){
 <div class="layui-layout layui-layout-admin">
 	<%@include file="../../inc/side.jsp"%>
 	<div class="center_con_div" id="center_con_div">
-		<div class="page_location_div">用户-编辑</div>
+		<div class="page_location_div">权限-编辑</div>
 		
 		<div id="edit_div">
 			<form id="form1" name="form1" method="post" action="" enctype="multipart/form-data">
-			<input type="hidden" id="id" name="id" value="${requestScope.yh.id }"/>
+			<input type="hidden" id="id" name="id" value="${requestScope.qx.id }"/>
 			<table>
 			  <tr>
 				<td class="td1" align="right">
-					用户名
+					名称
 				</td>
 				<td class="td2">
-					${requestScope.yh.yhm }
+					<input type="text" class="mc_inp" id="mc" name="mc" value="${requestScope.qx.mc }" placeholder="请输入名称" onfocus="focusMC()" onblur="checkMC()"/>
 				</td>
 				<td class="td1" align="right">
-					真实姓名
+					描述
 				</td>
 				<td class="td2">
-					${requestScope.yh.zsxm }
-				</td>
-			  </tr>
-			  <tr>
-				<td class="td1" align="right">
-					创建时间
-				</td>
-				<td class="td2">
-					${requestScope.yh.cjsj }
-				</td>
-				<td class="td1" align="right">
-					状态
-				</td>
-				<td class="td2">
-					<input id="zt_cbb"/>
-					<input type="hidden" id="zt" name="zt" value="${requestScope.yh.zt }"/>
-				</td>
-			  </tr>
-			  <tr>
-				<td class="td1" align="right">
-					简述
-				</td>
-				<td class="td2">
-					${requestScope.yh.js }
-				</td>
-				<td class="td1" align="right">
-					权限
-				</td>
-				<td class="td2">
-					<input id="qx_cbb"/>
-					<input type="hidden" id="qxIds" name="qxIds" value="${requestScope.yh.qxIds }"/>
-				</td>
-			  </tr>
-			  <tr>
-				<td class="td1" align="right">
-					未通过原因
-				</td>
-				<td class="td2">
-					<textarea id="bz" name="bz" rows="3" cols="30" placeholder="请输入未通过原因"></textarea>
-				</td>
-				<td class="td1" align="right">
-				</td>
-				<td class="td2">
+					<textarea id="ms" name="ms" rows="3" cols="30" placeholder="请输入描述">${requestScope.qx.ms }</textarea>
 				</td>
 			  </tr>
 			</table>
