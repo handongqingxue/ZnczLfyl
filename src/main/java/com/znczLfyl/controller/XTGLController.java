@@ -23,6 +23,8 @@ public class XTGLController {
 
 	@Autowired
 	private YongHuService yongHuService;
+	@Autowired
+	private QuanXianService quanXianService;
 	public static final String MODULE_NAME="xtgl";
 
 	@RequestMapping(value="/yhcx/edit")
@@ -55,6 +57,22 @@ public class XTGLController {
 		return MODULE_NAME+"/yhcx/detail";
 	}
 	
+	@RequestMapping(value="/qxcx/new")
+	public String goQxcxNew(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		
+		return MODULE_NAME+"/qxcx/new";
+	}
+	
+	@RequestMapping(value="/qxcx/list")
+	public String goQxcxList(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		
+		return MODULE_NAME+"/qxcx/list";
+	}
+	
 	@RequestMapping(value="/queryYongHuList")
 	@ResponseBody
 	public Map<String, Object> queryYongHuList(String yhm,int page,int rows,String sort,String order) {
@@ -66,6 +84,39 @@ public class XTGLController {
 		
 		jsonMap.put("total", count);
 		jsonMap.put("rows", yhList);
+		
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/newQuanXian")
+	@ResponseBody
+	public Map<String, Object> newQuanXian(QuanXian qx) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		int count=quanXianService.add(qx);
+		if(count>0) {
+			jsonMap.put("message", "ok");
+			jsonMap.put("info", "创建权限成功！");
+		}
+		else {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "创建权限失败！");
+		}
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/queryQuanXianList")
+	@ResponseBody
+	public Map<String, Object> queryQuanXianList(String mc,int page,int rows,String sort,String order) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		int count = quanXianService.queryForInt(mc);
+		List<QuanXian> qxList=quanXianService.queryList(mc, page, rows, sort, order);
+		
+		jsonMap.put("total", count);
+		jsonMap.put("rows", qxList);
 		
 		return jsonMap;
 	}

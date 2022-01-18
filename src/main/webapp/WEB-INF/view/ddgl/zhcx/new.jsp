@@ -220,12 +220,22 @@ function initSHBMCBB(){
 }
 
 function checkNew(){
-	if(checkYZXZL()){
-		if(checkDJ()){
-			if(checkJE()){
-				if(checkWZLXId()){
-					if(checkWZId()){
-						newDingDanZongHeChaXun();
+	if(checkDdh()){
+		if(checkLXLXId()){
+			if(checkYZXZL()){
+				if(checkDJ()){
+					if(checkJE()){
+						if(checkWZLXId()){
+							if(checkWZId()){
+								if(checkYSSId()){
+									if(checkFHDWId()){
+										if(checkSHBMId()){
+											newDingDanZongHeChaXun();
+										}
+									}
+								}
+							}
+						}
 					}
 				}
 			}
@@ -264,6 +274,57 @@ function newDingDanZongHeChaXun(){
 			}
 		}
 	});
+}
+
+function focusDdh(){
+	var ddh = $("#ddh").val();
+	if(ddh=="订单号不能为空"||ddh=="订单号已存在"){
+		$("#ddh").val("");
+		$("#ddh").css("color", "#555555");
+	}
+}
+
+//验证订单号
+function checkDdh(){
+	var flag=false;
+	var ddh = $("#ddh").val();
+	if(ddh==null||ddh==""||ddh=="订单号不能为空"){
+		$("#ddh").css("color","#E15748");
+    	$("#ddh").val("订单号不能为空");
+    	flag=false;
+	}
+	else if(ddh=="订单号已存在"){
+		$("#ddh").css("color","#E15748");
+    	$("#ddh").val("订单号已存在");
+    	flag=false;
+	}
+	else{
+		$.ajaxSetup({async:false});
+		$.post(ddglPath+"checkDdhIfExist",
+			{ddh:ddh},
+			function(data){
+				if(data.status==1)
+			    	flag=true;
+				else{
+					$("#ddh").css("color","#E15748");
+			    	$("#ddh").val(data.msg);
+			    	flag=false;
+				}
+			}
+		,"json");
+	}
+	return flag;
+}
+
+//验证流向类型
+function checkLXLXId(){
+	var lxlx=lxlxCBB.combobox("getValue");
+	if(lxlx==null||lxlx==""){
+	  	alert("请选择流向类型");
+	  	return false;
+	}
+	else
+		return true;
 }
 
 //验证预装卸重量
@@ -321,6 +382,39 @@ function checkWZId(){
 		return true;
 }
 
+//验证运输商
+function checkYSSId(){
+	var yssId=yssCBB.combobox("getValue");
+	if(yssId==null||yssId==""){
+	  	alert("请选择运输商");
+	  	return false;
+	}
+	else
+		return true;
+}
+
+//验证发货单位
+function checkFHDWId(){
+	var fhdwId=fhdwCBB.combobox("getValue");
+	if(fhdwId==null||fhdwId==""){
+	  	alert("请选择发货单位");
+	  	return false;
+	}
+	else
+		return true;
+}
+
+//验证收货部门
+function checkSHBMId(){
+	var shbmId=shbmCBB.combobox("getValue");
+	if(shbmId==null||shbmId==""){
+	  	alert("请选择收货部门");
+	  	return false;
+	}
+	else
+		return true;
+}
+
 function setFitWidthInParent(parent,self){
 	var space=0;
 	switch (self) {
@@ -354,7 +448,7 @@ function setFitWidthInParent(parent,self){
 					订单号
 				</td>
 				<td class="td2">
-					<input type="text" class="ddh_inp" id="ddh" name="ddh" placeholder="请输入订单号" onfocus="focusName()" onblur="checkName()"/>
+					<input type="text" class="ddh_inp" id="ddh" name="ddh" placeholder="请输入订单号" onfocus="focusDdh()" onblur="checkDdh()"/>
 				</td>
 				<td class="td1" align="right">
 					司机身份证号

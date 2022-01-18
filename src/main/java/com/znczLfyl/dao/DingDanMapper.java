@@ -31,4 +31,6 @@ public interface DingDanMapper {
 
 	int checkByIds(@Param("idList") List<String> idList, @Param("ddztId") int ddztId);
 
+	int getCountByDdh(@Param("ddh") String ddh);
+
 }

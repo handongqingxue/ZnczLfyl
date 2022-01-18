@@ -255,7 +255,7 @@
 					<div class="line_div"></div>
 					<li class="layui-nav-item">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
-						<a href="<%=basePath%>background/bus/busStop/list">
+						<a href="<%=basePath%>xtgl/qxcx/list">
 							&nbsp;&nbsp;&nbsp;权限查询
 						</a>
 					</li>

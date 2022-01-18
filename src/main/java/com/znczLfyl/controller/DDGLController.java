@@ -257,6 +257,24 @@ public class DDGLController {
 		return json;
 	}
 
+	@RequestMapping(value="/checkDdhIfExist",produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String checkDdhIfExist(String ddh) {
+		boolean exist=dingDanService.checkDdhIfExist(ddh);
+		PlanResult plan=new PlanResult();
+		String json;
+		if(exist) {
+			plan.setStatus(0);
+			plan.setMsg("∂©µ•∫≈“—¥Ê‘⁄");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		else {
+			plan.setStatus(1);
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		return json;
+	}
+
 	@RequestMapping(value="/deleteDingDan",produces="plain/text; charset=UTF-8")
 	@ResponseBody
 	public String deleteDingDan(String ids) {

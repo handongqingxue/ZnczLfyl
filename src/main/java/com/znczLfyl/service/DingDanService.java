@@ -28,4 +28,6 @@ public interface DingDanService {
 
 	DingDan getByZt(String ddztMc, Integer yjzt, Integer ejzt);
 
+	boolean checkDdhIfExist(String ddh);
+
 }

@@ -107,4 +107,11 @@ public class DingDanServiceImpl implements DingDanService {
 		// TODO Auto-generated method stub
 		return dingDanDao.getByZt(ddztMc, yjzt, ejzt);
 	}
+
+	@Override
+	public boolean checkDdhIfExist(String ddh) {
+		// TODO Auto-generated method stub
+		int count=dingDanDao.getCountByDdh(ddh);
+		return count==0?false:true;
+	}
 }
