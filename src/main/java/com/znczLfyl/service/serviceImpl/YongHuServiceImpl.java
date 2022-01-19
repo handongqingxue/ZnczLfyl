@@ -1,5 +1,6 @@
 package com.znczLfyl.service.serviceImpl;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,15 +23,15 @@ public class YongHuServiceImpl implements YongHuService {
 	}
 
 	@Override
-	public int queryForInt(String yhm) {
+	public int queryForInt(String yhm,Boolean check) {
 		// TODO Auto-generated method stub
-		return yongHuDao.queryForInt(yhm);
+		return yongHuDao.queryForInt(yhm,check);
 	}
 
 	@Override
-	public List<YongHu> queryList(String yhm, int page, int rows, String sort, String order) {
+	public List<YongHu> queryList(String yhm, Boolean check, int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
-		return yongHuDao.queryList(yhm, (page-1)*rows, rows, sort, order);
+		return yongHuDao.queryList(yhm, check, (page-1)*rows, rows, sort, order);
 	}
 
 	@Override
@@ -40,8 +41,11 @@ public class YongHuServiceImpl implements YongHuService {
 	}
 
 	@Override
-	public int updateZTById(Integer zt, Integer id) {
+	public int checkByIds(Boolean check, String ids) {
 		// TODO Auto-generated method stub
-		return yongHuDao.updateZTById(zt,id);
+		int count=0;
+		List<String> idList = Arrays.asList(ids.split(","));
+		count = yongHuDao.checkByIds(check,idList);
+		return count;
 	}
 }

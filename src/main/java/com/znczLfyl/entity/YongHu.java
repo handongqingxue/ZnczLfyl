@@ -1,6 +1,9 @@
 package com.znczLfyl.entity;
 
 public class YongHu {
+	
+	public static final Boolean WEI_SHEN_HE_TEXT=false;
+	public static final Boolean YI_SHEN_HE_TEXT=true;
 
 	private Integer id;
 	public Integer getId() {
@@ -33,11 +36,11 @@ public class YongHu {
 	public void setCjsj(String cjsj) {
 		this.cjsj = cjsj;
 	}
-	public Integer getZt() {
-		return zt;
+	public Boolean getCheck() {
+		return check;
 	}
-	public void setZt(Integer zt) {
-		this.zt = zt;
+	public void setCheck(Boolean check) {
+		this.check = check;
 	}
 	public String getJs() {
 		return js;
@@ -64,7 +67,7 @@ public class YongHu {
 	private String mm;
 	private String zsxm;
 	private String cjsj;
-	private Integer zt;
+	private Boolean check;
 	private String js;
 	private String qxIds;
 }

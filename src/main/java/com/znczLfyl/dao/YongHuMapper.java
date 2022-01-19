@@ -13,11 +13,11 @@ public interface YongHuMapper {
 	//通过用户信息查询用户
 	YongHu getYongHu(YongHu yh);
 
-	int queryForInt(@Param("yhm") String yhm);
+	int queryForInt(@Param("yhm") String yhm,@Param("check") Boolean check);
 	
-	List<YongHu> queryList(@Param("yhm") String yhm, @Param("rowNum") int rowNum, @Param("rows") int rows, String sort, String order);
+	List<YongHu> queryList(@Param("yhm") String yhm, @Param("check") Boolean check, @Param("rowNum") int rowNum, @Param("rows") int rows, String sort, String order);
 	
 	YongHu selectById(@Param("id") String id);
 
-	int updateZTById(@Param("zt") Integer zt, @Param("id") Integer id);
+	int checkByIds(@Param("check") Boolean check, @Param("idList") List<String> idList);
 }

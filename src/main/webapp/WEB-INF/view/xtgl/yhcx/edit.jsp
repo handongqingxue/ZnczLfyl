@@ -48,7 +48,7 @@ function initEditDialog(){
 	$("#edit_div").dialog({
 		title:"用户信息",
 		width:setFitWidthInParent("body","edit_div"),
-		height:330,
+		height:250,
 		top:dialogTop,
 		left:dialogLeft,
 		buttons:[
@@ -66,9 +66,7 @@ function initEditDialog(){
 	$("#edit_div table .td1").css("width","15%");
 	$("#edit_div table .td2").css("width","30%");
 	$("#edit_div table tr").css("border-bottom","#CAD9EA solid 1px");
-	$("#edit_div table tr").each(function(i){
-		$(this).css("height",(i==3?90:45)+"px");
-	});
+	$("#edit_div table tr").css("height","45px");
 
 	$(".panel.window").eq(edNum).css("margin-top","20px");
 	$(".panel.window .panel-title").eq(edNum).css("color","#000");
@@ -130,10 +128,10 @@ function initQXCBB(){
 }
 
 function checkEdit(){
-	updateYHZTById();
+	checkYHByIds();
 }
 
-function updateYHZTById(){
+function checkYHByIds(){
 	var zt=ztCBB.combobox("getValue");
 	$("#edit_div #zt").val(zt);
 	var qxIds=qxCBB.combobox("getValue");
@@ -142,7 +140,7 @@ function updateYHZTById(){
 	var formData = new FormData($("#form1")[0]);
 	$.ajax({
 		type:"post",
-		url:xtglPath+"updateYHZTById",
+		url:xtglPath+"checkYHByIds",
 		dataType: "json",
 		data:formData,
 		cache: false,
@@ -231,18 +229,6 @@ function setFitWidthInParent(parent,self){
 				<td class="td2">
 					<input id="qx_cbb"/>
 					<input type="hidden" id="qxIds" name="qxIds" value="${requestScope.yh.qxIds }"/>
-				</td>
-			  </tr>
-			  <tr>
-				<td class="td1" align="right">
-					未通过原因
-				</td>
-				<td class="td2">
-					<textarea id="bz" name="bz" rows="3" cols="30" placeholder="请输入未通过原因"></textarea>
-				</td>
-				<td class="td1" align="right">
-				</td>
-				<td class="td2">
 				</td>
 			  </tr>
 			</table>

@@ -16,7 +16,7 @@
 				zsxm,
 			</if>
 				cjsj,
-				zt,
+				check,
 			<if test="qxIds!=null">
 				qxIds,
 			</if>
@@ -47,11 +47,17 @@
 		<if test="yhm!=''&amp;yhm!=null">
 			and yhm like CONCAT('%',#{yhm},'%')
 		</if>
+		<if test="check!=null">
+			and `check`=#{check}
+		</if>
 	</select>
 	<select id="queryList" resultType="com.znczLfyl.entity.YongHu">
 		select * from yong_hu where yhm!='admin'
 		<if test="yhm!=''&amp;yhm!=null">
 			and yhm like CONCAT('%',#{yhm},'%')
+		</if>
+		<if test="check!=null">
+			and `check`=#{check}
 		</if>
 		order by cjsj
 		limit #{rowNum},#{rows}
@@ -59,7 +65,10 @@
 	<select id="selectById" resultType="com.znczLfyl.entity.YongHu">
 		select * from yong_hu where id=#{id}
 	</select>
-	<update id="updateZTById">
-		update yong_hu set zt=#{zt} where id=#{id}
+	<update id="checkByIds">
+		update yong_hu set `check`=#{check} where 1=1
+		<foreach collection="idList" item="id" open=" and cast(id as char) in (" separator="," close=")">
+		#{id}
+		</foreach>
 	</update>
 </mapper>

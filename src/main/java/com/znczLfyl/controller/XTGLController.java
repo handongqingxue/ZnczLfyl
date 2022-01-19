@@ -57,6 +57,15 @@ public class XTGLController {
 		return MODULE_NAME+"/yhcx/detail";
 	}
 	
+	@RequestMapping(value="/dshyh/list")
+	public String goDshyhList(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		request.setAttribute("check", YongHu.WEI_SHEN_HE_TEXT);
+		
+		return MODULE_NAME+"/dshyh/list";
+	}
+	
 	@RequestMapping(value="/qxcx/new")
 	public String goQxcxNew(HttpServletRequest request) {
 		
@@ -86,12 +95,12 @@ public class XTGLController {
 	
 	@RequestMapping(value="/queryYongHuList")
 	@ResponseBody
-	public Map<String, Object> queryYongHuList(String yhm,int page,int rows,String sort,String order) {
+	public Map<String, Object> queryYongHuList(String yhm,Boolean check,int page,int rows,String sort,String order) {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
-		int count = yongHuService.queryForInt(yhm);
-		List<YongHu> yhList=yongHuService.queryList(yhm, page, rows, sort, order);
+		int count = yongHuService.queryForInt(yhm,check);
+		List<YongHu> yhList=yongHuService.queryList(yhm, check, page, rows, sort, order);
 		
 		jsonMap.put("total", count);
 		jsonMap.put("rows", yhList);
@@ -150,12 +159,12 @@ public class XTGLController {
 		return jsonMap;
 	}
 
-	@RequestMapping(value="/updateYHZTById",method=RequestMethod.POST,produces="plain/text; charset=UTF-8")
+	@RequestMapping(value="/checkYHByIds",method=RequestMethod.POST,produces="plain/text; charset=UTF-8")
 	@ResponseBody
-	public String updateYHZTById(Integer zt, Integer id) {
+	public String checkYHByIds(Boolean check, String ids) {
 
 		PlanResult plan=new PlanResult();
-		int count=yongHuService.updateZTById(zt,id);
+		int count=yongHuService.checkByIds(check,ids);
 		if(count==0) {
 			plan.setStatus(0);
 			plan.setMsg("…Û∫À ß∞‹");

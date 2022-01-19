@@ -243,15 +243,13 @@
 							&nbsp;&nbsp;&nbsp;用户查询
 						</a>
 					</li>
-					<!-- 
 					<div class="line_div"></div>
 					<li class="layui-nav-item">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
-						<a href="<%=basePath%>background/bus/busStop/list">
-							&nbsp;&nbsp;&nbsp;角色查询
+						<a href="<%=basePath%>xtgl/dshyh/list">
+							&nbsp;&nbsp;&nbsp;待审核用户
 						</a>
 					</li>
-					-->
 					<div class="line_div"></div>
 					<li class="layui-nav-item">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />

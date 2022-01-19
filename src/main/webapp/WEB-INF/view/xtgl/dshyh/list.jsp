@@ -27,8 +27,10 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var xtglPath=path+'xtgl/';
+var check='${requestScope.check}';
 $(function(){
 	initSearchLB();
+	initCheckLB();
 	initTab1();
 });
 
@@ -37,37 +39,70 @@ function initSearchLB(){
 		iconCls:"icon-search",
 		onClick:function(){
 			var yhm=$("#toolbar #yhm").val();
-			tab1.datagrid("load",{yhm:yhm});
+			tab1.datagrid("load",{yhm:yhm,zt:zt});
 		}
 	});
 }
 
+function initCheckLB(){
+	$("#check_but").linkbutton({
+		iconCls:"icon-ok",
+		onClick:function(){
+			checkByIds();
+		}
+	});
+}
+
+function checkByIds() {
+	var rows=tab1.datagrid("getSelections");
+	if (rows.length == 0) {
+		$.messager.alert("提示","请选择要审核的信息！","warning");
+		return false;
+	}
+	
+	var ids = "";
+	for (var i = 0; i < rows.length; i++) {
+		ids += "," + rows[i].id;
+	}
+	ids=ids.substring(1);
+
+	$.post(xtglPath + "checkYHByIds",
+		{ids:ids,check:true},
+		function(result){
+			if(result.status==1){
+				alert(result.msg);
+				tab1.datagrid("load");
+			}
+			else{
+				alert(result.msg);
+			}
+		}
+	,"json");
+}
+
 function initTab1(){
 	tab1=$("#tab1").datagrid({
-		title:"用户查询",
+		title:"待审核用户查询",
 		url:xtglPath+"queryYongHuList",
 		toolbar:"#toolbar",
 		width:setFitWidthInParent("body"),
+		queryParams:{check:check},
 		pagination:true,
 		pageSize:10,
 		columns:[[
 			{field:"yhm",title:"用户名",width:150},
 			{field:"zsxm",title:"真实姓名",width:150},
 			{field:"cjsj",title:"创建时间",width:150},
-			{field:"check",title:"审核状态",width:100,formatter:function(value,row){
-            	return value?"已审核":"未审核";
-			}},
             {field:"qsIds",title:"权限",width:100},
-            {field:"id",title:"操作",width:110,formatter:function(value,row){
-            	var str="<a href=\"edit?id="+value+"\">编辑</a>&nbsp;&nbsp;"
-            		+"<a href=\"detail?id="+value+"\">详情</a>";
+            {field:"id",title:"操作",width:50,formatter:function(value,row){
+            	var str="<a href=\"detail?id="+value+"\">详情</a>";
             	return str;
             }}
 	    ]],
         onLoadSuccess:function(data){
 			if(data.total==0){
 				$(this).datagrid("appendRow",{yhm:"<div style=\"text-align:center;\">暂无信息<div>"});
-				$(this).datagrid("mergeCells",{index:0,field:"yhm",colspan:6});
+				$(this).datagrid("mergeCells",{index:0,field:"yhm",colspan:5});
 				data.total=0;
 			}
 			
@@ -93,6 +128,7 @@ function setFitWidthInParent(o){
 			<span class="yhm_span">用户名：</span>
 			<input type="text" class="yhm_inp" id="yhm" placeholder="请输入用户名"/>
 			<a class="search_but" id="search_but">查询</a>
+			<a id="check_but">审核</a>
 		</div>
 		<table id="tab1">
 		</table>
