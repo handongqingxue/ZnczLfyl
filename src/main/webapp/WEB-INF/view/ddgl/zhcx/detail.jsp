@@ -22,6 +22,7 @@
 </style>
 <script type="text/javascript">
 var path='<%=basePath %>';
+var ddglPath=path+'ddgl/';
 var dialogTop=70;
 var dialogLeft=20;
 var ddNum=0;
@@ -47,9 +48,14 @@ function initDetailDialog(){
 	$("#detail_div").dialog({
 		title:"订单信息",
 		width:setFitWidthInParent("body","detail_div"),
-		height:430,
+		height:470,
 		top:dialogTop,
-		left:dialogLeft
+		left:dialogLeft,
+		buttons:[
+           {text:"审核通过",id:"shtg_but",iconCls:"icon-ok",handler:function(){
+        	   checkById();
+           }}
+        ]
 	});
 
 	$("#detail_div table").css("width",(setFitWidthInParent("body","detail_div_table"))+"px");
@@ -74,6 +80,31 @@ function initDetailDialog(){
 	//以下的是表格下面的面板
 	$(".window-shadow").eq(ddNum).css("margin-top","20px");
 	$(".window,.window .window-body").eq(ddNum).css("border-color","#ddd");
+
+	$("#detail_div #shtg_but").css("left","45%");
+	$("#detail_div #shtg_but").css("position","absolute");
+	
+	$(".dialog-button").css("background-color","#fff");
+	$(".dialog-button .l-btn-text").css("font-size","20px");
+}
+
+function checkById(){
+	var id=$("#detail_div #id").val();
+	var ddztMc=$("#detail_div #ddztMc").val();
+	var shlx='${requestScope.shlx}';
+	var shrId='${sessionScope.yongHu.id}';
+	$.post(ddglPath + "checkDingDanByIds",
+		{ids:id,ddztMc:ddztMc,shlx:shlx,shjg:true,shrId:shrId},
+		function(result){
+			if(result.status==1){
+				alert(result.msg);
+				history.go(-1);
+			}
+			else{
+				alert(result.msg);
+			}
+		}
+	,"json");
 }
 
 function setFitWidthInParent(parent,self){
@@ -103,6 +134,8 @@ function setFitWidthInParent(parent,self){
 		
 		<div id="detail_div">
 			<form id="form1" name="form1" method="post" action="" enctype="multipart/form-data">
+			<input type="hidden" id="id" value="${requestScope.dd.id }"/>
+			<input type="hidden" id="ddztMc" value="${requestScope.checkDdztMc}"/>
 			<table>
 			  <tr>
 				<td class="td1" align="right">

@@ -23,6 +23,12 @@ public class YongHuServiceImpl implements YongHuService {
 	}
 
 	@Override
+	public int edit(YongHu yh) {
+		// TODO Auto-generated method stub
+		return yongHuDao.edit(yh);
+	}
+
+	@Override
 	public int queryForInt(String yhm,Boolean check) {
 		// TODO Auto-generated method stub
 		return yongHuDao.queryForInt(yhm,check);

@@ -85,23 +85,22 @@ function initEditDialog(){
 	$(".dialog-button").css("background-color","#fff");
 	$(".dialog-button .l-btn-text").css("font-size","20px");
 
-	initZTCBB();
+	initCheckCBB();
 	initQXCBB();
 }
 
-function initZTCBB(){
+function initCheckCBB(){
 	var data=[];
 	data.push({"value":"","text":"请选择状态"});
-	data.push({"value":0,"text":"待审核"});
-	data.push({"value":1,"text":"审核通过"});
-	data.push({"value":2,"text":"审核未通过"});
+	data.push({"value":"false","text":"未审核"});
+	data.push({"value":"true","text":"已审核"});
 	
-	ztCBB=$("#edit_div #zt_cbb").combobox({
+	checkCBB=$("#edit_div #check_cbb").combobox({
 		valueField:"value",
 		textField:"text",
 		data:data,
 		onLoadSuccess:function(){
-			$(this).combobox("setValue",'${requestScope.yh.zt }');
+			$(this).combobox("setValue",'${requestScope.yh.check }');
 		}
 	});
 }
@@ -119,8 +118,9 @@ function initQXCBB(){
 				valueField:"value",
 				textField:"text",
 				data:data,
+				multiple:true,
 				onLoadSuccess:function(){
-					$(this).combobox("setValue",'${requestScope.yh.qxIds }');
+					$(this).combobox("setValues",'${requestScope.yh.qxIds }'.split(","));
 				}
 			});
 		}
@@ -128,27 +128,27 @@ function initQXCBB(){
 }
 
 function checkEdit(){
-	checkYHByIds();
+	editYongHu();
 }
 
-function checkYHByIds(){
-	var zt=ztCBB.combobox("getValue");
-	$("#edit_div #zt").val(zt);
-	var qxIds=qxCBB.combobox("getValue");
-	$("#edit_div #qxIds").val(qxIds);
+function editYongHu(){
+	var check=checkCBB.combobox("getValue");
+	$("#edit_div #check").val(check);
+	var qxIds=qxCBB.combobox("getValues");
+	$("#edit_div #qxIds").val(qxIds.toString().substring(1));
 	
 	var formData = new FormData($("#form1")[0]);
 	$.ajax({
 		type:"post",
-		url:xtglPath+"checkYHByIds",
+		url:xtglPath+"editYongHu",
 		dataType: "json",
 		data:formData,
 		cache: false,
 		processData: false,
 		contentType: false,
 		success: function (data){
-			if(data.status==1){
-				alert(data.msg);
+			if(data.message=="ok"){
+				alert(data.info);
 				history.go(-1);
 			}
 			else{
@@ -209,11 +209,11 @@ function setFitWidthInParent(parent,self){
 					${requestScope.yh.cjsj }
 				</td>
 				<td class="td1" align="right">
-					状态
+					审核状态
 				</td>
 				<td class="td2">
-					<input id="zt_cbb"/>
-					<input type="hidden" id="zt" name="zt" value="${requestScope.yh.zt }"/>
+					<input id="check_cbb"/>
+					<input type="hidden" id="check" name="check" value="${requestScope.yh.check }"/>
 				</td>
 			  </tr>
 			  <tr>

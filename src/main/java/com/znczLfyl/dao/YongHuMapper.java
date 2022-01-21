@@ -9,6 +9,8 @@ import com.znczLfyl.entity.*;
 public interface YongHuMapper {
 
 	int add(YongHu yh);
+
+	int edit(YongHu yh);
 	
 	//通过用户信息查询用户
 	YongHu getYongHu(YongHu yh);

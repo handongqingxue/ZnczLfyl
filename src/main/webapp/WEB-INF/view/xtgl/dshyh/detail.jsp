@@ -46,11 +46,16 @@ function initDialogPosition(){
 function initDetailDialog(){
 	dialogTop+=20;
 	$("#detail_div").dialog({
-		title:"用户信息",
+		title:"待审核用户信息",
 		width:setFitWidthInParent("body","detail_div"),
 		height:200,
 		top:dialogTop,
-		left:dialogLeft
+		left:dialogLeft,
+		buttons:[
+           {text:"审核通过",id:"shtg_but",iconCls:"icon-ok",handler:function(){
+        	   checkById();
+           }}
+        ]
 	});
 
 	$("#detail_div table").css("width",(setFitWidthInParent("body","detail_div_table"))+"px");
@@ -75,6 +80,28 @@ function initDetailDialog(){
 	//以下的是表格下面的面板
 	$(".window-shadow").eq(ddNum).css("margin-top","20px");
 	$(".window,.window .window-body").eq(ddNum).css("border-color","#ddd");
+
+	$("#detail_div #shtg_but").css("left","45%");
+	$("#detail_div #shtg_but").css("position","absolute");
+	
+	$(".dialog-button").css("background-color","#fff");
+	$(".dialog-button .l-btn-text").css("font-size","20px");
+}
+
+function checkById() {
+	var id=$("#detail_div #id").val();
+	$.post(xtglPath + "checkYHByIds",
+		{ids:id,check:true},
+		function(result){
+			if(result.status==1){
+				alert(result.msg);
+				history.go(-1);
+			}
+			else{
+				alert(result.msg);
+			}
+		}
+	,"json");
 }
 
 function setFitWidthInParent(parent,self){
@@ -100,8 +127,9 @@ function setFitWidthInParent(parent,self){
 <div class="layui-layout layui-layout-admin">
 	<%@include file="../../inc/side.jsp"%>
 	<div class="center_con_div" id="center_con_div">
-		<div class="page_location_div">用户-详情</div>
+		<div class="page_location_div">待审核用户-详情</div>
 		<div id="detail_div">
+			<input type="hidden" id="id" name="id" value="${requestScope.yh.id }"/>
 			<table>
 			  <tr>
 				<td class="td1" align="right">
@@ -125,22 +153,10 @@ function setFitWidthInParent(parent,self){
 					${requestScope.yh.cjsj }
 				</td>
 				<td class="td1" align="right">
-					审核状态
-				</td>
-				<td class="td2">
-					${requestScope.yh.check?'已审核':'未审核' }
-				</td>
-			  </tr>
-			  <tr>
-				<td class="td1" align="right">
 					简述
 				</td>
 				<td class="td2">
 					${requestScope.yh.js }
-				</td>
-				<td class="td1" align="right">
-				</td>
-				<td class="td2">
 				</td>
 			  </tr>
 			</table>

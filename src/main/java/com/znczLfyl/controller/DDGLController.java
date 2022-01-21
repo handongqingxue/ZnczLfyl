@@ -141,6 +141,8 @@ public class DDGLController {
 		String id = request.getParameter("id");
 		DingDan dd=dingDanService.selectById(id);
 		request.setAttribute("dd", dd);
+		request.setAttribute("checkDdztMc", DingDanZhuangTai.YI_SHEN_HE_TEXT);
+		request.setAttribute("shlx", ShenHeJiLu.XIA_DAN_SHEN_HE);
 		
 		return MODULE_NAME+"/zhcx/detail";
 	}

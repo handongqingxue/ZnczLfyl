@@ -39,6 +39,24 @@
 			</if>
 		</trim>
 	</insert>
+	<update id="edit" parameterType="com.znczLfyl.entity.YongHu">
+		update yong_hu set 
+		<trim suffixOverrides=",">
+			<if test="yhm!=null">
+				yhm=#{yhm},
+			</if>
+			<if test="mm!=null">
+				mm=#{mm},
+			</if>
+			<if test="zsxm!=null">
+				zsxm=#{zsxm},
+			</if>
+			<if test="qxIds!=null">
+				qxIds=#{qxIds},
+			</if>
+		</trim>
+		where id=#{id}
+	</update>
 	<select id="getYongHu" resultType="com.znczLfyl.entity.YongHu">
 		select * from yong_hu where yhm=#{yhm} and mm=#{mm}
 	</select>

@@ -8,6 +8,8 @@ public interface YongHuService {
 	
 	int add(YongHu yh);
 
+	int edit(YongHu yh);
+
 	int queryForInt(String yhm,Boolean check);
 
 	List<YongHu> queryList(String yhm, Boolean check, int page, int rows, String sort, String order);

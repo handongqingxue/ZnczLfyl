@@ -65,6 +65,17 @@ public class XTGLController {
 		
 		return MODULE_NAME+"/dshyh/list";
 	}
+
+	@RequestMapping(value="/dshyh/detail")
+	public String goDshyhDetail(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		String id = request.getParameter("id");
+		YongHu yh=yongHuService.selectById(id);
+		request.setAttribute("yh", yh);
+		
+		return MODULE_NAME+"/dshyh/detail";
+	}
 	
 	@RequestMapping(value="/qxcx/new")
 	public String goQxcxNew(HttpServletRequest request) {
@@ -91,6 +102,24 @@ public class XTGLController {
 		//publicService.selectNav(request);
 		
 		return MODULE_NAME+"/qxcx/list";
+	}
+	
+	@RequestMapping(value="/editYongHu")
+	@ResponseBody
+	public Map<String, Object> editYongHu(YongHu yh) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		int count=yongHuService.edit(yh);
+		if(count>0) {
+			jsonMap.put("message", "ok");
+			jsonMap.put("info", "编辑用户信息成功！");
+		}
+		else {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "编辑用户信息失败！");
+		}
+		return jsonMap;
 	}
 	
 	@RequestMapping(value="/queryYongHuList")
