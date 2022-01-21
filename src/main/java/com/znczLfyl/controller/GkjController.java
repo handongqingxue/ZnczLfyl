@@ -203,4 +203,21 @@ public class GkjController {
 		}
 		return jsonMap;
 	}
+
+	@RequestMapping(value="/checkDingDanIfExistByZt")
+	@ResponseBody
+	public Map<String, Object> checkDingDanIfExistByZt(String ddztMc, Integer yjzt, Integer ejzt) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		boolean bool=dingDanService.checkIfExistByZt(ddztMc, yjzt, ejzt);
+		if(bool) {
+			jsonMap.put("status", "ok");
+			jsonMap.put("message", "¶©µ¥ÒÑ´æÔÚ£¡");
+		}
+		else {
+			jsonMap.put("status", "no");
+		}
+		return jsonMap;
+	}
 }

@@ -114,4 +114,11 @@ public class DingDanServiceImpl implements DingDanService {
 		int count=dingDanDao.getCountByDdh(ddh);
 		return count==0?false:true;
 	}
+
+	@Override
+	public boolean checkIfExistByZt(String ddztMc, Integer yjzt, Integer ejzt) {
+		// TODO Auto-generated method stub
+		int count=dingDanDao.getCountByZt(ddztMc, yjzt, ejzt);
+		return count==0?false:true;
+	}
 }
