@@ -48,7 +48,7 @@ function initDetailDialog(){
 	$("#detail_div").dialog({
 		title:"订单信息",
 		width:setFitWidthInParent("body","detail_div"),
-		height:470,
+		height:415,
 		top:dialogTop,
 		left:dialogLeft,
 		buttons:[
@@ -194,20 +194,6 @@ function setFitWidthInParent(parent,self){
 				</td>
 				<td class="td2">
 					${requestScope.dd.zlceb }
-				</td>
-			  </tr>
-			  <tr>
-				<td class="td1" align="right">
-					单价
-				</td>
-				<td class="td2">
-					${requestScope.dd.dj }
-				</td>
-				<td class="td1" align="right">
-					金额
-				</td>
-				<td class="td2">
-					${requestScope.dd.je }
 				</td>
 			  </tr>
 			  <tr>
