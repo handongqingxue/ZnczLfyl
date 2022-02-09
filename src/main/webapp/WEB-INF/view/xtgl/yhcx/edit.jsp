@@ -134,8 +134,12 @@ function checkEdit(){
 function editYongHu(){
 	var check=checkCBB.combobox("getValue");
 	$("#edit_div #check").val(check);
-	var qxIds=qxCBB.combobox("getValues");
-	$("#edit_div #qxIds").val(qxIds.toString().substring(1));
+	var qxIdsArr=qxCBB.combobox("getValues");
+	var qxIds=qxIdsArr.sort().toString();
+	if(qxIds.substring(0,1)==",")
+		qxIds=qxIds.substring(1);
+	qxCBB.combobox("setValues",qxIds.split(","));
+	$("#edit_div #qxIds").val(qxIds);
 	
 	var formData = new FormData($("#form1")[0]);
 	$.ajax({

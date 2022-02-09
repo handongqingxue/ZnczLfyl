@@ -30,6 +30,7 @@
 }
 .tab1_div .toolbar .row_div .ddh_inp,
 .tab1_div .toolbar .row_div .cph_inp,
+.input_cph_div .cph_inp,
 .tab1_div .toolbar .row_div .yssMc_inp,
 .tab1_div .toolbar .row_div .wzMc_inp,
 .tab1_div .toolbar .row_div .fhdwMc_inp,
@@ -40,7 +41,7 @@
 	height: 25px;
 }
 
-.check_ddxx_bg_div{
+.check_ddxx_bg_div,.input_cph_bg_div{
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0,0,0,.45);
@@ -58,6 +59,17 @@
 	left: 0;
 	right: 0;
 }
+
+.input_cph_div{
+	width: 500px;
+	height: 200px;
+	margin: 200px auto 0;
+	background-color: #fff;
+	border-radius:5px;
+	position: absolute;
+	left: 0;
+	right: 0;
+}
 </style>
 <title>Insert title here</title>
 <%@include file="../../inc/js.jsp"%>
@@ -67,13 +79,16 @@ var ddglPath=path+'ddgl/';
 var dialogTop=10;
 var dialogLeft=20;
 var cddxxdNum=0;
+var icphdNum=1;
 $(function(){
 	initDDZTCBB();
 	initSearchLB();
+	initManualLB();
 	initAddLB();
 	initRemoveLB();
 	initTab1();
 	initCheckDDXXDialog();//0
+	initInputCphDialog();//1
 	
 	initDialogPosition();//将不同窗体移动到主要内容区域
 });
@@ -82,9 +97,16 @@ function initDialogPosition(){
 	var cddxxdpw=$("body").find(".panel.window").eq(cddxxdNum);
 	var cddxxdws=$("body").find(".window-shadow").eq(cddxxdNum);
 
+	var icphdpw=$("body").find(".panel.window").eq(icphdNum);
+	var icphdws=$("body").find(".window-shadow").eq(icphdNum);
+
 	var cddxxdDiv=$("#check_ddxx_div");
 	cddxxdDiv.append(cddxxdpw);
 	cddxxdDiv.append(cddxxdws);
+
+	var icphdDiv=$("#input_cph_div");
+	icphdDiv.append(icphdpw);
+	icphdDiv.append(icphdws);
 }
 
 function initCheckDDXXDialog(){
@@ -138,6 +160,53 @@ function initCheckDDXXDialog(){
 	$(".dialog-button .l-btn-text").css("font-size","20px");
 }
 
+function initInputCphDialog(){
+	$("#input_cph_dialog_div").dialog({
+		title:"录入车牌号",
+		width:setFitWidthInParent("#input_cph_div","input_cph_dialog_div"),
+		height:150,
+		top:5,
+		left:dialogLeft,
+		buttons:[
+           {text:"确定",id:"ok_but",iconCls:"icon-ok",handler:function(){
+        	   
+           }},
+           {text:"取消",id:"cancel_but",iconCls:"icon-cancel",handler:function(){
+        	   openInputCphDialog(false);
+           }}
+        ]
+	});
+
+	$("#input_cph_dialog_div table").css("width",(setFitWidthInParent("#input_cph_div","input_cph_dialog_table"))+"px");
+	$("#input_cph_dialog_div table").css("magin","-100px");
+	$("#input_cph_dialog_div table td").css("padding-left","40px");
+	$("#input_cph_dialog_div table td").css("padding-right","20px");
+	$("#input_cph_dialog_div table td").css("font-size","15px");
+	$("#input_cph_dialog_div table .td1").css("width","30%");
+	$("#input_cph_dialog_div table .td2").css("width","60%");
+	$("#input_cph_dialog_div table tr").css("height","45px");
+
+	$(".panel.window").eq(icphdNum).css("margin-top","20px");
+	$(".panel.window .panel-title").eq(icphdNum).css("color","#000");
+	$(".panel.window .panel-title").eq(icphdNum).css("font-size","15px");
+	$(".panel.window .panel-title").eq(icphdNum).css("padding-left","10px");
+	
+	$(".panel-header, .panel-body").css("border-color","#ddd");
+	
+	//以下的是表格下面的面板
+	$(".window-shadow").eq(icphdNum).css("margin-top","20px");
+	$(".window,.window .window-body").eq(icphdNum).css("border-color","#ddd");
+
+	$("#input_cph_dialog_div #ok_but").css("left","30%");
+	$("#input_cph_dialog_div #ok_but").css("position","absolute");
+
+	$("#input_cph_dialog_div #cancel_but").css("left","50%");
+	$("#input_cph_dialog_div #cancel_but").css("position","absolute");
+	
+	$(".dialog-button").css("background-color","#fff");
+	$(".dialog-button .l-btn-text").css("font-size","20px");
+}
+
 function initDDZTCBB(){
 	var data=[];
 	data.push({"value":"","text":"请选择"});
@@ -172,6 +241,20 @@ function initSearchLB(){
 			var sjsfzh=$("#toolbar #sjsfzh").val();
 			tab1.datagrid("load",{ddh:ddh,ddztId:ddztId,cph:cph,yssMc:yssMc,wzMc:wzMc,
 				fhdwMc:fhdwMc,shbmMc:shbmMc,sjxm:sjxm,sjsfzh:sjsfzh});
+		}
+	});
+}
+
+function initManualLB(){
+	$("#manual_but").linkbutton({
+		iconCls:"icon-save",
+		onClick:function(){
+			var rows=tab1.datagrid("getSelections");
+			if (rows.length == 0) {
+				$.messager.alert("提示","请选择要录入车牌号的信息！","warning");
+				return false;
+			}
+			openInputCphDialog(true);
 		}
 	});
 }
@@ -321,6 +404,15 @@ function openCheckDDXXDialog(flag,row){
 	}
 }
 
+function openInputCphDialog(flag){
+	if(flag){
+		$("#input_cph_bg_div").css("display","block");
+	}
+	else{
+		$("#input_cph_bg_div").css("display","none");
+	}
+}
+
 function checkById(){
 	var id=$("#check_ddxx_div #id").val();
 	var ddztMc=$("#check_ddxx_div #ddztMc").val();
@@ -383,7 +475,11 @@ function setFitWidthInParent(parent,self){
 		space=250;
 		break;
 	case "check_ddxx_dialog_div":
+	case "input_cph_dialog_div":
 		space=50;
+		break;
+	case "input_cph_dialog_table":
+		space=68;
 		break;
 	case "panel_window":
 		space=355;
@@ -421,6 +517,7 @@ function setFitWidthInParent(parent,self){
 				<span class="sjsfzh_span">司机身份证号：</span>
 				<input type="text" class="sjsfzh_inp" id="sjsfzh" placeholder="请输入司机身份证号"/>
 				<a class="search_but" id="search_but">查询</a>
+				<a id="manual_but">人工</a>
 				<a id="add_but">添加</a>
 				<a id="remove_but">删除</a>
 			</div>
@@ -529,6 +626,23 @@ function setFitWidthInParent(parent,self){
 					<td class="td1" align="right">
 					</td>
 					<td class="td2">
+					</td>
+				  </tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<div class="input_cph_bg_div" id="input_cph_bg_div">
+		<div class="input_cph_div" id="input_cph_div">
+			<div class="input_cph_dialog_div" id="input_cph_dialog_div">
+				<table>
+				  <tr>
+					<td class="td1" align="right">
+						车牌号
+					</td>
+					<td class="td2">
+						<input type="text" class="cph_inp" id="cph_inp" placeholder="请输入车牌号"/>
 					</td>
 				  </tr>
 				</table>

@@ -76,6 +76,41 @@
 	height: 36px;
 }
 </style>
+<script type="text/javascript">
+$(function(){
+	$(".ddgl_first_div").css("display","none");
+	$(".ddzt_item_li").css("display","none");
+	$(".drk_item_li").css("display","none");
+	$(".zhcx_item_li").css("display","none");
+	$(".shjl_item_li").css("display","none");
+
+	$(".gbgl_first_div").css("display","none");
+	$(".bdjl_item_li").css("display","none");
+	$(".gbjl_item_li").css("display","none");
+	$(".dyjsh_item_li").css("display","none");
+	$(".dejsh_item_li").css("display","none");
+	
+	var qxIds='${sessionScope.yongHu.qxIds}';
+	var qxIdsArr=qxIds.split(",");
+	for(var i=0;i<qxIdsArr.length;i++){
+		if(qxIdsArr[i]==2){
+			$(".ddgl_first_div").css("display","block");
+			$(".ddzt_item_li").css("display","block");
+			$(".drk_item_li").css("display","block");
+			$(".zhcx_item_li").css("display","block");
+			$(".shjl_item_li").css("display","block");
+			
+		}
+		if(qxIdsArr[i]==3){
+			$(".gbgl_first_div").css("display","block");
+			$(".bdjl_item_li").css("display","block");
+			$(".gbjl_item_li").css("display","block");
+			$(".dyjsh_item_li").css("display","block");
+			$(".dejsh_item_li").css("display","block");
+		}
+	}
+});
+</script>
 </head>
 <body>
 <div class="layui-header header_div">
@@ -97,70 +132,70 @@
 	<div class="layui-side ">
 		<div class="layui-side-scroll">
 			<ul class="layui-nav layui-nav-tree layui-inline level-ul" lay-filter="demo">
-				<div class="first-level-div">
+				<div class="first-level-div ddgl_first_div">
 					<li class="layui-nav-item first-level">
 						<a>
 							订单管理
 						</a>
 					</li>
 					<div class="line_div"></div>
-					<li class="layui-nav-item">
+					<li class="layui-nav-item ddzt_item_li">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>ddgl/ddzt/list">
 							&nbsp;&nbsp;&nbsp;订单状态
 						</a>
 					</li>
 					<div class="line_div"></div>
-					<li class="layui-nav-item">
+					<li class="layui-nav-item drk_item_li">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>ddgl/drk/list">
 							&nbsp;&nbsp;&nbsp;待入库
 						</a>
 					</li>
 					<div class="line_div"></div>
-					<li class="layui-nav-item">
+					<li class="layui-nav-item zhcx_item_li">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>ddgl/zhcx/list">
 							&nbsp;&nbsp;&nbsp;综合查询
 						</a>
 					</li>
 					<div class="line_div"></div>
-					<li class="layui-nav-item">
+					<li class="layui-nav-item shjl_item_li">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>ddgl/shjl/list">
 							&nbsp;&nbsp;&nbsp;审核记录
 						</a>
 					</li>
 				</div>
-				<div class="first-level-div">
+				<div class="first-level-div gbgl_first_div">
 					<li class="layui-nav-item first-level">
 						<a>
 							过磅管理
 						</a>
 					</li>
 					<div class="line_div"></div>
-					<li class="layui-nav-item">
+					<li class="layui-nav-item bdjl_item_li">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>gbgl/bdjl/list">
 							&nbsp;&nbsp;&nbsp;磅单记录
 						</a>
 					</li>
 					<div class="line_div"></div>
-					<li class="layui-nav-item">
+					<li class="layui-nav-item gbjl_item_li">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>gbgl/gbjl/list">
 							&nbsp;&nbsp;&nbsp;过磅记录
 						</a>
 					</li>
 					<div class="line_div"></div>
-					<li class="layui-nav-item">
+					<li class="layui-nav-item dyjsh_item_li">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>gbgl/dyjsh/list">
 							&nbsp;&nbsp;&nbsp;待一检审核
 						</a>
 					</li>
 					<div class="line_div"></div>
-					<li class="layui-nav-item">
+					<li class="layui-nav-item dejsh_item_li">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>gbgl/dejsh/list">
 							&nbsp;&nbsp;&nbsp;待二检审核
