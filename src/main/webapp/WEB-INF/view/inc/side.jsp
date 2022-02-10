@@ -78,6 +78,10 @@
 </style>
 <script type="text/javascript">
 $(function(){
+	showLeftMenuByQx();
+});
+
+function showLeftMenuByQx(){
 	$(".ddgl_first_div").css("display","none");
 	$(".ddzt_item_li").css("display","none");
 	$(".drk_item_li").css("display","none");
@@ -90,26 +94,72 @@ $(function(){
 	$(".dyjsh_item_li").css("display","none");
 	$(".dejsh_item_li").css("display","none");
 	
-	var qxIds='${sessionScope.yongHu.qxIds}';
-	var qxIdsArr=qxIds.split(",");
-	for(var i=0;i<qxIdsArr.length;i++){
-		if(qxIdsArr[i]==2){
-			$(".ddgl_first_div").css("display","block");
-			$(".ddzt_item_li").css("display","block");
-			$(".drk_item_li").css("display","block");
-			$(".zhcx_item_li").css("display","block");
-			$(".shjl_item_li").css("display","block");
-			
-		}
-		if(qxIdsArr[i]==3){
-			$(".gbgl_first_div").css("display","block");
-			$(".bdjl_item_li").css("display","block");
-			$(".gbjl_item_li").css("display","block");
-			$(".dyjsh_item_li").css("display","block");
-			$(".dejsh_item_li").css("display","block");
+	$(".wzgl_first_div").css("display","none");
+	$(".wzlx_item_li").css("display","none");
+	$(".wzcx_item_li").css("display","none");
+	
+	$(".dwgl_first_div").css("display","none");
+	$(".yss_item_li").css("display","none");
+	$(".fhdw_item_li").css("display","none");
+	$(".shbm_item_li").css("display","none");
+
+	$(".xtgl_first_div").css("display","none");
+	$(".yhcx_item_li").css("display","none");
+	$(".dshyh_item_li").css("display","none");
+	$(".qxcx_item_li").css("display","none");
+	
+	var yhm='${sessionScope.yongHu.yhm}';
+	if(yhm=="admin"){
+		$(".ddgl_first_div").css("display","block");
+		$(".ddzt_item_li").css("display","block");
+		$(".drk_item_li").css("display","block");
+		$(".zhcx_item_li").css("display","block");
+		$(".shjl_item_li").css("display","block");
+
+		$(".gbgl_first_div").css("display","block");
+		$(".bdjl_item_li").css("display","block");
+		$(".gbjl_item_li").css("display","block");
+		$(".dyjsh_item_li").css("display","block");
+		$(".dejsh_item_li").css("display","block");
+		
+		$(".xtgl_first_div").css("display","block");
+		$(".yhcx_item_li").css("display","block");
+		$(".dshyh_item_li").css("display","block");
+		$(".qxcx_item_li").css("display","block");
+	}
+	else{
+		var qxIds='${sessionScope.yongHu.qxIds}';
+		var qxIdsArr=qxIds.split(",");
+		for(var i=0;i<qxIdsArr.length;i++){
+			if(qxIdsArr[i]==1){
+				$(".ddgl_first_div").css("display","block");
+				$(".zhcx_item_li").css("display","block");
+			}
+			if(qxIdsArr[i]==2){
+				$(".ddgl_first_div").css("display","block");
+				$(".drk_item_li").css("display","block");
+				$(".zhcx_item_li").css("display","block");
+				$(".shjl_item_li").css("display","block");
+				
+				$(".wzgl_first_div").css("display","block");
+				$(".wzlx_item_li").css("display","block");
+				$(".wzcx_item_li").css("display","block");
+
+				$(".dwgl_first_div").css("display","block");
+				$(".yss_item_li").css("display","block");
+				$(".fhdw_item_li").css("display","block");
+				$(".shbm_item_li").css("display","block");
+			}
+			if(qxIdsArr[i]==3){
+				$(".gbgl_first_div").css("display","block");
+				$(".bdjl_item_li").css("display","block");
+				$(".gbjl_item_li").css("display","block");
+				$(".dyjsh_item_li").css("display","block");
+				$(".dejsh_item_li").css("display","block");
+			}
 		}
 	}
-});
+}
 </script>
 </head>
 <body>
@@ -202,49 +252,49 @@ $(function(){
 						</a>
 					</li>
 				</div>
-				<div class="first-level-div">
+				<div class="first-level-div wzgl_first_div">
 					<li class="layui-nav-item first-level">
 						<a>
 							物资管理
 						</a>
 					</li>
 					<div class="line_div"></div>
-					<li class="layui-nav-item">
+					<li class="layui-nav-item wzlx_item_li">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>wzgl/wzlx/list">
 							&nbsp;&nbsp;&nbsp;物资类型
 						</a>
 					</li>
 					<div class="line_div"></div>
-					<li class="layui-nav-item">
+					<li class="layui-nav-item wzcx_item_li">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>wzgl/wzcx/list">
 							&nbsp;&nbsp;&nbsp;物资查询
 						</a>
 					</li>
 				</div>
-				<div class="first-level-div">
+				<div class="first-level-div dwgl_first_div">
 					<li class="layui-nav-item first-level">
 						<a>
 							单位管理
 						</a>
 					</li>
 					<div class="line_div"></div>
-					<li class="layui-nav-item">
+					<li class="layui-nav-item yss_item_li">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>dwgl/yss/list">
 							&nbsp;&nbsp;&nbsp;运输商
 						</a>
 					</li>
 					<div class="line_div"></div>
-					<li class="layui-nav-item">
+					<li class="layui-nav-item fhdw_item_li">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>dwgl/fhdw/list">
 							&nbsp;&nbsp;&nbsp;发货单位
 						</a>
 					</li>
 					<div class="line_div"></div>
-					<li class="layui-nav-item">
+					<li class="layui-nav-item shbm_item_li">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>dwgl/shbm/list">
 							&nbsp;&nbsp;&nbsp;收货部门
@@ -265,28 +315,28 @@ $(function(){
 						</a>
 					</li>
 				</div>
-				<div class="first-level-div">
+				<div class="first-level-div xtgl_first_div">
 					<li class="layui-nav-item first-level">
 						<a>
 							系统管理
 						</a>
 					</li>
 					<div class="line_div"></div>
-					<li class="layui-nav-item">
+					<li class="layui-nav-item yhcx_item_li">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>xtgl/yhcx/list">
 							&nbsp;&nbsp;&nbsp;用户查询
 						</a>
 					</li>
 					<div class="line_div"></div>
-					<li class="layui-nav-item">
+					<li class="layui-nav-item dshyh_item_li">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>xtgl/dshyh/list">
 							&nbsp;&nbsp;&nbsp;待审核用户
 						</a>
 					</li>
 					<div class="line_div"></div>
-					<li class="layui-nav-item">
+					<li class="layui-nav-item qxcx_item_li">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>xtgl/qxcx/list">
 							&nbsp;&nbsp;&nbsp;权限查询

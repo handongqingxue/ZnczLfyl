@@ -40,6 +40,9 @@
 	width: 120px;
 	height: 25px;
 }
+.tab1_div .check_a{
+	visibility: hidden;
+}
 
 .check_ddxx_bg_div,.input_cph_bg_div{
 	width: 100%;
@@ -80,6 +83,8 @@ var dialogTop=10;
 var dialogLeft=20;
 var cddxxdNum=0;
 var icphdNum=1;
+var yhm='${sessionScope.yongHu.yhm}';
+var qxIds='${sessionScope.yongHu.qxIds}';
 $(function(){
 	initDDZTCBB();
 	initSearchLB();
@@ -91,7 +96,34 @@ $(function(){
 	initInputCphDialog();//1
 	
 	initDialogPosition();//将不同窗体移动到主要内容区域
+	showCompontByQx();
 });
+
+function showCompontByQx(){
+	manualLB.hide();
+	addLB.hide();
+	removeLB.hide();
+	//alert(yhm)
+	if(yhm=="admin"){
+		manualLB.show();
+		removeLB.show();
+	}
+	else{
+		var qxIdsArr=qxIds.split(",");
+		for(var i=0;i<qxIdsArr.length;i++){
+			if(qxIdsArr[i]==1){
+			}
+			if(qxIdsArr[i]==2){
+				setTimeout(function(){
+					$(".tab1_div .check_a").css("visibility","visible");
+				},2000)
+			}
+			if(qxIdsArr[i]==3){
+				manualLB.show();
+			}
+		}
+	}
+}
 
 function initDialogPosition(){
 	var cddxxdpw=$("body").find(".panel.window").eq(cddxxdNum);
@@ -246,7 +278,7 @@ function initSearchLB(){
 }
 
 function initManualLB(){
-	$("#manual_but").linkbutton({
+	manualLB=$("#manual_but").linkbutton({
 		iconCls:"icon-save",
 		onClick:function(){
 			var rows=tab1.datagrid("getSelections");
@@ -260,7 +292,7 @@ function initManualLB(){
 }
 
 function initAddLB(){
-	$("#add_but").linkbutton({
+	addLB=$("#add_but").linkbutton({
 		iconCls:"icon-add",
 		onClick:function(){
 			location.href=ddglPath+"zhcx/new";
@@ -269,7 +301,7 @@ function initAddLB(){
 }
 
 function initRemoveLB(){
-	$("#remove_but").linkbutton({
+	removeLB=$("#remove_but").linkbutton({
 		iconCls:"icon-remove",
 		onClick:function(){
 			deleteByIds();
@@ -347,7 +379,7 @@ function initTab1(){
             		+"<a href=\"detail?id="+value+"\">详情</a>&nbsp;&nbsp;";
            		if(row.ddztMc=="待审核"){
            			var rowJson = JSON.stringify(row).replace(/"/g, '&quot;');
-           			str+="<a onclick=\"openCheckDDXXDialog(true,"+rowJson+")\">审核</a>";
+           			str+="<a class=\"check_a\" onclick=\"openCheckDDXXDialog(true,"+rowJson+")\">审核</a>";
            		}
             	return str;
             }}
