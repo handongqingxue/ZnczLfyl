@@ -37,7 +37,15 @@ $(function(){
 	initAddLB();
 	initRemoveLB();
 	initTab1();
+	showCompontByQx();
 });
+
+function showCompontByQx(){
+	removeLB.hide();
+	if(yhm=="admin"){
+		removeLB.show();
+	}
+}
 
 function initJCSJKSDTB(){
 	jcsjksDTB=$("#jcsjks_dtb").datetimebox({
@@ -74,7 +82,7 @@ function initAddLB(){
 }
 
 function initRemoveLB(){
-	$("#remove_but").linkbutton({
+	removeLB=$("#remove_but").linkbutton({
 		iconCls:"icon-remove",
 		onClick:function(){
 			deleteByIds();

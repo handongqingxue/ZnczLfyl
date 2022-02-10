@@ -83,8 +83,6 @@ var dialogTop=10;
 var dialogLeft=20;
 var cddxxdNum=0;
 var icphdNum=1;
-var yhm='${sessionScope.yongHu.yhm}';
-var qxIds='${sessionScope.yongHu.qxIds}';
 $(function(){
 	initDDZTCBB();
 	initSearchLB();

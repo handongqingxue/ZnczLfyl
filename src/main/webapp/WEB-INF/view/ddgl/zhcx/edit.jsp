@@ -40,7 +40,42 @@ $(function(){
 	initEditDialog();//0
 
 	initDialogPosition();//将不同窗体移动到主要内容区域
+	showCompontByQx();
 });
+
+function showCompontByQx(){
+	if(yhm=="admin"){
+		$("#edit_div #ddh").removeAttr("disabled");
+		lxlxCBB.combobox({disabled:false});
+		$("#edit_div #yzxzl").removeAttr("disabled");
+		$("#edit_div #sjzl").removeAttr("disabled");
+		setTimeout(function(){
+			wzlxCBB.combobox({disabled:false});
+			yssCBB.combobox({disabled:false});
+			fhdwCBB.combobox({disabled:false});
+			shbmCBB.combobox({disabled:false});
+		},"2000");
+		wzCBB.combobox({disabled:false});
+	}
+	else{
+		var qxIdsArr=qxIds.split(",");
+		for(var i=0;i<qxIdsArr.length;i++){
+			if(qxIdsArr[i]==2){
+				$("#edit_div #ddh").removeAttr("disabled");
+				lxlxCBB.combobox({disabled:false});
+				$("#edit_div #yzxzl").removeAttr("disabled");
+				$("#edit_div #sjzl").removeAttr("disabled");
+				setTimeout(function(){
+					wzlxCBB.combobox({disabled:false});
+					yssCBB.combobox({disabled:false});
+					fhdwCBB.combobox({disabled:false});
+					shbmCBB.combobox({disabled:false});
+				},"2000");
+				wzCBB.combobox({disabled:false});
+			}
+		}
+	}
+}
 
 function initDialogPosition(){
 	//基本属性组
@@ -351,13 +386,13 @@ function setFitWidthInParent(parent,self){
 					订单号
 				</td>
 				<td class="td2">
-					<input type="text" class="ddh_inp" id="ddh" name="ddh" value="${requestScope.dd.ddh }" placeholder="请输入订单号" onfocus="focusName()" onblur="checkName()"/>
+					<input type="text" class="ddh_inp" id="ddh" name="ddh" value="${requestScope.dd.ddh }" placeholder="请输入订单号" disabled="disabled" onfocus="focusName()" onblur="checkName()"/>
 				</td>
 				<td class="td1" align="right">
 					司机身份证号
 				</td>
 				<td class="td2">
-					<input type="text" class="sjsfzh_inp" id="sjsfzh" name="sjsfzh" value="${requestScope.dd.sjsfzh }" placeholder="请输入司机身份证号"/>
+					<input type="text" class="sjsfzh_inp" id="sjsfzh" name="sjsfzh" value="${requestScope.dd.sjsfzh }" placeholder="请输入司机身份证号" />
 				</td>
 			  </tr>
 			  <tr>
@@ -379,14 +414,14 @@ function setFitWidthInParent(parent,self){
 					流向类型
 				</td>
 				<td class="td2">
-					<input id="lxlx_cbb"/>
+					<input id="lxlx_cbb" disabled="disabled"/>
 					<input type="hidden" id="lxlx" name="lxlx" value="${requestScope.dd.cph }"/>
 				</td>
 				<td class="td1" align="right">
 					预装卸重量
 				</td>
 				<td class="td2">
-					<input type="number" class="yzxzl_inp" id="yzxzl" name="yzxzl" value="${requestScope.dd.yzxzl }" placeholder="请输入预装卸重量"/>
+					<input type="number" class="yzxzl_inp" id="yzxzl" name="yzxzl" value="${requestScope.dd.yzxzl }" placeholder="请输入预装卸重量" disabled="disabled"/>
 				</td>
 			  </tr>
 			  <tr>
@@ -394,7 +429,7 @@ function setFitWidthInParent(parent,self){
 					实际重量
 				</td>
 				<td class="td2">
-					<input type="number" class="sjzl_inp" id="sjzl" name="sjzl" value="${requestScope.dd.sjzl }" placeholder="请输入实际重量"/>
+					<input type="number" class="sjzl_inp" id="sjzl" name="sjzl" value="${requestScope.dd.sjzl }" placeholder="请输入实际重量" disabled="disabled"/>
 				</td>
 				<td class="td1" align="right">
 					重量差额比
@@ -408,14 +443,14 @@ function setFitWidthInParent(parent,self){
 					物资类型
 				</td>
 				<td class="td2">
-					<input id="wzlx_cbb"/>
+					<input id="wzlx_cbb" disabled="disabled"/>
 					<input type="hidden" id="wzlxId" name="wzlxId" value="${requestScope.dd.wzlxId }"/>
 				</td>
 				<td class="td1" align="right">
 					物资名称
 				</td>
 				<td class="td2">
-					<input id="wz_cbb"/>
+					<input id="wz_cbb" disabled="disabled"/>
 					<input type="hidden" id="wzId" name="wzId" value="${requestScope.dd.wzId }"/>
 				</td>
 			  </tr>
@@ -424,14 +459,14 @@ function setFitWidthInParent(parent,self){
 					运输商
 				</td>
 				<td class="td2">
-					<input id="yss_cbb"/>
+					<input id="yss_cbb" disabled="disabled"/>
 					<input type="hidden" id="yssId" name="yssId"/>
 				</td>
 				<td class="td1" align="right">
 					发货单位
 				</td>
 				<td class="td2">
-					<input id="fhdw_cbb"/>
+					<input id="fhdw_cbb" disabled="disabled"/>
 					<input type="hidden" id="fhdwId" name="fhdwId"/>
 				</td>
 			  </tr>
@@ -440,7 +475,7 @@ function setFitWidthInParent(parent,self){
 					收货部门
 				</td>
 				<td class="td2">
-					<input id="shbm_cbb"/>
+					<input id="shbm_cbb" disabled="disabled"/>
 					<input type="hidden" id="shbmId" name="shbmId"/>
 				</td>
 				<td class="td1" align="right">

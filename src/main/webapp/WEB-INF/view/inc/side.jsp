@@ -77,6 +77,8 @@
 }
 </style>
 <script type="text/javascript">
+var yhm='${sessionScope.yongHu.yhm}';
+var qxIds='${sessionScope.yongHu.qxIds}';
 $(function(){
 	showLeftMenuByQx();
 });
@@ -108,7 +110,6 @@ function showLeftMenuByQx(){
 	$(".dshyh_item_li").css("display","none");
 	$(".qxcx_item_li").css("display","none");
 	
-	var yhm='${sessionScope.yongHu.yhm}';
 	if(yhm=="admin"){
 		$(".ddgl_first_div").css("display","block");
 		$(".ddzt_item_li").css("display","block");
@@ -128,7 +129,6 @@ function showLeftMenuByQx(){
 		$(".qxcx_item_li").css("display","block");
 	}
 	else{
-		var qxIds='${sessionScope.yongHu.qxIds}';
 		var qxIdsArr=qxIds.split(",");
 		for(var i=0;i<qxIdsArr.length;i++){
 			if(qxIdsArr[i]==1){

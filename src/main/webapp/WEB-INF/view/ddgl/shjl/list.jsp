@@ -55,7 +55,15 @@ $(function(){
 	initSearchLB();
 	initRemoveLB();
 	initTab1();
+	showCompontByQx();
 });
+
+function showCompontByQx(){
+	removeLB.hide();
+	if(yhm=="admin"){
+		removeLB.show();
+	}
+}
 
 function initSHLXCBB(){
 	var data=[];
@@ -108,7 +116,7 @@ function initSearchLB(){
 }
 
 function initRemoveLB(){
-	$("#remove_but").linkbutton({
+	removeLB=$("#remove_but").linkbutton({
 		iconCls:"icon-remove",
 		onClick:function(){
 			deleteByIds();
