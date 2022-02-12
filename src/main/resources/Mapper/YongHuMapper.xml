@@ -16,7 +16,7 @@
 				zsxm,
 			</if>
 				cjsj,
-				check,
+				`check`,
 			<if test="qxIds!=null">
 				qxIds,
 			</if>

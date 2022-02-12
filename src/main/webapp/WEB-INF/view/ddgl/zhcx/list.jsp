@@ -104,6 +104,7 @@ function showCompontByQx(){
 	//alert(yhm)
 	if(yhm=="admin"){
 		manualLB.show();
+		addLB.show();
 		removeLB.show();
 	}
 	else{

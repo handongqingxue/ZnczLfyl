@@ -298,6 +298,7 @@ function editDingDanZongHeChaXun(){
 	$("#edit_div #shbmId").val(shbmId);
 	
 	var formData = new FormData($("#form1")[0]);
+	
 	$.ajax({
 		type:"post",
 		url:ddglPath+"editDingDanZongHeChaXun",
@@ -415,7 +416,7 @@ function setFitWidthInParent(parent,self){
 				</td>
 				<td class="td2">
 					<input id="lxlx_cbb" disabled="disabled"/>
-					<input type="hidden" id="lxlx" name="lxlx" value="${requestScope.dd.cph }"/>
+					<input type="hidden" id="lxlx" name="lxlx" value="${requestScope.dd.lxlx }"/>
 				</td>
 				<td class="td1" align="right">
 					预装卸重量

@@ -302,6 +302,7 @@ public class DDGLController {
 	public Map<String, Object> editDingDanZongHeChaXun(DingDan dd,
 			HttpServletRequest request) {
 		
+		System.out.println("1111111111");
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		try {
 			int count=dingDanService.edit(dd);
