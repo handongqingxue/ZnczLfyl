@@ -143,8 +143,9 @@ function initTab1(){
             {field:"zlceb",title:"重量差额比",width:100},
             {field:"bjsj",title:"编辑时间",width:150},
             {field:"id",title:"操作",width:50,formatter:function(value,row){
-            	var str="<a href=\"detail?id="+value+"\">详情</a>";
-            	return str;
+            	//var str="<a href=\"detail?id="+value+"\">详情</a>";
+            	//return str;
+            	return "";
             }}
 	    ]],
         onLoadSuccess:function(data){

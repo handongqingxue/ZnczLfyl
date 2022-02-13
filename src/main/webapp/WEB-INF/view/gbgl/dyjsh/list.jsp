@@ -158,8 +158,9 @@ function initTab1(){
 			}},
             {field:"gbsj",title:"过磅时间",width:150},
             {field:"id",title:"操作",width:50,formatter:function(value,row){
-            	var str="<a href=\"detail?id="+value+"\">详情</a>";
-            	return str;
+            	//var str="<a href=\"detail?id="+value+"\">详情</a>";
+            	//return str;
+            	return "";
             }}
 	    ]],
         onLoadSuccess:function(data){
