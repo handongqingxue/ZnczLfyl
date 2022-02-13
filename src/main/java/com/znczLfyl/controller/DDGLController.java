@@ -92,7 +92,7 @@ public class DDGLController {
 		
 		//publicService.selectNav(request);
 		request.setAttribute("ddztMc", DingDanZhuangTai.DAI_RU_KU_TEXT);
-		request.setAttribute("checkDdztMc", DingDanZhuangTai.ER_JIAN_SHANG_BANG_TEXT);
+		request.setAttribute("checkDdztMc", DingDanZhuangTai.ER_JIAN_PAI_DUI_ZHONG_TEXT);
 		request.setAttribute("shlx", ShenHeJiLu.RU_KU_SHEN_HE);
 		
 		return MODULE_NAME+"/drk/list";
@@ -114,7 +114,7 @@ public class DDGLController {
 		DingDan dd=dingDanService.selectById(id);
 		request.setAttribute("dd", dd);
 		
-		request.setAttribute("ddztMc", DingDanZhuangTai.PAI_DUI_ZHONG_TEXT);
+		request.setAttribute("ddztMc", DingDanZhuangTai.YI_JIAN_PAI_DUI_ZHONG_TEXT);
 		
 		return MODULE_NAME+"/zhcx/edit";
 	}

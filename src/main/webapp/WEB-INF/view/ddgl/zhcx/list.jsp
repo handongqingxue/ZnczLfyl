@@ -358,6 +358,15 @@ function initTab1(){
 				case 3:
 					str="待称重";
 					break;
+				case 4:
+					str="称重中";
+					break;
+				case 5:
+					str="待下磅";
+					break;
+				case 6:
+					str="下磅中";
+					break;
 				case 7:
 					str="已完成";
 					break;
