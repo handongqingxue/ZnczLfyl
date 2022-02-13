@@ -123,14 +123,15 @@ public class GkjController {
 
 	@RequestMapping(value="/newBangDanJiLu")
 	@ResponseBody
-	public Map<String, Object> newBangDanJiLu(Integer ddId) {
+	public Map<String, Object> newBangDanJiLu(BangDanJiLu bdjl) {
 
-		System.out.println("ddId==="+ddId);
+		System.out.println("ddId==="+bdjl.getDdId());
+		System.out.println("mz==="+bdjl.getMz());
+		System.out.println("pz==="+bdjl.getPz());
+		System.out.println("jz==="+bdjl.getJz());
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
-		BangDanJiLu bdjl=new BangDanJiLu();
-		bdjl.setDdId(ddId);
 		int count = bangDanJiLuService.add(bdjl);
 		
 		if(count==0) {
@@ -151,6 +152,8 @@ public class GkjController {
 
 		System.out.println("ddId==="+bdjl.getDdId());
 		System.out.println("mz==="+bdjl.getMz());
+		System.out.println("pz==="+bdjl.getPz());
+		System.out.println("jz==="+bdjl.getJz());
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 
