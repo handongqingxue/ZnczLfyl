@@ -1,6 +1,9 @@
 package com.znczLfyl.entity;
 
 public class GuoBangJiLu {
+
+	public static final Integer ZHENG_CHANG=1;
+	public static final Integer YI_CHANG=2;
 	
 	public static final Integer RU_CHANG_GUO_BANG=1;
 	public static final Integer CHU_CHANG_GUO_BANG=2;
@@ -53,6 +56,12 @@ public class GuoBangJiLu {
 	}
 	public void setGblx(Integer gblx) {
 		this.gblx = gblx;
+	}
+	public String getGblxName() {
+		return gblxName;
+	}
+	public void setGblxName(String gblxName) {
+		this.gblxName = gblxName;
 	}
 	public Integer getDdId() {
 		return ddId;
@@ -115,6 +124,7 @@ public class GuoBangJiLu {
 	private Integer gbzt;
 	private String gbsj;
 	private Integer gblx;
+	private String gblxName;
 	private Integer ddId;
 	private String ddh;
 	private String cph;

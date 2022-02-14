@@ -147,4 +147,7 @@
 		order by gbjl.gbsj desc
 		limit #{rowNum},#{rows}
 	</select>
+	<select id="selectPrintInfo" resultType="com.znczLfyl.entity.GuoBangJiLu">
+		select gbjl.*,dd.ddh,dd.cph,dd.sjxm,dd.sjsfzh from guo_bang_ji_lu gbjl,ding_dan dd where gbjl.ddId=dd.id and gbjl.gblx=#{gblx} and dd.id=#{ddId}
+	</select>
 </mapper>

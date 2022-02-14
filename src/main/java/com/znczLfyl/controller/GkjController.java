@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -192,17 +193,43 @@ public class GkjController {
 	@RequestMapping(value="/newGuoBangJiLu")
 	@ResponseBody
 	public Map<String, Object> newGuoBangJiLu(GuoBangJiLu gbjl) {
+
+		Map<String, Object> jsonMap=new HashMap<String, Object>();
+		try {
+			int count=guoBangJiLuService.add(gbjl);
+			if(count>0) {
+				jsonMap.put("message", "ok");
+				jsonMap.put("info", "创建过磅信息成功！");
+			}
+			else {
+				jsonMap.put("message", "no");
+				jsonMap.put("info", "创建过磅信息失败！");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			return jsonMap;
+		}
+	}
+
+	@RequestMapping(value="/selectGuoBangJiLuByDdId")
+	@ResponseBody
+	public Map<String, Object> selectGuoBangJiLuByDdId(Integer ddId, Integer gblx) {
+
+		System.out.println("ddId==="+ddId);
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
-		
-		int count=guoBangJiLuService.add(gbjl);
-		if(count>0) {
-			jsonMap.put("message", "ok");
-			jsonMap.put("info", "创建过磅信息成功！");
+
+		GuoBangJiLu gbjl = guoBangJiLuService.selectPrintInfo(ddId,gblx);
+		if(gbjl==null) {
+			jsonMap.put("status", "no");
+			jsonMap.put("message", "找不到相关过磅记录！");
 		}
 		else {
-			jsonMap.put("message", "no");
-			jsonMap.put("info", "创建过磅信息失败！");
+			jsonMap.put("status", "ok");
+			jsonMap.put("gbjl", gbjl);
 		}
 		return jsonMap;
 	}

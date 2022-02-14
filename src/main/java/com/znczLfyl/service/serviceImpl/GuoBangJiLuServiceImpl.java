@@ -2,6 +2,7 @@ package com.znczLfyl.service.serviceImpl;
 
 import java.util.List;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -56,5 +57,16 @@ public class GuoBangJiLuServiceImpl implements GuoBangJiLuService {
 			String sort, String order) {
 		// TODO Auto-generated method stub
 		return guoBangJiLuDao.queryDJYList(ddh, ddztMc, sjxm, sjsfzh, cph, yssMc, fhdwMc, shbmMc, gbsjks, gbsjjs, gblx, (page-1)*rows, rows, sort, order);
+	}
+
+	@Override
+	public GuoBangJiLu selectPrintInfo(Integer ddId, Integer gblx) {
+		// TODO Auto-generated method stub
+		GuoBangJiLu gbjl = guoBangJiLuDao.selectPrintInfo(ddId, gblx);
+		if(gbjl.getGblx()==GuoBangJiLu.RU_CHANG_GUO_BANG)
+			gbjl.setGblxName("入厂过磅");
+		else
+			gbjl.setGblxName("出厂过磅");
+		return gbjl;
 	}
 }
