@@ -79,6 +79,7 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 var ddglPath=path+'ddgl/';
+var gkjPath=path+'gkj/';
 var dialogTop=10;
 var dialogLeft=20;
 var cddxxdNum=0;
@@ -200,7 +201,7 @@ function initInputCphDialog(){
 		left:dialogLeft,
 		buttons:[
            {text:"确定",id:"ok_but",iconCls:"icon-ok",handler:function(){
-        	   
+        	   checkCphToClient();
            }},
            {text:"取消",id:"cancel_but",iconCls:"icon-cancel",handler:function(){
         	   openInputCphDialog(false);
@@ -236,6 +237,48 @@ function initInputCphDialog(){
 	
 	$(".dialog-button").css("background-color","#fff");
 	$(".dialog-button .l-btn-text").css("font-size","20px");
+}
+
+function checkCphToClient(){
+	if(checkRglrCph()){
+		sendCphToClient();
+	}
+}
+
+function sendCphToClient(){
+	var cph=$("#input_cph_dialog_div #cph_inp").val();
+	$.post(gkjPath+"sendCphToClient",
+		{cph:cph,yjFlag:1},
+		function(result){
+			if(data.message=="ok"){
+				alert(data.info);
+				history.go(-1);
+			}
+			else{
+				alert(data.info);
+			}
+		}
+	,"json");
+}
+
+function focusRglrCph(){
+	var cph=$("#input_cph_dialog_div #cph_inp").val();
+	if(cph=="车牌号不能为空"){
+		$("#input_cph_dialog_div #cph_inp").val("");
+		$("#input_cph_dialog_div #cph_inp").css("color", "#555555");
+	}
+}
+
+//验证人工录入车牌号
+function checkRglrCph(){
+	var cph = $("#input_cph_dialog_div #cph_inp").val();
+	if(cph==null||cph==""||cph=="车牌号不能为空"){
+		$("#input_cph_dialog_div #cph_inp").css("color","#E15748");
+    	$("#input_cph_dialog_div #cph_inp").val("车牌号不能为空");
+    	return false;
+	}
+	else
+		return true;
 }
 
 function initDDZTCBB(){

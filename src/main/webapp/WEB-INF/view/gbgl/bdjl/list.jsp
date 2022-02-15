@@ -160,9 +160,10 @@ function initPreviewBDXXDialog(){
 		buttons:[
            {text:"打印",id:"print_but",iconCls:"icon-ok",handler:function(){
         	   var pageHtml = document.body.innerHTML;
-        	   window.document.body.innerHTML= $("#preview_bdxx_dialog_div").html();
+        	   window.document.body.innerHTML= $("#preview_bdxx_dialog_div .panel-body").html();
         	   window.print();//打印上面新建的网页
-        	   window.document.body.innerHTML= pageHtml;
+        	   //window.document.body.innerHTML= pageHtml;
+        	   location.href=location.href;
            }},
            {text:"取消",id:"cancel_but",iconCls:"icon-cancel",handler:function(){
         	   openPreviewBDXXDialog(false,null);

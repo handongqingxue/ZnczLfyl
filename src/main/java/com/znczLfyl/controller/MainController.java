@@ -17,7 +17,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.znczLfyl.entity.*;
 import com.znczLfyl.util.*;
+
 import com.znczLfyl.service.*;
+import com.znczLfyl.socket.ProxySet;
+import com.znczLfyl.socket.Server;
+import com.znczLfyl.socket.SocketProxy;
+import com.znczLfyl.socket.StartServer;
 
 @Controller
 @RequestMapping("/main")
@@ -26,6 +31,11 @@ public class MainController {
 	private UtilService utilService;
 	@Autowired
 	private YongHuService yongHuService;
+	
+	static {
+		StartServer ss=new StartServer();
+		ss.start();
+	}
 
 	/**
 	 * Ìø×ªµ½µÇÂ¼Ò³

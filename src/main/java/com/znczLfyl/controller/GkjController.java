@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.znczLfyl.entity.*;
 import com.znczLfyl.service.*;
+import com.znczLfyl.socket.ProxySet;
+import com.znczLfyl.socket.SocketProxy;
 
 @Controller
 @RequestMapping("/gkj")
@@ -249,5 +251,20 @@ public class GkjController {
 			jsonMap.put("status", "no");
 		}
 		return jsonMap;
+	}
+
+	@RequestMapping(value="/sendCphToClient")
+	@ResponseBody
+	public Map<String, Object> sendCphToClient(String cph,Integer yjFlag) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		//ProxySet.sayToClient("³A9031", SocketProxy.YI_JIAN);
+		String mesJO="{\"action\":\"pushCph\",\"cph\":\" "+cph+"\"}";
+		ProxySet.sayToClient(mesJO, yjFlag==1?SocketProxy.YI_JIAN:SocketProxy.ER_JIAN);
+		return jsonMap;
+	}
+	
+	public static void main(String[] args) {
+		
 	}
 }
