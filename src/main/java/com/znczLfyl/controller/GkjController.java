@@ -258,9 +258,13 @@ public class GkjController {
 	public Map<String, Object> sendCphToClient(String cph,Integer yjFlag) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
 		//ProxySet.sayToClient("³A9031", SocketProxy.YI_JIAN);
 		String mesJO="{\"action\":\"pushCph\",\"cph\":\" "+cph+"\"}";
 		ProxySet.sayToClient(mesJO, yjFlag==1?SocketProxy.YI_JIAN:SocketProxy.ER_JIAN);
+		
+		jsonMap.put("status", "ok");
+		
 		return jsonMap;
 	}
 	

@@ -249,13 +249,9 @@ function sendCphToClient(){
 	var cph=$("#input_cph_dialog_div #cph_inp").val();
 	$.post(gkjPath+"sendCphToClient",
 		{cph:cph,yjFlag:1},
-		function(result){
-			if(data.message=="ok"){
-				alert(data.info);
-				history.go(-1);
-			}
-			else{
-				alert(data.info);
+		function(data){
+			if(data.status=="ok"){
+				openInputCphDialog(false);
 			}
 		}
 	,"json");
@@ -740,7 +736,7 @@ function setFitWidthInParent(parent,self){
 						车牌号
 					</td>
 					<td class="td2">
-						<input type="text" class="cph_inp" id="cph_inp" placeholder="请输入车牌号"/>
+						<input type="text" class="cph_inp" id="cph_inp" placeholder="请输入车牌号" onfocus="focusRglrCph()" onblur="checkRglrCph()"/>
 					</td>
 				  </tr>
 				</table>
