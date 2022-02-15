@@ -246,9 +246,16 @@ function checkCphToClient(){
 }
 
 function sendCphToClient(){
+	var rows=tab1.datagrid("getSelections");
+	var jyFlag;
+	var ddztMc=rows[0].ddztMc;
+	if(ddztMc=='${requestScope.yjpdzDdztMc}')
+		jyFlag=1
+	else if(ddztMc=='${requestScope.ejpdzDdztMc}')
+		jyFlag=2
 	var cph=$("#input_cph_dialog_div #cph_inp").val();
 	$.post(gkjPath+"sendCphToClient",
-		{cph:cph,yjFlag:1},
+		{cph:cph,jyFlag:jyFlag},
 		function(data){
 			if(data.status=="ok"){
 				openInputCphDialog(false);

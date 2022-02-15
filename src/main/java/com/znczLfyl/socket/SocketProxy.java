@@ -12,13 +12,14 @@ public class SocketProxy implements Runnable{
 	public static final int ER_JIAN=2;
 	private Socket socket;
 	private BufferedReader in;
-	private int yjFlag;
-	public int getYjFlag() {
-		return yjFlag;
+	private int jyFlag;
+
+	public int getJyFlag() {
+		return jyFlag;
 	}
 
-	public void setYjFlag(int yjFlag) {
-		this.yjFlag = yjFlag;
+	public void setJyFlag(int jyFlag) {
+		this.jyFlag = jyFlag;
 	}
 
 	private OutputStreamWriter out;
@@ -55,8 +56,8 @@ public class SocketProxy implements Runnable{
 				String line = in.readLine();
 				System.out.println("line==="+line);
 				if(line==null) break;
-				if(yjFlag==0) {
-					yjFlag = Integer.valueOf(line);
+				if(jyFlag==0) {
+					jyFlag = Integer.valueOf(line);
 					//可以告诉别人
 					//ProxySet.sayToAllProxy("进入聊天室", this);
 				}
