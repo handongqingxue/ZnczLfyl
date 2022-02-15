@@ -114,7 +114,11 @@ public class DDGLController {
 		DingDan dd=dingDanService.selectById(id);
 		request.setAttribute("dd", dd);
 		
-		request.setAttribute("ddztMc", DingDanZhuangTai.YI_JIAN_PAI_DUI_ZHONG_TEXT);
+		YongHu yongHu = (YongHu)request.getSession().getAttribute("yongHu");
+		if(dd.getDdztId()==9) {
+			if((yongHu.getQxIds()+",").contains("1,"))
+				request.setAttribute("ddztMc", DingDanZhuangTai.YI_JIAN_PAI_DUI_ZHONG_TEXT);
+		}
 		
 		return MODULE_NAME+"/zhcx/edit";
 	}
