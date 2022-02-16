@@ -41,24 +41,6 @@
 	left: 0;
 	right: 0;
 }
-
-
-.preview_bdxx_dialog_div table .mzrqsj_val_td,
-.preview_bdxx_dialog_div table .pzrqsj_val_td{
-	width: 30%;
-}
-.preview_bdxx_dialog_div table .shdw_val_td{
-	width: 38%;
-}
-.preview_bdxx_dialog_div table .fhdw_key_td{
-	width: 12%;
-}
-.preview_bdxx_dialog_div table .fhdw_val_td{
-	width: 40%;
-}
-.preview_bdxx_dialog_div table .jzsj_val_td{
-	width: 60%;
-}
 </style>
 <title>Insert title here</title>
 <%@include file="../../inc/js.jsp"%>
@@ -68,6 +50,7 @@ var gbglPath=path+'gbgl/';
 var dialogTop=10;
 var dialogLeft=20;
 var pbdxxdNum=0;
+var appendStr="";
 $(function(){
 	initSearchLB();
 	initAddLB();
@@ -149,6 +132,57 @@ function initPreviewBDXXDialog(){
 	
 	$(".dialog-button").css("background-color","#fff");
 	$(".dialog-button .l-btn-text").css("font-size","20px");
+	
+	initPreviewModuleHtmlStr();
+}
+
+function initPreviewModuleHtmlStr(){
+	 appendStr="<div style=\"width: 100%;height:50px;line-height:50px;text-align: center;font-size: 20px;font-weight: bold;\">山东蓝帆健康科技有限公司过磅单</div>";
+  	    appendStr+="<div style=\"width: 90%;height:30px;line-height:30px;margin:auto;\">";
+		appendStr+="<span style=\"margin-left: 10px;\">序号：</span>";
+		appendStr+="<span id=\"xh_val_span\" style=\"margin-left: 27px;\"></span>";
+		appendStr+="<span style=\"margin-left: 170px;\">日期：</span>";
+	    appendStr+="<span id=\"rq_val_span\" style=\"margin-left: 15px;\"></span>";
+	    appendStr+="<span style=\"margin-left: 250px;\">单位：公斤</span>";
+    appendStr+="</div>";
+	appendStr+="<table border=\"1\" style=\"width: 90%;margin:auto;text-align: center;border-color: #000;border-spacing:0;\">";
+		appendStr+="<tr style=\"height: 25px;\">";
+			appendStr+="<td class=\"ch_key_td\" style=\"width: 10%;\">车号</td>";
+			appendStr+="<td class=\"ch_val_td\" id=\"ch_val_td\" style=\"width: 20%;\"></td>";
+			appendStr+="<td class=\"hp_key_td\" style=\"width: 10%;\">货品</td>";
+			appendStr+="<td class=\"hp_val_td\" id=\"hp_val_td\" colspan=\"2\" style=\"width: 20%;\"></td>";
+			appendStr+="<td class=\"kh_key_td\" style=\"width: 10%;\">客户</td>";
+			appendStr+="<td class=\"kh_val_td\" colspan=\"2\" style=\"width: 30%;\">蓝帆</td>";
+		appendStr+="</tr>";
+		appendStr+="<tr style=\"height: 25px;\">";
+			appendStr+="<td class=\"shdw_key_td\" style=\"width: 10%;\">收货单位</td>";
+			appendStr+="<td class=\"shdw_val_td\" id=\"shdw_val_td\" colspan=\"3\" style=\"width: 38%;\"></td>";
+			appendStr+="<td class=\"fhdw_key_td\" style=\"width: 12%;\">发货单位</td>";
+			appendStr+="<td class=\"fhdw_val_td\" id=\"fhdw_val_td\" colspan=\"3\" style=\"width: 40%;\"></td>";
+		appendStr+="</tr>";
+		appendStr+="<tr style=\"height: 35px;\">";
+			appendStr+="<td class=\"mz_key_td\" style=\"width: 10%;\">毛重</td>";
+			appendStr+="<td class=\"mz_val_td\" id=\"mz_val_td\" style=\"width: 20%;\"></td>";
+			appendStr+="<td class=\"mzrqsj_key_td\" style=\"width: 10%;\">日期时间</td>";
+			appendStr+="<td class=\"mzrqsj_val_td\" id=\"mzrqsj_val_td\" colspan=\"3\" style=\"width: 30%;\"></td>";
+			appendStr+="<td class=\"mzsby_key_td\" style=\"width: 10%;\">司磅员</td>";
+			appendStr+="<td class=\"mzsby_val_td\" style=\"width: 20%;\">李铁玉</td>";
+		appendStr+="</tr>";
+		appendStr+="<tr style=\"height: 35px;\">";
+			appendStr+="<td class=\"pz_key_td\" style=\"width: 10%;\">皮重</td>";
+			appendStr+="<td class=\"pz_val_td\" id=\"pz_val_td\" style=\"width: 20%;\"></td>";
+			appendStr+="<td class=\"pzrqsj_key_td\" style=\"width: 10%;\">日期时间</td>";
+			appendStr+="<td class=\"pzrqsj_val_td\" id=\"pzrqsj_val_td\" colspan=\"3\" style=\"width: 30%;\"></td>";
+			appendStr+="<td class=\"pzsby_key_td\" style=\"width: 10%;\">司磅员</td>";
+			appendStr+="<td class=\"pzsby_val_td\" style=\"width: 20%;\">李铁玉</td>";
+		appendStr+="</tr>";
+		appendStr+="<tr style=\"height: 35px;\">";
+			appendStr+="<td class=\"jz_key_td\" style=\"width: 10%;\">净重</td>";
+			appendStr+="<td class=\"jz_val_td\" id=\"jz_val_td\" style=\"width: 20%;\"></td>";
+			appendStr+="<td class=\"jzsj_key_td\" style=\"width: 10%;\">司机</td>";
+			appendStr+="<td class=\"jzsj_val_td\" id=\"jzsj_val_td\" colspan=\"5\" style=\"width: 60%;\"></td>";
+		appendStr+="</tr>";
+	appendStr+="</table>";
 }
 
 function initSearchLB(){
@@ -211,53 +245,7 @@ function openPreviewBDXXDialog(flag,row){
 	var panelBody=$("#preview_bdxx_dialog_div .panel-body");
 	panelBody.empty();
 	if(flag){
-		var appendStr="<div class=\"title_div\" style=\"width: 100%;height:50px;line-height:50px;text-align: center;font-size: 20px;font-weight: bold;\">山东蓝帆健康科技有限公司过磅单</div>";
-				appendStr+="<div class=\"tab_header_div\" style=\"width: 90%;height:30px;line-height:30px;margin:auto;\">";
-					appendStr+="<span class=\"xh_key_span\" style=\"margin-left: 10px;\">序号：</span>";
-					appendStr+="<span class=\"xh_val_span\" id=\"xh_val_span\" style=\"margin-left: 27px;\"></span>";
-					appendStr+="<span class=\"rq_key_span\" style=\"margin-left: 170px;\">日期：</span>";
-					appendStr+="<span class=\"rq_val_span\" id=\"rq_val_span\" style=\"margin-left: 15px;\"></span>";
-					appendStr+="<span class=\"dw_span\" style=\"margin-left: 250px;\">单位：公斤</span>";
-				appendStr+="</div>";
-			appendStr+="<table border=\"1\" style=\"width: 90%;margin:auto;text-align: center;border-color: #000;\">";
-				appendStr+="<tr class=\"tr1\" style=\"height: 25px;\">";
-					appendStr+="<td class=\"ch_key_td\" style=\"width: 10%;\">车号</td>";
-					appendStr+="<td class=\"ch_val_td\" id=\"ch_val_td\" style=\"width: 20%;\"></td>";
-					appendStr+="<td class=\"hp_key_td\" style=\"width: 10%;\">货品</td>";
-					appendStr+="<td class=\"hp_val_td\" id=\"hp_val_td\" colspan=\"2\" style=\"width: 20%;\"></td>";
-					appendStr+="<td class=\"kh_key_td\" style=\"width: 10%;\">客户</td>";
-					appendStr+="<td class=\"kh_val_td\" colspan=\"2\" style=\"width: 30%;\">蓝帆</td>";
-				appendStr+="</tr>";
-				appendStr+="<tr class=\"tr1\" style=\"height: 25px;\">";
-					appendStr+="<td class=\"shdw_key_td\" style=\"width: 10%;\">收货单位</td>";
-					appendStr+="<td class=\"shdw_val_td\" id=\"shdw_val_td\" colspan=\"3\"></td>";
-					appendStr+="<td class=\"fhdw_key_td\">发货单位</td>";
-					appendStr+="<td class=\"fhdw_val_td\" id=\"fhdw_val_td\" colspan=\"3\"></td>";
-				appendStr+="</tr>";
-				appendStr+="<tr class=\"tr2\" style=\"height: 35px;\">";
-					appendStr+="<td class=\"mz_key_td\" style=\"width: 10%;\">毛重</td>";
-					appendStr+="<td class=\"mz_val_td\" id=\"mz_val_td\" style=\"width: 20%;\"></td>";
-					appendStr+="<td class=\"mzrqsj_key_td\" style=\"width: 10%;\">日期时间</td>";
-					appendStr+="<td class=\"mzrqsj_val_td\" id=\"mzrqsj_val_td\" colspan=\"3\"></td>";
-					appendStr+="<td class=\"mzsby_key_td\" style=\"width: 10%;\">司磅员</td>";
-					appendStr+="<td class=\"mzsby_val_td\" style=\"width: 20%;\">李铁玉</td>";
-				appendStr+="</tr>";
-				appendStr+="<tr class=\"tr2\" style=\"height: 35px;\">";
-					appendStr+="<td class=\"pz_key_td\" style=\"width: 10%;\">皮重</td>";
-					appendStr+="<td class=\"pz_val_td\" id=\"pz_val_td\" style=\"width: 20%;\"></td>";
-					appendStr+="<td class=\"pzrqsj_key_td\" style=\"width: 10%;\">日期时间</td>";
-					appendStr+="<td class=\"pzrqsj_val_td\" id=\"pzrqsj_val_td\" colspan=\"3\"></td>";
-					appendStr+="<td class=\"pzsby_key_td\" style=\"width: 10%;\">司磅员</td>";
-					appendStr+="<td class=\"pzsby_val_td\" style=\"width: 20%;\">李铁玉</td>";
-				appendStr+="</tr>";
-				appendStr+="<tr class=\"tr2\" style=\"height: 35px;\">";
-					appendStr+="<td class=\"jz_key_td\" style=\"width: 10%;\">净重</td>";
-					appendStr+="<td class=\"jz_val_td\" id=\"jz_val_td\" style=\"width: 20%;\"></td>";
-					appendStr+="<td class=\"jzsj_key_td\" style=\"width: 10%;\">司机</td>";
-					appendStr+="<td class=\"jzsj_val_td\" id=\"jzsj_val_td\" colspan=\"5\"></td>";
-				appendStr+="</tr>";
-			appendStr+="</table>";
-			panelBody.append(appendStr);
+		panelBody.append(appendStr);
 		
 		$("#preview_bdxx_bg_div").css("display","block");
 		$("#preview_bdxx_div #xh_val_span").text(row.ddh);

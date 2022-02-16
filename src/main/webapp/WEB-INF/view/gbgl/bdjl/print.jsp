@@ -10,8 +10,9 @@
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 $(function(){
-	alert('${requestScope.dyjl.html}');
-	window.document.body.innerHTML='${requestScope.dyjl.html}';
+	var html='${requestScope.dyjl.html}';
+	//alert(html);
+	window.document.body.innerHTML=html;
 	window.print();//打印上面新建的网页
 	window.opener=null;
 	window.open(' ', '_self', ' ');

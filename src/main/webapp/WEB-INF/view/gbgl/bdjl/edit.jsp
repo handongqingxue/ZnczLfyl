@@ -52,7 +52,7 @@ function initEditDialog(){
 	$("#edit_div").dialog({
 		title:"磅单信息",
 		width:setFitWidthInParent("body","edit_div"),
-		height:330,
+		height:300,
 		top:dialogTop,
 		left:dialogLeft,
 		buttons:[
@@ -71,7 +71,7 @@ function initEditDialog(){
 	$("#edit_div table .td2").css("width","30%");
 	$("#edit_div table tr").css("border-bottom","#CAD9EA solid 1px");
 	$("#edit_div table tr").each(function(i){
-		$(this).css("height",(i==3?90:45)+"px");
+		$(this).css("height",(i==2?90:45)+"px");
 	});
 
 	$(".panel.window").eq(edNum).css("margin-top","20px");
@@ -173,20 +173,6 @@ function setFitWidthInParent(parent,self){
 				</td>
 				<td class="td2">
 					<input type="number" class="jz_inp" id="jz" name="jz" value="${requestScope.bdjl.jz }" placeholder="请输入净重"/>
-				</td>
-			  </tr>
-			  <tr>
-				<td class="td1" align="right">
-					单价
-				</td>
-				<td class="td2">
-					${requestScope.dd.dj }
-				</td>
-				<td class="td1" align="right">
-					金额
-				</td>
-				<td class="td2">
-					${requestScope.dd.je }
 				</td>
 			  </tr>
 			  <tr>

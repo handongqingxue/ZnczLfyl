@@ -48,7 +48,7 @@ function initDetailDialog(){
 	$("#detail_div").dialog({
 		title:"磅单信息",
 		width:setFitWidthInParent("body","detail_div"),
-		height:300,
+		height:270,
 		top:dialogTop,
 		left:dialogLeft
 	});
@@ -62,7 +62,7 @@ function initDetailDialog(){
 	$("#detail_div table .td2").css("width","30%");
 	$("#detail_div table tr").css("border-bottom","#CAD9EA solid 1px");
 	$("#detail_div table tr").each(function(i){
-		$(this).css("height",(i==3?90:45)+"px");
+		$(this).css("height",(i==2?90:45)+"px");
 	});
 
 	$(".panel.window").eq(ddNum).css("margin-top","20px");
@@ -130,20 +130,6 @@ function setFitWidthInParent(parent,self){
 				</td>
 				<td class="td2">
 					${requestScope.bdjl.jz }
-				</td>
-			  </tr>
-			  <tr>
-				<td class="td1" align="right">
-					单价
-				</td>
-				<td class="td2">
-					${requestScope.dd.dj }
-				</td>
-				<td class="td1" align="right">
-					金额
-				</td>
-				<td class="td2">
-					${requestScope.dd.je }
 				</td>
 			  </tr>
 			  <tr>
