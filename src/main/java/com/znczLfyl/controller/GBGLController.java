@@ -24,6 +24,8 @@ public class GBGLController {
 	private BangDanJiLuService bangDanJiLuService;
 	@Autowired
 	private DingDanService dingDanService;
+	@Autowired
+	private DaYinJiLuService daYinJiLuService;
 	public static final String MODULE_NAME="gbgl";
 	
 	@RequestMapping(value="/bdjl/new")
@@ -83,6 +85,35 @@ public class GBGLController {
 		request.setAttribute("dd", dd);
 		
 		return MODULE_NAME+"/bdjl/detail";
+	}
+
+	@RequestMapping(value="/bdjl/print")
+	public String goBdjlPreview(HttpServletRequest request) {
+
+		String time = request.getParameter("time");
+		DaYinJiLu dyjl=daYinJiLuService.selectByTime(time);
+		request.setAttribute("dyjl", dyjl);
+		
+		return MODULE_NAME+"/bdjl/print";
+	}
+
+	@RequestMapping(value="/newDaYinJiLu")
+	@ResponseBody
+	public Map<String, Object> newDaYinJiLu(DaYinJiLu dyjl) {
+		
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		int count=daYinJiLuService.add(dyjl);
+		if(count>0) {
+			jsonMap.put("message", "ok");
+			jsonMap.put("info", "创建打印记录成功！");
+		}
+		else {
+			jsonMap.put("message", "no");
+			jsonMap.put("info", "创建打印记录失败！");
+		}
+			
+		return jsonMap;
 	}
 	
 	@RequestMapping(value="/gbjl/new")

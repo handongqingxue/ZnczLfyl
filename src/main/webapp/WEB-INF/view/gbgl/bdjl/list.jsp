@@ -41,71 +41,8 @@
 	left: 0;
 	right: 0;
 }
-.preview_bdxx_dialog_div .title_div{
-	width: 100%;
-	height:50px;
-	line-height:50px;
-	text-align: center;
-	font-size: 20px;
-	font-weight: bold;
-}
-.preview_bdxx_dialog_div .tab_header_div{
-	width: 90%;
-	height:30px;
-	line-height:30px;
-	margin:auto;
-}
-.preview_bdxx_dialog_div .tab_header_div .xh_key_span{
-	margin-left: 10px;
-}
-.preview_bdxx_dialog_div .tab_header_div .xh_val_span{
-	margin-left: 27px;
-}
-.preview_bdxx_dialog_div .tab_header_div .rq_key_span{
-	margin-left: 170px;
-}
-.preview_bdxx_dialog_div .tab_header_div .rq_val_span{
-	margin-left: 15px;
-}
-.preview_bdxx_dialog_div .tab_header_div .dw_span{
-	margin-left: 250px;
-}
-.preview_bdxx_dialog_div table{
-	width: 90%;
-	margin:auto;
-	text-align: center;
-	border-color: #000;
-}
-.preview_bdxx_dialog_div table .tr1{
-	height: 25px;
-}
-.preview_bdxx_dialog_div table .tr2{
-	height: 35px;
-}
-.preview_bdxx_dialog_div table .ch_key_td,
-.preview_bdxx_dialog_div table .hp_key_td,
-.preview_bdxx_dialog_div table .kh_key_td,
-.preview_bdxx_dialog_div table .shdw_key_td,
-.preview_bdxx_dialog_div table .mz_key_td,
-.preview_bdxx_dialog_div table .mzrqsj_key_td,
-.preview_bdxx_dialog_div table .mzsby_key_td,
-.preview_bdxx_dialog_div table .pz_key_td,
-.preview_bdxx_dialog_div table .pzrqsj_key_td,
-.preview_bdxx_dialog_div table .pzsby_key_td,
-.preview_bdxx_dialog_div table .jz_key_td,
-.preview_bdxx_dialog_div table .jzsj_key_td{
-	width: 10%;
-}
-.preview_bdxx_dialog_div table .ch_val_td,
-.preview_bdxx_dialog_div table .hp_val_td,
-.preview_bdxx_dialog_div table .mz_val_td,
-.preview_bdxx_dialog_div table .mzsby_val_td,
-.preview_bdxx_dialog_div table .pz_val_td,
-.preview_bdxx_dialog_div table .pzsby_val_td,
-.preview_bdxx_dialog_div table .jz_val_td{
-	width: 20%;
-}
-.preview_bdxx_dialog_div table .kh_val_td,
+
+
 .preview_bdxx_dialog_div table .mzrqsj_val_td,
 .preview_bdxx_dialog_div table .pzrqsj_val_td{
 	width: 30%;
@@ -159,11 +96,19 @@ function initPreviewBDXXDialog(){
 		left:dialogLeft,
 		buttons:[
            {text:"打印",id:"print_but",iconCls:"icon-ok",handler:function(){
-        	   var pageHtml = document.body.innerHTML;
-        	   window.document.body.innerHTML= $("#preview_bdxx_dialog_div .panel-body").html();
-        	   window.print();//打印上面新建的网页
+        	   var time=new Date().getTime();
+        	   var printHtml = $("#preview_bdxx_dialog_div .panel-body").html();
+        	   $.post(gbglPath+"newDaYinJiLu",
+        		  {time:time,html:printHtml},
+        	   	  function(data){
+        		   	 if(data.message=="ok")
+        	        	window.open("print?time="+time);
+        	      }
+        	   ,"json");
+        	   //window.document.body.innerHTML= $("#preview_bdxx_dialog_div .panel-body").html();
+        	   //window.print();//打印上面新建的网页
         	   //window.document.body.innerHTML= pageHtml;
-        	   location.href=location.href;
+        	   //location.href=location.href;
            }},
            {text:"取消",id:"cancel_but",iconCls:"icon-cancel",handler:function(){
         	   openPreviewBDXXDialog(false,null);
@@ -263,7 +208,57 @@ function initTab1(){
 }
 
 function openPreviewBDXXDialog(flag,row){
+	var panelBody=$("#preview_bdxx_dialog_div .panel-body");
+	panelBody.empty();
 	if(flag){
+		var appendStr="<div class=\"title_div\" style=\"width: 100%;height:50px;line-height:50px;text-align: center;font-size: 20px;font-weight: bold;\">山东蓝帆健康科技有限公司过磅单</div>";
+				appendStr+="<div class=\"tab_header_div\" style=\"width: 90%;height:30px;line-height:30px;margin:auto;\">";
+					appendStr+="<span class=\"xh_key_span\" style=\"margin-left: 10px;\">序号：</span>";
+					appendStr+="<span class=\"xh_val_span\" id=\"xh_val_span\" style=\"margin-left: 27px;\"></span>";
+					appendStr+="<span class=\"rq_key_span\" style=\"margin-left: 170px;\">日期：</span>";
+					appendStr+="<span class=\"rq_val_span\" id=\"rq_val_span\" style=\"margin-left: 15px;\"></span>";
+					appendStr+="<span class=\"dw_span\" style=\"margin-left: 250px;\">单位：公斤</span>";
+				appendStr+="</div>";
+			appendStr+="<table border=\"1\" style=\"width: 90%;margin:auto;text-align: center;border-color: #000;\">";
+				appendStr+="<tr class=\"tr1\" style=\"height: 25px;\">";
+					appendStr+="<td class=\"ch_key_td\" style=\"width: 10%;\">车号</td>";
+					appendStr+="<td class=\"ch_val_td\" id=\"ch_val_td\" style=\"width: 20%;\"></td>";
+					appendStr+="<td class=\"hp_key_td\" style=\"width: 10%;\">货品</td>";
+					appendStr+="<td class=\"hp_val_td\" id=\"hp_val_td\" colspan=\"2\" style=\"width: 20%;\"></td>";
+					appendStr+="<td class=\"kh_key_td\" style=\"width: 10%;\">客户</td>";
+					appendStr+="<td class=\"kh_val_td\" colspan=\"2\" style=\"width: 30%;\">蓝帆</td>";
+				appendStr+="</tr>";
+				appendStr+="<tr class=\"tr1\" style=\"height: 25px;\">";
+					appendStr+="<td class=\"shdw_key_td\" style=\"width: 10%;\">收货单位</td>";
+					appendStr+="<td class=\"shdw_val_td\" id=\"shdw_val_td\" colspan=\"3\"></td>";
+					appendStr+="<td class=\"fhdw_key_td\">发货单位</td>";
+					appendStr+="<td class=\"fhdw_val_td\" id=\"fhdw_val_td\" colspan=\"3\"></td>";
+				appendStr+="</tr>";
+				appendStr+="<tr class=\"tr2\" style=\"height: 35px;\">";
+					appendStr+="<td class=\"mz_key_td\" style=\"width: 10%;\">毛重</td>";
+					appendStr+="<td class=\"mz_val_td\" id=\"mz_val_td\" style=\"width: 20%;\"></td>";
+					appendStr+="<td class=\"mzrqsj_key_td\" style=\"width: 10%;\">日期时间</td>";
+					appendStr+="<td class=\"mzrqsj_val_td\" id=\"mzrqsj_val_td\" colspan=\"3\"></td>";
+					appendStr+="<td class=\"mzsby_key_td\" style=\"width: 10%;\">司磅员</td>";
+					appendStr+="<td class=\"mzsby_val_td\" style=\"width: 20%;\">李铁玉</td>";
+				appendStr+="</tr>";
+				appendStr+="<tr class=\"tr2\" style=\"height: 35px;\">";
+					appendStr+="<td class=\"pz_key_td\" style=\"width: 10%;\">皮重</td>";
+					appendStr+="<td class=\"pz_val_td\" id=\"pz_val_td\" style=\"width: 20%;\"></td>";
+					appendStr+="<td class=\"pzrqsj_key_td\" style=\"width: 10%;\">日期时间</td>";
+					appendStr+="<td class=\"pzrqsj_val_td\" id=\"pzrqsj_val_td\" colspan=\"3\"></td>";
+					appendStr+="<td class=\"pzsby_key_td\" style=\"width: 10%;\">司磅员</td>";
+					appendStr+="<td class=\"pzsby_val_td\" style=\"width: 20%;\">李铁玉</td>";
+				appendStr+="</tr>";
+				appendStr+="<tr class=\"tr2\" style=\"height: 35px;\">";
+					appendStr+="<td class=\"jz_key_td\" style=\"width: 10%;\">净重</td>";
+					appendStr+="<td class=\"jz_val_td\" id=\"jz_val_td\" style=\"width: 20%;\"></td>";
+					appendStr+="<td class=\"jzsj_key_td\" style=\"width: 10%;\">司机</td>";
+					appendStr+="<td class=\"jzsj_val_td\" id=\"jzsj_val_td\" colspan=\"5\"></td>";
+				appendStr+="</tr>";
+			appendStr+="</table>";
+			panelBody.append(appendStr);
+		
 		$("#preview_bdxx_bg_div").css("display","block");
 		$("#preview_bdxx_div #xh_val_span").text(row.ddh);
 		$("#preview_bdxx_div #rq_val_span").text(row.rq);
@@ -330,52 +325,6 @@ function setFitWidthInParent(parent,self){
 	<div class="preview_bdxx_bg_div" id="preview_bdxx_bg_div">
 		<div class="preview_bdxx_div" id="preview_bdxx_div">
 			<div class="preview_bdxx_dialog_div" id="preview_bdxx_dialog_div">
-				<div class="title_div">山东蓝帆健康科技有限公司过磅单</div>
-				<div class="tab_header_div">
-					<span class="xh_key_span">序号：</span>
-					<span class="xh_val_span" id="xh_val_span"></span>
-					<span class="rq_key_span">日期：</span>
-					<span class="rq_val_span" id="rq_val_span"></span>
-					<span class="dw_span">单位：公斤</span>
-				</div>
-				<table border="1">
-				  <tr class="tr1">
-					<td class="ch_key_td">车号</td>
-					<td class="ch_val_td" id="ch_val_td"></td>
-					<td class="hp_key_td">货品</td>
-					<td class="hp_val_td" id="hp_val_td" colspan="2"></td>
-					<td class="kh_key_td">客户</td>
-					<td class="kh_val_td" colspan="2">蓝帆</td>
-				  </tr>
-				  <tr class="tr1">
-					<td class="shdw_key_td">收货单位</td>
-					<td class="shdw_val_td" id="shdw_val_td" colspan="3"></td>
-					<td class="fhdw_key_td">发货单位</td>
-					<td class="fhdw_val_td" id="fhdw_val_td" colspan="3"></td>
-				  </tr>
-				  <tr class="tr2">
-					<td class="mz_key_td">毛重</td>
-					<td class="mz_val_td" id="mz_val_td"></td>
-					<td class="mzrqsj_key_td">日期时间</td>
-					<td class="mzrqsj_val_td" id="mzrqsj_val_td" colspan="3"></td>
-					<td class="mzsby_key_td">司磅员</td>
-					<td class="mzsby_val_td">李铁玉</td>
-				  </tr>
-				  <tr class="tr2">
-					<td class="pz_key_td">皮重</td>
-					<td class="pz_val_td" id="pz_val_td"></td>
-					<td class="pzrqsj_key_td">日期时间</td>
-					<td class="pzrqsj_val_td" id="pzrqsj_val_td" colspan="3"></td>
-					<td class="pzsby_key_td">司磅员</td>
-					<td class="pzsby_val_td">李铁玉</td>
-				  </tr>
-				  <tr class="tr2">
-					<td class="jz_key_td">净重</td>
-					<td class="jz_val_td" id="jz_val_td"></td>
-					<td class="jzsj_key_td">司机</td>
-					<td class="jzsj_val_td" id="jzsj_val_td" colspan="5"></td>
-				  </tr>
-				</table>
 			</div>
 		</div>
 	</div>
