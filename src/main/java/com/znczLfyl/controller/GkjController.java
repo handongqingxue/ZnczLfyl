@@ -29,7 +29,7 @@ public class GkjController {
 	@Autowired
 	private BangDanJiLuService bangDanJiLuService;
 	@Autowired
-	private GuoBangJiLuService guoBangJiLuService;
+	private GuoBangJiLuService guoBangJiLuService; 
 
 	@RequestMapping(value="/getDingDan")
 	@ResponseBody
