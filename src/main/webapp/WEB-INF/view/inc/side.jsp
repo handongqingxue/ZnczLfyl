@@ -157,6 +157,10 @@ function showLeftMenuByQx(){
 				$(".dyjsh_item_li").css("display","block");
 				$(".dejsh_item_li").css("display","block");
 			}
+			if(qxIdsArr[i]==6){
+				$(".ddgl_first_div").css("display","block");
+				$(".drk_item_li").css("display","block");
+			}
 		}
 	}
 }
