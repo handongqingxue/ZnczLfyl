@@ -20,6 +20,10 @@ public class DingDanServiceImpl implements DingDanService {
 	private DingDanZhuangTaiMapper dingDanZhuangTaiDao;
 	@Autowired
 	private ShenHeJiLuMapper shenHeJiLuDao;
+	@Autowired
+	private BangDanJiLuMapper bangDanJiLuDao;
+	@Autowired
+	private GuoBangJiLuMapper guoBangJiLuDao;
 
 	@Override
 	public int queryZHCXForInt(String ddh, Integer ddztId, String ddztMc, String cph, String yssMc, String wzMc, 
@@ -90,8 +94,14 @@ public class DingDanServiceImpl implements DingDanService {
 		List<String> idList = Arrays.asList(ids.split(","));
 		if(dingDanDao.checkByIds(idList,ddztId)>0) {
 			for (String idStr : idList) {
-				shjl.setDdId(Integer.valueOf(idStr));
+				Integer ddId = Integer.valueOf(idStr);
+				shjl.setDdId(ddId);
 				count+=shenHeJiLuDao.add(shjl);
+				
+				if(!shjl.getShjg()) {
+					bangDanJiLuDao.deleteByDdId(ddId);
+					guoBangJiLuDao.deleteByDdId(ddId);
+				}
 			}
 		}
 		return count;

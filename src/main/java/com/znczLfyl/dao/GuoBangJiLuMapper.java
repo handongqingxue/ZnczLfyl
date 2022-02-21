@@ -26,4 +26,6 @@ public interface GuoBangJiLuMapper {
 			String order);
 
 	GuoBangJiLu selectPrintInfo(@Param("ddId") Integer ddId, @Param("gblx") Integer gblx);
+
+	int deleteByDdId(@Param("ddId") Integer ddId);
 }

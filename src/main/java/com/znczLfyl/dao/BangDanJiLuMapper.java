@@ -19,4 +19,6 @@ public interface BangDanJiLuMapper {
 	BangDanJiLu selectById(@Param("id") String id);
 
 	BangDanJiLu selectByDdId(@Param("ddId") Integer ddId);
+
+	int deleteByDdId(@Param("ddId") Integer ddId);
 }

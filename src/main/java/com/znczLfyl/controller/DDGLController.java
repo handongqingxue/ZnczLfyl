@@ -1,5 +1,6 @@
 package com.znczLfyl.controller;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -261,6 +262,24 @@ public class DDGLController {
 			plan.setStatus(1);
 			plan.setMsg("…Û∫À∂©µ•≥…π¶");
 			json=JsonUtil.getJsonFromObject(plan);
+			
+			if(!shjl.getShjg()) {
+				List<String> idList = Arrays.asList(ids.split(","));
+				for (String idStr : idList) {
+					Integer ddId = Integer.valueOf(idStr);
+					DingDan dd=new DingDan();
+					dd.setId(ddId);
+					if(shjl.getShlx()==ShenHeJiLu.YI_JIAN_SHEN_HE) {
+						dd.setDdztMc(DingDanZhuangTai.YI_JIAN_PAI_DUI_ZHONG_TEXT);
+						dd.setYjzt(DingDan.DAI_SHANG_BANG);
+					}
+					else if(shjl.getShlx()==ShenHeJiLu.ER_JIAN_SHEN_HE) {
+						dd.setDdztMc(DingDanZhuangTai.ER_JIAN_PAI_DUI_ZHONG_TEXT);
+						dd.setEjzt(DingDan.DAI_SHANG_BANG);
+					}
+					dingDanService.edit(dd);
+				}
+			}
 		}
 		return json;
 	}

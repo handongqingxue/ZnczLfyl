@@ -51,6 +51,7 @@ $(function(){
 	initGBSJJSDTB();
 	initSearchLB();
 	initCheckLB();
+	initSHBTGLB();
 	initTab1();
 });
 
@@ -88,12 +89,21 @@ function initCheckLB(){
 	$("#check_but").linkbutton({
 		iconCls:"icon-ok",
 		onClick:function(){
-			checkByIds();
+			checkByIds(true);
 		}
 	});
 }
 
-function checkByIds() {
+function initSHBTGLB(){
+	$("#shbtg_but").linkbutton({
+		iconCls:"icon-remove",
+		onClick:function(){
+			checkByIds(false);
+		}
+	});
+}
+
+function checkByIds(shjg) {
 	var rows=tab1.datagrid("getSelections");
 	if (rows.length == 0) {
 		$.messager.alert("提示","请选择要审核的信息！","warning");
@@ -110,7 +120,7 @@ function checkByIds() {
 	var shlx='${requestScope.shlx}';
 	var shrId='${sessionScope.yongHu.id}';
 	$.post(ddglPath + "checkDingDanByIds",
-		{ids:ddIds,ddztMc:ddztMc,shlx:shlx,shjg:true,shrId:shrId},
+		{ids:ddIds,ddztMc:ddztMc,shlx:shlx,shjg:shjg,shrId:shrId},
 		function(result){
 			if(result.status==1){
 				alert(result.msg);
@@ -211,6 +221,7 @@ function setFitWidthInParent(o){
 				<input id="gbsjjs_dtb"/>
 				<a class="search_but" id="search_but">查询</a>
 				<a id="check_but">审核</a>
+				<a id="shbtg_but">审核不通过</a>
 			</div>
 		</div>
 		<table id="tab1">
