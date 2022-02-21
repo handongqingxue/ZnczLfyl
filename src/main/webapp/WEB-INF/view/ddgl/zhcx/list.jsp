@@ -248,7 +248,8 @@ function checkCphToClient(){
 
 function sendCphToClient(){
 	var rows=tab1.datagrid("getSelections");
-	var jyFlag;
+	var bfNoFlag=1;
+	var jyFlag=0;
 	var ddztMc=rows[0].ddztMc;
 	if(ddztMc=='${requestScope.yjpdzDdztMc}')
 		jyFlag=1
@@ -256,7 +257,7 @@ function sendCphToClient(){
 		jyFlag=2
 	var cph=$("#input_cph_dialog_div #cph_inp").val();
 	$.post(gkjPath+"sendCphToClient",
-		{cph:cph,jyFlag:jyFlag},
+		{cph:cph,bfNoFlag:bfNoFlag,jyFlag:jyFlag},
 		function(data){
 			if(data.status=="ok"){
 				openInputCphDialog(false);

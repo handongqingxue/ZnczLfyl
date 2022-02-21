@@ -13,25 +13,25 @@ public class ProxySet {
 	
 	public static void removeSocketProxy(SocketProxy proxy){
 		proxys.remove(proxy);
-		sayToAllProxy(proxy.getJyFlag()+" 离开了", proxy);
+		sayToAllProxy(proxy.getBfNoFlag()+" 离开了", proxy);
 		
 	}
 	
 	public static void sayToAllProxy(String mes,SocketProxy sender){
 		for(int i=0;i<proxys.size();i++){
 			if(proxys.get(i)!=sender){
-				proxys.get(i).sayToMe(sender.getJyFlag()+":"+mes);
+				proxys.get(i).sayToMe(sender.getBfNoFlag()+":"+mes);
 			}
 			
 		}
 	}
 	
-	public static void sayToClient(String mes,int jyFlag){
+	public static void sayToClient(String mes,int bfNoFlag){
 		System.out.println("proxys.size()==="+proxys.size());
 		for(int i=0;i<proxys.size();i++){
-			System.out.println("getYjFlag==="+proxys.get(i).getJyFlag());
-			System.out.println("jyFlag==="+jyFlag);
-			if(proxys.get(i).getJyFlag()==jyFlag){
+			System.out.println("getBfNoFlag==="+proxys.get(i).getBfNoFlag());
+			System.out.println("bfNoFlag==="+bfNoFlag);
+			if(proxys.get(i).getBfNoFlag()==bfNoFlag){
 				System.out.println("sayToMemes==="+mes);
 				proxys.get(i).sayToMe(mes);
 			}

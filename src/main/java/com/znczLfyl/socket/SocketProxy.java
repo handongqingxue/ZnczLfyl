@@ -8,18 +8,18 @@ import java.net.Socket;
 
 public class SocketProxy implements Runnable{
 	
-	public static final int YI_JIAN=1;
-	public static final int ER_JIAN=2;
+	public static final int YI_HAO_BANG_FANG=1;
+	public static final int ER_HAO_BANG_FANG=2;
 	private Socket socket;
 	private BufferedReader in;
-	private int jyFlag;
+	private int bfNoFlag;
 
-	public int getJyFlag() {
-		return jyFlag;
+	public int getBfNoFlag() {
+		return bfNoFlag;
 	}
 
-	public void setJyFlag(int jyFlag) {
-		this.jyFlag = jyFlag;
+	public void setBfNoFlag(int bfNoFlag) {
+		this.bfNoFlag = bfNoFlag;
 	}
 
 	private OutputStreamWriter out;
@@ -56,8 +56,8 @@ public class SocketProxy implements Runnable{
 				String line = in.readLine();
 				System.out.println("line==="+line);
 				if(line==null) break;
-				if(jyFlag==0) {
-					jyFlag = Integer.valueOf(line);
+				if(bfNoFlag==0) {
+					bfNoFlag = Integer.valueOf(line);
 					//可以告诉别人
 					//ProxySet.sayToAllProxy("进入聊天室", this);
 				}

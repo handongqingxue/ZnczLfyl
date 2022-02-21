@@ -255,15 +255,15 @@ public class GkjController {
 
 	@RequestMapping(value="/sendCphToClient")
 	@ResponseBody
-	public Map<String, Object> sendCphToClient(String cph,Integer jyFlag) {
+	public Map<String, Object> sendCphToClient(String cph,Integer bfNoFlag,Integer jyFlag) {
 		
-		System.out.println("sendCphToClient.jyFlag==="+jyFlag);
+		System.out.println("sendCphToClient.bfNoFlag==="+bfNoFlag);
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
 		//ProxySet.sayToClient("³A9031", SocketProxy.YI_JIAN);
-		String mesJO="{\"action\":\"pushCph\",\"cph\":\" "+cph+"\"}";
-		ProxySet.sayToClient(mesJO, jyFlag==1?SocketProxy.YI_JIAN:SocketProxy.ER_JIAN);
+		String mesJO="{\"action\":\"pushCph\",jyFlag:"+jyFlag+",\"cph\":\" "+cph+"\"}";
+		ProxySet.sayToClient(mesJO, bfNoFlag==1?SocketProxy.YI_HAO_BANG_FANG:SocketProxy.ER_HAO_BANG_FANG);
 		
 		jsonMap.put("status", "ok");
 		
