@@ -133,7 +133,7 @@ public class DDGLController {
 	public String goDdglZhcxList(HttpServletRequest request) {
 		
 		//publicService.selectNav(request);
-		request.setAttribute("checkDdztMc", DingDanZhuangTai.YI_SHEN_HE_TEXT);
+		request.setAttribute("yshDdztMc", DingDanZhuangTai.YI_SHEN_HE_TEXT);
 		request.setAttribute("yjpdzDdztMc", DingDanZhuangTai.YI_JIAN_PAI_DUI_ZHONG_TEXT);
 		request.setAttribute("ejpdzDdztMc", DingDanZhuangTai.ER_JIAN_PAI_DUI_ZHONG_TEXT);
 		request.setAttribute("shlx", ShenHeJiLu.XIA_DAN_SHEN_HE);
@@ -148,7 +148,8 @@ public class DDGLController {
 		String id = request.getParameter("id");
 		DingDan dd=dingDanService.selectById(id);
 		request.setAttribute("dd", dd);
-		request.setAttribute("checkDdztMc", DingDanZhuangTai.YI_SHEN_HE_TEXT);
+		request.setAttribute("yshDdztMc", DingDanZhuangTai.YI_SHEN_HE_TEXT);
+		request.setAttribute("yjpdzDdztMc", DingDanZhuangTai.YI_JIAN_PAI_DUI_ZHONG_TEXT);
 		request.setAttribute("shlx", ShenHeJiLu.XIA_DAN_SHEN_HE);
 		
 		return MODULE_NAME+"/zhcx/detail";

@@ -90,7 +90,14 @@ function initDetailDialog(){
 
 function checkById(){
 	var id=$("#detail_div #id").val();
-	var ddztMc=$("#detail_div #ddztMc").val();
+	var ddztMc;
+	var sjsfzh='${requestScope.dd.sjsfzh }';
+	var sjxm='${requestScope.dd.sjxm }';
+	var cph='${requestScope.dd.cph }';
+	if(sjsfzh==""||sjxm==""||cph=="")
+		ddztMc=$("#detail_div #yshDdztMc").val();
+	else
+		ddztMc=$("#detail_div #yjpdzDdztMc").val();
 	var shlx='${requestScope.shlx}';
 	var shrId='${sessionScope.yongHu.id}';
 	$.post(ddglPath + "checkDingDanByIds",
@@ -135,7 +142,8 @@ function setFitWidthInParent(parent,self){
 		<div id="detail_div">
 			<form id="form1" name="form1" method="post" action="" enctype="multipart/form-data">
 			<input type="hidden" id="id" value="${requestScope.dd.id }"/>
-			<input type="hidden" id="ddztMc" value="${requestScope.checkDdztMc}"/>
+			<input type="hidden" id="yshDdztMc" value="${requestScope.yshDdztMc}"/>
+			<input type="hidden" id="yjpdzDdztMc" value="${requestScope.yjpdzDdztMc}"/>
 			<table>
 			  <tr>
 				<td class="td1" align="right">

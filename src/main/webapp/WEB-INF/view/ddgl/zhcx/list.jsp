@@ -518,7 +518,14 @@ function openInputCphDialog(flag){
 
 function checkById(){
 	var id=$("#check_ddxx_div #id").val();
-	var ddztMc=$("#check_ddxx_div #ddztMc").val();
+	var ddztMc;
+	var sjsfzh=$("#check_ddxx_div #sjsfzh_span").text();
+	var sjxm=$("#check_ddxx_div #sjxm_span").text();
+	var cph=$("#check_ddxx_div #cph_span").text();
+	if(sjsfzh==""||sjxm==""||cph=="")
+		ddztMc=$("#check_ddxx_div #yshDdztMc").val();
+	else
+		ddztMc='${requestScope.yjpdzDdztMc}';
 	var shlx='${requestScope.shlx}';
 	var shrId='${sessionScope.yongHu.id}';
 	$.post(ddglPath + "checkDingDanByIds",
@@ -633,7 +640,7 @@ function setFitWidthInParent(parent,self){
 		<div class="check_ddxx_div" id="check_ddxx_div">
 			<div class="check_ddxx_dialog_div" id="check_ddxx_dialog_div">
 				<input type="hidden" id="id"/>
-				<input type="hidden" id="ddztMc" value="${requestScope.checkDdztMc}"/>
+				<input type="hidden" id="yshDdztMc" value="${requestScope.yshDdztMc}"/>
 				<table>
 				  <tr>
 					<td class="td1" align="right">
