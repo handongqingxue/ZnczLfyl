@@ -28,8 +28,6 @@ import com.znczLfyl.socket.StartServer;
 @RequestMapping("/main")
 public class MainController {
 	@Autowired
-	private UtilService utilService;
-	@Autowired
 	private YongHuService yongHuService;
 	
 	static {
@@ -81,55 +79,37 @@ public class MainController {
 	@RequestMapping(value="/login",method=RequestMethod.POST,produces="plain/text; charset=UTF-8")
 	@ResponseBody
 	public String login(String yhm,String mm,
-			String rememberMe,String loginVCode,HttpServletRequest request) {
+			String rememberMe,HttpServletRequest request) {
 		System.out.println("===登录接口===");
 		//返回值的json
 		PlanResult plan=new PlanResult();
 		HttpSession session=request.getSession();
-		String verifyCode = (String) session.getAttribute("验证码");
-		System.out.println("verifyCode==="+verifyCode);
-		System.out.println("loginVCode==="+loginVCode);
-		if(verifyCode.equals(loginVCode)) {
-			//TODO在这附近添加登录储存信息步骤，将用户的账号以及密码储存到shiro框架的管理配置当中方便后续查询
-			try {
-				System.out.println("验证码一致");
-				UsernamePasswordToken token = new UsernamePasswordToken(yhm,mm); 
-				Subject currentUser = SecurityUtils.getSubject();  
-				if (!currentUser.isAuthenticated()){
-					//使用shiro来验证  
-					token.setRememberMe(true);  
-					currentUser.login(token);//验证角色和权限  
-				}
-			}catch (Exception e) {
-				e.printStackTrace();
-				plan.setStatus(1);
-				plan.setMsg("登陆失败");
-				return JsonUtil.getJsonFromObject(plan);
+		
+		//TODO在这附近添加登录储存信息步骤，将用户的账号以及密码储存到shiro框架的管理配置当中方便后续查询
+		try {
+			System.out.println("验证码一致");
+			UsernamePasswordToken token = new UsernamePasswordToken(yhm,mm); 
+			Subject currentUser = SecurityUtils.getSubject();  
+			if (!currentUser.isAuthenticated()){
+				//使用shiro来验证  
+				token.setRememberMe(true);  
+				currentUser.login(token);//验证角色和权限  
 			}
-			YongHu yongHu=(YongHu)SecurityUtils.getSubject().getPrincipal();
-			session.setAttribute("yongHu", yongHu);
-			
-			plan.setStatus(0);
-			plan.setMsg("验证通过");
-			plan.setUrl("/ddgl/zhcx/list");
+		}catch (Exception e) {
+			e.printStackTrace();
+			plan.setStatus(1);
+			plan.setMsg("登陆失败");
 			return JsonUtil.getJsonFromObject(plan);
 		}
-		plan.setStatus(1);
-		plan.setMsg("验证码错误");
+		YongHu yongHu=(YongHu)SecurityUtils.getSubject().getPrincipal();
+		session.setAttribute("yongHu", yongHu);
+		
+		plan.setStatus(0);
+		plan.setMsg("验证通过");
+		plan.setUrl("/ddgl/zhcx/list");
 		return JsonUtil.getJsonFromObject(plan);
 	}
 
-	/**
-	 * 为登录页面获取验证码
-	 * @param session
-	 * @param identity
-	 * @param response
-	 */
-	@RequestMapping(value="/getKaptchaImage")
-	public void getKaptchaImage(HttpSession session, String identity, HttpServletResponse response) {
-		utilService.getKaptchaImage(session, identity, response);
-	}
-	
 	@RequestMapping(value="/exit")
 	public String exit(HttpSession session) {
 		System.out.println("退出接口");
