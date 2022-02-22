@@ -19,7 +19,7 @@ $(function(){
 	window.close();
 });
 </script>
-<title>Insert title here</title>
+<title></title>
 </head>
 <body>
 

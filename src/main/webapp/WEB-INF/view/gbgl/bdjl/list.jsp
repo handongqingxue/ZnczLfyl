@@ -137,16 +137,16 @@ function initPreviewBDXXDialog(){
 }
 
 function initPreviewModuleHtmlStr(){
-	 appendStr="<div style=\"width: 100%;height:50px;line-height:50px;text-align: center;font-size: 20px;font-weight: bold;\">山东蓝帆健康科技有限公司过磅单</div>";
+	 appendStr="<div style=\"width: 100%;height:40px;line-height:40px;text-align: center;font-size: 20px;font-weight: bold;\">山东蓝帆健康科技有限公司过磅单</div>";
   	    appendStr+="<div style=\"width: 90%;height:30px;line-height:30px;margin:auto;\">";
 		appendStr+="<span style=\"margin-left: 10px;\">序号：</span>";
-		appendStr+="<span id=\"xh_val_span\" style=\"margin-left: 27px;\"></span>";
-		appendStr+="<span style=\"margin-left: 170px;\">日期：</span>";
+		appendStr+="<span id=\"xh_val_span\" style=\"margin-left: 20px;\"></span>";
+		appendStr+="<span style=\"margin-left: 50px;\">日期：</span>";
 	    appendStr+="<span id=\"rq_val_span\" style=\"margin-left: 15px;\"></span>";
-	    appendStr+="<span style=\"margin-left: 250px;\">单位：公斤</span>";
+	    appendStr+="<span style=\"margin-left: 50px;\">单位：公斤</span>";
     appendStr+="</div>";
 	appendStr+="<table border=\"1\" style=\"width: 90%;margin:auto;text-align: center;border-color: #000;border-spacing:0;\">";
-		appendStr+="<tr style=\"height: 25px;\">";
+		appendStr+="<tr style=\"height: 20px;\">";
 			appendStr+="<td class=\"ch_key_td\" style=\"width: 10%;\">车号</td>";
 			appendStr+="<td class=\"ch_val_td\" id=\"ch_val_td\" style=\"width: 20%;\"></td>";
 			appendStr+="<td class=\"hp_key_td\" style=\"width: 10%;\">货品</td>";
@@ -154,13 +154,13 @@ function initPreviewModuleHtmlStr(){
 			appendStr+="<td class=\"kh_key_td\" style=\"width: 10%;\">客户</td>";
 			appendStr+="<td class=\"kh_val_td\" colspan=\"2\" style=\"width: 30%;\">蓝帆</td>";
 		appendStr+="</tr>";
-		appendStr+="<tr style=\"height: 25px;\">";
+		appendStr+="<tr style=\"height: 20px;\">";
 			appendStr+="<td class=\"shdw_key_td\" style=\"width: 10%;\">收货单位</td>";
 			appendStr+="<td class=\"shdw_val_td\" id=\"shdw_val_td\" colspan=\"3\" style=\"width: 38%;\"></td>";
 			appendStr+="<td class=\"fhdw_key_td\" style=\"width: 12%;\">发货单位</td>";
 			appendStr+="<td class=\"fhdw_val_td\" id=\"fhdw_val_td\" colspan=\"3\" style=\"width: 40%;\"></td>";
 		appendStr+="</tr>";
-		appendStr+="<tr style=\"height: 35px;\">";
+		appendStr+="<tr style=\"height: 30px;\">";
 			appendStr+="<td class=\"mz_key_td\" style=\"width: 10%;\">毛重</td>";
 			appendStr+="<td class=\"mz_val_td\" id=\"mz_val_td\" style=\"width: 20%;\"></td>";
 			appendStr+="<td class=\"mzrqsj_key_td\" style=\"width: 10%;\">日期时间</td>";
@@ -168,7 +168,7 @@ function initPreviewModuleHtmlStr(){
 			appendStr+="<td class=\"mzsby_key_td\" style=\"width: 10%;\">司磅员</td>";
 			appendStr+="<td class=\"mzsby_val_td\" style=\"width: 20%;\">李铁玉</td>";
 		appendStr+="</tr>";
-		appendStr+="<tr style=\"height: 35px;\">";
+		appendStr+="<tr style=\"height: 30px;\">";
 			appendStr+="<td class=\"pz_key_td\" style=\"width: 10%;\">皮重</td>";
 			appendStr+="<td class=\"pz_val_td\" id=\"pz_val_td\" style=\"width: 20%;\"></td>";
 			appendStr+="<td class=\"pzrqsj_key_td\" style=\"width: 10%;\">日期时间</td>";
@@ -176,7 +176,7 @@ function initPreviewModuleHtmlStr(){
 			appendStr+="<td class=\"pzsby_key_td\" style=\"width: 10%;\">司磅员</td>";
 			appendStr+="<td class=\"pzsby_val_td\" style=\"width: 20%;\">李铁玉</td>";
 		appendStr+="</tr>";
-		appendStr+="<tr style=\"height: 35px;\">";
+		appendStr+="<tr style=\"height: 30px;\">";
 			appendStr+="<td class=\"jz_key_td\" style=\"width: 10%;\">净重</td>";
 			appendStr+="<td class=\"jz_val_td\" id=\"jz_val_td\" style=\"width: 20%;\"></td>";
 			appendStr+="<td class=\"jzsj_key_td\" style=\"width: 10%;\">司机</td>";

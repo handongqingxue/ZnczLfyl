@@ -428,7 +428,7 @@ function setFitWidthInParent(parent,self){
 					司机身份证号
 				</td>
 				<td class="td2">
-					<input type="text" class="sjsfzh_inp" id="sjsfzh" name="sjsfzh" placeholder="请输入司机身份证号" style=""/>
+					<input type="text" class="sjsfzh_inp" id="sjsfzh" name="sjsfzh" value="未录入" placeholder="请输入司机身份证号" style=""/>
 				</td>
 			  </tr>
 			  <tr>
@@ -436,7 +436,7 @@ function setFitWidthInParent(parent,self){
 					司机姓名
 				</td>
 				<td class="td2">
-					<input type="text" class="sjxm_inp" id="sjxm" name="sjxm" placeholder="请输入司机姓名" />
+					<input type="text" class="sjxm_inp" id="sjxm" name="sjxm" value="未录入" placeholder="请输入司机姓名" />
 				</td>
 				<td class="td1" align="right">
 					车牌号
@@ -457,7 +457,7 @@ function setFitWidthInParent(parent,self){
 					预装卸重量
 				</td>
 				<td class="td2">
-					<input type="number" class="yzxzl_inp" id="yzxzl" name="yzxzl" placeholder="请输入预装卸重量"/>
+					<input type="number" class="yzxzl_inp" id="yzxzl" name="yzxzl" value="0" placeholder="请输入预装卸重量"/>
 				</td>
 			  </tr>
 			  <tr>
