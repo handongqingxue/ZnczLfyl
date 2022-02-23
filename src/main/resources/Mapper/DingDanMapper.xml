@@ -209,6 +209,12 @@
 			<if test="cph!=null">
 				cph=#{cph},
 			</if>
+			<if test="yjbfh!=0">
+				yjbfh=#{yjbfh},
+			</if>
+			<if test="ejbfh!=0">
+				ejbfh=#{ejbfh},
+			</if>
 			<if test="lxlx!=null">
 				lxlx=#{lxlx},
 			</if>
@@ -294,6 +300,12 @@
 				bjsj=now()
 		</trim>
 		where ddztId=#{ddztId}
+		<if test="yjbfh!=0">
+			and yjbfh=#{yjbfh}
+		</if>
+		<if test="ejbfh!=0">
+			and ejbfh=#{ejbfh}
+		</if>
 		<if test="yjzt!=0">
 			and yjzt=#{yjzt}
 		</if>
@@ -306,6 +318,12 @@
 	</select>
 	<select id="getByZt" resultType="com.znczLfyl.entity.DingDan">
 		select dd.* from ding_dan dd,ding_dan_zhuang_tai ddzt where dd.ddztId=ddzt.id and ddzt.mc=#{ddztMc}
+		<if test="yjbfh!=0">
+		 and dd.yjbfh=#{yjbfh}
+		</if>
+		<if test="ejbfh!=0">
+		 and dd.ejbfh=#{ejbfh}
+		</if>
 		<if test="yjzt!=0">
 		 and dd.yjzt=#{yjzt}
 		</if>
@@ -323,6 +341,6 @@
 		select count(*) from ding_dan where ddh=#{ddh}
 	</select>
 	<select id="getCountByZt" resultType="java.lang.Integer">
-		select count(*) from ding_dan dd,ding_dan_zhuang_tai ddzt where dd.ddztId=ddzt.id and ddzt.mc=#{ddztMc} and dd.yjzt=#{yjzt} and dd.ejzt=#{ejzt}
+		select count(*) from ding_dan dd,ding_dan_zhuang_tai ddzt where dd.ddztId=ddzt.id and dd.yjbfh=#{yjbfh} and dd.ejbfh=#{ejbfh} and ddzt.mc=#{ddztMc} and dd.yjzt=#{yjzt} and dd.ejzt=#{ejzt}
 	</select>
 </mapper>

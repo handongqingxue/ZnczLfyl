@@ -116,9 +116,9 @@ public class DingDanServiceImpl implements DingDanService {
 	}
 
 	@Override
-	public DingDan getByZt(String ddztMc, Integer yjzt, Integer ejzt) {
+	public DingDan getByZt(Integer yjbfh,Integer ejbfh,String ddztMc, Integer yjzt, Integer ejzt) {
 		// TODO Auto-generated method stub
-		return dingDanDao.getByZt(ddztMc, yjzt, ejzt);
+		return dingDanDao.getByZt(yjbfh,ejbfh,ddztMc, yjzt, ejzt);
 	}
 
 	@Override
@@ -129,9 +129,9 @@ public class DingDanServiceImpl implements DingDanService {
 	}
 
 	@Override
-	public boolean checkIfExistByZt(String ddztMc, Integer yjzt, Integer ejzt) {
+	public boolean checkIfExistByZt(Integer yjbfh,Integer ejbfh,String ddztMc, Integer yjzt, Integer ejzt) {
 		// TODO Auto-generated method stub
-		int count=dingDanDao.getCountByZt(ddztMc, yjzt, ejzt);
+		int count=dingDanDao.getCountByZt(yjbfh,ejbfh,ddztMc, yjzt, ejzt);
 		return count==0?false:true;
 	}
 }

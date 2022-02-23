@@ -56,15 +56,17 @@ public class GkjController {
 
 	@RequestMapping(value="/getDingDanByZt")
 	@ResponseBody
-	public Map<String, Object> getDingDanByZt(String ddztMc,Integer yjzt,Integer ejzt) {
+	public Map<String, Object> getDingDanByZt(Integer yjbfh,Integer ejbfh,String ddztMc,Integer yjzt,Integer ejzt) {
 		
+		System.out.println("yjbfh==="+yjbfh);
+		System.out.println("ejbfh==="+ejbfh);
 		System.out.println("ddztMc==="+ddztMc);
 		System.out.println("yjzt==="+yjzt);
 		System.out.println("ejzt==="+ejzt);
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
-		DingDan dd = dingDanService.getByZt(ddztMc,yjzt,ejzt);
+		DingDan dd = dingDanService.getByZt(yjbfh,ejbfh,ddztMc,yjzt,ejzt);
 		
 		if(dd==null) {
 			jsonMap.put("status", "no");
@@ -238,11 +240,11 @@ public class GkjController {
 
 	@RequestMapping(value="/checkDingDanIfExistByZt")
 	@ResponseBody
-	public Map<String, Object> checkDingDanIfExistByZt(String ddztMc, Integer yjzt, Integer ejzt) {
+	public Map<String, Object> checkDingDanIfExistByZt(Integer yjbfh,Integer ejbfh,String ddztMc, Integer yjzt, Integer ejzt) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
-		boolean bool=dingDanService.checkIfExistByZt(ddztMc, yjzt, ejzt);
+		boolean bool=dingDanService.checkIfExistByZt(yjbfh,ejbfh,ddztMc, yjzt, ejzt);
 		if(bool) {
 			jsonMap.put("status", "ok");
 			jsonMap.put("message", "¶©µ¥ÒÑ´æÔÚ£¡");

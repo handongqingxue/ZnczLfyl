@@ -26,10 +26,10 @@ public interface DingDanService {
 
 	DingDan getDingDan(String cph, String ddztMc);
 
-	DingDan getByZt(String ddztMc, Integer yjzt, Integer ejzt);
+	DingDan getByZt(Integer yjbfh, Integer ejbfh, String ddztMc, Integer yjzt, Integer ejzt);
 
 	boolean checkDdhIfExist(String ddh);
 
-	boolean checkIfExistByZt(String ddztMc, Integer yjzt, Integer ejzt);
+	boolean checkIfExistByZt(Integer yjbfh,Integer ejbfh,String ddztMc, Integer yjzt, Integer ejzt);
 
 }

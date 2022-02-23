@@ -27,12 +27,12 @@ public interface DingDanMapper {
 
 	DingDan getByZtCph(@Param("ddztId") int ddztId, @Param("cph") String cph);
 
-	DingDan getByZt(@Param("ddztMc") String ddztMc, @Param("yjzt") Integer yjzt, @Param("ejzt") Integer ejzt);
+	DingDan getByZt(@Param("yjbfh")Integer yjbfh,@Param("ejbfh") Integer ejbfh, @Param("ddztMc") String ddztMc, @Param("yjzt") Integer yjzt, @Param("ejzt") Integer ejzt);
 
 	int checkByIds(@Param("idList") List<String> idList, @Param("ddztId") int ddztId);
 
 	int getCountByDdh(@Param("ddh") String ddh);
 
-	int getCountByZt(@Param("ddztMc") String ddztMc, @Param("yjzt") Integer yjzt, @Param("ejzt") Integer ejzt);
+	int getCountByZt(@Param("yjbfh") Integer yjbfh,@Param("ejbfh") Integer ejbfh,@Param("ddztMc") String ddztMc, @Param("yjzt") Integer yjzt, @Param("ejzt") Integer ejzt);
 
 }
