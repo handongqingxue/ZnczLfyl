@@ -71,9 +71,9 @@
 	height: 1px;
 	background-color: #CAD9EA;
 }
-.electronicGuide_img{
-	width: 36px;
-	height: 36px;
+.bgLogo_img{
+	width: 101px;
+	height: 57px;
 }
 </style>
 <script type="text/javascript">
@@ -169,13 +169,16 @@ function showLeftMenuByQx(){
 <body>
 <div class="layui-header header_div">
 		<div class="layui-logo">
-			<img class="electronicGuide_img" alt="" src="<%=basePath%>resource/image/electronicGuide.png"/>
-			<a>智能称重平台系统</a>
+			<img class="bgLogo_img" alt="" src="<%=basePath%>resource/image/bgLogo.jpg"/>
+			<a>山东蓝帆健康科技称重平台</a>
 		</div>
 		<ul class="layui-nav layui-layout-right">
-			<li class="layui-nav-item"><a href="javascript:;"> 
-				<img src="${sessionScope.user.headImgUrl }" class="layui-nav-img">
-					${sessionScope.user.userName }
+			<li class="layui-nav-item">
+				<a href="javascript:;"> 
+					<!-- 
+					<img src="${sessionScope.user.headImgUrl }" class="layui-nav-img">
+					 -->
+					${sessionScope.yongHu.yhm }
 				</a>
 			</li>
 			<li class="layui-nav-item"><a href="<%=basePath%>main/exit">退出</a>
