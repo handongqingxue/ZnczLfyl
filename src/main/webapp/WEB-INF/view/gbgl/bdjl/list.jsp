@@ -162,7 +162,7 @@ function initPreviewModuleHtmlStr(){
 			appendStr+="<td class=\"mz_val_td\" id=\"mz_val_td\" style=\"width: 15%;\"></td>";
 			appendStr+="<td class=\"mzrqsj_key_td\" style=\"width: 15%;\">日期时间</td>";
 			appendStr+="<td class=\"mzrqsj_val_td\" id=\"mzrqsj_val_td\" colspan=\"3\" style=\"width: 30%;\"></td>";
-			appendStr+="<td class=\"mzsby_key_td\" style=\"width: 10%;\">司磅员</td>";
+			appendStr+="<td class=\"mzsby_key_td\" style=\"width: 10%;\">管理员</td>";
 			appendStr+="<td class=\"mzsby_val_td\" style=\"width: 15%;\">"+zsxm+"</td>";
 		appendStr+="</tr>";
 		appendStr+="<tr style=\"height: 25px;\">";
@@ -170,7 +170,7 @@ function initPreviewModuleHtmlStr(){
 			appendStr+="<td class=\"pz_val_td\" id=\"pz_val_td\" style=\"width: 15%;\"></td>";
 			appendStr+="<td class=\"pzrqsj_key_td\" style=\"width: 15%;\">日期时间</td>";
 			appendStr+="<td class=\"pzrqsj_val_td\" id=\"pzrqsj_val_td\" colspan=\"3\" style=\"width: 30%;\"></td>";
-			appendStr+="<td class=\"pzsby_key_td\" style=\"width: 10%;\">司磅员</td>";
+			appendStr+="<td class=\"pzsby_key_td\" style=\"width: 10%;\">管理员</td>";
 			appendStr+="<td class=\"pzsby_val_td\" style=\"width: 15%;\">"+zsxm+"</td>";
 		appendStr+="</tr>";
 		appendStr+="<tr style=\"height: 25px;\">";

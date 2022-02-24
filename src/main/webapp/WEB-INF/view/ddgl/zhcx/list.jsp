@@ -421,7 +421,6 @@ function initTab1(){
 				}
             	return str;
             }},
-			{field:"sjsfzh",title:"司机身份证号",width:200},
 			{field:"sjxm",title:"司机姓名",width:100},
 			{field:"cph",title:"车牌号",width:150},
 			{field:"wzlxMc",title:"物资类型",width:150},
@@ -441,9 +440,31 @@ function initTab1(){
 				}
             	return str;
             }},
-            {field:"yzxzl",title:"预装卸重量",width:100},
             {field:"sjzl",title:"实际重量",width:100},
-            {field:"zlceb",title:"重量差额比",width:100},
+            {field:"yjbfh",title:"一检地磅",width:100,formatter:function(value,row){
+            	var dbm;
+            	switch (value) {
+				case 1:
+					dbm="托利多";
+					break;
+				case 2:
+					dbm="耀华";
+					break;
+				}
+            	return dbm;
+            }},
+            {field:"ejbfh",title:"二检地磅",width:100,formatter:function(value,row){
+            	var dbm;
+            	switch (value) {
+				case 1:
+					dbm="托利多";
+					break;
+				case 2:
+					dbm="耀华";
+					break;
+				}
+            	return dbm;
+            }},
             {field:"bjsj",title:"编辑时间",width:150},
             {field:"id",title:"操作",width:150,formatter:function(value,row){
             	var str="<a href=\"edit?id="+value+"\">编辑</a>&nbsp;&nbsp;"
@@ -458,7 +479,7 @@ function initTab1(){
         onLoadSuccess:function(data){
 			if(data.total==0){
 				$(this).datagrid("appendRow",{ddh:"<div style=\"text-align:center;\">暂无信息<div>"});
-				$(this).datagrid("mergeCells",{index:0,field:"ddh",colspan:18});
+				$(this).datagrid("mergeCells",{index:0,field:"ddh",colspan:17});
 				data.total=0;
 			}
 			
