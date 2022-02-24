@@ -122,6 +122,15 @@ function showLeftMenuByQx(){
 		$(".gbjl_item_li").css("display","block");
 		$(".dyjsh_item_li").css("display","block");
 		$(".dejsh_item_li").css("display","block");
+
+		$(".wzgl_first_div").css("display","block");
+		$(".wzlx_item_li").css("display","block");
+		$(".wzcx_item_li").css("display","block");
+		
+		$(".dwgl_first_div").css("display","block");
+		$(".yss_item_li").css("display","block");
+		$(".fhdw_item_li").css("display","block");
+		$(".shbm_item_li").css("display","block");
 		
 		$(".xtgl_first_div").css("display","block");
 		$(".yhcx_item_li").css("display","block");
