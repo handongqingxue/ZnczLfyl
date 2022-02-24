@@ -19,6 +19,14 @@
 	margin-left: 20px;
 	font-size: 18px;
 }
+.zsxm_inp{
+	width: 150px;
+	height:30px;
+}
+.js_inp{
+	width: 180px;
+	height:30px;
+}
 </style>
 <script type="text/javascript">
 var path='<%=basePath %>';
@@ -202,7 +210,7 @@ function setFitWidthInParent(parent,self){
 					真实姓名
 				</td>
 				<td class="td2">
-					${requestScope.yh.zsxm }
+					<input type="text" class="zsxm_inp" id="zsxm" name="zsxm" value="${requestScope.yh.zsxm }"/>
 				</td>
 			  </tr>
 			  <tr>
@@ -225,7 +233,7 @@ function setFitWidthInParent(parent,self){
 					简述
 				</td>
 				<td class="td2">
-					${requestScope.yh.js }
+					<input type="text" class="js_inp" id="js" name="js" value="${requestScope.yh.js }"/>
 				</td>
 				<td class="td1" align="right">
 					权限

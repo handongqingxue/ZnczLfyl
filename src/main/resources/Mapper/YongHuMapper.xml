@@ -54,6 +54,9 @@
 			<if test="qxIds!=null">
 				qxIds=#{qxIds},
 			</if>
+			<if test="js!=null">
+				js=#{js},
+			</if>
 		</trim>
 		where id=#{id}
 	</update>
