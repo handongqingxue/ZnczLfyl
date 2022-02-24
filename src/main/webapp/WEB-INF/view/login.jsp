@@ -7,6 +7,10 @@
 <title>智能称重平台登录</title>
 <%@include file="inc/js.jsp"%>
 <style>
+html,body{
+	min-height: 100vh;
+}
+
 .beg-login-box {
 	width: 450px;
 	height: 270px;
@@ -29,7 +33,9 @@ header {
 
 body {
 	font-size: 12px;
-	background-color: #000;
+	background-image: url("<%=basePath%>resource/image/bgLogin.jpg");
+	-moz-background-size:100% 100%;
+	background-size:100% 100%;
 }
 
 .beg-pull-right {
@@ -44,7 +50,7 @@ body {
 <body>
 	<div class="beg-login-box">
 		<header>
-		<h1>智能称重平台登录</h1>
+		<h1>山东蓝帆健康科技称重平台</h1>
 		</header>
 		<div class="beg-login-main">
 			<form class="layui-form" method="post">

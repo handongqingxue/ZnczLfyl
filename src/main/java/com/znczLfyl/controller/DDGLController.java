@@ -249,9 +249,9 @@ public class DDGLController {
 
 	@RequestMapping(value="/checkDingDanByIds",produces="plain/text; charset=UTF-8")
 	@ResponseBody
-	public String checkDingDanByIds(String ids, String ddztMc, ShenHeJiLu shjl) {
+	public String checkDingDanByIds(String ids, String ddztMc, Integer jyFlag, ShenHeJiLu shjl) {
 		//TODO 针对分类的动态进行实时调整更新
-		int count=dingDanService.checkByIds(ids,ddztMc,shjl);
+		int count=dingDanService.checkByIds(ids,ddztMc,jyFlag,shjl);
 		PlanResult plan=new PlanResult();
 		String json;
 		if(count==0) {

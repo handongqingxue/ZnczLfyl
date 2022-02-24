@@ -87,7 +87,7 @@ public class DingDanServiceImpl implements DingDanService {
 	}
 
 	@Override
-	public int checkByIds(String ids,String ddztMc,ShenHeJiLu shjl) {
+	public int checkByIds(String ids,String ddztMc,Integer jyFlag,ShenHeJiLu shjl) {
 		// TODO Auto-generated method stub
 		int count=0;
 		int ddztId=dingDanZhuangTaiDao.getIdByMc(ddztMc);
@@ -99,8 +99,9 @@ public class DingDanServiceImpl implements DingDanService {
 				count+=shenHeJiLuDao.add(shjl);
 				
 				if(!shjl.getShjg()) {
-					bangDanJiLuDao.deleteByDdId(ddId);
-					guoBangJiLuDao.deleteByDdId(ddId);
+					if(jyFlag==GuoBangJiLu.RU_CHANG_GUO_BANG)
+						bangDanJiLuDao.deleteByDdId(ddId);
+					guoBangJiLuDao.deleteByDdId(jyFlag,ddId);
 				}
 			}
 		}

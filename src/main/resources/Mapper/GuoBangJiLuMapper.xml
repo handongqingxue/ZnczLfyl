@@ -151,6 +151,6 @@
 		select gbjl.*,dd.ddh,dd.cph,dd.sjxm,dd.sjsfzh from guo_bang_ji_lu gbjl,ding_dan dd where gbjl.ddId=dd.id and gbjl.gblx=#{gblx} and dd.id=#{ddId}
 	</select>
 	<delete id="deleteByDdId">
-		delete from guo_bang_ji_lu where ddId=#{ddId}
+		delete from guo_bang_ji_lu where gblx=#{gblx} and ddId=#{ddId}
 	</delete>
 </mapper>
