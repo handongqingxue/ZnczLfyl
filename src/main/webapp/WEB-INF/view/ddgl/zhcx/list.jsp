@@ -250,11 +250,20 @@ function sendCphToClient(){
 	var rows=tab1.datagrid("getSelections");
 	var bfNoFlag=1;
 	var jyFlag=0;
+	var cph = $("#input_cph_dialog_div #cph_inp").val();
+	if(cph!=rows[0].cph){
+		alert("输入的车牌号与订单里的车牌号不一致");
+		return false;
+	}
 	var ddztMc=rows[0].ddztMc;
 	if(ddztMc=='${requestScope.yjpdzDdztMc}')
 		jyFlag=1
 	else if(ddztMc=='${requestScope.ejpdzDdztMc}')
 		jyFlag=2
+	else{
+		alert("该车辆非排队中状态");
+		return false;
+	}
 	var cph=$("#input_cph_dialog_div #cph_inp").val();
 	$.post(gkjPath+"sendCphToClient",
 		{cph:cph,bfNoFlag:bfNoFlag,jyFlag:jyFlag},
