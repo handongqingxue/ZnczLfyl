@@ -81,8 +81,14 @@ function initDetailDialog(){
 	$(".window-shadow").eq(ddNum).css("margin-top","20px");
 	$(".window,.window .window-body").eq(ddNum).css("border-color","#ddd");
 
-	$("#detail_div #shtg_but").css("left","45%");
-	$("#detail_div #shtg_but").css("position","absolute");
+	var shtgBut=$("#detail_div #shtg_but");
+	shtgBut.css("left","45%");
+	shtgBut.css("position","absolute");
+	
+	if('${requestScope.dd.ddztId }'==1)
+		shtgBut.linkbutton('enable');
+	else
+		shtgBut.linkbutton('disable');
 	
 	$(".dialog-button").css("background-color","#fff");
 	$(".dialog-button .l-btn-text").css("font-size","20px");
