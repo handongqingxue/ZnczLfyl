@@ -65,7 +65,7 @@
 
 .input_cph_div{
 	width: 500px;
-	height: 200px;
+	height: 250px;
 	margin: 200px auto 0;
 	background-color: #fff;
 	border-radius:5px;
@@ -197,7 +197,7 @@ function initInputCphDialog(){
 	$("#input_cph_dialog_div").dialog({
 		title:"录入车牌号",
 		width:setFitWidthInParent("#input_cph_div","input_cph_dialog_div"),
-		height:150,
+		height:200,
 		top:5,
 		left:dialogLeft,
 		buttons:[
@@ -238,17 +238,36 @@ function initInputCphDialog(){
 	
 	$(".dialog-button").css("background-color","#fff");
 	$(".dialog-button .l-btn-text").css("font-size","20px");
+	
+	initBFHCBB();
+}
+
+function initBFHCBB(){
+	var data=[];
+	data.push({"value":"","text":"请选择"});
+	data.push({"value":1,"text":"北新磅房"});
+	data.push({"value":2,"text":"南旧磅房"});
+	
+	bfhCBB=$("#bfh_cbb").combobox({
+		width:120,
+		valueField:"value",
+		textField:"text",
+		//multiple:true,
+		data:data
+	});
 }
 
 function checkCphToClient(){
 	if(checkRglrCph()){
-		sendCphToClient();
+		if(checkBfh()){
+			sendCphToClient();
+		}
 	}
 }
 
 function sendCphToClient(){
 	var rows=tab1.datagrid("getSelections");
-	var bfNoFlag=1;
+	var bfNoFlag=bfhCBB.combobox("getValue");
 	var jyFlag=0;
 	var cph = $("#input_cph_dialog_div #cph_inp").val();
 	if(cph!=rows[0].cph){
@@ -290,6 +309,17 @@ function checkRglrCph(){
 		$("#input_cph_dialog_div #cph_inp").css("color","#E15748");
     	$("#input_cph_dialog_div #cph_inp").val("车牌号不能为空");
     	return false;
+	}
+	else
+		return true;
+}
+
+//验证磅房号
+function checkBfh(){
+	var bfh=bfhCBB.combobox("getValue");
+	if(bfh==null||bfh==""){
+	  	alert("请选择磅房");
+	  	return false;
 	}
 	else
 		return true;
@@ -783,6 +813,14 @@ function setFitWidthInParent(parent,self){
 					</td>
 					<td class="td2">
 						<input type="text" class="cph_inp" id="cph_inp" placeholder="请输入车牌号" onfocus="focusRglrCph()" onblur="checkRglrCph()"/>
+					</td>
+				  </tr>
+				  <tr>
+					<td class="td1" align="right">
+						磅房
+					</td>
+					<td class="td2">
+						<input id="bfh_cbb"/>
 					</td>
 				  </tr>
 				</table>
