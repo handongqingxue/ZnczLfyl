@@ -13,7 +13,8 @@ public class ProxySet {
 	
 	public static void removeSocketProxy(SocketProxy proxy){
 		proxys.remove(proxy);
-		sayToAllProxy(proxy.getBfNoFlag()+" 离开了", proxy);
+		System.out.println(proxy.getBfNoFlag()+" 离开了");
+		//sayToAllProxy(proxy.getBfNoFlag()+" 离开了", proxy);
 		
 	}
 	
