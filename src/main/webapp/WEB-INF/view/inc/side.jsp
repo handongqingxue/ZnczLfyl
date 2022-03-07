@@ -214,6 +214,13 @@ function showLeftMenuByQx(){
 					<div class="line_div"></div>
 					<li class="layui-nav-item drk_item_li">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
+						<a href="<%=basePath%>ddgl/dsh/list">
+							&nbsp;&nbsp;&nbsp;待审核
+						</a>
+					</li>
+					<div class="line_div"></div>
+					<li class="layui-nav-item drk_item_li">
+						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
 						<a href="<%=basePath%>ddgl/drk/list">
 							&nbsp;&nbsp;&nbsp;待入库
 						</a>
@@ -256,15 +263,15 @@ function showLeftMenuByQx(){
 					<div class="line_div"></div>
 					<li class="layui-nav-item dyjsh_item_li">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
-						<a href="<%=basePath%>gbgl/dyjsh/list">
-							&nbsp;&nbsp;&nbsp;待一检审核
+						<a href="<%=basePath%>gbgl/yjdsh/list">
+							&nbsp;&nbsp;&nbsp;一检待审核
 						</a>
 					</li>
 					<div class="line_div"></div>
 					<li class="layui-nav-item dejsh_item_li">
 						<img class="pointer-img" alt="" src="<%=basePath%>resource/image/ico_3.gif" />
-						<a href="<%=basePath%>gbgl/dejsh/list">
-							&nbsp;&nbsp;&nbsp;待二检审核
+						<a href="<%=basePath%>gbgl/ejdsh/list">
+							&nbsp;&nbsp;&nbsp;二检待审核
 						</a>
 					</li>
 				</div>

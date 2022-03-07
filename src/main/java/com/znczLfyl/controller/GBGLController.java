@@ -170,39 +170,39 @@ public class GBGLController {
 	}
 	
 	/**
-	 * 跳转到过磅管理-待一检审核-列表页面
+	 * 跳转到过磅管理-一检待审核-列表页面
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value="/dyjsh/list")
-	public String goDyjshList(HttpServletRequest request) {
+	@RequestMapping(value="/yjdsh/list")
+	public String goYjdshList(HttpServletRequest request) {
 		
 		//publicService.selectNav(request);
 		
-		request.setAttribute("dyjshDdztMc", DingDanZhuangTai.DAI_YI_JIAN_SHEN_HE_TEXT);
+		request.setAttribute("yjdshDdztMc", DingDanZhuangTai.YI_JIAN_DAI_SHEN_HE_TEXT);
 		request.setAttribute("drkDdztMc", DingDanZhuangTai.DAI_RU_KU_TEXT);
 		request.setAttribute("shlx", ShenHeJiLu.YI_JIAN_SHEN_HE);
 		request.setAttribute("gblx", GuoBangJiLu.RU_CHANG_GUO_BANG);
 		
-		return MODULE_NAME+"/dyjsh/list";
+		return MODULE_NAME+"/yjdsh/list";
 	}
 	
 	/**
-	 * 跳转到过磅管理-待二检审核-列表页面
+	 * 跳转到过磅管理-二检待审核-列表页面
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value="/dejsh/list")
-	public String goDejshList(HttpServletRequest request) {
+	@RequestMapping(value="/ejdsh/list")
+	public String goEjdshList(HttpServletRequest request) {
 		
 		//publicService.selectNav(request);
 		
-		request.setAttribute("dejshDdztMc", DingDanZhuangTai.DAI_ER_JIAN_SHEN_HE_TEXT);
+		request.setAttribute("ejdshDdztMc", DingDanZhuangTai.ER_JIAN_DAI_SHEN_HE_TEXT);
 		request.setAttribute("ywcDdztMc", DingDanZhuangTai.YI_WAN_CHENG_TEXT);
 		request.setAttribute("shlx", ShenHeJiLu.ER_JIAN_SHEN_HE);
 		request.setAttribute("gblx", GuoBangJiLu.CHU_CHANG_GUO_BANG);
 		
-		return MODULE_NAME+"/dejsh/list";
+		return MODULE_NAME+"/ejdsh/list";
 	}
 
 	@RequestMapping(value="/newBangDanJiLu")

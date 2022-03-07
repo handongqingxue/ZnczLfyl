@@ -84,6 +84,22 @@ public class DDGLController {
 	}
 
 	/**
+	 * 跳转到订单管理-待审核-列表页面
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/dsh/list")
+	public String goDshList(HttpServletRequest request) {
+		
+		//publicService.selectNav(request);
+		request.setAttribute("ddztMc", DingDanZhuangTai.DAI_SHEN_HE_TEXT);
+		request.setAttribute("checkDdztMc", DingDanZhuangTai.YI_SHEN_HE_TEXT);
+		request.setAttribute("shlx", ShenHeJiLu.XIA_DAN_SHEN_HE);
+		
+		return MODULE_NAME+"/dsh/list";
+	}
+
+	/**
 	 * 跳转到订单管理-待入库-列表页面
 	 * @param request
 	 * @return

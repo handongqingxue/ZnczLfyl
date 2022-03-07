@@ -404,6 +404,15 @@ function initTab1(){
 		pagination:true,
 		pageSize:10,
 		columns:[[
+            {field:"id",title:"操作",width:150,formatter:function(value,row){
+            	var str="<a href=\"edit?id="+value+"\">编辑</a>&nbsp;&nbsp;"
+            		+"<a href=\"detail?id="+value+"\">详情</a>&nbsp;&nbsp;";
+           		if(row.ddztMc=="待审核"){
+           			var rowJson = JSON.stringify(row).replace(/"/g, '&quot;');
+           			str+="<a class=\"check_a\" onclick=\"openCheckDDXXDialog(true,"+rowJson+")\">审核</a>";
+           		}
+            	return str;
+            }},
 			{field:"ddh",title:"订单号",width:150},
 			{field:"ddztMc",title:"订单状态",width:150},
 			{field:"yjzt",title:"一检状态",width:100,formatter:function(value,row){
@@ -504,21 +513,12 @@ function initTab1(){
 				}
             	return dbm;
             }},
-            {field:"bjsj",title:"编辑时间",width:150},
-            {field:"id",title:"操作",width:150,formatter:function(value,row){
-            	var str="<a href=\"edit?id="+value+"\">编辑</a>&nbsp;&nbsp;"
-            		+"<a href=\"detail?id="+value+"\">详情</a>&nbsp;&nbsp;";
-           		if(row.ddztMc=="待审核"){
-           			var rowJson = JSON.stringify(row).replace(/"/g, '&quot;');
-           			str+="<a class=\"check_a\" onclick=\"openCheckDDXXDialog(true,"+rowJson+")\">审核</a>";
-           		}
-            	return str;
-            }}
+            {field:"bjsj",title:"编辑时间",width:150}
 	    ]],
         onLoadSuccess:function(data){
 			if(data.total==0){
-				$(this).datagrid("appendRow",{ddh:"<div style=\"text-align:center;\">暂无信息<div>"});
-				$(this).datagrid("mergeCells",{index:0,field:"ddh",colspan:17});
+				$(this).datagrid("appendRow",{id:"<div style=\"text-align:center;\">暂无信息<div>"});
+				$(this).datagrid("mergeCells",{index:0,field:"id",colspan:17});
 				data.total=0;
 			}
 			

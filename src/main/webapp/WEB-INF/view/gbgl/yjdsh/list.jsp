@@ -44,7 +44,7 @@ var path='<%=basePath %>';
 var gbglPath=path+'gbgl/';
 var ddglPath=path+'ddgl/';
 var exportExcelPath=path+'exportExcel/';
-var ddztMc='${requestScope.dejshDdztMc}';
+var ddztMc='${requestScope.yjdshDdztMc}';
 var gblx='${requestScope.gblx}';
 $(function(){
 	initGBSJKSDTB();
@@ -116,11 +116,11 @@ function checkByIds(shjg) {
 	}
 	ddIds=ddIds.substring(1);
 	
-	var ddztMc='${requestScope.ywcDdztMc}';
+	var ddztMc='${requestScope.drkDdztMc}';
 	var shlx='${requestScope.shlx}';
 	var shrId='${sessionScope.yongHu.id}';
 	$.post(ddglPath + "checkDingDanByIds",
-		{ids:ddIds,ddztMc:ddztMc,shlx:shlx,shjg:shjg,shrId:shrId,jyFlag:2},
+		{ids:ddIds,ddztMc:ddztMc,shlx:shlx,shjg:shjg,shrId:shrId,jyFlag:1},
 		function(result){
 			if(result.status==1){
 				alert(result.msg);
@@ -135,7 +135,7 @@ function checkByIds(shjg) {
 
 function initTab1(){
 	tab1=$("#tab1").datagrid({
-		title:"待二检审核查询",
+		title:"一检待审核查询",
 		url:gbglPath+"queryDJYList",
 		toolbar:"#toolbar",
 		width:setFitWidthInParent("body"),
