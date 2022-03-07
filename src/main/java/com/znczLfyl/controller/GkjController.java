@@ -30,6 +30,8 @@ public class GkjController {
 	private BangDanJiLuService bangDanJiLuService;
 	@Autowired
 	private GuoBangJiLuService guoBangJiLuService; 
+	@Autowired
+	private RglrCphJiLuService rglrCphJiLuService; 
 
 	@RequestMapping(value="/getDingDan")
 	@ResponseBody
@@ -266,6 +268,14 @@ public class GkjController {
 		//ProxySet.sayToClient("³A9031", SocketProxy.YI_JIAN);
 		String mesJO="{\"action\":\"pushCph\",jyFlag:"+jyFlag+",\"cph\":\" "+cph+"\"}";
 		ProxySet.sayToClient(mesJO, bfNoFlag==1?SocketProxy.YI_HAO_BANG_FANG:SocketProxy.ER_HAO_BANG_FANG);
+		
+		boolean bool=rglrCphJiLuService.checkIfExist(cph,bfNoFlag);
+		if(!bool) {
+			RglrCphJiLu rglrCphJiLu=new RglrCphJiLu();
+			rglrCphJiLu.setCph(cph);
+			rglrCphJiLu.setBfh(bfNoFlag);
+			rglrCphJiLuService.add(rglrCphJiLu);
+		}
 		
 		jsonMap.put("status", "ok");
 		

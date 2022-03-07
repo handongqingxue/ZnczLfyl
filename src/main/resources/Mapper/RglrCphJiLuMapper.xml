@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znczLfyl.dao.RglrCphJiLuMapper">
+	<insert id="add" parameterType="com.znczLfyl.entity.RglrCphJiLu">
+		insert into rglr_cph_ji_lu
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="cph!=null">
+				cph,
+			</if>
+			<if test="bfh!=null">
+				bfh,
+			</if>
+				lrsj
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="cph!=null">
+				#{cph},
+			</if>
+			<if test="bfh!=null">
+				#{bfh},
+			</if>
+				now()
+		</trim>
+	</insert>
+	<select id="getCount" resultType="java.lang.Integer">
+		select count(*) from rglr_cph_ji_lu where cph=#{cph} and bfh=#{bfh}
+	</select>
+</mapper>
