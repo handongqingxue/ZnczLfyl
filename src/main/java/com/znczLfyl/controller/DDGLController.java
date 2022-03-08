@@ -38,6 +38,8 @@ public class DDGLController {
 	private ShenHeJiLuService shenHeJiLuService;
 	@Autowired
 	private DingDanZhuangTaiService dingDanZhuangTaiService;
+	@Autowired
+	private RglrCphJiLuService rglrCphJiLuService;
 	public static final String MODULE_NAME="ddgl";
 	
 	@RequestMapping(value="/ddzt/new")
@@ -433,6 +435,19 @@ public class DDGLController {
 		List<DingDanZhuangTai> ddztList=dingDanZhuangTaiService.queryCBBList();
 		
 		jsonMap.put("rows", ddztList);
+		
+		return jsonMap;
+	}
+	
+	@RequestMapping(value="/queryXzCphCBBList")
+	@ResponseBody
+	public Map<String, Object> queryXzCphCBBList(int bfh,int page,int rows,String sort,String order) {
+
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
+		
+		List<String> cphList=rglrCphJiLuService.queryXzCphCBBList(bfh, page, rows, sort, order);
+		
+		jsonMap.put("rows", cphList);
 		
 		return jsonMap;
 	}

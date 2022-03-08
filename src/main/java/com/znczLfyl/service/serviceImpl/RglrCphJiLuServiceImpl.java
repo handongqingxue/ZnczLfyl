@@ -1,5 +1,7 @@
 package com.znczLfyl.service.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,5 +26,11 @@ public class RglrCphJiLuServiceImpl implements RglrCphJiLuService {
 		// TODO Auto-generated method stub
 		int count=rglrCphJiLuDao.getCount(cph,bfh);
 		return count==0?false:true;
+	}
+
+	@Override
+	public List<String> queryXzCphCBBList(int bfh, int page, int rows, String sort, String order) {
+		// TODO Auto-generated method stub
+		return rglrCphJiLuDao.queryXzCphCBBList(bfh, (page-1)*rows, rows, sort, order);
 	}
 }

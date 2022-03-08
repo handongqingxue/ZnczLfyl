@@ -65,7 +65,7 @@
 
 .input_cph_div{
 	width: 500px;
-	height: 250px;
+	height: 300px;
 	margin: 200px auto 0;
 	background-color: #fff;
 	border-radius:5px;
@@ -197,7 +197,7 @@ function initInputCphDialog(){
 	$("#input_cph_dialog_div").dialog({
 		title:"录入车牌号",
 		width:setFitWidthInParent("#input_cph_div","input_cph_dialog_div"),
-		height:200,
+		height:250,
 		top:5,
 		left:dialogLeft,
 		buttons:[
@@ -238,8 +238,9 @@ function initInputCphDialog(){
 	
 	$(".dialog-button").css("background-color","#fff");
 	$(".dialog-button .l-btn-text").css("font-size","20px");
-	
+
 	initBFHCBB();
+	initXzCphCBB();
 }
 
 function initBFHCBB(){
@@ -253,8 +254,38 @@ function initBFHCBB(){
 		valueField:"value",
 		textField:"text",
 		//multiple:true,
+		data:data,
+		onChange:function(){
+			loadXzCphCBBData();
+		}
+	});
+}
+
+function initXzCphCBB(){
+	var data=[];
+	data.push({"value":"","text":"请选择"});
+	xzcphCBB=$("#xzcph_cbb").combobox({
+		width:120,
+		valueField:"value",
+		textField:"text",
 		data:data
 	});
+}
+
+function loadXzCphCBBData(){
+	var bfh=bfhCBB.combobox("getValue");
+	var data=[];
+	data.push({"value":"","text":"请选择"});
+	$.post(ddglPath+"queryXzCphCBBList",
+		{bfh:bfh,page:1,rows:20,sort:"lrsj",order:"desc"},
+		function(result){
+			var rows=result.rows;
+			for(var i=0;i<rows.length;i++){
+				data.push({"value":rows[i],"text":rows[i]});
+			}
+			xzcphCBB.combobox("loadData",data);
+		}
+	,"json");
 }
 
 function checkCphToClient(){
@@ -809,18 +840,26 @@ function setFitWidthInParent(parent,self){
 				<table>
 				  <tr>
 					<td class="td1" align="right">
-						车牌号
-					</td>
-					<td class="td2">
-						<input type="text" class="cph_inp" id="cph_inp" placeholder="请输入车牌号" onfocus="focusRglrCph()" onblur="checkRglrCph()"/>
-					</td>
-				  </tr>
-				  <tr>
-					<td class="td1" align="right">
 						磅房
 					</td>
 					<td class="td2">
 						<input id="bfh_cbb"/>
+					</td>
+				  </tr>
+				  <tr>
+					<td class="td1" align="right">
+						选择
+					</td>
+					<td class="td2">
+						<input id="xzcph_cbb"/>
+					</td>
+				  </tr>
+				  <tr>
+					<td class="td1" align="right">
+						车牌号
+					</td>
+					<td class="td2">
+						<input type="text" class="cph_inp" id="cph_inp" placeholder="请输入车牌号" onfocus="focusRglrCph()" onblur="checkRglrCph()"/>
 					</td>
 				  </tr>
 				</table>
