@@ -31,4 +31,7 @@
 	<select id="queryXzCphCBBList" resultType="java.lang.String">
 		select cph from rglr_cph_ji_lu where bfh=#{bfh} order by #{sort} #{order} limit #{rowNum},#{rows}
 	</select>
+	<select id="queryLrCphCBBList" resultType="com.znczLfyl.entity.RglrCphJiLu">
+		select cph from rglr_cph_ji_lu where bfh=#{bfh} and cph like CONCAT('%',#{cph},'%') order by #{sort} #{order} limit #{rowNum},#{rows}
+	</select>
 </mapper>

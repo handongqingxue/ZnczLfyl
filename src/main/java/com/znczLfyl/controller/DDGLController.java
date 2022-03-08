@@ -451,4 +451,13 @@ public class DDGLController {
 		
 		return jsonMap;
 	}
+	
+	@RequestMapping(value="/queryLrCphCBBList")
+	@ResponseBody
+	public List<RglrCphJiLu> queryLrCphCBBList(int bfh,String q,int page,int rows,String sort,String order) {
+
+		List<RglrCphJiLu> cphList=rglrCphJiLuService.queryLrCphCBBList(bfh, q, page, rows, sort, order);
+		
+		return cphList;
+	}
 }

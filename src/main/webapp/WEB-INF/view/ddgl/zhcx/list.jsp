@@ -30,7 +30,6 @@
 }
 .tab1_div .toolbar .row_div .ddh_inp,
 .tab1_div .toolbar .row_div .cph_inp,
-.input_cph_div .cph_inp,
 .tab1_div .toolbar .row_div .yssMc_inp,
 .tab1_div .toolbar .row_div .wzMc_inp,
 .tab1_div .toolbar .row_div .fhdwMc_inp,
@@ -241,6 +240,7 @@ function initInputCphDialog(){
 
 	initBFHCBB();
 	initXzCphCBB();
+	initLrCphCBB();
 }
 
 function initBFHCBB(){
@@ -268,7 +268,11 @@ function initXzCphCBB(){
 		width:120,
 		valueField:"value",
 		textField:"text",
-		data:data
+		data:data,
+		onChange:function(){
+			var cph=xzcphCBB.combobox("getValue");
+			lrcphCBB.combobox("setValue",cph);
+		}
 	});
 }
 
@@ -288,9 +292,33 @@ function loadXzCphCBBData(){
 	,"json");
 }
 
+function initLrCphCBB(){
+	var data=[];
+	data.push({"value":"","text":"请录入"});
+	lrcphCBB=$("#lrcph_cbb").combobox({
+		width:120,
+		valueField:"cph",
+		textField:"cph",
+		editable:true,
+        mode:'remote',
+        url:ddglPath+"queryLrCphCBBList",
+        onBeforeLoad: function(param){
+        	var bfh=bfhCBB.combobox("getValue");
+        	if(bfh==null||bfh==""){
+        	  	return false;
+        	}
+    		param.bfh = bfh;
+    		param.page = 1;
+    		param.rows = 100;
+    		param.sort = "lrsj";
+    		param.order = "desc";
+    	}
+	});
+}
+
 function checkCphToClient(){
-	if(checkRglrCph()){
-		if(checkBfh()){
+	if(checkBfh()){
+		if(checkRglrCph()){
 			sendCphToClient();
 		}
 	}
@@ -300,7 +328,7 @@ function sendCphToClient(){
 	var rows=tab1.datagrid("getSelections");
 	var bfNoFlag=bfhCBB.combobox("getValue");
 	var jyFlag=0;
-	var cph = $("#input_cph_dialog_div #cph_inp").val();
+	var cph=lrcphCBB.combobox("getValue");
 	if(cph!=rows[0].cph){
 		alert("输入的车牌号与订单里的车牌号不一致");
 		return false;
@@ -314,7 +342,6 @@ function sendCphToClient(){
 		alert("该车辆非排队中状态");
 		return false;
 	}
-	var cph=$("#input_cph_dialog_div #cph_inp").val();
 	$.post(gkjPath+"sendCphToClient",
 		{cph:cph,bfNoFlag:bfNoFlag,jyFlag:jyFlag},
 		function(data){
@@ -325,31 +352,22 @@ function sendCphToClient(){
 	,"json");
 }
 
-function focusRglrCph(){
-	var cph=$("#input_cph_dialog_div #cph_inp").val();
-	if(cph=="车牌号不能为空"){
-		$("#input_cph_dialog_div #cph_inp").val("");
-		$("#input_cph_dialog_div #cph_inp").css("color", "#555555");
-	}
-}
-
-//验证人工录入车牌号
-function checkRglrCph(){
-	var cph = $("#input_cph_dialog_div #cph_inp").val();
-	if(cph==null||cph==""||cph=="车牌号不能为空"){
-		$("#input_cph_dialog_div #cph_inp").css("color","#E15748");
-    	$("#input_cph_dialog_div #cph_inp").val("车牌号不能为空");
-    	return false;
-	}
-	else
-		return true;
-}
-
 //验证磅房号
 function checkBfh(){
 	var bfh=bfhCBB.combobox("getValue");
 	if(bfh==null||bfh==""){
 	  	alert("请选择磅房");
+	  	return false;
+	}
+	else
+		return true;
+}
+
+//验证人工录入车牌号
+function checkRglrCph(){
+	var cph=lrcphCBB.combobox("getValue");
+	if(cph==null||cph==""){
+	  	alert("请录入车牌号");
 	  	return false;
 	}
 	else
@@ -859,7 +877,7 @@ function setFitWidthInParent(parent,self){
 						车牌号
 					</td>
 					<td class="td2">
-						<input type="text" class="cph_inp" id="cph_inp" placeholder="请输入车牌号" onfocus="focusRglrCph()" onblur="checkRglrCph()"/>
+						<input id="lrcph_cbb"/>
 					</td>
 				  </tr>
 				</table>

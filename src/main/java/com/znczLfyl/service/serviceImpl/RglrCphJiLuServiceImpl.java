@@ -33,4 +33,10 @@ public class RglrCphJiLuServiceImpl implements RglrCphJiLuService {
 		// TODO Auto-generated method stub
 		return rglrCphJiLuDao.queryXzCphCBBList(bfh, (page-1)*rows, rows, sort, order);
 	}
+
+	@Override
+	public List<RglrCphJiLu> queryLrCphCBBList(int bfh, String cph, int page, int rows, String sort, String order) {
+		// TODO Auto-generated method stub
+		return rglrCphJiLuDao.queryLrCphCBBList(bfh, cph, (page-1)*rows, rows, sort, order);
+	}
 }

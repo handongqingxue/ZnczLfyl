@@ -13,4 +13,6 @@ public interface RglrCphJiLuMapper {
 	int getCount(@Param("cph") String cph, @Param("bfh") Integer bfh);
 
 	List<String> queryXzCphCBBList(@Param("bfh") int bfh, @Param("rowNum") int rowNum, @Param("rows") int rows, @Param("sort") String sort, @Param("order") String order);
+
+	List<RglrCphJiLu> queryLrCphCBBList(@Param("bfh") int bfh, @Param("cph") String cph, @Param("rowNum") int rowNum, @Param("rows") int rows, @Param("sort") String sort, @Param("order") String order);
 }
