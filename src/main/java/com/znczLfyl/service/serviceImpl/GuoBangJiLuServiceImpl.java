@@ -69,4 +69,17 @@ public class GuoBangJiLuServiceImpl implements GuoBangJiLuService {
 			gbjl.setGblxName("³ö³§¹ý°õ");
 		return gbjl;
 	}
+
+	@Override
+	public boolean checkIfExistByDdId(Integer gblx, Integer ddId) {
+		// TODO Auto-generated method stub
+		int count=guoBangJiLuDao.getCountByDdId(gblx,ddId);
+		return count==0?false:true;
+	}
+
+	@Override
+	public int deleteByDdId(Integer gblx,Integer ddId) {
+		// TODO Auto-generated method stub
+		return guoBangJiLuDao.deleteByDdId(gblx, ddId);
+	}
 }

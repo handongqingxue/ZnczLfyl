@@ -40,6 +40,10 @@ public class DDGLController {
 	private DingDanZhuangTaiService dingDanZhuangTaiService;
 	@Autowired
 	private RglrCphJiLuService rglrCphJiLuService;
+	@Autowired
+	private BangDanJiLuService bangDanJiLuService;
+	@Autowired
+	private GuoBangJiLuService guoBangJiLuService;
 	public static final String MODULE_NAME="ddgl";
 	
 	@RequestMapping(value="/ddzt/new")
@@ -153,7 +157,9 @@ public class DDGLController {
 		//publicService.selectNav(request);
 		request.setAttribute("yshDdztMc", DingDanZhuangTai.YI_SHEN_HE_TEXT);
 		request.setAttribute("yjpdzDdztMc", DingDanZhuangTai.YI_JIAN_PAI_DUI_ZHONG_TEXT);
+		request.setAttribute("yjsbDdztMc", DingDanZhuangTai.YI_JIAN_SHANG_BANG_TEXT);
 		request.setAttribute("ejpdzDdztMc", DingDanZhuangTai.ER_JIAN_PAI_DUI_ZHONG_TEXT);
+		request.setAttribute("ejsbDdztMc", DingDanZhuangTai.ER_JIAN_SHANG_BANG_TEXT);
 		request.setAttribute("shlx", ShenHeJiLu.XIA_DAN_SHEN_HE);
 		
 		return MODULE_NAME+"/zhcx/list";
@@ -400,6 +406,36 @@ public class DDGLController {
 		else {
 			plan.setStatus(1);
 			plan.setMsg("删除审核记录成功");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		return json;
+	}
+
+	@RequestMapping(value="/fwddById",produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String fwddById(DingDan dd,int jyFlag) {
+
+		PlanResult plan=new PlanResult();
+		String json;
+		boolean bool=false;
+		int count=dingDanService.edit(dd);
+		if(jyFlag==GuoBangJiLu.RU_CHANG_GUO_BANG) {
+			bool=bangDanJiLuService.checkIfExistByDdId(dd.getId());
+			if(bool)
+				bangDanJiLuService.deleteByDdId(dd.getId());
+		}
+		bool=guoBangJiLuService.checkIfExistByDdId(jyFlag,dd.getId());
+		if(bool)
+			guoBangJiLuService.deleteByDdId(jyFlag,dd.getId());
+			
+		if(count==0) {
+			plan.setStatus(0);
+			plan.setMsg("订单复位失败");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		else {
+			plan.setStatus(1);
+			plan.setMsg("订单复位成功，请车辆重新排队上磅");
 			json=JsonUtil.getJsonFromObject(plan);
 		}
 		return json;

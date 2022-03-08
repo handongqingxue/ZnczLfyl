@@ -90,4 +90,7 @@
 	<delete id="deleteByDdId">
 		delete from bang_dan_ji_lu where ddId=#{ddId}
 	</delete>
+	<select id="getCountByDdId" resultType="java.lang.Integer">
+		select count(*) from bang_dan_ji_lu where ddId=#{ddId}
+	</select>
 </mapper>

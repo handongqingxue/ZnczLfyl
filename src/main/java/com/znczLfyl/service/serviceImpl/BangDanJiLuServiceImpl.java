@@ -50,4 +50,17 @@ public class BangDanJiLuServiceImpl implements BangDanJiLuService {
 		// TODO Auto-generated method stub
 		return bangDanJiLuDao.selectByDdId(ddId);
 	}
+
+	@Override
+	public boolean checkIfExistByDdId(Integer ddId) {
+		// TODO Auto-generated method stub
+		int count=bangDanJiLuDao.getCountByDdId(ddId);
+		return count==0?false:true;
+	}
+
+	@Override
+	public int deleteByDdId(Integer ddId) {
+		// TODO Auto-generated method stub
+		return bangDanJiLuDao.deleteByDdId(ddId);
+	}
 }

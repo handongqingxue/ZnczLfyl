@@ -87,6 +87,7 @@ $(function(){
 	initDDZTCBB();
 	initSearchLB();
 	initManualLB();
+	initDdfwLB();
 	initAddLB();
 	initRemoveLB();
 	initTab1();
@@ -426,6 +427,22 @@ function initManualLB(){
 	});
 }
 
+function initDdfwLB(){
+	ddfwLB=$("#ddfw_but").linkbutton({
+		iconCls:"icon-back",
+		onClick:function(){
+			var rows=tab1.datagrid("getSelections");
+			if (rows.length == 0) {
+				$.messager.alert("提示","请选择要复位的订单信息！","warning");
+				return false;
+			}
+			if(checkFwddZt()){
+				fwddById();
+			}
+		}
+	});
+}
+
 function initAddLB(){
 	addLB=$("#add_but").linkbutton({
 		iconCls:"icon-add",
@@ -684,6 +701,55 @@ function deleteByIds() {
 	});
 }
 
+function checkFwddZt(){
+	var rows=tab1.datagrid("getSelections");
+	var ddztMc=rows[0].ddztMc;
+	var yjsbDdztMc='${requestScope.yjsbDdztMc}';
+	var ejsbDdztMc='${requestScope.ejsbDdztMc}';
+	if(ddztMc==yjsbDdztMc)
+		return true;
+	else if(ddztMc==ejsbDdztMc)
+		return true;
+	else{
+		alert("该车辆非过磅状态");
+		return false;
+	}
+}
+
+function fwddById(){
+	var jyFlag=0;
+	var rows=tab1.datagrid("getSelections");
+	var id=rows[0].id;
+	var ddztMc=rows[0].ddztMc;
+	var yjsbDdztMc='${requestScope.yjsbDdztMc}';
+	var ejsbDdztMc='${requestScope.ejsbDdztMc}';
+	var xddztMc;
+	var yjzt;
+	var ejzt;
+	if(ddztMc==yjsbDdztMc){
+		jyFlag=1
+		yjzt=1;
+		xddztMc='${requestScope.yjpdzDdztMc}';
+	}
+	else if(ddztMc==ejsbDdztMc){
+		jyFlag=2
+		ejzt=1;
+		xddztMc='${requestScope.ejpdzDdztMc}';
+	}
+	$.post(ddglPath+"fwddById",
+		{id:id,jyFlag:jyFlag,ddztMc:xddztMc,yjzt:yjzt,ejzt:ejzt},
+		function(result){
+			if(result.status==1){
+				alert(result.msg);
+				tab1.datagrid("load");
+			}
+			else{
+				alert(result.msg);
+			}
+		}
+	,"json");
+}
+
 function setFitWidthInParent(parent,self){
 	var space=0;
 	switch (self) {
@@ -737,6 +803,7 @@ function setFitWidthInParent(parent,self){
 				<input type="text" class="sjsfzh_inp" id="sjsfzh" placeholder="请输入司机身份证号"/>
 				<a class="search_but" id="search_but">查询</a>
 				<a id="manual_but">人工</a>
+				<a id="ddfw_but">订单复位</a>
 				<a id="add_but">添加</a>
 				<a id="remove_but">删除</a>
 			</div>
