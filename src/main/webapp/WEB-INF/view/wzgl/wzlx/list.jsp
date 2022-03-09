@@ -32,7 +32,15 @@ $(function(){
 	initAddLB();
 	initRemoveLB();
 	initTab1();
+	showCompontByQx();
 });
+
+function showCompontByQx(){
+	removeLB.hide();
+	if(yhm=="admin"){
+		removeLB.show();
+	}
+}
 
 function initSearchLB(){
 	$("#search_but").linkbutton({
