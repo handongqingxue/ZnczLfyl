@@ -10,6 +10,8 @@ public interface WuZiLeiXingMapper {
 
 	int add(WuZiLeiXing wzlx);
 
+	int deleteByIds(List<String> idList);
+
 	int edit(WuZiLeiXing wzlx);
 
 	int queryForInt(@Param("mc") String mc);

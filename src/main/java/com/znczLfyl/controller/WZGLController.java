@@ -138,6 +138,26 @@ public class WZGLController {
 		}
 		return jsonMap;
 	}
+
+	@RequestMapping(value="/deleteWuZiLeiXing",produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String deleteWuZiLeiXing(String ids) {
+		//TODO 针对分类的动态进行实时调整更新
+		int count=wuZiLeiXingService.deleteByIds(ids);
+		PlanResult plan=new PlanResult();
+		String json;
+		if(count==0) {
+			plan.setStatus(0);
+			plan.setMsg("删除物资类型失败");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		else {
+			plan.setStatus(1);
+			plan.setMsg("删除物资类型成功");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		return json;
+	}
 	
 	@RequestMapping(value="/editWuZiLeiXing")
 	@ResponseBody
@@ -173,6 +193,34 @@ public class WZGLController {
 			jsonMap.put("info", "创建物资失败！");
 		}
 		return jsonMap;
+	}
+	
+	@RequestMapping(value="/checkIfExistWuZiByLxIds",produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String checkIfExistWuZiByLxIds(String lxIds,String lxMcs) {
+		//TODO 针对分类的动态进行实时调整更新
+		List<WuZiLeiXing> wzlxList=wuZiService.checkIfExistByLxIds(lxIds,lxMcs);
+		PlanResult plan=new PlanResult();
+		String json;
+		if(wzlxList.size()>0) {
+			plan.setStatus(1);
+			StringBuilder msgSB=new StringBuilder();
+			for (int i = 0; i < wzlxList.size(); i++) {
+				WuZiLeiXing wzlx = wzlxList.get(i);
+				msgSB.append(",");
+				msgSB.append(wzlx.getMc());
+			}
+			msgSB.append("类型下有物资，请先删除物资");
+			String msgStr = msgSB.toString();
+			plan.setMsg(msgStr.substring(1, msgStr.length()));
+			plan.setData(wzlxList);
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		else {
+			plan.setStatus(0);
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		return json;
 	}
 
 	@RequestMapping(value="/deleteWuZi",produces="plain/text; charset=UTF-8")

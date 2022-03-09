@@ -22,4 +22,6 @@ public interface WuZiMapper {
 	public WuZi selectById(String id);
 
 	public List<WuZi> queryCBBList(@Param("wzlxId") String wzlxId);
+
+	public int getCountByLxId(@Param("wzlxId") String wzlxId);
 }

@@ -1,5 +1,6 @@
 package com.znczLfyl.service.serviceImpl;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -59,5 +60,23 @@ public class WuZiServiceImpl implements WuZiService {
 	public List<WuZi> queryCBBList(String wzlxId) {
 		// TODO Auto-generated method stub
 		return wuZiDao.queryCBBList(wzlxId);
+	}
+
+	@Override
+	public List<WuZiLeiXing> checkIfExistByLxIds(String lxIds,String lxMcs) {
+		// TODO Auto-generated method stub
+		List<WuZiLeiXing> wzlxList=new ArrayList<WuZiLeiXing>();
+		String[] lxIdArr = lxIds.split(",");
+		String[] lxMcArr = lxMcs.split(",");
+		for (int i = 0; i < lxIdArr.length; i++) {
+			String lxId = lxIdArr[i];
+			if(wuZiDao.getCountByLxId(lxId)>0) {
+				WuZiLeiXing wzlx=new WuZiLeiXing();
+				wzlx.setId(Integer.valueOf(lxId));
+				wzlx.setMc(lxMcArr[i]);
+				wzlxList.add(wzlx);
+			}
+		}
+		return wzlxList;
 	}
 }

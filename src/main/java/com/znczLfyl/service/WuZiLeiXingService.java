@@ -8,6 +8,8 @@ public interface WuZiLeiXingService {
 
 	int add(WuZiLeiXing wzlx);
 
+	int deleteByIds(String ids);
+
 	int edit(WuZiLeiXing wzlx);
 
 	int queryForInt(String mc);

@@ -83,6 +83,7 @@ var dialogTop=10;
 var dialogLeft=20;
 var cddxxdNum=0;
 var icphdNum=1;
+var dshDdztMc='${requestScope.dshDdztMc}';
 $(function(){
 	initDDZTCBB();
 	initSearchLB();
@@ -471,12 +472,17 @@ function initTab1(){
 		pageSize:10,
 		columns:[[
             {field:"id",title:"操作",width:150,formatter:function(value,row){
-            	var str="<a href=\"edit?id="+value+"\">编辑</a>&nbsp;&nbsp;"
-            		+"<a href=\"detail?id="+value+"\">详情</a>&nbsp;&nbsp;";
-           		if(row.ddztMc=="待审核"){
-           			var rowJson = JSON.stringify(row).replace(/"/g, '&quot;');
-           			str+="<a class=\"check_a\" onclick=\"openCheckDDXXDialog(true,"+rowJson+")\">审核</a>";
+            	var str;
+           		if(row.id!="<div style=\"text-align:center;\">暂无信息<div>"){
+	            	str="<a href=\"edit?id="+value+"\">编辑</a>&nbsp;&nbsp;"
+	            	   +"<a href=\"detail?id="+value+"\">详情</a>&nbsp;&nbsp;";
+	           		if(row.ddztMc==dshDdztMc){
+	           			var rowJson = JSON.stringify(row).replace(/"/g, '&quot;');
+	           			str+="<a class=\"check_a\" onclick=\"openCheckDDXXDialog(true,"+rowJson+")\">审核</a>";
+	           		}
            		}
+           		else
+           			str=value;
             	return str;
             }},
 			{field:"ddh",title:"订单号",width:150},

@@ -155,6 +155,7 @@ public class DDGLController {
 	public String goDdglZhcxList(HttpServletRequest request) {
 		
 		//publicService.selectNav(request);
+		request.setAttribute("dshDdztMc", DingDanZhuangTai.DAI_SHEN_HE_TEXT);
 		request.setAttribute("yshDdztMc", DingDanZhuangTai.YI_SHEN_HE_TEXT);
 		request.setAttribute("yjpdzDdztMc", DingDanZhuangTai.YI_JIAN_PAI_DUI_ZHONG_TEXT);
 		request.setAttribute("yjsbDdztMc", DingDanZhuangTai.YI_JIAN_SHANG_BANG_TEXT);

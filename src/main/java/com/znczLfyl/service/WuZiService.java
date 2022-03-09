@@ -20,4 +20,6 @@ public interface WuZiService {
 	public WuZi selectById(String id);
 
 	public List<WuZi> queryCBBList(String wzlxId);
+
+	public List<WuZiLeiXing> checkIfExistByLxIds(String lxIds,String lxMcs);
 }

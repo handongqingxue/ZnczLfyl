@@ -59,4 +59,7 @@
 	<select id="queryCBBList" resultType="com.znczLfyl.entity.WuZi">
 		select id,mc from wu_zi where wzlxId=#{wzlxId}
 	</select>
+	<select id="getCountByLxId" resultType="java.lang.Integer">
+		select count(*) from wu_zi where wzlxId=#{wzlxId}
+	</select>
 </mapper>
