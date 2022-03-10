@@ -18,6 +18,12 @@ public class RglrCphJiLu {
 	public void setSjc(String sjc) {
 		this.sjc = sjc;
 	}
+	public String getWscph() {
+		return wscph;
+	}
+	public void setWscph(String wscph) {
+		this.wscph = wscph;
+	}
 	public String getCph() {
 		return cph;
 	}
@@ -31,6 +37,7 @@ public class RglrCphJiLu {
 		this.lrsj = lrsj;
 	}
 	private String sjc;
+	private String wscph;
 	private String cph;
 	private String lrsj;
 }

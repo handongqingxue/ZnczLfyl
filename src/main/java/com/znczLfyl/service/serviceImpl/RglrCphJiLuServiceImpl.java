@@ -41,10 +41,8 @@ public class RglrCphJiLuServiceImpl implements RglrCphJiLuService {
 	}
 
 	@Override
-	public List<RglrCphJiLu> queryLrCphCBBList(String sjc, String cph, int page, int rows, String sort, String order) {
+	public List<RglrCphJiLu> queryLrWscphCBBList(String sjc, String wscph, int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
-		System.out.println("sjc==="+sjc);
-		System.out.println("cph==="+cph);
-		return rglrCphJiLuDao.queryLrCphCBBList(sjc, cph, (page-1)*rows, rows, sort, order);
+		return rglrCphJiLuDao.queryLrWscphCBBList(sjc, wscph, (page-1)*rows, rows, sort, order);
 	}
 }

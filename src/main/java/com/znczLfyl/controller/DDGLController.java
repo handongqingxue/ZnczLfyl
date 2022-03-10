@@ -498,11 +498,11 @@ public class DDGLController {
 		return sjcList;
 	}
 	
-	@RequestMapping(value="/queryLrCphCBBList")
+	@RequestMapping(value="/queryLrWscphCBBList")
 	@ResponseBody
-	public List<RglrCphJiLu> queryLrCphCBBList(String sjc,String q,int page,int rows,String sort,String order) {
+	public List<RglrCphJiLu> queryLrWscphCBBList(String sjc,String q,int page,int rows,String sort,String order) {
 
-		List<RglrCphJiLu> cphList=rglrCphJiLuService.queryLrCphCBBList(sjc, q, page, rows, sort, order);
+		List<RglrCphJiLu> cphList=rglrCphJiLuService.queryLrWscphCBBList(sjc, q, page, rows, sort, order);
 		
 		return cphList;
 	}

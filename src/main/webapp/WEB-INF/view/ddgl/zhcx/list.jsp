@@ -243,7 +243,7 @@ function initInputCphDialog(){
 	initBFHCBB();
 	initXzCphCBB();
 	initLrSjcCBB();
-	initLrCphCBB();
+	initLrWscphCBB();
 }
 
 function initBFHCBB(){
@@ -274,7 +274,8 @@ function initXzCphCBB(){
 		data:data,
 		onChange:function(){
 			var cph=xzcphCBB.combobox("getValue");
-			lrcphCBB.combobox("setValue",cph);
+			lrSjcCBB.combobox("setValue",cph.substring(0,1));
+			lrWscphCBB.combobox("setValue",cph.substring(1));
 		}
 	});
 }
@@ -297,7 +298,7 @@ function loadXzCphCBBData(){
 function initLrSjcCBB(){
 	var data=[];
 	data.push({"value":"","text":"请录入"});
-	lrsjcCBB=$("#lrsjc_cbb").combobox({
+	lrSjcCBB=$("#lrSjc_cbb").combobox({
 		width:50,
 		valueField:"sjc",
 		textField:"sjc",
@@ -313,19 +314,18 @@ function initLrSjcCBB(){
 	});
 }
 
-function initLrCphCBB(){
+function initLrWscphCBB(){
 	var data=[];
 	data.push({"value":"","text":"请录入"});
-	lrcphCBB=$("#lrcph_cbb").combobox({
+	lrWscphCBB=$("#lrWscph_cbb").combobox({
 		width:70,
-		valueField:"cph",
-		textField:"cph",
+		valueField:"wscph",
+		textField:"wscph",
 		editable:true,
         mode:'remote',
-        url:ddglPath+"queryLrCphCBBList",
+        url:ddglPath+"queryLrWscphCBBList",
         onBeforeLoad: function(param){
-        	var sjc=lrsjcCBB.combobox("getValue");
-        	var sjc=null;
+        	var sjc=lrSjcCBB.combobox("getValue");
         	if(sjc==null||sjc==""){
         	  	return false;
         	}
@@ -350,7 +350,9 @@ function sendCphToClient(){
 	var rows=tab1.datagrid("getSelections");
 	var bfNoFlag=bfhCBB.combobox("getValue");
 	var jyFlag=0;
-	var cph=lrcphCBB.combobox("getValue");
+	var sjc=lrSjcCBB.combobox("getValue");
+	var wscph=lrWscphCBB.combobox("getValue");
+	var cph=sjc+wscph;
 	if(cph!=rows[0].cph){
 		alert("输入的车牌号与订单里的车牌号不一致");
 		return false;
@@ -387,8 +389,9 @@ function checkBfh(){
 
 //验证人工录入车牌号
 function checkRglrCph(){
-	var cph=lrcphCBB.combobox("getValue");
-	if(cph==null||cph==""){
+	var sjc=lrSjcCBB.combobox("getValue");
+	var wscph=lrWscphCBB.combobox("getValue");
+	if(sjc==null||sjc==""||wscph==null||wscph==""){
 	  	alert("请录入车牌号");
 	  	return false;
 	}
@@ -970,8 +973,8 @@ function setFitWidthInParent(parent,self){
 						车牌号
 					</td>
 					<td class="td2">
-						<input id="lrsjc_cbb"/>
-						<input id="lrcph_cbb"/>
+						<input id="lrSjc_cbb"/>
+						<input id="lrWscph_cbb"/>
 					</td>
 				  </tr>
 				</table>

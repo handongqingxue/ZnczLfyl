@@ -25,14 +25,14 @@
 	<select id="queryXzCphCBBList" resultType="java.lang.String">
 		select cph from rglr_cph_ji_lu order by #{sort} #{order} limit #{rowNum},#{rows}
 	</select>
-	<select id="queryLrCphCBBList" resultType="com.znczLfyl.entity.RglrCphJiLu">
-		select cph from rglr_cph_ji_lu where cph like CONCAT('%',CONCAT(#{sjc},#{cph}),'%') order by #{sort} #{order} limit #{rowNum},#{rows}
-	</select>
 	<select id="queryLrSjcCBBList" resultType="com.znczLfyl.entity.RglrCphJiLu">
 		select distinct left(cph,1) sjc from rglr_cph_ji_lu where 1=1 
 		<if test="sjc!=''&amp;sjc!=null">
 			and left(cph,1)=#{sjc}
 		</if>
 		 order by #{sort} #{order} limit #{rowNum},#{rows}
+	</select>
+	<select id="queryLrWscphCBBList" resultType="com.znczLfyl.entity.RglrCphJiLu">
+		select right(cph,CHAR_LENGTH(cph)-1) wscph from rglr_cph_ji_lu where left(cph,1)=#{sjc} and right(cph,CHAR_LENGTH(cph)-1) like CONCAT('%',#{wscph},'%') order by #{sort} #{order} limit #{rowNum},#{rows}
 	</select>
 </mapper>

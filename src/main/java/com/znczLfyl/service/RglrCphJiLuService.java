@@ -14,6 +14,6 @@ public interface RglrCphJiLuService {
 
 	List<RglrCphJiLu> queryLrSjcCBBList(String sjc, int page, int rows, String sort, String order);
 
-	List<RglrCphJiLu> queryLrCphCBBList(String sjc, String cph, int page, int rows, String sort, String order);
+	List<RglrCphJiLu> queryLrWscphCBBList(String sjc, String wscph, int page, int rows, String sort, String order);
 
 }
