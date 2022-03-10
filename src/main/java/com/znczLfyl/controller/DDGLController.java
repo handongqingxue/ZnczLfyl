@@ -478,22 +478,31 @@ public class DDGLController {
 	
 	@RequestMapping(value="/queryXzCphCBBList")
 	@ResponseBody
-	public Map<String, Object> queryXzCphCBBList(int bfh,int page,int rows,String sort,String order) {
+	public Map<String, Object> queryXzCphCBBList(int page,int rows,String sort,String order) {
 
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		
-		List<String> cphList=rglrCphJiLuService.queryXzCphCBBList(bfh, page, rows, sort, order);
+		List<String> cphList=rglrCphJiLuService.queryXzCphCBBList(page, rows, sort, order);
 		
 		jsonMap.put("rows", cphList);
 		
 		return jsonMap;
 	}
 	
+	@RequestMapping(value="/queryLrSjcCBBList")
+	@ResponseBody
+	public List<RglrCphJiLu> queryLrSjcCBBList(String q,int page,int rows,String sort,String order) {
+
+		List<RglrCphJiLu> sjcList=rglrCphJiLuService.queryLrSjcCBBList(q, page, rows, sort, order);
+		
+		return sjcList;
+	}
+	
 	@RequestMapping(value="/queryLrCphCBBList")
 	@ResponseBody
-	public List<RglrCphJiLu> queryLrCphCBBList(int bfh,String q,int page,int rows,String sort,String order) {
+	public List<RglrCphJiLu> queryLrCphCBBList(String sjc,String q,int page,int rows,String sort,String order) {
 
-		List<RglrCphJiLu> cphList=rglrCphJiLuService.queryLrCphCBBList(bfh, q, page, rows, sort, order);
+		List<RglrCphJiLu> cphList=rglrCphJiLuService.queryLrCphCBBList(sjc, q, page, rows, sort, order);
 		
 		return cphList;
 	}

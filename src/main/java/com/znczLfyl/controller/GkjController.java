@@ -269,11 +269,10 @@ public class GkjController {
 		String mesJO="{\"action\":\"pushCph\",jyFlag:"+jyFlag+",\"cph\":\" "+cph+"\"}";
 		ProxySet.sayToClient(mesJO, bfNoFlag==1?SocketProxy.YI_HAO_BANG_FANG:SocketProxy.ER_HAO_BANG_FANG);
 		
-		boolean bool=rglrCphJiLuService.checkIfExist(cph,bfNoFlag);
+		boolean bool=rglrCphJiLuService.checkIfExist(cph);
 		if(!bool) {
 			RglrCphJiLu rglrCphJiLu=new RglrCphJiLu();
 			rglrCphJiLu.setCph(cph);
-			rglrCphJiLu.setBfh(bfNoFlag);
 			rglrCphJiLuService.add(rglrCphJiLu);
 		}
 		

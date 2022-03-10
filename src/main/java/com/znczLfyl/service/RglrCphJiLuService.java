@@ -8,10 +8,12 @@ public interface RglrCphJiLuService {
 
 	int add(RglrCphJiLu rglrCphJiLu);
 
-	boolean checkIfExist(String cph, Integer bfh);
+	boolean checkIfExist(String cph);
 
-	List<String> queryXzCphCBBList(int bfh, int page, int rows, String sort, String order);
+	List<String> queryXzCphCBBList(int page, int rows, String sort, String order);
 
-	List<RglrCphJiLu> queryLrCphCBBList(int bfh, String cph, int page, int rows, String sort, String order);
+	List<RglrCphJiLu> queryLrSjcCBBList(String sjc, int page, int rows, String sort, String order);
+
+	List<RglrCphJiLu> queryLrCphCBBList(String sjc, String cph, int page, int rows, String sort, String order);
 
 }

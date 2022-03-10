@@ -242,14 +242,15 @@ function initInputCphDialog(){
 
 	initBFHCBB();
 	initXzCphCBB();
+	initLrSjcCBB();
 	initLrCphCBB();
 }
 
 function initBFHCBB(){
 	var data=[];
 	data.push({"value":"","text":"请选择"});
-	data.push({"value":1,"text":"北新磅房"});
-	data.push({"value":2,"text":"南旧磅房"});
+	data.push({"value":1,"text":"北磅房"});
+	data.push({"value":2,"text":"南磅房"});
 	
 	bfhCBB=$("#bfh_cbb").combobox({
 		width:120,
@@ -279,11 +280,10 @@ function initXzCphCBB(){
 }
 
 function loadXzCphCBBData(){
-	var bfh=bfhCBB.combobox("getValue");
 	var data=[];
 	data.push({"value":"","text":"请选择"});
 	$.post(ddglPath+"queryXzCphCBBList",
-		{bfh:bfh,page:1,rows:20,sort:"lrsj",order:"desc"},
+		{page:1,rows:20,sort:"lrsj",order:"desc"},
 		function(result){
 			var rows=result.rows;
 			for(var i=0;i<rows.length;i++){
@@ -294,22 +294,42 @@ function loadXzCphCBBData(){
 	,"json");
 }
 
+function initLrSjcCBB(){
+	var data=[];
+	data.push({"value":"","text":"请录入"});
+	lrsjcCBB=$("#lrsjc_cbb").combobox({
+		width:50,
+		valueField:"sjc",
+		textField:"sjc",
+		editable:true,
+        mode:'remote',
+        url:ddglPath+"queryLrSjcCBBList",
+        onBeforeLoad: function(param){
+    		param.page = 1;
+    		param.rows = 100;
+    		param.sort = "lrsj";
+    		param.order = "desc";
+    	}
+	});
+}
+
 function initLrCphCBB(){
 	var data=[];
 	data.push({"value":"","text":"请录入"});
 	lrcphCBB=$("#lrcph_cbb").combobox({
-		width:120,
+		width:70,
 		valueField:"cph",
 		textField:"cph",
 		editable:true,
         mode:'remote',
         url:ddglPath+"queryLrCphCBBList",
         onBeforeLoad: function(param){
-        	var bfh=bfhCBB.combobox("getValue");
-        	if(bfh==null||bfh==""){
+        	var sjc=lrsjcCBB.combobox("getValue");
+        	var sjc=null;
+        	if(sjc==null||sjc==""){
         	  	return false;
         	}
-    		param.bfh = bfh;
+    		param.sjc = sjc;
     		param.page = 1;
     		param.rows = 100;
     		param.sort = "lrsj";
@@ -950,6 +970,7 @@ function setFitWidthInParent(parent,self){
 						车牌号
 					</td>
 					<td class="td2">
+						<input id="lrsjc_cbb"/>
 						<input id="lrcph_cbb"/>
 					</td>
 				  </tr>

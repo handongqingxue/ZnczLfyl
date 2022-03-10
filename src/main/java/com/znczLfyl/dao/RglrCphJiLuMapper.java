@@ -10,9 +10,11 @@ public interface RglrCphJiLuMapper {
 
 	int add(RglrCphJiLu rglrCphJiLu);
 
-	int getCount(@Param("cph") String cph, @Param("bfh") Integer bfh);
+	int getCount(@Param("cph") String cph);
 
-	List<String> queryXzCphCBBList(@Param("bfh") int bfh, @Param("rowNum") int rowNum, @Param("rows") int rows, @Param("sort") String sort, @Param("order") String order);
+	List<String> queryXzCphCBBList(@Param("rowNum") int rowNum, @Param("rows") int rows, @Param("sort") String sort, @Param("order") String order);
 
-	List<RglrCphJiLu> queryLrCphCBBList(@Param("bfh") int bfh, @Param("cph") String cph, @Param("rowNum") int rowNum, @Param("rows") int rows, @Param("sort") String sort, @Param("order") String order);
+	List<RglrCphJiLu> queryLrCphCBBList(@Param("sjc") String sjc, @Param("cph") String cph, @Param("rowNum") int rowNum, @Param("rows") int rows, @Param("sort") String sort, @Param("order") String order);
+
+	List<RglrCphJiLu> queryLrSjcCBBList(@Param("sjc") String sjc, @Param("rowNum") int rowNum, @Param("rows") int rows, @Param("sort") String sort, @Param("order") String order);
 }

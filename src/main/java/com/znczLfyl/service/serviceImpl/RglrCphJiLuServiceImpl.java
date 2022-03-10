@@ -22,21 +22,29 @@ public class RglrCphJiLuServiceImpl implements RglrCphJiLuService {
 	}
 
 	@Override
-	public boolean checkIfExist(String cph, Integer bfh) {
+	public boolean checkIfExist(String cph) {
 		// TODO Auto-generated method stub
-		int count=rglrCphJiLuDao.getCount(cph,bfh);
+		int count=rglrCphJiLuDao.getCount(cph);
 		return count==0?false:true;
 	}
 
 	@Override
-	public List<String> queryXzCphCBBList(int bfh, int page, int rows, String sort, String order) {
+	public List<String> queryXzCphCBBList(int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
-		return rglrCphJiLuDao.queryXzCphCBBList(bfh, (page-1)*rows, rows, sort, order);
+		return rglrCphJiLuDao.queryXzCphCBBList((page-1)*rows, rows, sort, order);
 	}
 
 	@Override
-	public List<RglrCphJiLu> queryLrCphCBBList(int bfh, String cph, int page, int rows, String sort, String order) {
+	public List<RglrCphJiLu> queryLrSjcCBBList(String sjc, int page, int rows, String sort, String order) {
 		// TODO Auto-generated method stub
-		return rglrCphJiLuDao.queryLrCphCBBList(bfh, cph, (page-1)*rows, rows, sort, order);
+		return rglrCphJiLuDao.queryLrSjcCBBList(sjc, (page-1)*rows, rows, sort, order);
+	}
+
+	@Override
+	public List<RglrCphJiLu> queryLrCphCBBList(String sjc, String cph, int page, int rows, String sort, String order) {
+		// TODO Auto-generated method stub
+		System.out.println("sjc==="+sjc);
+		System.out.println("cph==="+cph);
+		return rglrCphJiLuDao.queryLrCphCBBList(sjc, cph, (page-1)*rows, rows, sort, order);
 	}
 }
