@@ -258,6 +258,10 @@ public class DDGLController {
 		try {
 			int count=dingDanService.add(dd);
 			if(count>0) {
+				RglrCphJiLu rglrCphJiLu=new RglrCphJiLu();
+				rglrCphJiLu.setCph(dd.getCph());
+				rglrCphJiLuService.add(rglrCphJiLu);
+				
 				jsonMap.put("message", "ok");
 				jsonMap.put("info", "创建订单成功！");
 			}
@@ -357,6 +361,10 @@ public class DDGLController {
 		try {
 			int count=dingDanService.edit(dd);
 			if(count>0) {
+				RglrCphJiLu rglrCphJiLu=new RglrCphJiLu();
+				rglrCphJiLu.setCph(dd.getCph());
+				rglrCphJiLuService.add(rglrCphJiLu);
+				
 				jsonMap.put("message", "ok");
 				jsonMap.put("info", "编辑订单成功！");
 			}

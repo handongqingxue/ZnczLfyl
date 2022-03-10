@@ -53,7 +53,7 @@
 }
 .check_ddxx_div{
 	width: 1000px;
-	height: 525px;
+	height: 435px;
 	margin: 100px auto 0;
 	background-color: #fff;
 	border-radius:5px;
@@ -148,7 +148,7 @@ function initCheckDDXXDialog(){
 	$("#check_ddxx_dialog_div").dialog({
 		title:"订单信息",
 		width:setFitWidthInParent("#check_ddxx_div","check_ddxx_dialog_div"),
-		height:435,
+		height:345,
 		top:dialogTop,
 		left:dialogLeft,
 		buttons:[
@@ -161,7 +161,7 @@ function initCheckDDXXDialog(){
         ]
 	});
 
-	$("#check_ddxx_dialog_div table").css("width",(setFitWidthInParent("#check_ddxx_div","check_ddxx_dialog_div"))+"px");
+	$("#check_ddxx_dialog_div table").css("width",(setFitWidthInParent("#check_ddxx_div","check_ddxx_dialog_table"))+"px");
 	$("#check_ddxx_dialog_div table").css("magin","-100px");
 	$("#check_ddxx_dialog_div table td").css("padding-left","40px");
 	$("#check_ddxx_dialog_div table td").css("padding-right","20px");
@@ -257,30 +257,11 @@ function initBFHCBB(){
 		valueField:"value",
 		textField:"text",
 		//multiple:true,
-		data:data,
-		onChange:function(){
-			loadXzCphCBBData();
-		}
+		data:data
 	});
 }
 
 function initXzCphCBB(){
-	var data=[];
-	data.push({"value":"","text":"请选择"});
-	xzcphCBB=$("#xzcph_cbb").combobox({
-		width:120,
-		valueField:"value",
-		textField:"text",
-		data:data,
-		onChange:function(){
-			var cph=xzcphCBB.combobox("getValue");
-			lrSjcCBB.combobox("setValue",cph.substring(0,1));
-			lrWscphCBB.combobox("setValue",cph.substring(1));
-		}
-	});
-}
-
-function loadXzCphCBBData(){
 	var data=[];
 	data.push({"value":"","text":"请选择"});
 	$.post(ddglPath+"queryXzCphCBBList",
@@ -290,7 +271,17 @@ function loadXzCphCBBData(){
 			for(var i=0;i<rows.length;i++){
 				data.push({"value":rows[i],"text":rows[i]});
 			}
-			xzcphCBB.combobox("loadData",data);
+			xzcphCBB=$("#xzcph_cbb").combobox({
+				width:120,
+				valueField:"value",
+				textField:"text",
+				data:data,
+				onChange:function(){
+					var cph=xzcphCBB.combobox("getValue");
+					lrSjcCBB.combobox("setValue",cph.substring(0,1));
+					lrWscphCBB.combobox("setValue",cph.substring(1));
+				}
+			});
 		}
 	,"json");
 }
@@ -634,9 +625,6 @@ function openCheckDDXXDialog(flag,row){
 		$("#check_ddxx_div #sjxm_span").text(row.sjxm);
 		$("#check_ddxx_div #cph_span").text(row.cph);
 		$("#check_ddxx_div #lxlxMc_span").text(row.lxlx==1?"送运":"取运");
-		$("#check_ddxx_div #yzxzl_span").text(row.yzxzl);
-		$("#check_ddxx_div #sjzl_span").text(row.sjzl);
-		$("#check_ddxx_div #zlceb_span").text(row.zlceb);
 		$("#check_ddxx_div #wzlxMc_span").text(row.wzlxMc);
 		$("#check_ddxx_div #wzMc_span").text(row.wzMc);
 		$("#check_ddxx_div #yssMc_span").text(row.yssMc);
@@ -651,9 +639,6 @@ function openCheckDDXXDialog(flag,row){
 		$("#check_ddxx_div #sjxm_span").text("");
 		$("#check_ddxx_div #cph_span").text("");
 		$("#check_ddxx_div #lxlxMc_span").text("");
-		$("#check_ddxx_div #yzxzl_span").text("");
-		$("#check_ddxx_div #sjzl_span").text("");
-		$("#check_ddxx_div #zlceb_span").text("");
 		$("#check_ddxx_div #wzlxMc_span").text("");
 		$("#check_ddxx_div #wzMc_span").text("");
 		$("#check_ddxx_div #yssMc_span").text("");
@@ -792,6 +777,7 @@ function setFitWidthInParent(parent,self){
 	case "input_cph_dialog_div":
 		space=50;
 		break;
+	case "check_ddxx_dialog_table":
 	case "input_cph_dialog_table":
 		space=68;
 		break;
@@ -883,64 +869,38 @@ function setFitWidthInParent(parent,self){
 						<span id="lxlxMc_span"></span>
 					</td>
 					<td class="td1" align="right">
-						预装卸重量
-					</td>
-					<td class="td2">
-						<span id="yzxzl_span"></span>
-					</td>
-				  </tr>
-				  <tr>
-					<td class="td1" align="right">
-						实际重量
-					</td>
-					<td class="td2">
-						<span id="sjzl_span"></span>
-					</td>
-					<td class="td1" align="right">
-						重量差额比
-					</td>
-					<td class="td2">
-						<span id="zlceb_span"></span>
-					</td>
-				  </tr>
-				  <tr>
-					<td class="td1" align="right">
 						物资类型
 					</td>
 					<td class="td2">
 						<span id="wzlxMc_span"></span>
 					</td>
+				  </tr>
+				  <tr>
 					<td class="td1" align="right">
 						物资名称
 					</td>
 					<td class="td2">
 						<span id="wzMc_span"></span>
 					</td>
-				  </tr>
-				  <tr>
 					<td class="td1" align="right">
 						运输商
 					</td>
 					<td class="td2">
 						<span id="yssMc_span"></span>
 					</td>
+				  </tr>
+				  <tr>
 					<td class="td1" align="right">
 						发货单位
 					</td>
 					<td class="td2">
 						<span id="fhdwMc_span"></span>
 					</td>
-				  </tr>
-				  <tr>
 					<td class="td1" align="right">
 						收货部门
 					</td>
 					<td class="td2">
 						<span id="shbmMc_span"></span>
-					</td>
-					<td class="td1" align="right">
-					</td>
-					<td class="td2">
 					</td>
 				  </tr>
 				</table>

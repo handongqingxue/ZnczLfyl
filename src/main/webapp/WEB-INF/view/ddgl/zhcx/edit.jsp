@@ -19,11 +19,11 @@
 	margin-left: 20px;
 	font-size: 18px;
 }
-.ddh_inp,.sjsfzh_inp,.cph_inp{
+.ddh_inp,.sjsfzh_inp{
 	width: 180px;
 	height:30px;
 }
-.sjxm_inp,.yzxzl_inp,.sjzl_inp,.zlceb_inp{
+.sjxm_inp{
 	width: 150px;
 	height:30px;
 }
@@ -47,8 +47,6 @@ function showCompontByQx(){
 	if(yhm=="admin"){
 		$("#edit_div #ddh").removeAttr("disabled");
 		lxlxCBB.combobox({disabled:false});
-		$("#edit_div #yzxzl").removeAttr("disabled");
-		$("#edit_div #sjzl").removeAttr("disabled");
 		setTimeout(function(){
 			wzlxCBB.combobox({disabled:false});
 			yssCBB.combobox({disabled:false});
@@ -63,8 +61,6 @@ function showCompontByQx(){
 			if(qxIdsArr[i]==2){
 				$("#edit_div #ddh").removeAttr("disabled");
 				lxlxCBB.combobox({disabled:false});
-				$("#edit_div #yzxzl").removeAttr("disabled");
-				$("#edit_div #sjzl").removeAttr("disabled");
 				setTimeout(function(){
 					wzlxCBB.combobox({disabled:false});
 					yssCBB.combobox({disabled:false});
@@ -93,7 +89,7 @@ function initEditDialog(){
 	$("#edit_div").dialog({
 		title:"订单信息",
 		width:setFitWidthInParent("body","edit_div"),
-		height:415,
+		height:370,
 		top:dialogTop,
 		left:dialogLeft,
 		buttons:[
@@ -131,7 +127,9 @@ function initEditDialog(){
 	
 	$(".dialog-button").css("background-color","#fff");
 	$(".dialog-button .l-btn-text").css("font-size","20px");
-	
+
+	initXZCPHCBB();
+	initLRSJCCBB();
 	initLXLXCBB();
 	initWZLXCBB();
 	initWZCBB();
@@ -139,8 +137,85 @@ function initEditDialog(){
 	initFHDWCBB();
 	initSHBMCBB();
 	setTimeout(function(){
+		loadLRCPHData();
 		loadWZCBBData();
 	},"1000");
+}
+
+function initXZCPHCBB(){
+	var data=[];
+	data.push({"value":"","text":"请选择"});
+	$.post(ddglPath+"queryXzCphCBBList",
+		{page:1,rows:20,sort:"lrsj",order:"desc"},
+		function(result){
+			var rows=result.rows;
+			for(var i=0;i<rows.length;i++){
+				data.push({"value":rows[i],"text":rows[i]});
+			}
+			xzcphCBB=$("#xzcph_cbb").combobox({
+				valueField:"value",
+				textField:"text",
+				data:data,
+				onChange:function(){
+					var cph=xzcphCBB.combobox("getValue");
+					lrSjcCBB.combobox("setValue",cph.substring(0,1));
+					lrWscphCBB.combobox("setValue",cph.substring(1));
+				}
+			});
+		}
+	,"json");
+}
+
+function initLRSJCCBB(){
+	var data=[];
+	data.push({"value":"","text":"请录入"});
+	lrSjcCBB=$("#lrSjc_cbb").combobox({
+		width:50,
+		valueField:"sjc",
+		textField:"sjc",
+		editable:true,
+        mode:'remote',
+        url:ddglPath+"queryLrSjcCBBList",
+        onBeforeLoad: function(param){
+    		param.page = 1;
+    		param.rows = 100;
+    		param.sort = "lrsj";
+    		param.order = "desc";
+    	},
+		onLoadSuccess:function(){
+			initLRWSCPHCBB();//这个下拉框是联动加载，必须在省下拉框加载完后才能加载
+		}
+	});
+}
+
+function initLRWSCPHCBB(){
+	var data=[];
+	data.push({"value":"","text":"请录入"});
+	lrWscphCBB=$("#lrWscph_cbb").combobox({
+		width:100,
+		valueField:"wscph",
+		textField:"wscph",
+		editable:true,
+        mode:'remote',
+        url:ddglPath+"queryLrWscphCBBList",
+        onBeforeLoad: function(param){
+        	var sjc=lrSjcCBB.combobox("getValue");
+        	if(sjc==null||sjc==""){
+        	  	return false;
+        	}
+    		param.sjc = sjc;
+    		param.page = 1;
+    		param.rows = 100;
+    		param.sort = "lrsj";
+    		param.order = "desc";
+    	}
+	});
+}
+
+function loadLRCPHData(){
+	var cph='${requestScope.dd.cph }';
+	lrSjcCBB.combobox("setValue",cph.substring(0,1));
+	lrWscphCBB.combobox("setValue",cph.substring(1));
 }
 
 function initLXLXCBB(){
@@ -276,16 +351,17 @@ function initSHBMCBB(){
 }
 
 function checkEdit(){
-	if(checkYZXZL()){
-		if(checkWZLXId()){
-			if(checkWZId()){
-				editDingDanZongHeChaXun();
-			}
+	if(checkWZLXId()){
+		if(checkWZId()){
+			editDingDanZongHeChaXun();
 		}
 	}
 }
 
 function editDingDanZongHeChaXun(){
+	var sjc=lrSjcCBB.combobox("getValue");
+	var wscph=lrWscphCBB.combobox("getValue");
+	$("#edit_div #cph").val(sjc+wscph);
 	var wzlxId=wzlxCBB.combobox("getValue");
 	$("#edit_div #wzlxId").val(wzlxId);
 	var wzId=wzCBB.combobox("getValue");
@@ -317,17 +393,6 @@ function editDingDanZongHeChaXun(){
 			}
 		}
 	});
-}
-
-//验证预装卸重量
-function checkYZXZL(){
-	var yzxzl = $("#edit_div #yzxzl").val();
-	if(yzxzl==null||yzxzl==""){
-	  	alert("请输入预装卸重量");
-	  	return false;
-	}
-	else
-		return true;
 }
 
 //验证物资类型
@@ -404,39 +469,27 @@ function setFitWidthInParent(parent,self){
 					<input type="text" class="sjxm_inp" id="sjxm" name="sjxm" value="${requestScope.dd.sjxm }" placeholder="请输入司机姓名" />
 				</td>
 				<td class="td1" align="right">
-					车牌号
+					选择车牌号
 				</td>
 				<td class="td2">
-					<input type="text" class="cph_inp" id="cph" name="cph" value="${requestScope.dd.cph }" placeholder="请输入车牌号" />
+					<input id="xzcph_cbb"/>
 				</td>
 			  </tr>
 			  <tr>
+				<td class="td1" align="right">
+					录入车牌号
+				</td>
+				<td class="td2">
+					<input id="lrSjc_cbb"/>
+					<input id="lrWscph_cbb"/>
+					<input type="hidden" id="cph" name="cph" value="${requestScope.dd.cph }"/>
+				</td>
 				<td class="td1" align="right">
 					流向类型
 				</td>
 				<td class="td2">
 					<input id="lxlx_cbb" disabled="disabled"/>
 					<input type="hidden" id="lxlx" name="lxlx" value="${requestScope.dd.lxlx }"/>
-				</td>
-				<td class="td1" align="right">
-					预装卸重量
-				</td>
-				<td class="td2">
-					<input type="number" class="yzxzl_inp" id="yzxzl" name="yzxzl" value="${requestScope.dd.yzxzl }" placeholder="请输入预装卸重量" disabled="disabled"/>
-				</td>
-			  </tr>
-			  <tr>
-				<td class="td1" align="right">
-					实际重量
-				</td>
-				<td class="td2">
-					<input type="number" class="sjzl_inp" id="sjzl" name="sjzl" value="${requestScope.dd.sjzl }" placeholder="请输入实际重量" disabled="disabled"/>
-				</td>
-				<td class="td1" align="right">
-					重量差额比
-				</td>
-				<td class="td2">
-					<input type="number" class="zlceb_inp" id="zlceb" name="zlceb" value="${requestScope.dd.zlceb }" placeholder="无需输入" disabled="disabled"/>
 				</td>
 			  </tr>
 			  <tr>

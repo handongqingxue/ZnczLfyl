@@ -48,7 +48,7 @@ function initDetailDialog(){
 	$("#detail_div").dialog({
 		title:"订单信息",
 		width:setFitWidthInParent("body","detail_div"),
-		height:415,
+		height:325,
 		top:dialogTop,
 		left:dialogLeft,
 		buttons:[
@@ -190,64 +190,38 @@ function setFitWidthInParent(parent,self){
 					</c:choose>
 				</td>
 				<td class="td1" align="right">
-					预装卸重量
-				</td>
-				<td class="td2">
-					${requestScope.dd.yzxzl }
-				</td>
-			  </tr>
-			  <tr>
-				<td class="td1" align="right">
-					实际重量
-				</td>
-				<td class="td2">
-					${requestScope.dd.sjzl }
-				</td>
-				<td class="td1" align="right">
-					重量差额比
-				</td>
-				<td class="td2">
-					${requestScope.dd.zlceb }
-				</td>
-			  </tr>
-			  <tr>
-				<td class="td1" align="right">
 					物资类型
 				</td>
 				<td class="td2">
 					${requestScope.dd.wzlxMc }
 				</td>
+			  </tr>
+			  <tr>
 				<td class="td1" align="right">
 					物资名称
 				</td>
 				<td class="td2">
 					${requestScope.dd.wzMc }
 				</td>
-			  </tr>
-			  <tr>
 				<td class="td1" align="right">
 					运输商
 				</td>
 				<td class="td2">
 					${requestScope.dd.yssMc }
 				</td>
+			  </tr>
+			  <tr>
 				<td class="td1" align="right">
 					发货单位
 				</td>
 				<td class="td2">
 					${requestScope.dd.fhdwMc }
 				</td>
-			  </tr>
-			  <tr>
 				<td class="td1" align="right">
 					收货部门
 				</td>
 				<td class="td2">
 					${requestScope.dd.shbmMc }
-				</td>
-				<td class="td1" align="right">
-				</td>
-				<td class="td2">
 				</td>
 			  </tr>
 			</table>
