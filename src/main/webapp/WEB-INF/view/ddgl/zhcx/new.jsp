@@ -322,6 +322,8 @@ function newDingDanZongHeChaXun(){
 	var sjc=lrSjcCBB.combobox("getValue");
 	var wscph=lrWscphCBB.combobox("getValue");
 	$("#new_div #cph").val(sjc+wscph);
+	var lxlx=lxlxCBB.combobox("getValue");
+	$("#new_div #lxlx").val(lxlx);
 	var wzlxId=wzlxCBB.combobox("getValue");
 	$("#new_div #wzlxId").val(wzlxId);
 	var wzId=wzCBB.combobox("getValue");

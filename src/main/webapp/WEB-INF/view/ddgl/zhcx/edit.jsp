@@ -160,7 +160,11 @@ function initXZCPHCBB(){
 					var cph=xzcphCBB.combobox("getValue");
 					lrSjcCBB.combobox("setValue",cph.substring(0,1));
 					lrWscphCBB.combobox("setValue",cph.substring(1));
-				}
+				},
+		    	onSelect:function(){
+		    		var cph=xzcphCBB.combobox("getValue");
+		    		getDingDanByCphJL(cph);
+		    	}
 			});
 		}
 	,"json");
@@ -208,6 +212,11 @@ function initLRWSCPHCBB(){
     		param.rows = 100;
     		param.sort = "lrsj";
     		param.order = "desc";
+    	},
+    	onSelect:function(){
+    		var sjc=lrSjcCBB.combobox("getValue");
+    		var wscph=lrWscphCBB.combobox("getValue");
+    		getDingDanByCphJL(sjc+wscph);
     	}
 	});
 }
@@ -415,6 +424,28 @@ function checkWZId(){
 	}
 	else
 		return true;
+}
+
+//根据车牌号记录获取订单信息
+function getDingDanByCphJL(cph){
+	$.post(ddglPath+"getDingDanByCphJL",
+		{cph:cph},
+		function(result){
+			if(result.status==1){
+				var dd=result.data;
+				lxlxCBB.combobox("setValue",dd.lxlx);
+				yssCBB.combobox("setValue",dd.yssId);
+				fhdwCBB.combobox("setValue",dd.fhdwId);
+				shbmCBB.combobox("setValue",dd.shbmId);
+			}
+			else{
+				lxlxCBB.combobox("setValue","");
+				yssCBB.combobox("setValue","");
+				fhdwCBB.combobox("setValue","");
+				shbmCBB.combobox("setValue","");
+			}
+		}
+	,"json");
 }
 
 function setFitWidthInParent(parent,self){

@@ -34,4 +34,8 @@ public interface DingDanService {
 
 	DingDan getByCphJL(String cph);
 
+	int getIdByDdh(String ddh);
+
+	boolean checkIfExistByIdCph(Integer id, String cph);
+
 }

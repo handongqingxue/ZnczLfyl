@@ -258,8 +258,12 @@ public class DDGLController {
 		try {
 			int count=dingDanService.add(dd);
 			if(count>0) {
+				String ddh = dd.getDdh();
+				int ddId=dingDanService.getIdByDdh(ddh);
+				
 				RglrCphJiLu rglrCphJiLu=new RglrCphJiLu();
 				rglrCphJiLu.setCph(dd.getCph());
+				rglrCphJiLu.setDdId(ddId);
 				rglrCphJiLuService.add(rglrCphJiLu);
 				
 				jsonMap.put("message", "ok");
@@ -359,11 +363,17 @@ public class DDGLController {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		try {
+			Integer ddId = dd.getId();
+			String cph = dd.getCph();
+			boolean exist=dingDanService.checkIfExistByIdCph(ddId,cph);
 			int count=dingDanService.edit(dd);
 			if(count>0) {
-				RglrCphJiLu rglrCphJiLu=new RglrCphJiLu();
-				rglrCphJiLu.setCph(dd.getCph());
-				rglrCphJiLuService.add(rglrCphJiLu);
+				if(!exist) {
+					RglrCphJiLu rglrCphJiLu=new RglrCphJiLu();
+					rglrCphJiLu.setCph(cph);
+					rglrCphJiLu.setDdId(ddId);
+					rglrCphJiLuService.add(rglrCphJiLu);
+				}
 				
 				jsonMap.put("message", "ok");
 				jsonMap.put("info", "±à¼­¶©µ¥³É¹¦£¡");

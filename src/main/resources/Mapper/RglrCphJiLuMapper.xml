@@ -9,14 +9,20 @@
 			<if test="cph!=null">
 				cph,
 			</if>
-				lrsj
+				lrsj,
+			<if test="ddId!=null">
+				ddId,
+			</if>
 		</trim>
 		values
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="cph!=null">
 				#{cph},
 			</if>
-				now()
+				now(),
+			<if test="ddId!=null">
+				#{ddId},
+			</if>
 		</trim>
 	</insert>
 	<select id="getCount" resultType="java.lang.Integer">

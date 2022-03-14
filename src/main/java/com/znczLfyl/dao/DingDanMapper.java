@@ -37,4 +37,8 @@ public interface DingDanMapper {
 
 	DingDan getByCphJL(@Param("cph") String cph);
 
+	int getIdByDdh(@Param("ddh") String ddh);
+
+	int getCountByIdCph(@Param("id") Integer id, @Param("cph") String cph);
+
 }

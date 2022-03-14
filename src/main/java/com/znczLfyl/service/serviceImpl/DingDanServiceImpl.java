@@ -141,4 +141,16 @@ public class DingDanServiceImpl implements DingDanService {
 		// TODO Auto-generated method stub
 		return dingDanDao.getByCphJL(cph);
 	}
+
+	@Override
+	public int getIdByDdh(String ddh) {
+		// TODO Auto-generated method stub
+		return dingDanDao.getIdByDdh(ddh);
+	}
+
+	@Override
+	public boolean checkIfExistByIdCph(Integer id, String cph) {
+		// TODO Auto-generated method stub
+		return dingDanDao.getCountByIdCph(id, cph)==0?false:true;
+	}
 }
