@@ -259,7 +259,7 @@ public class GkjController {
 
 	@RequestMapping(value="/sendCphToClient")
 	@ResponseBody
-	public Map<String, Object> sendCphToClient(String cph,Integer bfNoFlag,Integer jyFlag) {
+	public Map<String, Object> sendCphToClient(Integer ddId,String cph,Integer bfNoFlag,Integer jyFlag) {
 		
 		System.out.println("sendCphToClient.bfNoFlag==="+bfNoFlag);
 
@@ -269,12 +269,13 @@ public class GkjController {
 		String mesJO="{\"action\":\"pushCph\",jyFlag:"+jyFlag+",\"cph\":\" "+cph+"\"}";
 		ProxySet.sayToClient(mesJO, bfNoFlag==1?SocketProxy.YI_HAO_BANG_FANG:SocketProxy.ER_HAO_BANG_FANG);
 		
-		//boolean bool=rglrCphJiLuService.checkIfExist(cph);
-		//if(!bool) {
+		boolean exist=rglrCphJiLuService.checkIfExistByDdIdCph(ddId,cph);//验证同一个订单是否存在该车牌号，存在则说明之前录入过了，不需要再生成车牌号记录了，反之则需要生成
+		if(!exist) {
 			RglrCphJiLu rglrCphJiLu=new RglrCphJiLu();
 			rglrCphJiLu.setCph(cph);
+			rglrCphJiLu.setDdId(ddId);
 			rglrCphJiLuService.add(rglrCphJiLu);
-		//}
+		}
 		
 		jsonMap.put("status", "ok");
 		

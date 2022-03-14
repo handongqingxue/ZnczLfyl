@@ -26,7 +26,7 @@
 		</trim>
 	</insert>
 	<select id="getCount" resultType="java.lang.Integer">
-		select count(*) from rglr_cph_ji_lu where cph=#{cph}
+		select count(*) from rglr_cph_ji_lu where ddId=#{ddId} and cph=#{cph}
 	</select>
 	<select id="queryXzCphCBBList" resultType="java.lang.String">
 		select distinct cph from rglr_cph_ji_lu order by #{sort} #{order} limit #{rowNum},#{rows}

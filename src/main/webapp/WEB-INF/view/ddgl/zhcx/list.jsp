@@ -357,8 +357,9 @@ function sendCphToClient(){
 		alert("该车辆非排队中状态");
 		return false;
 	}
+	var ddId=rows[0].id;
 	$.post(gkjPath+"sendCphToClient",
-		{cph:cph,bfNoFlag:bfNoFlag,jyFlag:jyFlag},
+		{ddId:ddId,cph:cph,bfNoFlag:bfNoFlag,jyFlag:jyFlag},
 		function(data){
 			if(data.status=="ok"){
 				openInputCphDialog(false);

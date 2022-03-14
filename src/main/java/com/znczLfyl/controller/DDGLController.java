@@ -258,12 +258,12 @@ public class DDGLController {
 		try {
 			int count=dingDanService.add(dd);
 			if(count>0) {
-				String ddh = dd.getDdh();
+				String ddh = dd.getDdh();//因为新订单之前添加到订单表前没有id，添加完成后才生成id，这里在添加完成后，要根据订单号获取订单id
 				int ddId=dingDanService.getIdByDdh(ddh);
 				
 				RglrCphJiLu rglrCphJiLu=new RglrCphJiLu();
 				rglrCphJiLu.setCph(dd.getCph());
-				rglrCphJiLu.setDdId(ddId);
+				rglrCphJiLu.setDdId(ddId);//获取订单id后，生成人工录入车牌号记录，与订单id关联。这里的车牌号只是车牌号记录，后面业务部人员在订单里录入的车牌号可能会根据运输商情况变更
 				rglrCphJiLuService.add(rglrCphJiLu);
 				
 				jsonMap.put("message", "ok");
@@ -365,10 +365,10 @@ public class DDGLController {
 		try {
 			Integer ddId = dd.getId();
 			String cph = dd.getCph();
-			boolean exist=dingDanService.checkIfExistByIdCph(ddId,cph);
+			boolean exist=dingDanService.checkIfExistByIdCph(ddId,cph);//在修改订单信息前根据订单id和现在的车牌号验证订单表里是否存在订单，一定要在修改订单之前验证，因为这时车牌号就算待变更也还没变成新的
 			int count=dingDanService.edit(dd);
 			if(count>0) {
-				if(!exist) {
+				if(!exist) {//订单id都是一个id，若不存在，说明编辑订单信息时车牌号也变更了，则需要给该订单再加条录入车牌号记录
 					RglrCphJiLu rglrCphJiLu=new RglrCphJiLu();
 					rglrCphJiLu.setCph(cph);
 					rglrCphJiLu.setDdId(ddId);

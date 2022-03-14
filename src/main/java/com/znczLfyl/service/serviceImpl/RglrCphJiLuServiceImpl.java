@@ -22,9 +22,9 @@ public class RglrCphJiLuServiceImpl implements RglrCphJiLuService {
 	}
 
 	@Override
-	public boolean checkIfExist(String cph) {
+	public boolean checkIfExistByDdIdCph(Integer ddId, String cph) {
 		// TODO Auto-generated method stub
-		int count=rglrCphJiLuDao.getCount(cph);
+		int count=rglrCphJiLuDao.getCount(ddId, cph);
 		return count==0?false:true;
 	}
 
