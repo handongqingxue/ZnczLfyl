@@ -514,4 +514,24 @@ public class DDGLController {
 		
 		return cphList;
 	}
+
+	@RequestMapping(value="/getDingDanByCphJL",produces="plain/text; charset=UTF-8")
+	@ResponseBody
+	public String getDingDanByCphJL(String cph) {
+
+		PlanResult plan=new PlanResult();
+		String json;
+		DingDan dd = dingDanService.getByCphJL(cph);
+		if(dd==null) {
+			plan.setStatus(0);
+			plan.setMsg("没有找到相关订单");
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		else {
+			plan.setStatus(1);
+			plan.setData(dd);
+			json=JsonUtil.getJsonFromObject(plan);
+		}
+		return json;
+	}
 }

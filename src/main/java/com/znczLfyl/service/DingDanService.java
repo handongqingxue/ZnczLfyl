@@ -32,4 +32,6 @@ public interface DingDanService {
 
 	boolean checkIfExistByZt(Integer yjbfh,Integer ejbfh,String ddztMc, Integer yjzt, Integer ejzt);
 
+	DingDan getByCphJL(String cph);
+
 }

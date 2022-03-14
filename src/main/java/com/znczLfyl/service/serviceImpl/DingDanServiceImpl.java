@@ -135,4 +135,10 @@ public class DingDanServiceImpl implements DingDanService {
 		int count=dingDanDao.getCountByZt(yjbfh,ejbfh,ddztMc, yjzt, ejzt);
 		return count==0?false:true;
 	}
+
+	@Override
+	public DingDan getByCphJL(String cph) {
+		// TODO Auto-generated method stub
+		return dingDanDao.getByCphJL(cph);
+	}
 }
