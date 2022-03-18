@@ -517,7 +517,7 @@ function setFitWidthInParent(parent,self){
 					订单号
 				</td>
 				<td class="td2">
-					<input type="text" class="ddh_inp" id="ddh" name="ddh" placeholder="请输入订单号" onfocus="focusDdh()" onblur="checkDdh()"/>
+					<input type="text" class="ddh_inp" id="ddh" name="ddh" value="${requestScope.ddh }" placeholder="请输入订单号" onfocus="focusDdh()" onblur="checkDdh()"/>
 				</td>
 				<td class="td1" align="right">
 					司机身份证号

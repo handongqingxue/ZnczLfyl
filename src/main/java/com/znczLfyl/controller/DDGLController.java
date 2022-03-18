@@ -125,6 +125,8 @@ public class DDGLController {
 	public String goDdglZhcxNew(HttpServletRequest request) {
 		
 		//publicService.selectNav(request);
+		String ddh=dingDanService.createDdhByDateYMD();
+		request.setAttribute("ddh", ddh);
 		
 		return MODULE_NAME+"/zhcx/new";
 	}

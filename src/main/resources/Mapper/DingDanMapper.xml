@@ -352,4 +352,7 @@
 	<select id="getCountByIdCph" resultType="java.lang.Integer">
 		select count(*) from ding_dan where id=#{id} and cph=#{cph}
 	</select>
+	<select id="getCountByDdhDate" resultType="java.lang.Integer">
+		select count(*) from ding_dan where ddh like CONCAT(#{ddhDate},'%')
+	</select>
 </mapper>

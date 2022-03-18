@@ -85,7 +85,7 @@
 		select bdjl.*,dd.ddh from bang_dan_ji_lu bdjl,ding_dan dd where bdjl.ddId=dd.id and bdjl.id=#{id}
 	</select>
 	<select id="selectByDdId" resultType="com.znczLfyl.entity.BangDanJiLu">
-		select bdjl.*,dd.ddh from bang_dan_ji_lu bdjl,ding_dan dd where bdjl.ddId=dd.id and bdjl.ddId=#{ddId}
+		select bdjl.*,dd.ddh,dd.cph from bang_dan_ji_lu bdjl,ding_dan dd where bdjl.ddId=dd.id and bdjl.ddId=#{ddId}
 	</select>
 	<delete id="deleteByDdId">
 		delete from bang_dan_ji_lu where ddId=#{ddId}

@@ -38,4 +38,6 @@ public interface DingDanService {
 
 	boolean checkIfExistByIdCph(Integer id, String cph);
 
+	String createDdhByDateYMD();
+
 }

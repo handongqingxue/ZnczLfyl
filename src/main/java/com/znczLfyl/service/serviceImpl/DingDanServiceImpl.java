@@ -1,6 +1,8 @@
 package com.znczLfyl.service.serviceImpl;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -24,6 +26,7 @@ public class DingDanServiceImpl implements DingDanService {
 	private BangDanJiLuMapper bangDanJiLuDao;
 	@Autowired
 	private GuoBangJiLuMapper guoBangJiLuDao;
+	private SimpleDateFormat ddhSdf=new SimpleDateFormat("yyyyMMdd");
 
 	@Override
 	public int queryZHCXForInt(String ddh, Integer ddztId, String ddztMc, String cph, String yssMc, String wzMc, 
@@ -152,5 +155,19 @@ public class DingDanServiceImpl implements DingDanService {
 	public boolean checkIfExistByIdCph(Integer id, String cph) {
 		// TODO Auto-generated method stub
 		return dingDanDao.getCountByIdCph(id, cph)==0?false:true;
+	}
+
+	@Override
+	public String createDdhByDateYMD() {
+		// TODO Auto-generated method stub
+		String ddhDate = ddhSdf.format(new Date());
+		int count=dingDanDao.getCountByDdhDate(ddhDate);
+		String ddhxhStr=null;
+		int ddhxh=count+1;
+		if(ddhxh<10)
+			ddhxhStr="00"+ddhxh;
+		else if(ddhxh<100)
+			ddhxhStr="0"+ddhxh;
+		return ddhDate+ddhxhStr;
 	}
 }
