@@ -100,9 +100,9 @@ function checkById(){
 	var sjsfzh='${requestScope.dd.sjsfzh }';
 	var sjxm='${requestScope.dd.sjxm }';
 	var cph='${requestScope.dd.cph }';
-	if(sjsfzh==""||sjxm==""||cph=="")
+	if(sjsfzh==""||sjxm==""||cph=="")//在司机身份证号、司机姓名、车牌号的一者为空情况下，就算审核通过，订单状态也是已审核
 		ddztMc=$("#detail_div #yshDdztMc").val();
-	else
+	else//在司机身份证号、司机姓名、车牌号三者都不为空情况下，审核通过，订单状态直接跳到一检排队中
 		ddztMc=$("#detail_div #yjpdzDdztMc").val();
 	var shlx='${requestScope.shlx}';
 	var shrId='${sessionScope.yongHu.id}';

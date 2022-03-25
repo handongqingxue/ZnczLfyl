@@ -101,8 +101,8 @@ public class DingDanServiceImpl implements DingDanService {
 				shjl.setDdId(ddId);
 				count+=shenHeJiLuDao.add(shjl);
 				
-				if(!shjl.getShjg()) {
-					if(jyFlag==GuoBangJiLu.RU_CHANG_GUO_BANG)
+				if(!shjl.getShjg()) {//这块代码是在一检审核或二检审核不通过情况下，把之前的磅单记录、过磅记录删除。与下单审核、入库审核无关
+					if(jyFlag==GuoBangJiLu.RU_CHANG_GUO_BANG)//在入厂过磅审核不通过情况下，要删除入厂过磅记录，肯定要连同磅单记录一起删除掉
 						bangDanJiLuDao.deleteByDdId(ddId);
 					guoBangJiLuDao.deleteByDdId(jyFlag,ddId);
 				}

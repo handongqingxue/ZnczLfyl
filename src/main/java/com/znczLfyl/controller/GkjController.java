@@ -184,16 +184,23 @@ public class GkjController {
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 
-		BangDanJiLu bdjl = bangDanJiLuService.selectByDdId(ddId);
-		if(bdjl==null) {
-			jsonMap.put("status", "no");
-			jsonMap.put("message", "找不到相关磅单！");
+		try {
+			BangDanJiLu bdjl = bangDanJiLuService.selectByDdId(ddId);
+			if(bdjl==null) {
+				jsonMap.put("status", "no");
+				jsonMap.put("message", "找不到相关磅单！");
+			}
+			else {
+				jsonMap.put("status", "ok");
+				jsonMap.put("bdjl", bdjl);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		else {
-			jsonMap.put("status", "ok");
-			jsonMap.put("bdjl", bdjl);
+		finally {
+			return jsonMap;
 		}
-		return jsonMap;
 	}
 
 	@RequestMapping(value="/newGuoBangJiLu")

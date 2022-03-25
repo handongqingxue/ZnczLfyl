@@ -74,18 +74,37 @@ function checkByIds() {
 		$.messager.alert("提示","请选择要审核的信息！","warning");
 		return false;
 	}
-	if(confirm("请确保所有订单都认真审核过！")){
-		var ids = "";
-		for (var i = 0; i < rows.length; i++) {
-			ids += "," + rows[i].id;
-		}
-		ids=ids.substring(1);
+
+	var confirmStr="";
+	var wcphDdhs = "";
+	var shIds = "";
+	for (var i = 0; i < rows.length; i++) {
+		if(rows[i].cph=="")
+			wcphDdhs += "、" + rows[i].ddh;
+		else
+			shIds += "," + rows[i].id;
+	}
+	if(wcphDdhs!="")
+		wcphDdhs=wcphDdhs.substring(1);
+	if(shIds!="")
+		shIds=shIds.substring(1);
 	
+	if(wcphDdhs!=""&shIds==""){
+		confirmStr="订单号"+wcphDdhs+"未录入车牌号";
+		alert(confirmStr);
+		return false;
+	}
+	else if(wcphDdhs!=""&shIds!="")
+		confirmStr="订单号"+wcphDdhs+"未录入车牌号,请确保其他订单都认真审核过！";
+	else
+		confirmStr="请确保所有订单都认真审核过！";
+	
+	if(confirm(confirmStr)){
 		var ddztMc='${requestScope.checkDdztMc}';
 		var shlx='${requestScope.shlx}';
 		var shrId='${sessionScope.yongHu.id}';
 		$.post(ddglPath + "checkDingDanByIds",
-			{ids:ids,ddztMc:ddztMc,shlx:shlx,shjg:true,shrId:shrId},
+			{ids:shIds,ddztMc:ddztMc,shlx:shlx,shjg:true,shrId:shrId},
 			function(result){
 				if(result.status==1){
 					alert(result.msg);

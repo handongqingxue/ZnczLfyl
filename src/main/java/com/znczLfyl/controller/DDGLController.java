@@ -24,7 +24,7 @@ import com.znczLfyl.entity.*;
 import com.znczLfyl.controller.DDGLController;
 
 /**
- * 订单状态：待审核-排队中-一检上磅-待一检审核-待入库-二检上磅-待二检审核-已完成
+ * 订单状态：待审核-一检排队中-一检上磅-一检待审核-待入库-二检排队中-二检上磅-二检待审核-已完成
  * */
 @Controller
 @RequestMapping("/"+DDGLController.MODULE_NAME)
@@ -99,7 +99,7 @@ public class DDGLController {
 		
 		//publicService.selectNav(request);
 		request.setAttribute("ddztMc", DingDanZhuangTai.DAI_SHEN_HE_TEXT);
-		request.setAttribute("checkDdztMc", DingDanZhuangTai.YI_SHEN_HE_TEXT);
+		request.setAttribute("checkDdztMc", DingDanZhuangTai.YI_JIAN_PAI_DUI_ZHONG_TEXT);
 		request.setAttribute("shlx", ShenHeJiLu.XIA_DAN_SHEN_HE);
 		
 		return MODULE_NAME+"/dsh/list";
@@ -299,7 +299,7 @@ public class DDGLController {
 			plan.setMsg("审核订单成功");
 			json=JsonUtil.getJsonFromObject(plan);
 			
-			if(!shjl.getShjg()) {
+			if(!shjl.getShjg()) {//这块代码是在一检审核或二检审核不通过情况下，把订单状态还原到之前的排队中。与下单审核、入库审核无关
 				List<String> idList = Arrays.asList(ids.split(","));
 				for (String idStr : idList) {
 					Integer ddId = Integer.valueOf(idStr);
